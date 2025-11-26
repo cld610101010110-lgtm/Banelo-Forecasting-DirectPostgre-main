@@ -22,7 +22,7 @@ from django.db.models import Q, Sum
 from .api_service import get_api_service
 
 # Import models
-from .models import Product, Recipe, RecipeIngredient, Sale, WasteLog, AuditTrail, MLModel, MLPrediction
+from .models import Product, Recipe, RecipeIngredient, Sale, WasteLog, AuditTrail, MLModel, MLPrediction, User, AuditLog
 
 
 # ============================================
@@ -758,28 +758,20 @@ def export_sales_csv(request):
 @login_required
 def accounts_view(request):
     """Display accounts management page from PostgreSQL users table"""
-    from .models import User as PostgresUser
-
     # Get users from PostgreSQL 'users' table (managed by mobile app)
-    users = PostgresUser.objects.all()
+    users = User.objects.all()
 
     users_data = []
     for user in users:
-        # Parse name
-        full_name = user.full_name or user.username or 'User'
-        name_parts = full_name.split(' ', 1)
-        first_name = name_parts[0] if name_parts else 'User'
-        last_name = name_parts[1] if len(name_parts) > 1 else ''
-
         users_data.append({
-            'id': user.id,
-            'first_name': first_name,
-            'last_name': last_name,
-            'email': user.email or '',
+            'id': str(user.id),  # Convert UUID to string
+            'first_name': user.fname,
+            'last_name': user.lname,
+            'email': user.auth_email or '',
             'role': user.role or 'Staff',
-            'initials': (first_name[:1] if first_name else 'U') + (last_name[:1] if last_name else ''),
-            'date_joined': user.created_at.strftime('%Y-%m-%d') if user.created_at else 'N/A',
-            'is_active': user.is_active
+            'initials': (user.fname[:1] if user.fname else 'U') + (user.lname[:1] if user.lname else ''),
+            'date_joined': user.joined_date.strftime('%Y-%m-%d') if user.joined_date else 'N/A',
+            'is_active': user.status == 'active' if user.status else True
         })
 
     # Log audit trail
@@ -800,8 +792,6 @@ def accounts_view(request):
 def audit_trail_view(request):
     """Display audit trail from PostgreSQL with filters (includes mobile POS logs)"""
     try:
-        from .models import AuditLog as MobileAuditLog
-
         print("\n" + "=" * 80)
         print("🔥 AUDIT TRAIL VIEW CALLED (PostgreSQL)")
         print("=" * 80)
@@ -830,18 +820,18 @@ def audit_trail_view(request):
             audit_queryset = audit_queryset.filter(timestamp__lt=to_date)
 
         # Get mobile POS audit logs
-        mobile_queryset = MobileAuditLog.objects.all()
+        mobile_queryset = AuditLog.objects.all()
 
         if filter_user:
-            mobile_queryset = mobile_queryset.filter(user_name=filter_user)
+            mobile_queryset = mobile_queryset.filter(username=filter_user)
         if filter_action:
             mobile_queryset = mobile_queryset.filter(action__icontains=filter_action)
         if filter_date_from:
             from_date = datetime.strptime(filter_date_from, '%Y-%m-%d')
-            mobile_queryset = mobile_queryset.filter(timestamp__gte=from_date)
+            mobile_queryset = mobile_queryset.filter(date_time__gte=from_date)
         if filter_date_to:
             to_date = datetime.strptime(filter_date_to, '%Y-%m-%d') + timedelta(days=1)
-            mobile_queryset = mobile_queryset.filter(timestamp__lt=to_date)
+            mobile_queryset = mobile_queryset.filter(date_time__lt=to_date)
 
         # Process audit logs from both sources
         audit_logs = []
@@ -861,15 +851,15 @@ def audit_trail_view(request):
 
         # Add mobile POS logs
         if not filter_source or filter_source == 'mobile':
-            for log in mobile_queryset.order_by('-timestamp')[:5000]:
+            for log in mobile_queryset.order_by('-date_time')[:5000]:
                 audit_logs.append({
                     'id': f'mobile-{log.id}',
-                    'user': log.user_name or 'Unknown',
+                    'user': log.username or 'Unknown',
                     'action': log.action or 'N/A',
-                    'description': log.details or '',
-                    'timestamp': log.timestamp.strftime('%Y-%m-%d %H:%M:%S') if log.timestamp else '',
+                    'description': log.description or '',
+                    'timestamp': log.date_time.strftime('%Y-%m-%d %H:%M:%S') if log.date_time else '',
                     'source': 'Mobile POS',
-                    'status': 'Success'
+                    'status': log.status or 'Success'
                 })
 
         # Sort by timestamp descending
