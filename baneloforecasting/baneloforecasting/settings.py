@@ -35,6 +35,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+# CSRF Trusted Origins for Railway deployment
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.railway.app',
+    'https://banelo-forecasting-directpostgre-main-production-f033.up.railway.app',
+]
+
 
 # Application definition
 
