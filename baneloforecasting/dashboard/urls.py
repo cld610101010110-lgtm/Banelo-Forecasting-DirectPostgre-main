@@ -14,6 +14,7 @@ urlpatterns = [
     path('settings/', views.settings_view, name='settings'),
     path('sales/', views.sales_view, name='sales'),
     path('sales/export/', views.export_sales_csv, name='export_sales_csv'),
+    path('sales/forecasting/', views.sales_forecasting_view, name='sales_forecasting'),
     path('accounts/', views.accounts_view, name='accounts'),
     path('audit-trail/', views.audit_trail_view, name='audit_trail'),
     path('audit-trail/api/', views.get_audit_logs_api, name='audit_logs_api'),
@@ -28,6 +29,10 @@ urlpatterns = [
     path('api/debug/firebase/', views.debug_firebase_status, name='debug_firebase_status'),
     path('api/update-password/', views.update_password_api, name='update_password_api'),
     path('api/train-forecasting/', views.train_forecasting_model, name='train_forecasting_model'),
+
+    # Sales Forecasting API endpoints
+    path('api/sales-forecast/status/', views.sales_forecast_status_api, name='sales_forecast_status'),
+    path('api/sales-forecast/predict/', views.get_sales_forecast_api, name='get_sales_forecast'),
 
     # Product CRUD (legacy)
     path('api/products/add/', views.add_product_view, name='add_product'),
