@@ -15,7 +15,7 @@ class APIService:
 
     def __init__(self):
         # API Configuration - can be overridden via environment variables
-        self.base_url = os.getenv('API_BASE_URL', 'http://localhost:3000')
+        self.base_url = os.getenv('API_BASE_URL', 'https://banelomobile-main-production-fbd8.up.railway.app')
         self.timeout = int(os.getenv('API_TIMEOUT', '30'))
 
     def _make_request(self, method, endpoint, data=None, params=None):

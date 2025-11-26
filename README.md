@@ -125,7 +125,7 @@ pip install -r requirements.txt
 
 2. **Configure environment** (.env):
 ```env
-API_BASE_URL=http://192.168.254.176:3000
+API_BASE_URL=https://banelomobile-main-production-fbd8.up.railway.app
 API_TIMEOUT=30
 DEBUG=True
 SECRET_KEY=your-secret-key-here
@@ -283,7 +283,7 @@ Banelo-Forecasting-DirectPostgre/
 1. Check if Node.js server is running on Laptop A
 2. Verify API_BASE_URL in Django settings
 3. Check firewall settings allow port 3000
-4. Test connection: `curl http://192.168.254.176:3000/api/health`
+4. Test connection: `curl https://banelomobile-main-production-fbd8.up.railway.app/api/health`
 
 ### Database connection issues
 1. Verify PostgreSQL is running

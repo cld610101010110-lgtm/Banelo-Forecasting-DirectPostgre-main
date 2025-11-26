@@ -38,7 +38,7 @@ Web Browser ─┘
 
 ## Node.js API Endpoints (Port 3000)
 
-Base URL: `http://192.168.254.176:3000` (Laptop A)
+Base URL: `https://banelomobile-main-production-fbd8.up.railway.app` (Laptop A)
 
 ### Health Check
 - **GET** `/api/health`
@@ -323,7 +323,7 @@ These are the original function-based view endpoints (still functional for backw
 #### 1. Create a new product (Ingredient)
 ```bash
 # Via Node.js API
-curl -X POST http://192.168.254.176:3000/api/products \
+curl -X POST https://banelomobile-main-production-fbd8.up.railway.app/api/products \
   -H "Content-Type: application/json" \
   -d '{
     "firebase_id": "ingredient-coffee-001",
@@ -340,7 +340,7 @@ curl -X POST http://192.168.254.176:3000/api/products \
 
 #### 2. Transfer stock from A to B
 ```bash
-curl -X POST http://192.168.254.176:3000/api/products/transfer \
+curl -X POST https://banelomobile-main-production-fbd8.up.railway.app/api/products/transfer \
   -H "Content-Type: application/json" \
   -d '{
     "firebaseId": "ingredient-coffee-001",
@@ -350,7 +350,7 @@ curl -X POST http://192.168.254.176:3000/api/products/transfer \
 
 #### 3. Update product
 ```bash
-curl -X PUT http://192.168.254.176:3000/api/products/ingredient-coffee-001 \
+curl -X PUT https://banelomobile-main-production-fbd8.up.railway.app/api/products/ingredient-coffee-001 \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Premium Coffee Beans",
@@ -360,14 +360,14 @@ curl -X PUT http://192.168.254.176:3000/api/products/ingredient-coffee-001 \
 
 #### 4. Delete product
 ```bash
-curl -X DELETE http://192.168.254.176:3000/api/products/ingredient-coffee-001
+curl -X DELETE https://banelomobile-main-production-fbd8.up.railway.app/api/products/ingredient-coffee-001
 ```
 
 ### Recipe Management (with Ingredients)
 
 #### 1. Create recipe for a beverage
 ```bash
-curl -X POST http://192.168.254.176:3000/api/recipes \
+curl -X POST https://banelomobile-main-production-fbd8.up.railway.app/api/recipes \
   -H "Content-Type: application/json" \
   -d '{
     "productFirebaseId": "beverage-latte-001",
@@ -393,21 +393,21 @@ curl -X POST http://192.168.254.176:3000/api/recipes \
 #### 2. Update recipe
 ```bash
 # Use same format as create
-curl -X PUT http://192.168.254.176:3000/api/recipes/recipe-id \
+curl -X PUT https://banelomobile-main-production-fbd8.up.railway.app/api/recipes/recipe-id \
   -H "Content-Type: application/json" \
   -d '{ ... }'
 ```
 
 #### 3. Delete recipe
 ```bash
-curl -X DELETE http://192.168.254.176:3000/api/recipes/recipe-id
+curl -X DELETE https://banelomobile-main-production-fbd8.up.railway.app/api/recipes/recipe-id
 ```
 
 ### Waste Management
 
 #### Record waste (deducts from Inventory B)
 ```bash
-curl -X POST http://192.168.254.176:3000/api/waste \
+curl -X POST https://banelomobile-main-production-fbd8.up.railway.app/api/waste \
   -H "Content-Type: application/json" \
   -d '{
     "productFirebaseId": "ingredient-milk-001",
@@ -521,13 +521,13 @@ CREATE TABLE audit_trail (
 
 ```bash
 # Test health check
-curl http://192.168.254.176:3000/api/health
+curl https://banelomobile-main-production-fbd8.up.railway.app/api/health
 
 # List products
-curl http://192.168.254.176:3000/api/products
+curl https://banelomobile-main-production-fbd8.up.railway.app/api/products
 
 # List recipes
-curl http://192.168.254.176:3000/api/recipes
+curl https://banelomobile-main-production-fbd8.up.railway.app/api/recipes
 ```
 
 ### Test Django REST API (Laptop B)
@@ -563,7 +563,7 @@ ALLOWED_ORIGINS=http://localhost:8000,http://192.168.254.x:8000
 
 **Django (Laptop B):**
 ```env
-API_BASE_URL=http://192.168.254.176:3000
+API_BASE_URL=https://banelomobile-main-production-fbd8.up.railway.app
 API_TIMEOUT=30
 DEBUG=True
 SECRET_KEY=your-secret-key

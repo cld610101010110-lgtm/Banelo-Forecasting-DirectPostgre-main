@@ -99,10 +99,9 @@ DATABASES = {
 # The website fetches business data from the Node.js API
 # which connects to the shared PostgreSQL database
 
-# API Base URL - Update this to your Mobile POS laptop's IP
-# For same machine: http://localhost:3000
-# For network: http://192.168.x.x:3000 (Mobile POS laptop IP)
-API_BASE_URL = os.getenv('API_BASE_URL', 'http://192.168.254.176:3000')
+# API Base URL - Update this to your Mobile POS laptop's 
+
+API_BASE_URL = os.getenv('API_BASE_URL', 'https://banelomobile-main-production-fbd8.up.railway.app')
 API_TIMEOUT = int(os.getenv('API_TIMEOUT', '30'))
 
 
