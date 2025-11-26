@@ -396,3 +396,55 @@ class MLModel(models.Model):
     class Meta:
         db_table = 'ml_models'
         managed = True  # Django manages this table
+
+
+# =====================================================
+# MOBILE APP MODELS (PostgreSQL Tables)
+# These tables are managed by the mobile app
+# =====================================================
+
+class User(models.Model):
+    """
+    User model from PostgreSQL - managed by mobile app
+    Maps to 'users' table in PostgreSQL
+    """
+    id = models.AutoField(primary_key=True)
+    firebase_id = models.CharField(max_length=255, null=True, blank=True, db_column='firebase_id')
+    email = models.CharField(max_length=255, null=True, blank=True)
+    username = models.CharField(max_length=255, null=True, blank=True)
+    full_name = models.CharField(max_length=255, null=True, blank=True, db_column='full_name')
+    role = models.CharField(max_length=100, null=True, blank=True)
+    is_active = models.BooleanField(default=True, db_column='is_active')
+    created_at = models.DateTimeField(null=True, blank=True, db_column='created_at')
+    updated_at = models.DateTimeField(null=True, blank=True, db_column='updated_at')
+
+    def __str__(self):
+        return self.username or self.email or f"User {self.id}"
+
+    class Meta:
+        db_table = 'users'
+        managed = False  # Table managed by mobile app
+
+
+class AuditLog(models.Model):
+    """
+    Audit Log model from PostgreSQL - mobile POS activity logs
+    Maps to 'audit_logs' table in PostgreSQL
+    """
+    id = models.AutoField(primary_key=True)
+    user_id = models.CharField(max_length=255, null=True, blank=True, db_column='user_id')
+    user_name = models.CharField(max_length=255, null=True, blank=True, db_column='user_name')
+    action = models.CharField(max_length=255, null=True, blank=True)
+    details = models.TextField(null=True, blank=True)
+    table_name = models.CharField(max_length=100, null=True, blank=True, db_column='table_name')
+    record_id = models.CharField(max_length=255, null=True, blank=True, db_column='record_id')
+    timestamp = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(null=True, blank=True, db_column='created_at')
+
+    def __str__(self):
+        return f"{self.action} by {self.user_name} at {self.timestamp}"
+
+    class Meta:
+        db_table = 'audit_logs'
+        managed = False  # Table managed by mobile app
+        ordering = ['-timestamp']

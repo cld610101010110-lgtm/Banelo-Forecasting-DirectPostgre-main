@@ -757,23 +757,33 @@ def export_sales_csv(request):
 
 @login_required
 def accounts_view(request):
-    """Display accounts management page"""
-    from django.contrib.auth.models import User
+    """Display accounts management page from PostgreSQL users table"""
+    from .models import User as PostgresUser
 
-    users = User.objects.all()
+    # Get users from PostgreSQL 'users' table (managed by mobile app)
+    users = PostgresUser.objects.all()
 
     users_data = []
     for user in users:
+        # Parse name
+        full_name = user.full_name or user.username or 'User'
+        name_parts = full_name.split(' ', 1)
+        first_name = name_parts[0] if name_parts else 'User'
+        last_name = name_parts[1] if len(name_parts) > 1 else ''
+
         users_data.append({
             'id': user.id,
-            'first_name': user.first_name or 'User',
-            'last_name': user.last_name or str(user.id),
+            'first_name': first_name,
+            'last_name': last_name,
             'email': user.email or '',
-            'role': 'Admin' if user.is_superuser else 'Staff',
-            'initials': (user.first_name[:1] if user.first_name else 'U') + (user.last_name[:1] if user.last_name else ''),
-            'date_joined': user.date_joined.strftime('%Y-%m-%d'),
+            'role': user.role or 'Staff',
+            'initials': (first_name[:1] if first_name else 'U') + (last_name[:1] if last_name else ''),
+            'date_joined': user.created_at.strftime('%Y-%m-%d') if user.created_at else 'N/A',
             'is_active': user.is_active
         })
+
+    # Log audit trail
+    log_audit('Accounts Viewed', request.user, f'Viewed accounts page. Total users: {len(users_data)}')
 
     context = {
         'users': users_data,
@@ -788,8 +798,10 @@ def accounts_view(request):
 
 @login_required
 def audit_trail_view(request):
-    """Display audit trail from PostgreSQL with filters"""
+    """Display audit trail from PostgreSQL with filters (includes mobile POS logs)"""
     try:
+        from .models import AuditLog as MobileAuditLog
+
         print("\n" + "=" * 80)
         print("🔥 AUDIT TRAIL VIEW CALLED (PostgreSQL)")
         print("=" * 80)
@@ -799,10 +811,11 @@ def audit_trail_view(request):
         filter_action = request.GET.get('action', '')
         filter_date_from = request.GET.get('date_from', '')
         filter_date_to = request.GET.get('date_to', '')
+        filter_source = request.GET.get('source', '')  # 'web' or 'mobile'
 
-        print(f"📊 Filters: user={filter_user}, action={filter_action}, from={filter_date_from}, to={filter_date_to}")
+        print(f"📊 Filters: user={filter_user}, action={filter_action}, from={filter_date_from}, to={filter_date_to}, source={filter_source}")
 
-        # Build query
+        # Build query for Django audit trail (web dashboard)
         audit_queryset = AuditTrail.objects.all()
 
         if filter_user:
@@ -816,23 +829,55 @@ def audit_trail_view(request):
             to_date = datetime.strptime(filter_date_to, '%Y-%m-%d') + timedelta(days=1)
             audit_queryset = audit_queryset.filter(timestamp__lt=to_date)
 
-        audit_queryset = audit_queryset.order_by('-timestamp')[:10000]
+        # Get mobile POS audit logs
+        mobile_queryset = MobileAuditLog.objects.all()
 
-        # Process audit logs
+        if filter_user:
+            mobile_queryset = mobile_queryset.filter(user_name=filter_user)
+        if filter_action:
+            mobile_queryset = mobile_queryset.filter(action__icontains=filter_action)
+        if filter_date_from:
+            from_date = datetime.strptime(filter_date_from, '%Y-%m-%d')
+            mobile_queryset = mobile_queryset.filter(timestamp__gte=from_date)
+        if filter_date_to:
+            to_date = datetime.strptime(filter_date_to, '%Y-%m-%d') + timedelta(days=1)
+            mobile_queryset = mobile_queryset.filter(timestamp__lt=to_date)
+
+        # Process audit logs from both sources
         audit_logs = []
-        for log in audit_queryset:
-            audit_logs.append({
-                'id': log.id,
-                'user': log.user_name or 'Unknown',
-                'action': log.action or 'N/A',
-                'description': log.details or '',
-                'timestamp': log.timestamp.strftime('%Y-%m-%d %H:%M:%S') if log.timestamp else '',
-                'ip_address': 'N/A',
-                'status': 'Success'
-            })
+
+        # Add web dashboard logs
+        if not filter_source or filter_source == 'web':
+            for log in audit_queryset.order_by('-timestamp')[:5000]:
+                audit_logs.append({
+                    'id': f'web-{log.id}',
+                    'user': log.user_name or 'Unknown',
+                    'action': log.action or 'N/A',
+                    'description': log.details or '',
+                    'timestamp': log.timestamp.strftime('%Y-%m-%d %H:%M:%S') if log.timestamp else '',
+                    'source': 'Web Dashboard',
+                    'status': 'Success'
+                })
+
+        # Add mobile POS logs
+        if not filter_source or filter_source == 'mobile':
+            for log in mobile_queryset.order_by('-timestamp')[:5000]:
+                audit_logs.append({
+                    'id': f'mobile-{log.id}',
+                    'user': log.user_name or 'Unknown',
+                    'action': log.action or 'N/A',
+                    'description': log.details or '',
+                    'timestamp': log.timestamp.strftime('%Y-%m-%d %H:%M:%S') if log.timestamp else '',
+                    'source': 'Mobile POS',
+                    'status': 'Success'
+                })
+
+        # Sort by timestamp descending
+        audit_logs.sort(key=lambda x: x['timestamp'], reverse=True)
+        audit_logs = audit_logs[:10000]  # Limit to 10,000
 
         print(f"\n{'=' * 80}")
-        print(f"✅ RESULTS: {len(audit_logs)} audit logs")
+        print(f"✅ RESULTS: {len(audit_logs)} audit logs (Web + Mobile POS)")
         print(f"{'=' * 80}\n")
 
         # Get statistics
@@ -849,6 +894,7 @@ def audit_trail_view(request):
             'filter_action': filter_action,
             'filter_date_from': filter_date_from,
             'filter_date_to': filter_date_to,
+            'filter_source': filter_source,
         }
 
         return render(request, 'dashboard/audit_trail.html', context)
@@ -1814,7 +1860,8 @@ def inventory_forecasting_view(request):
                 ml_confidence = 0
 
             # Calculate forecast metrics
-            stock = float(product.quantity or 0)
+            # Use inventory_a (main warehouse stock) since quantity column may not exist in PostgreSQL
+            stock = float(product.inventory_a or 0)
 
             if predicted_daily_usage > 0:
                 days_left = int(stock / predicted_daily_usage)
