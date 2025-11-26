@@ -2401,3 +2401,188 @@ def get_sales_forecast_api(request):
             'success': False,
             'message': str(e)
         })
+
+
+# ========================================
+# USER MANAGEMENT APIs
+# ========================================
+
+@login_required
+@require_http_methods(["POST"])
+def create_user_api(request):
+    """Create a new user (staff/admin only)"""
+    if not (request.user.is_staff or request.user.is_superuser):
+        return JsonResponse({'success': False, 'message': 'Permission denied'})
+
+    try:
+        from django.contrib.auth.models import User
+        data = json.loads(request.body)
+
+        username = data.get('username')
+        email = data.get('email')
+        first_name = data.get('first_name')
+        last_name = data.get('last_name')
+        password = data.get('password')
+        is_staff = data.get('is_staff', False)
+
+        if not username or not password:
+            return JsonResponse({'success': False, 'message': 'Username and password are required'})
+
+        if User.objects.filter(username=username).exists():
+            return JsonResponse({'success': False, 'message': 'Username already exists'})
+
+        if email and User.objects.filter(email=email).exists():
+            return JsonResponse({'success': False, 'message': 'Email already exists'})
+
+        user = User.objects.create_user(
+            username=username,
+            email=email,
+            password=password,
+            first_name=first_name,
+            last_name=last_name,
+            is_staff=is_staff
+        )
+
+        log_audit('User Created', request.user, f'Created user: {username}')
+
+        return JsonResponse({
+            'success': True,
+            'message': f'User {username} created successfully!',
+            'user': {
+                'id': user.id,
+                'username': user.username,
+                'email': user.email,
+                'first_name': user.first_name,
+                'last_name': user.last_name,
+                'is_active': user.is_active,
+                'is_staff': user.is_staff,
+            }
+        })
+
+    except Exception as e:
+        print(f"❌ Error creating user: {e}")
+        return JsonResponse({'success': False, 'message': str(e)})
+
+
+@login_required
+@require_http_methods(["POST"])
+def update_user_api(request):
+    """Update user information (staff/admin only)"""
+    if not (request.user.is_staff or request.user.is_superuser):
+        return JsonResponse({'success': False, 'message': 'Permission denied'})
+
+    try:
+        from django.contrib.auth.models import User
+        data = json.loads(request.body)
+
+        user_id = data.get('user_id')
+        if not user_id:
+            return JsonResponse({'success': False, 'message': 'User ID is required'})
+
+        user = User.objects.get(id=user_id)
+
+        # Update fields if provided
+        if 'email' in data:
+            user.email = data['email']
+        if 'first_name' in data:
+            user.first_name = data['first_name']
+        if 'last_name' in data:
+            user.last_name = data['last_name']
+        if 'is_active' in data:
+            user.is_active = data['is_active']
+        if 'is_staff' in data and request.user.is_superuser:
+            # Only superusers can change staff status
+            user.is_staff = data['is_staff']
+
+        user.save()
+
+        log_audit('User Updated', request.user, f'Updated user: {user.username}')
+
+        return JsonResponse({
+            'success': True,
+            'message': f'User {user.username} updated successfully!'
+        })
+
+    except User.DoesNotExist:
+        return JsonResponse({'success': False, 'message': 'User not found'})
+    except Exception as e:
+        print(f"❌ Error updating user: {e}")
+        return JsonResponse({'success': False, 'message': str(e)})
+
+
+@login_required
+@require_http_methods(["POST"])
+def delete_user_api(request):
+    """Delete a user (superuser only)"""
+    if not request.user.is_superuser:
+        return JsonResponse({'success': False, 'message': 'Only superusers can delete users'})
+
+    try:
+        from django.contrib.auth.models import User
+        data = json.loads(request.body)
+
+        user_id = data.get('user_id')
+        if not user_id:
+            return JsonResponse({'success': False, 'message': 'User ID is required'})
+
+        user = User.objects.get(id=user_id)
+
+        # Prevent self-deletion
+        if user.id == request.user.id:
+            return JsonResponse({'success': False, 'message': 'You cannot delete your own account'})
+
+        username = user.username
+        user.delete()
+
+        log_audit('User Deleted', request.user, f'Deleted user: {username}')
+
+        return JsonResponse({
+            'success': True,
+            'message': f'User {username} deleted successfully!'
+        })
+
+    except User.DoesNotExist:
+        return JsonResponse({'success': False, 'message': 'User not found'})
+    except Exception as e:
+        print(f"❌ Error deleting user: {e}")
+        return JsonResponse({'success': False, 'message': str(e)})
+
+
+@login_required
+@require_http_methods(["POST"])
+def toggle_user_status_api(request):
+    """Activate/deactivate a user (staff/admin only)"""
+    if not (request.user.is_staff or request.user.is_superuser):
+        return JsonResponse({'success': False, 'message': 'Permission denied'})
+
+    try:
+        from django.contrib.auth.models import User
+        data = json.loads(request.body)
+
+        user_id = data.get('user_id')
+        if not user_id:
+            return JsonResponse({'success': False, 'message': 'User ID is required'})
+
+        user = User.objects.get(id=user_id)
+
+        # Prevent self-deactivation
+        if user.id == request.user.id:
+            return JsonResponse({'success': False, 'message': 'You cannot deactivate your own account'})
+
+        user.is_active = not user.is_active
+        user.save()
+
+        status = 'activated' if user.is_active else 'deactivated'
+        log_audit(f'User {status.title()}', request.user, f'{status.title()} user: {user.username}')
+
+        return JsonResponse({
+            'success': True,
+            'message': f'User {user.username} {status} successfully!',
+            'is_active': user.is_active
+        })
+
+    except User.DoesNotExist:
+        return JsonResponse({'success': False, 'message': 'User not found'})
+    except Exception as e:
+        print(f"❌ Error toggling user status: {e}")
+        return JsonResponse({'success': False, 'message': str(e)})

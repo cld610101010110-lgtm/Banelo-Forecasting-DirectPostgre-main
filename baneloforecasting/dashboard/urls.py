@@ -34,6 +34,12 @@ urlpatterns = [
     path('api/sales-forecast/status/', views.sales_forecast_status_api, name='sales_forecast_status'),
     path('api/sales-forecast/predict/', views.get_sales_forecast_api, name='get_sales_forecast'),
 
+    # User Management API endpoints
+    path('api/users/create/', views.create_user_api, name='create_user_api'),
+    path('api/users/update/', views.update_user_api, name='update_user_api'),
+    path('api/users/delete/', views.delete_user_api, name='delete_user_api'),
+    path('api/users/toggle-status/', views.toggle_user_status_api, name='toggle_user_status_api'),
+
     # Product CRUD (legacy)
     path('api/products/add/', views.add_product_view, name='add_product'),
     path('api/products/update/', views.update_product_view, name='update_product'),

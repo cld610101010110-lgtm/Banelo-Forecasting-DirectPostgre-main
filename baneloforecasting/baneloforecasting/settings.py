@@ -84,14 +84,35 @@ WSGI_APPLICATION = 'baneloforecasting.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 #
-# Django uses SQLite for its own tables (auth, sessions, etc.). All business
-# data (products, sales, recipes, inventory) is fetched via the Node.js API.
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# PostgreSQL database configuration for Railway deployment
+# All Django models (auth, sessions, business data) use PostgreSQL
+import dj_database_url
+
+# Railway provides DATABASE_URL automatically
+# Format: postgresql://user:password@host:port/database
+DATABASE_URL = os.getenv('DATABASE_URL')
+
+if DATABASE_URL:
+    # Production: Use PostgreSQL from Railway
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
     }
-}
+else:
+    # Local development: Use PostgreSQL (not SQLite)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('DB_NAME', 'banelo_db'),
+            'USER': os.getenv('DB_USER', 'postgres'),
+            'PASSWORD': os.getenv('DB_PASSWORD', 'postgres'),
+            'HOST': os.getenv('DB_HOST', 'localhost'),
+            'PORT': os.getenv('DB_PORT', '5432'),
+        }
+    }
 
 # ========================================
 # NODE.JS API CONFIGURATION
