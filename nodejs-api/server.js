@@ -28,7 +28,7 @@ const PORT = process.env.PORT || 3000;
 // CORS configuration
 const allowedOrigins = process.env.ALLOWED_ORIGINS
   ? process.env.ALLOWED_ORIGINS.split(',')
-  : ['http://localhost:8000', 'http://127.0.0.1:8000'];
+  : ['http://localhost:8000','https://banelo-forecasting-directpostgre-main-production.up.railway.app', 'http://127.0.0.1:8000'];
 
 app.use(cors({
   origin: function (origin, callback) {
