@@ -2135,3 +2135,269 @@ def delete_product_view(request):
     except Exception as e:
         print(f"❌ Error deleting product: {e}")
         return JsonResponse({'success': False, 'message': str(e)})
+
+
+# ========================================
+# SALES FORECASTING (ML with XGBoost)
+# ========================================
+
+# Global cache for ML model
+_sales_forecast_model = None
+_feature_columns = None
+
+
+def load_sales_forecast_model():
+    """Load the XGBoost sales forecasting model from .pkl file"""
+    global _sales_forecast_model, _feature_columns
+
+    if _sales_forecast_model is not None:
+        return _sales_forecast_model, _feature_columns
+
+    try:
+        import joblib
+        import numpy as np
+
+        model_path = os.path.join(settings.BASE_DIR, 'ml_models', 'banelo_xgboost_model.pkl')
+        features_path = os.path.join(settings.BASE_DIR, 'ml_models', 'feature_columns.pkl')
+
+        if not os.path.exists(model_path):
+            print(f"❌ Model file not found at {model_path}")
+            return None, None
+
+        if not os.path.exists(features_path):
+            print(f"❌ Feature columns file not found at {features_path}")
+            return None, None
+
+        # Load model and feature columns
+        _sales_forecast_model = joblib.load(model_path)
+        _feature_columns = joblib.load(features_path)
+
+        print(f"✅ Sales forecasting model loaded successfully!")
+        print(f"   Model type: {type(_sales_forecast_model).__name__}")
+        print(f"   Features: {len(_feature_columns)}")
+
+        return _sales_forecast_model, _feature_columns
+
+    except Exception as e:
+        print(f"❌ Error loading sales forecast model: {e}")
+        import traceback
+        traceback.print_exc()
+        return None, None
+
+
+def create_forecast_features(date):
+    """Create features for a specific date for forecasting"""
+    import numpy as np
+
+    # Extract date features
+    day_of_week = date.weekday()
+    day_of_month = date.day
+    month = date.month
+    is_weekend = 1 if day_of_week >= 5 else 0
+    week_of_year = date.isocalendar()[1]
+
+    # Get recent sales history for rolling features
+    last_30_days = date - timedelta(days=30)
+    recent_sales = Sale.objects.filter(
+        order_date__gte=last_30_days,
+        order_date__lt=date
+    ).values('order_date', 'total')
+
+    # Calculate rolling statistics
+    daily_totals = defaultdict(float)
+    for sale in recent_sales:
+        sale_date = sale['order_date'].date() if hasattr(sale['order_date'], 'date') else sale['order_date']
+        daily_totals[sale_date] += sale['total'] or 0
+
+    daily_values = list(daily_totals.values()) if daily_totals else [0]
+
+    rolling_mean_7d = np.mean(daily_values[-7:]) if len(daily_values) >= 7 else np.mean(daily_values)
+    rolling_std_7d = np.std(daily_values[-7:]) if len(daily_values) >= 7 else 0
+    rolling_max_7d = np.max(daily_values[-7:]) if len(daily_values) >= 7 else 0
+    rolling_min_7d = np.min(daily_values[-7:]) if len(daily_values) >= 7 else 0
+    rolling_mean_30d = np.mean(daily_values[-30:]) if len(daily_values) >= 30 else np.mean(daily_values)
+    rolling_std_30d = np.std(daily_values[-30:]) if len(daily_values) >= 30 else 0
+
+    # Lag features
+    lag_1d = daily_values[-1] if len(daily_values) >= 1 else 0
+    lag_7d = daily_values[-7] if len(daily_values) >= 7 else 0
+    lag_14d = daily_values[-14] if len(daily_values) >= 14 else 0
+
+    # Days since start (arbitrary baseline)
+    days_since_start = (date - datetime(2024, 1, 1).date()).days
+
+    # Build feature dictionary
+    features = {
+        'day_of_week': day_of_week,
+        'day_of_month': day_of_month,
+        'month': month,
+        'is_weekend': is_weekend,
+        'week_of_year': week_of_year,
+        'rolling_mean_7d': rolling_mean_7d,
+        'rolling_std_7d': rolling_std_7d,
+        'rolling_max_7d': rolling_max_7d,
+        'rolling_min_7d': rolling_min_7d,
+        'rolling_mean_30d': rolling_mean_30d,
+        'rolling_std_30d': rolling_std_30d,
+        'lag_1d': lag_1d,
+        'lag_7d': lag_7d,
+        'lag_14d': lag_14d,
+        'days_since_start': days_since_start,
+    }
+
+    return features
+
+
+@login_required
+def sales_forecasting_view(request):
+    """Sales forecasting page using ML model from Google Colab"""
+    try:
+        print("\n🤖 SALES FORECASTING VIEW (ML)")
+
+        # Check if model files exist
+        model_path = os.path.join(settings.BASE_DIR, 'ml_models', 'banelo_xgboost_model.pkl')
+        features_path = os.path.join(settings.BASE_DIR, 'ml_models', 'feature_columns.pkl')
+
+        model_exists = os.path.exists(model_path)
+        features_exist = os.path.exists(features_path)
+
+        # Get recent sales for display
+        recent_sales = Sale.objects.order_by('-order_date')[:100]
+
+        # Calculate basic statistics
+        total_sales = Sale.objects.count()
+
+        # Get date range
+        if total_sales > 0:
+            earliest_sale = Sale.objects.order_by('order_date').first()
+            latest_sale = Sale.objects.order_by('-order_date').first()
+            date_range_days = (latest_sale.order_date - earliest_sale.order_date).days if earliest_sale and latest_sale else 0
+        else:
+            date_range_days = 0
+
+        context = {
+            'model_exists': model_exists,
+            'features_exist': features_exist,
+            'total_sales': total_sales,
+            'date_range_days': date_range_days,
+            'model_ready': model_exists and features_exist,
+        }
+
+        return render(request, 'dashboard/sales_forecasting.html', context)
+
+    except Exception as e:
+        print(f"❌ Error in sales forecasting view: {e}")
+        import traceback
+        traceback.print_exc()
+        return render(request, 'dashboard/sales_forecasting.html', {
+            'model_exists': False,
+            'error_message': str(e)
+        })
+
+
+@login_required
+@require_http_methods(["GET"])
+def sales_forecast_status_api(request):
+    """Check if sales forecast model is loaded and ready"""
+    try:
+        model, features = load_sales_forecast_model()
+
+        if model is None or features is None:
+            return JsonResponse({
+                'success': False,
+                'model_loaded': False,
+                'message': 'Model files not found. Please upload banelo_xgboost_model.pkl and feature_columns.pkl to ml_models folder.'
+            })
+
+        return JsonResponse({
+            'success': True,
+            'model_loaded': True,
+            'model_type': type(model).__name__,
+            'features_count': len(features),
+            'message': 'Sales forecast model is ready!'
+        })
+
+    except Exception as e:
+        return JsonResponse({
+            'success': False,
+            'model_loaded': False,
+            'message': str(e)
+        })
+
+
+@login_required
+@require_http_methods(["GET"])
+def get_sales_forecast_api(request):
+    """Generate sales forecast for the next N days"""
+    try:
+        import numpy as np
+
+        # Get number of days to forecast (default 7)
+        days = int(request.GET.get('days', 7))
+        days = min(days, 30)  # Maximum 30 days
+
+        # Load model
+        model, feature_columns = load_sales_forecast_model()
+
+        if model is None or feature_columns is None:
+            return JsonResponse({
+                'success': False,
+                'message': 'Model not loaded. Please upload model files to ml_models folder.'
+            })
+
+        # Generate predictions for next N days
+        predictions = []
+        start_date = datetime.now().date() + timedelta(days=1)
+
+        for i in range(days):
+            forecast_date = start_date + timedelta(days=i)
+
+            # Create features for this date
+            features_dict = create_forecast_features(forecast_date)
+
+            # Prepare feature array in correct order
+            X = []
+            for col in feature_columns:
+                X.append(features_dict.get(col, 0))
+
+            X = np.array(X).reshape(1, -1)
+
+            # Make prediction
+            predicted_revenue = float(model.predict(X)[0])
+            predicted_revenue = max(0, predicted_revenue)  # No negative predictions
+
+            # Calculate confidence interval (±15%)
+            lower_bound = predicted_revenue * 0.85
+            upper_bound = predicted_revenue * 1.15
+
+            predictions.append({
+                'date': forecast_date.strftime('%Y-%m-%d'),
+                'day_name': forecast_date.strftime('%A'),
+                'predicted_revenue': round(predicted_revenue, 2),
+                'lower_bound': round(lower_bound, 2),
+                'upper_bound': round(upper_bound, 2),
+                'is_weekend': forecast_date.weekday() >= 5,
+            })
+
+        # Calculate summary statistics
+        total_forecast = sum(p['predicted_revenue'] for p in predictions)
+        average_daily = total_forecast / len(predictions) if predictions else 0
+
+        return JsonResponse({
+            'success': True,
+            'predictions': predictions,
+            'summary': {
+                'total_forecast': round(total_forecast, 2),
+                'average_daily': round(average_daily, 2),
+                'forecast_period_days': days,
+            }
+        })
+
+    except Exception as e:
+        print(f"❌ Error generating forecast: {e}")
+        import traceback
+        traceback.print_exc()
+        return JsonResponse({
+            'success': False,
+            'message': str(e)
+        })
