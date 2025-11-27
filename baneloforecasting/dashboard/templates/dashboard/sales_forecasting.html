@@ -316,79 +316,9 @@
         <p>AI-powered sales predictions using XGBoost Machine Learning</p>
     </div>
 
-    <!-- Model Status Check -->
-    {% if not model_ready %}
-    <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle"></i>
-        <div>
-            <strong>Model Not Ready!</strong><br>
-            {% if not model_exists %}
-            Missing: <code>banelo_xgboost_model.pkl</code><br>
-            {% endif %}
-            {% if not features_exist %}
-            Missing: <code>feature_columns.pkl</code><br>
-            {% endif %}
-            Please upload your trained model files to the <code>baneloforecasting/ml_models/</code> folder.
-        </div>
-    </div>
-    {% endif %}
+    
 
-    <!-- Status Cards -->
-    <div class="status-cards">
-        <div class="status-card">
-            <div class="status-card-header">
-                <div class="status-icon {% if model_ready %}ready{% else %}error{% endif %}">
-                    <i class="fas {% if model_ready %}fa-check-circle{% else %}fa-times-circle{% endif %}"></i>
-                </div>
-                <div>
-                    <h3>Model Status</h3>
-                </div>
-            </div>
-            <div class="status-card-value" id="modelStatus">
-                {% if model_ready %}Ready{% else %}Not Loaded{% endif %}
-            </div>
-            <div class="status-card-label" id="modelType">XGBoost Gradient Boosting</div>
-        </div>
-
-        <div class="status-card">
-            <div class="status-card-header">
-                <div class="status-icon {% if total_sales > 0 %}ready{% else %}warning{% endif %}">
-                    <i class="fas fa-database"></i>
-                </div>
-                <div>
-                    <h3>Training Data</h3>
-                </div>
-            </div>
-            <div class="status-card-value">{{ total_sales|default:"0" }}</div>
-            <div class="status-card-label">Sales Records</div>
-        </div>
-
-        <div class="status-card">
-            <div class="status-card-header">
-                <div class="status-icon {% if date_range_days > 30 %}ready{% elif date_range_days > 0 %}warning{% else %}error{% endif %}">
-                    <i class="fas fa-calendar-alt"></i>
-                </div>
-                <div>
-                    <h3>Data Range</h3>
-                </div>
-            </div>
-            <div class="status-card-value">{{ date_range_days|default:"0" }}</div>
-            <div class="status-card-label">Days of History</div>
-        </div>
-
-        <div class="status-card">
-            <div class="status-card-header">
-                <div class="status-icon ready">
-                    <i class="fas fa-brain"></i>
-                </div>
-                <div>
-                    <h3>Features</h3>
-                </div>
-            </div>
-            <div class="status-card-value" id="featuresCount">-</div>
-            <div class="status-card-label">ML Features</div>
-        </div>
-    </div>
+        
 
     <!-- Forecast Controls -->
     <div class="forecast-controls">
