@@ -163,28 +163,53 @@ def calculate_max_servings_api(recipe_data, products_dict):
 
 def calculate_statistics(audit_logs):
     """Calculate audit trail statistics"""
-    stats = {
-        'total_logs': len(audit_logs),
-        'actions_today': 0,
-        'unique_users': len(set(log['user'] for log in audit_logs)),
-    }
+    total = len(audit_logs)
+    today_count = 0
+    failed_count = 0
+    success_count = 0
 
     today = datetime.now().date()
     for log in audit_logs:
         try:
             log_date = datetime.strptime(log['timestamp'].split()[0], '%Y-%m-%d').date()
             if log_date == today:
-                stats['actions_today'] += 1
+                today_count += 1
         except:
             pass
+
+        # Count success vs failed
+        status = log.get('status', 'Success').lower()
+        if status in ['failed', 'error', 'failure']:
+            failed_count += 1
+        else:
+            success_count += 1
+
+    # Calculate success rate
+    success_rate = round((success_count / total * 100) if total > 0 else 0, 1)
+
+    stats = {
+        'total_logs': total,
+        'today_activities': today_count,
+        'success_rate': success_rate,
+        'failed_actions': failed_count,
+        'unique_users': len(set(log['user'] for log in audit_logs)),
+    }
 
     return stats
 
 
 def get_unique_users():
-    """Get unique users from audit trail"""
-    users = AuditTrail.objects.values_list('user_name', flat=True).distinct()
-    return [u for u in users if u]
+    """Get unique users from both web audit trail and mobile audit logs"""
+    # Get users from web dashboard audit trail
+    web_users = set(AuditTrail.objects.values_list('user_name', flat=True).distinct())
+
+    # Get users from mobile POS audit logs
+    mobile_users = set(AuditLog.objects.values_list('username', flat=True).distinct())
+
+    # Combine and filter out empty/None values
+    all_users = sorted([u for u in (web_users | mobile_users) if u])
+
+    return all_users
 
 
 def log_audit(action, user, details=''):
@@ -878,7 +903,10 @@ def audit_trail_view(request):
 
         context = {
             'audit_logs': audit_logs,
-            'stats': stats,
+            'total_logs': stats['total_logs'],
+            'today_activities': stats['today_activities'],
+            'success_rate': stats['success_rate'],
+            'failed_actions': stats['failed_actions'],
             'users': users,
             'filter_user': filter_user,
             'filter_action': filter_action,
@@ -896,8 +924,12 @@ def audit_trail_view(request):
 
         context = {
             'audit_logs': [],
-            'stats': {'total_logs': 0, 'actions_today': 0, 'unique_users': 0},
+            'total_logs': 0,
+            'today_activities': 0,
+            'success_rate': 0,
+            'failed_actions': 0,
             'users': [],
+            'error': str(e),
         }
         return render(request, 'dashboard/audit_trail.html', context)
 
@@ -926,28 +958,95 @@ def get_audit_logs_api(request):
 
 @login_required
 def export_audit_trail_csv(request):
-    """Export audit trail to CSV"""
+    """Export audit trail to CSV (includes both web and mobile logs)"""
     try:
-        audit_logs = AuditTrail.objects.all().order_by('-timestamp')[:5000]
+        # Get filter parameters (same as main view)
+        filter_user = request.GET.get('user', '')
+        filter_action = request.GET.get('action', '')
+        filter_date_from = request.GET.get('date_from', '')
+        filter_date_to = request.GET.get('date_to', '')
+        filter_source = request.GET.get('source', '')
+
+        # Build query for Django audit trail (web dashboard)
+        audit_queryset = AuditTrail.objects.all()
+
+        if filter_user:
+            audit_queryset = audit_queryset.filter(user_name=filter_user)
+        if filter_action:
+            audit_queryset = audit_queryset.filter(action=filter_action)
+        if filter_date_from:
+            from_date = datetime.strptime(filter_date_from, '%Y-%m-%d')
+            audit_queryset = audit_queryset.filter(timestamp__gte=from_date)
+        if filter_date_to:
+            to_date = datetime.strptime(filter_date_to, '%Y-%m-%d') + timedelta(days=1)
+            audit_queryset = audit_queryset.filter(timestamp__lt=to_date)
+
+        # Get mobile POS audit logs
+        mobile_queryset = AuditLog.objects.all()
+
+        if filter_user:
+            mobile_queryset = mobile_queryset.filter(username=filter_user)
+        if filter_action:
+            mobile_queryset = mobile_queryset.filter(action__icontains=filter_action)
+        if filter_date_from:
+            from_date = datetime.strptime(filter_date_from, '%Y-%m-%d')
+            mobile_queryset = mobile_queryset.filter(date_time__gte=from_date)
+        if filter_date_to:
+            to_date = datetime.strptime(filter_date_to, '%Y-%m-%d') + timedelta(days=1)
+            mobile_queryset = mobile_queryset.filter(date_time__lt=to_date)
+
+        # Process audit logs from both sources
+        audit_logs = []
+
+        # Add web dashboard logs
+        if not filter_source or filter_source == 'web':
+            for log in audit_queryset.order_by('-timestamp')[:5000]:
+                audit_logs.append({
+                    'user': log.user_name or 'Unknown',
+                    'action': log.action or 'N/A',
+                    'description': log.details or '',
+                    'timestamp': log.timestamp.strftime('%Y-%m-%d %H:%M:%S') if log.timestamp else '',
+                    'source': 'Web Dashboard',
+                    'status': 'Success'
+                })
+
+        # Add mobile POS logs
+        if not filter_source or filter_source == 'mobile':
+            for log in mobile_queryset.order_by('-date_time')[:5000]:
+                audit_logs.append({
+                    'user': log.username or 'Unknown',
+                    'action': log.action or 'N/A',
+                    'description': log.description or '',
+                    'timestamp': log.date_time.strftime('%Y-%m-%d %H:%M:%S') if log.date_time else '',
+                    'source': 'Mobile POS',
+                    'status': log.status or 'Success'
+                })
+
+        # Sort by timestamp descending
+        audit_logs.sort(key=lambda x: x['timestamp'], reverse=True)
 
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = f'attachment; filename="audit_trail_{datetime.now().strftime("%Y%m%d_%H%M%S")}.csv"'
 
         writer = csv.writer(response)
-        writer.writerow(['Timestamp', 'User', 'Action', 'Details'])
+        writer.writerow(['Timestamp', 'User', 'Action', 'Description', 'Source', 'Status'])
 
         for log in audit_logs:
             writer.writerow([
-                log.timestamp.strftime('%Y-%m-%d %H:%M:%S') if log.timestamp else '',
-                log.user_name or '',
-                log.action or '',
-                log.details or ''
+                log['timestamp'],
+                log['user'],
+                log['action'],
+                log['description'],
+                log['source'],
+                log['status']
             ])
 
         return response
 
     except Exception as e:
         print(f"❌ Error exporting audit trail CSV: {e}")
+        import traceback
+        traceback.print_exc()
         return HttpResponse(f"Error: {str(e)}", status=500)
 
 

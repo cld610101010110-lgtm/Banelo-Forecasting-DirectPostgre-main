@@ -408,6 +408,7 @@
             <div class="filter-group">
                 <label for="filterAction">Action Type</label>
                 <select id="filterAction" name="action">
+                    <option value="">All Actions</option>
                     <option value="LOGIN" {% if filter_action == "LOGIN" %}selected{% endif %}>Login</option>
                     <option value="LOGOUT" {% if filter_action == "LOGOUT" %}selected{% endif %}>Logout</option>
                     <option value="FAILED_LOGIN" {% if filter_action == "FAILED_LOGIN" %}selected{% endif %}>Failed Login</option>
@@ -427,6 +428,15 @@
                 <label for="dateTo">Date To</label>
                 <input type="date" id="dateTo" name="date_to" value="{{ filter_date_to }}">
             </div>
+
+            <div class="filter-group">
+                <label for="filterSource">Source</label>
+                <select id="filterSource" name="source">
+                    <option value="">All Sources</option>
+                    <option value="web" {% if filter_source == "web" %}selected{% endif %}>Web Dashboard</option>
+                    <option value="mobile" {% if filter_source == "mobile" %}selected{% endif %}>Mobile POS</option>
+                </select>
+            </div>
         </div>
 
         <div class="filter-actions">
@@ -436,7 +446,7 @@
             <a href="{% url 'audit_trail' %}" class="btn btn-secondary">
                 🔄 Clear Filters
             </a>
-            <a href="{% url 'export_audit_trail_csv' %}?user={{ filter_user }}&action={{ filter_action }}&date_from={{ filter_date_from }}&date_to={{ filter_date_to }}"
+            <a href="{% url 'export_audit_trail_csv' %}?user={{ filter_user }}&action={{ filter_action }}&date_from={{ filter_date_from }}&date_to={{ filter_date_to }}&source={{ filter_source }}"
                class="btn btn-success">
                 <i class="fas fa-download"></i> Export CSV
             </a>
@@ -457,6 +467,7 @@
                 <th>User</th>
                 <th>Action</th>
                 <th>Description</th>
+                <th>Source</th>
                 <th>Timestamp</th>
                 <th>Status</th>
             </tr>
@@ -474,6 +485,9 @@
                 </td>
                 <td>
                     <span class="log-description">{{ log.description }}</span>
+                </td>
+                <td>
+                    <span class="log-source">{{ log.source|default:"Web Dashboard" }}</span>
                 </td>
                 <td>
                     <span class="log-timestamp">{{ log.timestamp }}</span>
