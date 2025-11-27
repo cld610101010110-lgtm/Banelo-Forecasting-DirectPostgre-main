@@ -970,8 +970,9 @@
                         <span>Sales Records</span>
                     </a>
                 </li>
-                <li class="submenu-item">
-                    <a href="#" class="submenu-link">
+                
+                 <li class="submenu-item">
+                    <a href="{% url 'sales_forecasting' %}" class="submenu-link {% if request.resolver_match.url_name == 'sales_forecasting' %}active{% endif %}">
                         <i class="fas fa-chart-line"></i>
                         <span>Sales Forecasting</span>
                     </a>
