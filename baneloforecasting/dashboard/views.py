@@ -456,32 +456,48 @@ def dashboard_view(request):
 
 @login_required
 def inventory_view(request):
-    """Display inventory page with data from API"""
+    """Display inventory page with data directly from PostgreSQL"""
     try:
-        print("\n🔥 INVENTORY VIEW CALLED (API Mode)")
+        print("\n🔥 INVENTORY VIEW CALLED (PostgreSQL Direct)")
 
-        # Get API service
-        api = get_api_service()
+        # Get all products from PostgreSQL
+        products = Product.objects.all()
 
-        # Get all products from API
-        products = api.get_products()
-
-        # Get all recipes from API
-        recipes = api.get_recipes()
+        # Get all recipes from PostgreSQL
+        recipes = Recipe.objects.all()
 
         recipes_by_id = {}
         recipes_by_name = {}
 
         for recipe in recipes:
-            product_id = recipe.get('product_firebase_id') or recipe.get('productFirebaseId')
-            product_name = (recipe.get('product_name') or recipe.get('productName') or '').lower().strip()
+            product_id = str(recipe.product_firebase_id or '')
+            product_name = (recipe.product_name or '').lower().strip()
+
+            # Get ingredients for this recipe
+            ingredients = RecipeIngredient.objects.filter(
+                Q(recipe_firebase_id=recipe.firebase_id) | Q(recipe_id=recipe.id)
+            )
+
+            ingredients_list = []
+            for ing in ingredients:
+                ingredients_list.append({
+                    'ingredient_firebase_id': str(ing.ingredient_firebase_id or ''),
+                    'ingredient_name': ing.ingredient_name,
+                    'quantity_needed': float(ing.quantity_needed or 0),
+                    'unit': ing.unit or 'g'
+                })
 
             recipe_info = {
-                'recipeId': recipe.get('id'),
-                'firebaseId': recipe.get('firebase_id') or recipe.get('firebaseId'),
-                'productName': recipe.get('product_name') or recipe.get('productName'),
-                'ingredients': recipe.get('ingredients', []),
-                'full_recipe': recipe  # Store full recipe data for servings calculation
+                'recipeId': str(recipe.id),
+                'firebaseId': str(recipe.firebase_id),
+                'productName': recipe.product_name,
+                'ingredients': ingredients_list,
+                'full_recipe': {
+                    'firebase_id': str(recipe.firebase_id),
+                    'product_firebase_id': str(recipe.product_firebase_id),
+                    'product_name': recipe.product_name,
+                    'ingredients': ingredients_list
+                }
             }
 
             if product_id:
@@ -497,9 +513,14 @@ def inventory_view(request):
         # Create products dictionary for faster lookup
         products_dict = {}
         for product in products:
-            firebase_id = product.get('firebase_id') or product.get('firebaseId') or ''
-            if firebase_id:
-                products_dict[firebase_id] = product
+            firebase_id = str(product.firebase_id or product.id)
+            products_dict[firebase_id] = {
+                'firebase_id': firebase_id,
+                'name': product.name,
+                'inventory_a': float(product.inventory_a or 0),
+                'inventory_b': float(product.inventory_b or 0),
+                'quantity': float((product.inventory_a or 0) + (product.inventory_b or 0))
+            }
 
         # Process products data
         products_data = []
@@ -509,7 +530,7 @@ def inventory_view(request):
             doc_count += 1
 
             # Normalize category
-            raw_category = product.get('category', 'Unknown') or 'Unknown'
+            raw_category = product.category or 'Unknown'
             category_lower = str(raw_category).lower().strip()
 
             if category_lower in ['beverage', 'beverages', 'drink', 'drinks', 'hot drinks', 'cold drinks']:
@@ -522,7 +543,7 @@ def inventory_view(request):
                 category = category_lower
 
             # Handle image
-            image_raw = product.get('image_uri') or product.get('imageUri')
+            image_raw = product.image_uri
             image = None
 
             if image_raw and str(image_raw) not in ['nan', 'None', '']:
@@ -546,8 +567,8 @@ def inventory_view(request):
             max_servings = None
             recipe_found = False
             recipe_info = None
-            firebase_id = product.get('firebase_id') or product.get('firebaseId') or ''
-            product_name = product.get('name', 'Unknown')
+            firebase_id = str(product.firebase_id or product.id)
+            product_name = product.name
 
             if category in ['beverage', 'pastries']:
                 # Try matching by Firebase ID first
@@ -569,16 +590,16 @@ def inventory_view(request):
                         print(f"   🎯 Calculated {max_servings} servings for {product_name}")
 
             # Get inventory data
-            inventory_a = float(product.get('inventory_a') or product.get('inventoryA') or product.get('quantity', 0) or 0)
-            inventory_b = float(product.get('inventory_b') or product.get('inventoryB') or 0)
-            cost_per_unit = float(product.get('cost_per_unit') or product.get('costPerUnit') or 0)
+            inventory_a = float(product.inventory_a or 0)
+            inventory_b = float(product.inventory_b or 0)
+            cost_per_unit = float(product.cost_per_unit or 0)
 
             products_data.append({
-                'id': firebase_id or str(product.get('id', '')),
+                'id': firebase_id,
                 'name': product_name,
-                'price': float(product.get('price', 0) or 0),
+                'price': float(product.price or 0),
                 'category': category,
-                'stock': float(product.get('quantity', 0) or 0),
+                'stock': inventory_a + inventory_b,
                 'inventory_a': inventory_a,
                 'inventory_b': inventory_b,
                 'cost_per_unit': cost_per_unit,
@@ -1165,48 +1186,45 @@ def update_password_api(request):
 
 @login_required
 def recipes_view(request):
-    """Display recipe management page using data from the Node.js API"""
+    """Display recipe management page using data directly from PostgreSQL"""
     try:
-        print("\n🔥 RECIPES VIEW CALLED (API Mode)")
-
-        api = get_api_service()
+        print("\n🔥 RECIPES VIEW CALLED (PostgreSQL Direct)")
 
         # ========================================
-        # 1. LOAD RECIPES (WITH INGREDIENTS) FROM API
+        # 1. LOAD RECIPES (WITH INGREDIENTS) FROM POSTGRESQL
         # ========================================
-        api_recipes = api.get_recipes() or []
         recipes_list = []
+        all_recipes = Recipe.objects.all()
 
-        for recipe in api_recipes:
-            # Normalise keys from API response
-            recipe_id = recipe.get('firebase_id') or recipe.get('firebaseId') or recipe.get('id')
-            product_name = recipe.get('product_name') or recipe.get('productName') or 'Unknown'
-            product_firebase_id = recipe.get('product_firebase_id') or recipe.get('productFirebaseId') or ''
+        for recipe in all_recipes:
+            recipe_id = str(recipe.firebase_id or recipe.id)
+            product_name = recipe.product_name or 'Unknown'
+            product_firebase_id = str(recipe.product_firebase_id or '')
 
-            # Ingredients may be embedded or need separate call – handle both
-            ingredients_from_api = recipe.get('ingredients')
+            # Get ingredients for this recipe
+            ingredients = RecipeIngredient.objects.filter(
+                Q(recipe_firebase_id=recipe.firebase_id) | Q(recipe_id=recipe.id)
+            )
+
             ingredients_data = []
+            for ing in ingredients:
+                ingredient_id = str(ing.ingredient_firebase_id or '')
+                ingredient_name = ing.ingredient_name or 'Unknown'
+                quantity_needed = float(ing.quantity_needed or 0)
+                unit = ing.unit or 'g'
 
-            if not ingredients_from_api and recipe_id:
-                # Fallback: fetch ingredients from dedicated endpoint
+                # Get ingredient product details for cost and stock
+                ingredient_cost = 0
+                stock = 0
                 try:
-                    ingredients_from_api = api.get_recipe_ingredients(recipe_id)
-                except Exception as ing_err:
-                    print(f"⚠️ Could not load ingredients for recipe {recipe_id}: {ing_err}")
-                    ingredients_from_api = []
-
-            for ing in ingredients_from_api or []:
-                ingredient_id = ing.get('ingredient_firebase_id') or ing.get('ingredientFirebaseId') or ''
-                ingredient_name = ing.get('ingredient_name') or ing.get('ingredientName') or 'Unknown'
-                quantity_needed = ing.get('quantity_needed') or ing.get('quantityNeeded') or 0
-                unit = ing.get('unit') or 'g'
-
-                # Cost / stock info is optional in API; default gracefully
-                ingredient_cost = float(ing.get('cost_per_unit') or ing.get('costPerUnit') or 0)
-                stock = float(ing.get('stock') or 0)
+                    ingredient_product = Product.objects.get(firebase_id=ing.ingredient_firebase_id)
+                    ingredient_cost = float(ingredient_product.cost_per_unit or 0)
+                    stock = float((ingredient_product.inventory_a or 0) + (ingredient_product.inventory_b or 0))
+                except Product.DoesNotExist:
+                    pass
 
                 ingredients_data.append({
-                    'id': ing.get('id', ''),
+                    'id': str(ing.id),
                     'name': ingredient_name,
                     'quantity': quantity_needed,
                     'unit': unit,
@@ -1224,17 +1242,17 @@ def recipes_view(request):
             })
 
         # ========================================
-        # 2. LOAD PRODUCTS FROM API FOR DROPDOWNS
+        # 2. LOAD PRODUCTS FROM POSTGRESQL FOR DROPDOWNS
         # ========================================
-        api_products = api.get_products() or []
         beverages = []
         available_ingredients = []
 
-        for product in api_products:
-            name = product.get('name') or 'Unknown'
-            firebase_id = product.get('firebase_id') or product.get('firebaseId') or str(product.get('id', ''))
-            raw_category = (product.get('category') or '').strip()
-            category_lower = raw_category.lower()
+        all_products = Product.objects.all()
+        for product in all_products:
+            name = product.name or 'Unknown'
+            firebase_id = str(product.firebase_id or product.id)
+            category = (product.category or '').strip()
+            category_lower = category.lower()
 
             # Beverages / pastries for recipe selection
             if category_lower in ['beverage', 'beverages', 'pastries', 'pastry', 'drink', 'drinks',
@@ -1245,14 +1263,12 @@ def recipes_view(request):
                     'category': category_lower,
                 })
 
-            # Ingredients for dropdown (match mobile category name)
+            # Ingredients for dropdown
             if category_lower in ['ingredient', 'ingredients']:
-                inventory_a = float(
-                    product.get('inventory_a') or product.get('inventoryA') or product.get('quantity') or 0
-                )
-                inventory_b = float(product.get('inventory_b') or product.get('inventoryB') or 0)
+                inventory_a = float(product.inventory_a or 0)
+                inventory_b = float(product.inventory_b or 0)
                 total_stock = inventory_a + inventory_b
-                cost_per_unit = float(product.get('cost_per_unit') or product.get('costPerUnit') or 0)
+                cost_per_unit = float(product.cost_per_unit or 0)
 
                 available_ingredients.append({
                     'id': firebase_id,
@@ -1264,7 +1280,7 @@ def recipes_view(request):
                     'unit': 'g',
                 })
 
-        print(f"✅ Loaded {len(recipes_list)} recipes from API")
+        print(f"✅ Loaded {len(recipes_list)} recipes from PostgreSQL")
         print(f"✅ Found {len(beverages)} beverages for dropdown")
         print(f"✅ Found {len(available_ingredients)} ingredients for dropdown")
 
@@ -1277,7 +1293,7 @@ def recipes_view(request):
         return render(request, 'dashboard/recipes.html', context)
 
     except Exception as e:
-        print(f"❌ Error loading recipes (API Mode): {e}")
+        print(f"❌ Error loading recipes (PostgreSQL Direct): {e}")
         import traceback
         traceback.print_exc()
 
@@ -1297,10 +1313,10 @@ def recipes_view(request):
 @login_required
 @require_http_methods(["POST"])
 def add_recipe_api(request):
-    """Add a new recipe with ingredients via Node.js API"""
+    """Add a new recipe with ingredients directly to PostgreSQL"""
     try:
         data = json.loads(request.body)
-        print("\n🔥 ADD RECIPE API CALLED (via Node API)")
+        print("\n🔥 ADD RECIPE API CALLED (PostgreSQL Direct)")
         print(f"Data received: {data}")
 
         product_firebase_id = data.get('productFirebaseId')
@@ -1313,37 +1329,64 @@ def add_recipe_api(request):
         if not ingredients:
             return JsonResponse({'success': False, 'message': 'At least one ingredient is required'})
 
-        # Get API service
-        api = get_api_service()
+        # Check if recipe already exists
+        existing_recipe = Recipe.objects.filter(product_firebase_id=product_firebase_id).first()
+        if existing_recipe:
+            return JsonResponse({'success': False, 'message': 'Recipe already exists for this product. Use update instead.'})
 
-        # Prepare recipe data for Node API
-        recipe_data = {
-            'productFirebaseId': product_firebase_id,
-            'productName': product_name,
-            'productNumber': 0,
-            'ingredients': ingredients
-        }
+        # Verify product exists
+        try:
+            product = Product.objects.get(firebase_id=product_firebase_id)
+        except Product.DoesNotExist:
+            return JsonResponse({'success': False, 'message': 'Product not found'})
 
-        print(f"📤 Sending recipe data to Node API: {recipe_data}")
+        # Create recipe using raw SQL to bypass managed=False
+        from django.db import connection
+        with connection.cursor() as cursor:
+            # Insert recipe
+            cursor.execute("""
+                INSERT INTO recipes (id, firebase_id, product_firebase_id, product_name, created_at, updated_at)
+                VALUES (gen_random_uuid(), %s, %s, %s, NOW(), NOW())
+                RETURNING id, firebase_id
+            """, [product_firebase_id, product_firebase_id, product_name])
+            recipe_result = cursor.fetchone()
+            recipe_id = recipe_result[0]
+            recipe_firebase_id = recipe_result[1]
 
-        # Call Node API to add recipe
-        result = api.add_recipe(recipe_data)
+            print(f"✅ Recipe created with ID: {recipe_firebase_id}")
 
-        if result.get('success'):
-            print(f"✅ Recipe created successfully via Node API")
-            log_audit('Recipe Created', request.user, f'Created recipe for {product_name}')
+            # Insert ingredients
+            for ingredient in ingredients:
+                ingredient_firebase_id = ingredient.get('ingredientFirebaseId')
+                ingredient_name = ingredient.get('ingredientName')
+                quantity_needed = float(ingredient.get('quantityNeeded', 0))
+                unit = ingredient.get('unit', 'g')
 
-            return JsonResponse({
-                'success': True,
-                'message': f'Recipe for {product_name} created successfully!'
-            })
-        else:
-            error_message = result.get('message', 'Failed to create recipe')
-            print(f"❌ Node API returned error: {error_message}")
-            return JsonResponse({
-                'success': False,
-                'message': error_message
-            })
+                if not ingredient_firebase_id or not ingredient_name:
+                    continue
+
+                cursor.execute("""
+                    INSERT INTO recipe_ingredients
+                    (id, firebase_id, recipe_firebase_id, ingredient_firebase_id, ingredient_name, quantity_needed, unit, created_at)
+                    VALUES (gen_random_uuid(), %s, %s, %s, %s, %s, %s, NOW())
+                """, [
+                    f"{recipe_firebase_id}-{ingredient_firebase_id}",
+                    recipe_firebase_id,
+                    ingredient_firebase_id,
+                    ingredient_name,
+                    quantity_needed,
+                    unit
+                ])
+
+            print(f"✅ Added {len(ingredients)} ingredients to recipe")
+
+        log_audit('Recipe Created', request.user, f'Created recipe for {product_name}')
+
+        return JsonResponse({
+            'success': True,
+            'message': f'Recipe for {product_name} created successfully!',
+            'recipeId': str(recipe_firebase_id)
+        })
 
     except Exception as e:
         print(f"❌ Error adding recipe: {e}")
@@ -1355,10 +1398,10 @@ def add_recipe_api(request):
 @login_required
 @require_http_methods(["POST"])
 def update_recipe_api(request):
-    """Update an existing recipe via Node.js API"""
+    """Update an existing recipe directly in PostgreSQL"""
     try:
         data = json.loads(request.body)
-        print("\n🔥 UPDATE RECIPE API CALLED (via Node API)")
+        print("\n🔥 UPDATE RECIPE API CALLED (PostgreSQL Direct)")
         print(f"Data received: {data}")
 
         recipe_id = data.get('recipeId')
@@ -1369,37 +1412,59 @@ def update_recipe_api(request):
         if not recipe_id:
             return JsonResponse({'success': False, 'message': 'Recipe ID required'})
 
-        # Get API service
-        api = get_api_service()
+        # Verify recipe exists
+        recipe = Recipe.objects.filter(Q(firebase_id=recipe_id) | Q(id=recipe_id)).first()
+        if not recipe:
+            return JsonResponse({'success': False, 'message': 'Recipe not found'})
 
-        # Prepare recipe data for Node API
-        recipe_data = {
-            'productFirebaseId': product_firebase_id,
-            'productName': product_name,
-            'productNumber': 0,
-            'ingredients': ingredients
-        }
+        # Update recipe using raw SQL
+        from django.db import connection
+        with connection.cursor() as cursor:
+            # Update recipe name
+            if product_name:
+                cursor.execute("""
+                    UPDATE recipes
+                    SET product_name = %s, updated_at = NOW()
+                    WHERE firebase_id = %s OR id::text = %s
+                """, [product_name, recipe_id, recipe_id])
 
-        print(f"📤 Updating recipe {recipe_id} via Node API")
+            # Delete existing ingredients
+            cursor.execute("""
+                DELETE FROM recipe_ingredients
+                WHERE recipe_firebase_id = %s OR recipe_firebase_id::text = %s
+            """, [recipe.firebase_id, str(recipe.firebase_id)])
 
-        # Call Node API to update recipe
-        result = api.update_recipe(recipe_id, recipe_data)
+            # Insert new ingredients
+            for ingredient in ingredients:
+                ingredient_firebase_id = ingredient.get('ingredientFirebaseId')
+                ingredient_name = ingredient.get('ingredientName')
+                quantity_needed = float(ingredient.get('quantityNeeded', 0))
+                unit = ingredient.get('unit', 'g')
 
-        if result.get('success'):
-            print(f"✅ Recipe {recipe_id} updated successfully via Node API")
-            log_audit('Recipe Updated', request.user, f'Updated recipe for {product_name}')
+                if not ingredient_firebase_id or not ingredient_name:
+                    continue
 
-            return JsonResponse({
-                'success': True,
-                'message': f'Recipe for {product_name} updated successfully!'
-            })
-        else:
-            error_message = result.get('message', 'Failed to update recipe')
-            print(f"❌ Node API returned error: {error_message}")
-            return JsonResponse({
-                'success': False,
-                'message': error_message
-            })
+                cursor.execute("""
+                    INSERT INTO recipe_ingredients
+                    (id, firebase_id, recipe_firebase_id, ingredient_firebase_id, ingredient_name, quantity_needed, unit, created_at)
+                    VALUES (gen_random_uuid(), %s, %s, %s, %s, %s, %s, NOW())
+                """, [
+                    f"{recipe.firebase_id}-{ingredient_firebase_id}",
+                    recipe.firebase_id,
+                    ingredient_firebase_id,
+                    ingredient_name,
+                    quantity_needed,
+                    unit
+                ])
+
+            print(f"✅ Recipe {recipe_id} updated with {len(ingredients)} ingredients")
+
+        log_audit('Recipe Updated', request.user, f'Updated recipe for {product_name}')
+
+        return JsonResponse({
+            'success': True,
+            'message': f'Recipe for {product_name} updated successfully!'
+        })
 
     except Exception as e:
         print(f"❌ Error updating recipe: {e}")
@@ -1411,10 +1476,10 @@ def update_recipe_api(request):
 @login_required
 @require_http_methods(["POST"])
 def delete_recipe_api(request):
-    """Delete a recipe and its ingredients via Node.js API"""
+    """Delete a recipe and its ingredients directly from PostgreSQL"""
     try:
         data = json.loads(request.body)
-        print("\n🔥 DELETE RECIPE API CALLED (via Node API)")
+        print("\n🔥 DELETE RECIPE API CALLED (PostgreSQL Direct)")
         print(f"Data received: {data}")
 
         recipe_id = data.get('recipeId')
@@ -1422,33 +1487,36 @@ def delete_recipe_api(request):
         if not recipe_id:
             return JsonResponse({'success': False, 'message': 'Recipe ID required'})
 
-        # Get API service
-        api = get_api_service()
+        # Verify recipe exists and get details
+        recipe = Recipe.objects.filter(Q(firebase_id=recipe_id) | Q(id=recipe_id)).first()
+        if not recipe:
+            return JsonResponse({'success': False, 'message': 'Recipe not found'})
 
-        # Get recipe details for logging before deletion
-        recipe = api.get_recipe(recipe_id)
-        product_name = recipe.get('productName', 'Unknown') if recipe else 'Unknown'
+        product_name = recipe.product_name or 'Unknown'
 
-        print(f"📤 Deleting recipe {recipe_id} via Node API")
+        # Delete recipe using raw SQL
+        from django.db import connection
+        with connection.cursor() as cursor:
+            # Delete ingredients first (foreign key constraint)
+            cursor.execute("""
+                DELETE FROM recipe_ingredients
+                WHERE recipe_firebase_id = %s OR recipe_firebase_id::text = %s
+            """, [recipe.firebase_id, str(recipe.firebase_id)])
 
-        # Call Node API to delete recipe
-        result = api.delete_recipe(recipe_id)
+            # Delete recipe
+            cursor.execute("""
+                DELETE FROM recipes
+                WHERE firebase_id = %s OR id::text = %s
+            """, [recipe_id, recipe_id])
 
-        if result.get('success'):
-            print(f"✅ Recipe {recipe_id} deleted successfully via Node API")
-            log_audit('Recipe Deleted', request.user, f'Deleted recipe for {product_name}')
+            print(f"✅ Recipe {recipe_id} deleted successfully")
 
-            return JsonResponse({
-                'success': True,
-                'message': f'Recipe for {product_name} deleted successfully!'
-            })
-        else:
-            error_message = result.get('message', 'Failed to delete recipe')
-            print(f"❌ Node API returned error: {error_message}")
-            return JsonResponse({
-                'success': False,
-                'message': error_message
-            })
+        log_audit('Recipe Deleted', request.user, f'Deleted recipe for {product_name}')
+
+        return JsonResponse({
+            'success': True,
+            'message': f'Recipe for {product_name} deleted successfully!'
+        })
 
     except Exception as e:
         print(f"❌ Error deleting recipe: {e}")
@@ -1464,10 +1532,10 @@ def delete_recipe_api(request):
 @login_required
 @require_http_methods(["POST"])
 def transfer_inventory_api(request):
-    """Transfer stock from Inventory A to Inventory B via Node.js API"""
+    """Transfer stock from Inventory A to Inventory B directly in PostgreSQL"""
     try:
         data = json.loads(request.body)
-        print("\n🔄 INVENTORY TRANSFER API CALLED (via Node API)")
+        print("\n🔄 INVENTORY TRANSFER API CALLED (PostgreSQL Direct)")
         print(f"Data received: {data}")
 
         product_id = data.get('productId')
@@ -1476,23 +1544,15 @@ def transfer_inventory_api(request):
         if not product_id or transfer_qty <= 0:
             return JsonResponse({'success': False, 'message': 'Invalid product or quantity'})
 
-        # Get API service
-        api = get_api_service()
-
-        # Get product details to validate and get product name
-        products = api.get_products()
-        product = None
-        for p in products:
-            if p.get('id') == product_id or p.get('firebaseId') == product_id:
-                product = p
-                break
-
-        if not product:
+        # Get product details
+        try:
+            product = Product.objects.get(Q(firebase_id=product_id) | Q(id=product_id))
+        except Product.DoesNotExist:
             return JsonResponse({'success': False, 'message': 'Product not found'})
 
-        product_name = product.get('name', 'Unknown Product')
-        inventory_a = float(product.get('inventory_a', 0))
-        inventory_b = float(product.get('inventory_b', 0))
+        product_name = product.name
+        inventory_a = float(product.inventory_a or 0)
+        inventory_b = float(product.inventory_b or 0)
 
         # Check if sufficient stock
         if inventory_a < transfer_qty:
@@ -1503,32 +1563,33 @@ def transfer_inventory_api(request):
 
         print(f"📤 Transferring {transfer_qty} units of {product_name} from A to B")
 
-        # Call Node API to transfer inventory
-        result = api.transfer_inventory(product_id, transfer_qty)
+        # Update inventory using raw SQL
+        new_inventory_a = inventory_a - transfer_qty
+        new_inventory_b = inventory_b + transfer_qty
 
-        if result.get('success'):
-            new_inventory_a = inventory_a - transfer_qty
-            new_inventory_b = inventory_b + transfer_qty
+        from django.db import connection
+        with connection.cursor() as cursor:
+            cursor.execute("""
+                UPDATE products
+                SET inventory_a = %s,
+                    inventory_b = %s,
+                    quantity = COALESCE(inventory_a, 0) + COALESCE(inventory_b, 0),
+                    updated_at = NOW()
+                WHERE firebase_id = %s OR id::text = %s
+            """, [new_inventory_a, new_inventory_b, product_id, product_id])
 
             print(f"✅ Transferred {transfer_qty} units of {product_name}")
             print(f"   Inventory A: {inventory_a} → {new_inventory_a}")
             print(f"   Inventory B: {inventory_b} → {new_inventory_b}")
 
-            log_audit('Inventory Transfer', request.user, f'Transferred {transfer_qty} units of {product_name} from A to B')
+        log_audit('Inventory Transfer', request.user, f'Transferred {transfer_qty} units of {product_name} from A to B')
 
-            return JsonResponse({
-                'success': True,
-                'message': f'Successfully transferred {transfer_qty} units of {product_name} to Inventory B',
-                'newInventoryA': new_inventory_a,
-                'newInventoryB': new_inventory_b
-            })
-        else:
-            error_message = result.get('message', 'Failed to transfer inventory')
-            print(f"❌ Node API returned error: {error_message}")
-            return JsonResponse({
-                'success': False,
-                'message': error_message
-            })
+        return JsonResponse({
+            'success': True,
+            'message': f'Successfully transferred {transfer_qty} units of {product_name} to Inventory B',
+            'newInventoryA': new_inventory_a,
+            'newInventoryB': new_inventory_b
+        })
 
     except Exception as e:
         print(f"❌ Error in transfer: {e}")
@@ -1544,10 +1605,10 @@ def transfer_inventory_api(request):
 @login_required
 @require_http_methods(["POST"])
 def add_waste_api(request):
-    """Transfer items from Inventory B to Waste logs via Node.js API"""
+    """Transfer items from Inventory B to Waste logs directly in PostgreSQL"""
     try:
         data = json.loads(request.body)
-        print("\n🗑️ WASTE MANAGEMENT API CALLED (via Node API)")
+        print("\n🗑️ WASTE MANAGEMENT API CALLED (PostgreSQL Direct)")
         print(f"Data received: {data}")
 
         product_id = data.get('productId')
@@ -1557,23 +1618,16 @@ def add_waste_api(request):
         if not product_id or waste_qty <= 0:
             return JsonResponse({'success': False, 'message': 'Invalid product or quantity'})
 
-        # Get API service
-        api = get_api_service()
-
-        # Get product details to validate and get product name/category
-        products = api.get_products()
-        product = None
-        for p in products:
-            if p.get('id') == product_id or p.get('firebase_id') == product_id:
-                product = p
-                break
-
-        if not product:
+        # Get product details
+        try:
+            product = Product.objects.get(Q(firebase_id=product_id) | Q(id=product_id))
+        except Product.DoesNotExist:
             return JsonResponse({'success': False, 'message': 'Product not found'})
 
-        product_name = product.get('name', 'Unknown Product')
-        category = product.get('category', 'Unknown')
-        inventory_b = float(product.get('inventory_b', 0))
+        product_name = product.name
+        category = product.category
+        inventory_b = float(product.inventory_b or 0)
+        cost_per_unit = float(product.cost_per_unit or 0)
 
         # Check if sufficient stock
         if inventory_b < waste_qty:
@@ -1584,40 +1638,50 @@ def add_waste_api(request):
 
         print(f"📤 Recording waste: {waste_qty} units of {product_name}")
 
-        # Prepare waste data for Node API (matching Node API expectations)
-        waste_data = {
-            'productFirebaseId': product.get('firebase_id', product_id),
-            'productName': product_name,
-            'category': category,
-            'quantity': waste_qty,
-            'reason': reason,
-            'recordedBy': request.user.username
-        }
+        # Update inventory and create waste log using raw SQL
+        new_inventory_b = inventory_b - waste_qty
+        waste_cost = waste_qty * cost_per_unit
 
-        # Call Node API to record waste
-        result = api.add_waste_log(waste_data)
+        from django.db import connection
+        with connection.cursor() as cursor:
+            # Update product inventory
+            cursor.execute("""
+                UPDATE products
+                SET inventory_b = %s,
+                    quantity = COALESCE(inventory_a, 0) + COALESCE(inventory_b, 0),
+                    updated_at = NOW()
+                WHERE firebase_id = %s OR id::text = %s
+            """, [new_inventory_b, product_id, product_id])
 
-        if result.get('success'):
-            new_inventory_b = inventory_b - waste_qty
+            # Insert waste log
+            cursor.execute("""
+                INSERT INTO waste_logs
+                (id, firebase_id, product_firebase_id, product_name, category, quantity, reason, waste_date, recorded_by, cost_impact, created_at)
+                VALUES (gen_random_uuid(), %s, %s, %s, %s, %s, %s, NOW(), %s, %s, NOW())
+            """, [
+                str(product.firebase_id),
+                product.firebase_id,
+                product_name,
+                category,
+                int(waste_qty),
+                reason,
+                request.user.username,
+                waste_cost
+            ])
 
             print(f"✅ Recorded waste: {waste_qty} units of {product_name}")
             print(f"   Inventory B: {inventory_b} → {new_inventory_b}")
             print(f"   Reason: {reason}")
+            print(f"   Cost impact: ₱{waste_cost:.2f}")
 
-            log_audit('Waste Recorded', request.user, f'Recorded {waste_qty} units of {product_name} as waste ({reason})')
+        log_audit('Waste Recorded', request.user, f'Recorded {waste_qty} units of {product_name} as waste ({reason})')
 
-            return JsonResponse({
-                'success': True,
-                'message': f'Successfully recorded {waste_qty} units of {product_name} as waste',
-                'newInventoryB': new_inventory_b
-            })
-        else:
-            error_message = result.get('message', 'Failed to record waste')
-            print(f"❌ Node API returned error: {error_message}")
-            return JsonResponse({
-                'success': False,
-                'message': error_message
-            })
+        return JsonResponse({
+            'success': True,
+            'message': f'Successfully recorded {waste_qty} units of {product_name} as waste',
+            'newInventoryB': new_inventory_b,
+            'costImpact': waste_cost
+        })
 
     except Exception as e:
         print(f"❌ Error in waste management: {e}")
