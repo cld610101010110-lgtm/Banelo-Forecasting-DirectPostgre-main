@@ -1916,10 +1916,6 @@ def inventory_forecasting_view(request):
         print(f"   Healthy: {summary['healthy']}")
         print(f"{'=' * 60}\n")
 
-        # Log audit trail
-        log_audit('Inventory Forecast Viewed', request.user,
-                 f'Viewed inventory forecasting. Products: {len(forecast_data)}, Critical: {summary["critical"]}, Low: {summary["low"]}, Healthy: {summary["healthy"]}')
-
         context = {
             'forecast_data': forecast_data,
             'model_status': model_status,
@@ -2391,9 +2387,6 @@ def sales_forecasting_view(request):
         else:
             date_range_days = 0
 
-        # Log audit trail
-        log_audit('Sales Forecast Viewed', request.user, f'Viewed sales forecasting page. Model ready: {model_exists and features_exist}')
-
         context = {
             'model_exists': model_exists,
             'features_exist': features_exist,
@@ -2501,10 +2494,6 @@ def get_sales_forecast_api(request):
         # Calculate summary statistics
         total_forecast = sum(p['predicted_revenue'] for p in predictions)
         average_daily = total_forecast / len(predictions) if predictions else 0
-
-        # Log audit trail
-        log_audit('Sales Forecast Generated', request.user,
-                 f'Generated {days}-day sales forecast using XGBoost ML. Total forecast: ₱{total_forecast:,.2f}')
 
         return JsonResponse({
             'success': True,
