@@ -970,7 +970,12 @@
                         <span>Sales Records</span>
                     </a>
                 </li>
-                
+                 <li class="submenu-item">
+                    <a href="{% url 'sales_forecasting' %}" class="submenu-link {% if request.resolver_match.url_name == 'sales_forecasting' %}active{% endif %}">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Sales Forecasting</span>
+                    </a>
+                </li>
                  <li class="submenu-item">
                     <a href="{% url 'sales_forecasting' %}" class="submenu-link {% if request.resolver_match.url_name == 'sales_forecasting' %}active{% endif %}">
                         <i class="fas fa-chart-line"></i>
@@ -1074,7 +1079,7 @@
                             <div class="product-category">Category: {{ product.category }}</div>
 
                             <!-- ✅ Show either Max Servings OR Dual Inventory System -->
-                            {% if product.category == 'beverage' and product.has_recipe %}
+                            {% if (product.category == 'beverage' or product.category == 'pastries')and product.has_recipe %}
                             <!-- For beverages WITH recipes: show max servings as "stock" -->
                             <div class="product-stock {% if product.max_servings < 10 %}critical{% elif product.max_servings < 20 %}low{% endif %}">
                                 <i class="fas fa-calculator"></i> Stock: {{ product.max_servings }} servings
