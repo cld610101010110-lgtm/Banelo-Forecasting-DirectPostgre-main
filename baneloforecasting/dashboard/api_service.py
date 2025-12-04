@@ -198,7 +198,7 @@ class APIService:
         if date_to:
             params['date_to'] = date_to
 
-        result = self._make_request('GET', '/api/waste-logs', params=params)
+        result = self._make_request('GET', '/api/waste', params=params)
         if result.get('success', True):
             return result.get('data', result.get('waste_logs', []))
         return []
