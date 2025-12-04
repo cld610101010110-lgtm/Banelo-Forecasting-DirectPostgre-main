@@ -116,7 +116,7 @@ router.post('/', async (req, res) => {
     await client.query(
       `UPDATE products
        SET inventory_b = $1, quantity = $1, updated_at = NOW()
-       WHERE firebase_id = $2`,
+       WHERE id = $2`,
       [newInventoryB, productFirebaseId]
     );
 
