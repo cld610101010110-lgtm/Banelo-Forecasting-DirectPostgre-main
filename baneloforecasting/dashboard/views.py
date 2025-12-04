@@ -1638,63 +1638,52 @@ def add_waste_api(request):
 
 @login_required
 def waste_tracking_view(request):
-    """Display waste tracking page with date filters and cost analysis (API Mode)"""
+    """Display waste tracking page with date filters and cost analysis"""
     try:
-        print("\n🗑️ WASTE TRACKING VIEW CALLED (API Mode)")
-
-        # Get API service
-        api = get_api_service()
+        print("\n🗑️ WASTE TRACKING VIEW CALLED (PostgreSQL)")
 
         # Get date filter parameters
         from_date = request.GET.get('from_date', '')
         to_date = request.GET.get('to_date', '')
 
-        # Get waste logs from API (not direct DB!)
-        waste_logs = api.get_waste_logs(date_from=from_date, date_to=to_date)
+        # Build query
+        waste_queryset = WasteLog.objects.all()
+
+        if from_date:
+            from_datetime = datetime.strptime(from_date, '%Y-%m-%d')
+            waste_queryset = waste_queryset.filter(waste_date__gte=from_datetime)
+        if to_date:
+            to_datetime = datetime.strptime(to_date, '%Y-%m-%d') + timedelta(days=1)
+            waste_queryset = waste_queryset.filter(waste_date__lt=to_datetime)
+
+        waste_queryset = waste_queryset.order_by('-waste_date')
 
         waste_entries = []
         total_waste_cost = 0
         daily_costs = {}
 
-        for waste in waste_logs:
-            product_id = waste.get('product_firebase_id') or waste.get('productFirebaseId')
-            quantity = float(waste.get('quantity') or 0)
-            product_name = waste.get('product_name') or waste.get('productName') or 'Unknown'
-            category = waste.get('category') or 'Unknown'
-            reason = waste.get('reason') or 'Unknown'
-            recorded_by = waste.get('recorded_by') or waste.get('recordedBy') or 'Unknown'
-            waste_date_str = waste.get('waste_date') or waste.get('wasteDate')
+        for waste in waste_queryset:
+            product_id = waste.product_firebase_id
+            quantity = waste.quantity or 0
 
-            # Parse waste date
-            waste_date = None
-            date_str = 'Unknown'
-            date_display = 'Unknown'
-            
-            if waste_date_str:
-                try:
-                    # Handle both string and datetime formats
-                    if isinstance(waste_date_str, str):
-                        waste_date = datetime.fromisoformat(waste_date_str.replace('Z', '+00:00'))
-                    else:
-                        waste_date = waste_date_str
-                    
-                    date_str = waste_date.strftime('%Y-%m-%d')
-                    date_display = waste_date.strftime('%b %d, %Y %I:%M %p')
-                except:
-                    pass
-
-            # Try to get product details for cost calculation
+            # Get product details for cost
             waste_cost = 0
+            product_name = waste.product_name or 'Unknown'
+            category = waste.category or 'Unknown'
+
             if product_id:
                 try:
-                    product = Product.objects.get(Q(id=product_id) | Q(firebase_id=product_id))
+                    product = Product.objects.get(Q(firebase_id=product_id) | Q(id=product_id))
                     cost_per_unit = product.cost_per_unit or 0
                     waste_cost = quantity * cost_per_unit
                     product_name = product.name or product_name
                     category = product.category or category
                 except Product.DoesNotExist:
-                    # Product not found - use what we have from API
                     pass
+
+            waste_date = waste.waste_date
+            date_str = waste_date.strftime('%Y-%m-%d') if waste_date else 'Unknown'
+            date_display = waste_date.strftime('%b %d, %Y %I:%M %p') if waste_date else 'Unknown'
 
             # Track daily costs
             if date_str != 'Unknown':
@@ -1705,14 +1694,14 @@ def waste_tracking_view(request):
             total_waste_cost += waste_cost
 
             waste_entries.append({
-                'id': waste.get('id'),
+                'id': waste.id,
                 'productName': product_name,
                 'productId': product_id,
                 'quantity': quantity,
-                'reason': reason,
+                'reason': waste.reason or 'Unknown',
                 'wasteDate': date_display,
                 'dateStr': date_str,
-                'recordedBy': recorded_by,
+                'recordedBy': waste.recorded_by or 'Unknown',
                 'category': category,
                 'wasteCost': waste_cost
             })
@@ -1723,7 +1712,7 @@ def waste_tracking_view(request):
             for date, cost in sorted(daily_costs.items(), reverse=True)
         ]
 
-        print(f"✅ Loaded {len(waste_entries)} waste entries from API")
+        print(f"✅ Loaded {len(waste_entries)} waste entries")
         print(f"💰 Total waste cost: ₱{total_waste_cost:.2f}")
 
         context = {
