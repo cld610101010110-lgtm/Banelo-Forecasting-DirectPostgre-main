@@ -79,7 +79,7 @@ class APIService:
     def delete_product(self, product_id):
         """Delete a product"""
         return self._make_request('DELETE', f'/api/products/{product_id}')
-
+    
     # ========================================
     # SALES ENDPOINTS
     # ========================================
@@ -177,14 +177,14 @@ class APIService:
         if date_to:
             params['date_to'] = date_to
 
-        result = self._make_request('GET', '/api/audit-logs', params=params)
+        result = self._make_request('GET', '/api/audit', params=params)
         if result.get('success', True):
             return result.get('data', result.get('logs', []))
         return []
 
     def add_audit_log(self, log_data):
         """Add a new audit log entry"""
-        return self._make_request('POST', '/api/audit-logs', data=log_data)
+        return self._make_request('POST', '/api/audit', data=log_data)
 
     # ========================================
     # WASTE LOGS ENDPOINTS
