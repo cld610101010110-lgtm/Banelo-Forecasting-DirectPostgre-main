@@ -81,7 +81,7 @@ router.post('/', async (req, res) => {
 
     // Get current product
     const productResult = await client.query(
-      'SELECT * FROM products WHERE firebase_id = $1',
+      'SELECT * FROM products WHERE id = $1',
       [productFirebaseId]
     );
 
