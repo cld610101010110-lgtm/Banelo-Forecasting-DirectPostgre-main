@@ -1638,7 +1638,7 @@ def add_waste_api(request):
 
 @login_required
 def waste_tracking_view(request):
-    """Display waste tracking page with date filters and cost analysis (API Mode)"""
+    """Display waste tracking page with data from Node.js API"""
     try:
         print("\n🗑️ WASTE TRACKING VIEW CALLED (API Mode)")
 
@@ -1649,14 +1649,16 @@ def waste_tracking_view(request):
         from_date = request.GET.get('from_date', '')
         to_date = request.GET.get('to_date', '')
 
-        # Get waste logs from API (not direct DB!)
+        # Get waste logs from API
         waste_logs = api.get_waste_logs(date_from=from_date, date_to=to_date)
+        print(f"📦 Received {len(waste_logs)} waste logs from API")
 
         waste_entries = []
         total_waste_cost = 0
         daily_costs = {}
 
         for waste in waste_logs:
+            # Get data from API response
             product_id = waste.get('product_firebase_id') or waste.get('productFirebaseId')
             quantity = float(waste.get('quantity') or 0)
             product_name = waste.get('product_name') or waste.get('productName') or 'Unknown'
@@ -1672,7 +1674,6 @@ def waste_tracking_view(request):
             
             if waste_date_str:
                 try:
-                    # Handle both string and datetime formats
                     if isinstance(waste_date_str, str):
                         waste_date = datetime.fromisoformat(waste_date_str.replace('Z', '+00:00'))
                     else:
@@ -1680,21 +1681,20 @@ def waste_tracking_view(request):
                     
                     date_str = waste_date.strftime('%Y-%m-%d')
                     date_display = waste_date.strftime('%b %d, %Y %I:%M %p')
-                except:
-                    pass
+                except Exception as date_err:
+                    print(f"⚠️ Could not parse date {waste_date_str}: {date_err}")
 
-            # Try to get product details for cost calculation
+            # Try to get cost_per_unit for cost calculation
             waste_cost = 0
             if product_id:
                 try:
                     product = Product.objects.get(Q(id=product_id) | Q(firebase_id=product_id))
-                    cost_per_unit = product.cost_per_unit or 0
+                    cost_per_unit = float(product.cost_per_unit or 0)
                     waste_cost = quantity * cost_per_unit
-                    product_name = product.name or product_name
-                    category = product.category or category
-                except Product.DoesNotExist:
-                    # Product not found - use what we have from API
-                    pass
+                except Exception as e:
+                    # If lookup fails, just use 0 - don't crash
+                    print(f"⚠️ Could not get product cost: {e}")
+                    waste_cost = 0
 
             # Track daily costs
             if date_str != 'Unknown':
