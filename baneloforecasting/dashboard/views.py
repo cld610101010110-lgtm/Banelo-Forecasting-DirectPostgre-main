@@ -1642,6 +1642,8 @@ def waste_tracking_view(request):
     try:
         print("\n🗑️ WASTE TRACKING VIEW CALLED (API Mode)")
 
+        from django.db import connection
+
         # Get API service
         api = get_api_service()
 
@@ -1684,16 +1686,26 @@ def waste_tracking_view(request):
                 except Exception as date_err:
                     print(f"⚠️ Could not parse date {waste_date_str}: {date_err}")
 
-            # Try to get cost_per_unit for cost calculation
+            # Get cost_per_unit using raw SQL (works on PostgreSQL and SQLite)
             waste_cost = 0
             if product_id:
                 try:
-                    product = Product.objects.get(Q(id=product_id) | Q(firebase_id=product_id))
-                    cost_per_unit = float(product.cost_per_unit or 0)
-                    waste_cost = quantity * cost_per_unit
+                    with connection.cursor() as cursor:
+                        # Query PostgreSQL/SQLite directly
+                        cursor.execute(
+                            'SELECT cost_per_unit FROM products WHERE id = %s OR firebase_id = %s LIMIT 1',
+                            [product_id, product_id]
+                        )
+                        result = cursor.fetchone()
+                        if result:
+                            cost_per_unit = float(result[0] or 0)
+                            waste_cost = quantity * cost_per_unit
+                            if waste_cost > 0:
+                                print(f"✅ Calculated waste cost: ₱{waste_cost:.2f} ({quantity} × ₱{cost_per_unit})")
+                        else:
+                            print(f"⚠️ Product not found in DB: {product_id}")
                 except Exception as e:
-                    # If lookup fails, just use 0 - don't crash
-                    print(f"⚠️ Could not get product cost: {e}")
+                    print(f"⚠️ Could not get product cost: {type(e).__name__}: {e}")
                     waste_cost = 0
 
             # Track daily costs
@@ -1751,6 +1763,7 @@ def waste_tracking_view(request):
             'entry_count': 0
         }
         return render(request, 'dashboard/waste_tracking.html', context)
+
 
 
 # ========================================
