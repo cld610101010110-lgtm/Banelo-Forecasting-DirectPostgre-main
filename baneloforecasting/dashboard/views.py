@@ -795,96 +795,81 @@ def accounts_view(request):
 # ========================================
 # AUDIT TRAIL VIEWS
 # ========================================
-
 @login_required
 def audit_trail_view(request):
-    """Display audit trail from PostgreSQL with filters (includes mobile POS logs)"""
+    """Display audit trail from Node.js API (includes mobile POS logs)"""
     try:
-        from .models import AuditLog as MobileAuditLog
-
         print("\n" + "=" * 80)
-        print("🔥 AUDIT TRAIL VIEW CALLED (PostgreSQL)")
+        print("🔥 AUDIT TRAIL VIEW CALLED (API Mode)")
         print("=" * 80)
+
+        # Get API service
+        api = get_api_service()
 
         # Get filter parameters
         filter_user = request.GET.get('user', '')
         filter_action = request.GET.get('action', '')
         filter_date_from = request.GET.get('date_from', '')
         filter_date_to = request.GET.get('date_to', '')
-        filter_source = request.GET.get('source', '')  # 'web' or 'mobile'
+        filter_source = request.GET.get('source', '')
 
         print(f"📊 Filters: user={filter_user}, action={filter_action}, from={filter_date_from}, to={filter_date_to}, source={filter_source}")
 
-        # Build query for Django audit trail (web dashboard)
-        audit_queryset = AuditTrail.objects.all()
+        # Get audit logs from API (includes both web and mobile)
+        audit_logs_from_api = api.get_audit_logs(
+            limit=10000,
+            user=filter_user if filter_user else None,
+            action=filter_action if filter_action else None,
+            date_from=filter_date_from if filter_date_from else None,
+            date_to=filter_date_to if filter_date_to else None
+        )
 
-        if filter_user:
-            audit_queryset = audit_queryset.filter(user_name=filter_user)
-        if filter_action:
-            audit_queryset = audit_queryset.filter(action=filter_action)
-        if filter_date_from:
-            from_date = datetime.strptime(filter_date_from, '%Y-%m-%d')
-            audit_queryset = audit_queryset.filter(timestamp__gte=from_date)
-        if filter_date_to:
-            to_date = datetime.strptime(filter_date_to, '%Y-%m-%d') + timedelta(days=1)
-            audit_queryset = audit_queryset.filter(timestamp__lt=to_date)
+        print(f"📦 Received {len(audit_logs_from_api)} audit logs from API")
 
-        # Get mobile POS audit logs
-        mobile_queryset = MobileAuditLog.objects.all()
-
-        if filter_user:
-            mobile_queryset = mobile_queryset.filter(user_name=filter_user)
-        if filter_action:
-            mobile_queryset = mobile_queryset.filter(action__icontains=filter_action)
-        if filter_date_from:
-            from_date = datetime.strptime(filter_date_from, '%Y-%m-%d')
-            mobile_queryset = mobile_queryset.filter(timestamp__gte=from_date)
-        if filter_date_to:
-            to_date = datetime.strptime(filter_date_to, '%Y-%m-%d') + timedelta(days=1)
-            mobile_queryset = mobile_queryset.filter(timestamp__lt=to_date)
-
-        # Process audit logs from both sources
+        # Format audit logs for display
         audit_logs = []
+        for log in audit_logs_from_api:
+            timestamp_str = ''
+            if log.get('timestamp'):
+                try:
+                    if isinstance(log['timestamp'], str):
+                        # Parse ISO format string
+                        dt = datetime.fromisoformat(log['timestamp'].replace('Z', '+00:00'))
+                        timestamp_str = dt.strftime('%Y-%m-%d %H:%M:%S')
+                    else:
+                        timestamp_str = log['timestamp'].strftime('%Y-%m-%d %H:%M:%S')
+                except:
+                    timestamp_str = str(log['timestamp'])
 
-        # Add web dashboard logs
-        if not filter_source or filter_source == 'web':
-            for log in audit_queryset.order_by('-timestamp')[:5000]:
-                audit_logs.append({
-                    'id': f'web-{log.id}',
-                    'user': log.user_name or 'Unknown',
-                    'action': log.action or 'N/A',
-                    'description': log.details or '',
-                    'timestamp': log.timestamp.strftime('%Y-%m-%d %H:%M:%S') if log.timestamp else '',
-                    'source': 'Web Dashboard',
-                    'status': 'Success'
-                })
-
-        # Add mobile POS logs
-        if not filter_source or filter_source == 'mobile':
-            for log in mobile_queryset.order_by('-timestamp')[:5000]:
-                audit_logs.append({
-                    'id': f'mobile-{log.id}',
-                    'user': log.user_name or 'Unknown',
-                    'action': log.action or 'N/A',
-                    'description': log.details or '',
-                    'timestamp': log.timestamp.strftime('%Y-%m-%d %H:%M:%S') if log.timestamp else '',
-                    'source': 'Mobile POS',
-                    'status': 'Success'
-                })
+            audit_logs.append({
+                'id': f"audit-{log.get('id', '')}",
+                'user': log.get('user_name') or log.get('userName') or 'Unknown',
+                'action': log.get('action') or 'N/A',
+                'description': log.get('details') or '',
+                'timestamp': timestamp_str,
+                'source': 'Audit System',
+                'status': 'Success'
+            })
 
         # Sort by timestamp descending
         audit_logs.sort(key=lambda x: x['timestamp'], reverse=True)
         audit_logs = audit_logs[:10000]  # Limit to 10,000
 
         print(f"\n{'=' * 80}")
-        print(f"✅ RESULTS: {len(audit_logs)} audit logs (Web + Mobile POS)")
+        print(f"✅ RESULTS: {len(audit_logs)} audit logs from API")
         print(f"{'=' * 80}\n")
 
         # Get statistics
         stats = calculate_statistics(audit_logs)
 
-        # Get unique users for filter dropdown
-        users = get_unique_users()
+        # Get unique users - try from API, fallback to local query
+        users = []
+        try:
+            # Get all audit logs without limit to extract unique users
+            all_logs = api.get_audit_logs(limit=50000)
+            users = list(set([log.get('user_name') or log.get('userName') for log in all_logs if log.get('user_name') or log.get('userName')]))
+        except:
+            users = []
 
         context = {
             'audit_logs': audit_logs,
