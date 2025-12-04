@@ -23,8 +23,10 @@ router.get('/', async (req, res) => {
     }
 
     if (date_to) {
-      queryText += ` AND waste_date <= $${paramCount++}`;
-      values.push(date_to);
+      const toDate = new Date(date_to);
+      toDate.setDate(toDate.getDate() + 1);
+      queryText += ` AND waste_date < $${paramCount++}`;
+      values.push(toDate.toISOString());
     }
 
     queryText += ' ORDER BY waste_date DESC';
