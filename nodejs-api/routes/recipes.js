@@ -228,6 +228,9 @@ router.put('/:id', async (req, res) => {
       });
     }
 
+    const recipe = checkResult.rows[0];
+    const recipeFirebaseId = recipe.firebase_id;
+
     await client.query('BEGIN');
 
     // Update recipe
@@ -238,16 +241,16 @@ router.put('/:id', async (req, res) => {
       [productFirebaseId, productName, productNumber || 0, id]
     );
 
-    // Delete old ingredients
+    // Delete old ingredients using the recipe's firebase_id
     await client.query(
       'DELETE FROM recipe_ingredients WHERE recipe_firebase_id = $1',
-      [id]
+      [recipeFirebaseId]
     );
 
     // Insert new ingredients
     if (ingredients && ingredients.length > 0) {
       for (const ingredient of ingredients) {
-        const ingredientFirebaseId = `ingredient_${id}_${ingredient.ingredientFirebaseId}_${Date.now()}`;
+        const ingredientFirebaseId = `ingredient_${recipeFirebaseId}_${ingredient.ingredientFirebaseId}_${Date.now()}`;
 
         await client.query(
           `INSERT INTO recipe_ingredients
@@ -255,7 +258,7 @@ router.put('/:id', async (req, res) => {
            VALUES ($1, $2, $3, $4, $5, $6, NOW())`,
           [
             ingredientFirebaseId,
-            id,
+            recipeFirebaseId,
             ingredient.ingredientFirebaseId,
             ingredient.ingredientName,
             ingredient.quantityNeeded,
@@ -306,14 +309,16 @@ router.delete('/:id', async (req, res) => {
       });
     }
 
-    const productName = checkResult.rows[0].product_name;
+    const recipe = checkResult.rows[0];
+    const productName = recipe.product_name;
+    const recipeFirebaseId = recipe.firebase_id;
 
     await client.query('BEGIN');
 
-    // Delete ingredients first (foreign key constraint)
+    // Delete ingredients first (foreign key constraint) using the recipe's firebase_id
     await client.query(
       'DELETE FROM recipe_ingredients WHERE recipe_firebase_id = $1',
-      [id]
+      [recipeFirebaseId]
     );
 
     // Delete recipe
