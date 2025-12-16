@@ -1380,6 +1380,8 @@ def update_recipe_api(request):
         # Call Node API to update recipe
         result = api.update_recipe(recipe_id, recipe_data)
 
+        print(f"📨 Full API Response: {json.dumps(result, indent=2)}")
+
         if result.get('success'):
             print(f"✅ Recipe {recipe_id} updated successfully via Node API")
             log_audit('Recipe Updated', request.user, f'Updated recipe for {product_name}')
@@ -1390,7 +1392,9 @@ def update_recipe_api(request):
             })
         else:
             error_message = result.get('message', 'Failed to update recipe')
+            error_details = result.get('error', 'No error details')
             print(f"❌ Node API returned error: {error_message}")
+            print(f"📋 Error details: {error_details}")
             return JsonResponse({
                 'success': False,
                 'message': error_message
@@ -1429,6 +1433,8 @@ def delete_recipe_api(request):
         # Call Node API to delete recipe
         result = api.delete_recipe(recipe_id)
 
+        print(f"📨 Full API Response: {json.dumps(result, indent=2)}")
+
         if result.get('success'):
             print(f"✅ Recipe {recipe_id} deleted successfully via Node API")
             log_audit('Recipe Deleted', request.user, f'Deleted recipe for {product_name}')
@@ -1439,7 +1445,9 @@ def delete_recipe_api(request):
             })
         else:
             error_message = result.get('message', 'Failed to delete recipe')
+            error_details = result.get('error', 'No error details')
             print(f"❌ Node API returned error: {error_message}")
+            print(f"📋 Error details: {error_details}")
             return JsonResponse({
                 'success': False,
                 'message': error_message

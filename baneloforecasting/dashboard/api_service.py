@@ -126,11 +126,15 @@ class APIService:
 
     def update_recipe(self, recipe_id, recipe_data):
         """Update an existing recipe"""
-        return self._make_request('PUT', f'/api/recipes/{recipe_id}', data=recipe_data)
+        result = self._make_request('PUT', f'/api/recipes/{recipe_id}', data=recipe_data)
+        print(f"[API SERVICE] Update recipe {recipe_id}: {result}")
+        return result
 
     def delete_recipe(self, recipe_id):
         """Delete a recipe"""
-        return self._make_request('DELETE', f'/api/recipes/{recipe_id}')
+        result = self._make_request('DELETE', f'/api/recipes/{recipe_id}')
+        print(f"[API SERVICE] Delete recipe {recipe_id}: {result}")
+        return result
 
     # ========================================
     # RECIPE INGREDIENTS ENDPOINTS
