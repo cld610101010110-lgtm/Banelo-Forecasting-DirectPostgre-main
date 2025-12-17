@@ -2531,3 +2531,168 @@ def get_sales_forecast_api(request):
             'success': False,
             'message': str(e)
         })
+
+
+@login_required
+@require_http_methods(["GET"])
+def get_enhanced_forecast_api(request):
+    """
+    Enhanced Sales Forecasting API with:
+    - Weekly, monthly, yearly aggregation
+    - MAPE, MAE, RMSE metrics
+    - Product category filtering
+    - Auto-generated forecasts
+    """
+    try:
+        from dashboard.enhanced_forecasting import generate_enhanced_forecast
+
+        # Get parameters from request
+        days = int(request.GET.get('days', 30))
+        days = min(days, 365)  # Maximum 365 days
+
+        category = request.GET.get('category', None)
+        if category and category not in ['Pastry', 'Beverage']:
+            category = None  # Ignore invalid categories
+
+        time_period = request.GET.get('period', 'daily')
+        if time_period not in ['daily', 'weekly', 'monthly', 'yearly']:
+            time_period = 'daily'
+
+        # Generate forecast
+        result = generate_enhanced_forecast(
+            days=days,
+            category_filter=category,
+            time_period=time_period
+        )
+
+        return JsonResponse(result)
+
+    except Exception as e:
+        print(f"❌ Error in enhanced forecast: {e}")
+        import traceback
+        traceback.print_exc()
+        return JsonResponse({
+            'success': False,
+            'message': str(e)
+        })
+
+
+@login_required
+@require_http_methods(["GET"])
+def get_model_comparison_api(request):
+    """
+    Return model comparison metrics and justification
+    Shows Linear Regression baseline vs Gradient Boosting
+    """
+    try:
+        from dashboard.enhanced_forecasting import get_model_comparison
+
+        comparison = get_model_comparison()
+
+        return JsonResponse({
+            'success': True,
+            'data': comparison
+        })
+
+    except Exception as e:
+        print(f"❌ Error getting model comparison: {e}")
+        return JsonResponse({
+            'success': False,
+            'message': str(e)
+        })
+
+
+@login_required
+@require_http_methods(["GET"])
+def export_forecast_csv_api(request):
+    """
+    Export forecasts to CSV format
+    """
+    try:
+        from dashboard.enhanced_forecasting import (
+            generate_enhanced_forecast,
+            export_forecast_to_csv
+        )
+
+        # Generate forecast
+        days = int(request.GET.get('days', 30))
+        category = request.GET.get('category', None)
+
+        forecast_result = generate_enhanced_forecast(
+            days=days,
+            category_filter=category,
+            time_period='daily'
+        )
+
+        if not forecast_result.get('success'):
+            return JsonResponse({
+                'success': False,
+                'message': forecast_result.get('message')
+            })
+
+        # Export to CSV
+        csv_data = export_forecast_to_csv(forecast_result['forecasts'])
+
+        # Return CSV as download
+        response = HttpResponse(csv_data, content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="sales_forecast.csv"'
+        return response
+
+    except Exception as e:
+        print(f"❌ Error exporting CSV: {e}")
+        return JsonResponse({
+            'success': False,
+            'message': str(e)
+        })
+
+
+@login_required
+@require_http_methods(["GET"])
+def export_forecast_pdf_api(request):
+    """
+    Export forecasts to PDF format
+    """
+    try:
+        from dashboard.enhanced_forecasting import (
+            generate_enhanced_forecast,
+            export_forecast_to_pdf
+        )
+
+        # Generate forecast
+        days = int(request.GET.get('days', 30))
+        category = request.GET.get('category', None)
+
+        forecast_result = generate_enhanced_forecast(
+            days=days,
+            category_filter=category,
+            time_period='daily'
+        )
+
+        if not forecast_result.get('success'):
+            return JsonResponse({
+                'success': False,
+                'message': forecast_result.get('message')
+            })
+
+        # Export to PDF
+        pdf_data = export_forecast_to_pdf(
+            forecast_result['forecasts'],
+            title=f"Sales Forecast Report ({days} days)"
+        )
+
+        # Return PDF as download
+        response = HttpResponse(pdf_data, content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename="sales_forecast_{days}days.pdf"'
+        return response
+
+    except ImportError:
+        return JsonResponse({
+            'success': False,
+            'message': 'PDF export requires reportlab. Install with: pip install reportlab'
+        })
+    except Exception as e:
+        print(f"❌ Error exporting PDF: {e}")
+        return JsonResponse({
+            'success': False,
+            'message': str(e)
+        })

@@ -33,6 +33,10 @@ urlpatterns = [
     # Sales Forecasting API endpoints
     path('api/sales-forecast/status/', views.sales_forecast_status_api, name='sales_forecast_status'),
     path('api/sales-forecast/predict/', views.get_sales_forecast_api, name='get_sales_forecast'),
+    path('api/sales-forecast/enhanced/', views.get_enhanced_forecast_api, name='get_enhanced_forecast'),
+    path('api/sales-forecast/models/', views.get_model_comparison_api, name='get_model_comparison'),
+    path('api/sales-forecast/export/csv/', views.export_forecast_csv_api, name='export_forecast_csv'),
+    path('api/sales-forecast/export/pdf/', views.export_forecast_pdf_api, name='export_forecast_pdf'),
 
     # Product CRUD (legacy)
     path('api/products/add/', views.add_product_view, name='add_product'),
