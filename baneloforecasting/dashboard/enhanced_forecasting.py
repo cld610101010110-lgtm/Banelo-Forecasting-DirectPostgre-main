@@ -148,7 +148,7 @@ def get_category_distribution(days=30):
     start_date = datetime.now().date() - timedelta(days=days)
     sales = Sale.objects.filter(
         order_date__gte=start_date
-    ).values('product__category').annotate(
+    ).values('category').annotate(
         total_quantity=Sum('quantity')
     )
 
@@ -158,7 +158,7 @@ def get_category_distribution(days=30):
 
     distribution = {}
     for sale in sales:
-        category = sale['product__category'] or 'Unknown'
+        category = sale['category'] or 'Unknown'
         distribution[category] = round((sale['total_quantity'] or 0) / total * 100, 2)
 
     return distribution
