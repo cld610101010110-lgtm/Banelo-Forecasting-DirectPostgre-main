@@ -2325,7 +2325,7 @@ def load_sales_forecast_model():
 
 
 def create_forecast_features(date):
-    """Create features for a specific date for forecasting"""
+    """Create features for a specific date for forecasting using PostgreSQL API data"""
     import numpy as np
 
     # Extract date features
@@ -2335,20 +2335,41 @@ def create_forecast_features(date):
     is_weekend = 1 if day_of_week >= 5 else 0
     week_of_year = date.isocalendar()[1]
 
-    # Get recent sales history for rolling features
-    last_30_days = date - timedelta(days=30)
-    recent_sales = Sale.objects.filter(
-        order_date__gte=last_30_days,
-        order_date__lt=date
-    ).values('order_date', 'total')
+    # Get recent sales history from API (PostgreSQL) for rolling features
+    try:
+        api = get_api_service()
+        api_sales = api.get_sales(limit=1000)  # Get all available sales
 
-    # Calculate rolling statistics
-    daily_totals = defaultdict(float)
-    for sale in recent_sales:
-        sale_date = sale['order_date'].date() if hasattr(sale['order_date'], 'date') else sale['order_date']
-        daily_totals[sale_date] += sale['total'] or 0
+        # Convert API response to DataFrame
+        sales_data = []
+        for sale in api_sales:
+            order_date_raw = sale.get('order_date') or sale.get('orderDate')
+            if isinstance(order_date_raw, str):
+                order_date = datetime.strptime(order_date_raw[:10], '%Y-%m-%d').date()
+            elif order_date_raw:
+                order_date = order_date_raw.date() if hasattr(order_date_raw, 'date') else order_date_raw
+            else:
+                continue
 
-    daily_values = list(daily_totals.values()) if daily_totals else [0]
+            total = float(sale.get('total_amount') or sale.get('total') or 0)
+            sales_data.append({
+                'order_date': order_date,
+                'total': total
+            })
+
+        # Calculate rolling statistics from API data
+        daily_totals = defaultdict(float)
+        for sale in sales_data:
+            sale_date = sale['order_date']
+            daily_totals[sale_date] += sale['total'] or 0
+
+        # Sort dates to ensure proper ordering
+        sorted_dates = sorted(daily_totals.keys())
+        daily_values = [daily_totals[d] for d in sorted_dates]
+
+    except Exception as e:
+        print(f"⚠️ Error fetching API data for features: {e}")
+        daily_values = [0]
 
     rolling_mean_7d = np.mean(daily_values[-7:]) if len(daily_values) >= 7 else np.mean(daily_values)
     rolling_std_7d = np.std(daily_values[-7:]) if len(daily_values) >= 7 else 0
