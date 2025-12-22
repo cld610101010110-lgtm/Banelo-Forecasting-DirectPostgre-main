@@ -95,25 +95,48 @@ class Command(BaseCommand):
             return None
 
     def get_sales_data(self, days):
-        """Fetch sales data for prediction"""
-        self.stdout.write('\n📊 Fetching sales data...')
+        """Fetch sales data from API (PostgreSQL)"""
+        self.stdout.write('\n📊 Fetching sales data from API...')
 
-        end_date = datetime.now()
-        start_date = end_date - timedelta(days=days)
+        try:
+            from dashboard.api_service import get_api_service
 
-        sales = Sale.objects.filter(
-            order_date__gte=start_date,
-            order_date__lte=end_date
-        ).order_by('order_date').values()
+            api = get_api_service()
+            api_sales = api.get_sales(limit=1000)
 
-        if not sales.exists():
+            if not api_sales:
+                return None
+
+            # Convert API response to DataFrame
+            sales_data = []
+            for sale in api_sales:
+                price = float(sale.get('price', 0) or 0)
+                quantity = int(sale.get('quantity', 0) or 0)
+                total = float(sale.get('total_amount') or sale.get('total') or 0) or (price * quantity)
+
+                order_date_raw = sale.get('order_date') or sale.get('orderDate')
+                if isinstance(order_date_raw, str):
+                    order_date = order_date_raw
+                else:
+                    order_date = order_date_raw.isoformat() if order_date_raw else None
+
+                sales_data.append({
+                    'order_date': order_date,
+                    'product_name': sale.get('product_name') or sale.get('productName') or 'Unknown',
+                    'category': sale.get('category') or 'Uncategorized',
+                    'quantity': quantity,
+                    'price': price,
+                    'total': total
+                })
+
+            df = pd.DataFrame(sales_data)
+            self.stdout.write(self.style.SUCCESS(f'   ✓ Loaded {len(df)} sales from API'))
+
+            return df
+
+        except Exception as e:
+            self.stdout.write(self.style.ERROR(f'❌ Error fetching from API: {e}'))
             return None
-
-        df = pd.DataFrame(sales)
-        self.stdout.write(self.style.SUCCESS(f'   ✓ Loaded {len(df)} sales records'))
-        self.stdout.write(f'   ✓ Date range: {df["order_date"].min()} to {df["order_date"].max()}')
-
-        return df
 
     def generate_forecasts(self, model, sales_df):
         """Generate and save forecasts"""
