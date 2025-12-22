@@ -72,7 +72,7 @@ class Command(BaseCommand):
         """Load the trained ML model"""
         self.stdout.write('📦 Loading ML model...')
 
-        model_path = 'baneloforecasting/ml_models/forecasting_model.pkl'
+        model_path = 'ml_models/forecasting_model.pkl'
 
         if not os.path.exists(model_path):
             self.stdout.write(self.style.ERROR(f'❌ Model file not found at {model_path}'))
@@ -83,7 +83,7 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS('   ✓ Model loaded successfully!'))
 
             # Load feature columns
-            feature_columns_path = 'baneloforecasting/ml_models/feature_columns.pkl'
+            feature_columns_path = 'ml_models/feature_columns.pkl'
             if os.path.exists(feature_columns_path):
                 feature_columns = joblib.load(feature_columns_path)
                 self.stdout.write(f'   ✓ Features: {len(feature_columns)}')
