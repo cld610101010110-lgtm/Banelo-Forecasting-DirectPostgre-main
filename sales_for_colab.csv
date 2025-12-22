@@ -1,0 +1,3310 @@
+date,product_name,category,quantity,price,total
+2025-07-13,Iced Coffee,Beverages,4,107.80,431.20
+2025-05-23,Glazed Donut,Pastries,4,148.75,595.00
+2024-11-25,Baguette,Pastries,4,133.77,535.08
+2025-05-01,Hot Chocolate,Pastries,4,131.53,526.12
+2025-02-08,Mocha,Pastries,2,61.74,123.48
+2025-11-20,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2025-03-24,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-03-03,Latte,Pastries,1,108.74,108.74
+2025-05-21,Americano,Pastries,3,80.96,242.88
+2025-01-01,Flat White,Pastries,4,113.21,452.84
+2024-12-27,Apple Turnover,Pastries,5,154.54,772.70
+2025-06-20,Glazed Donut,Pastries,4,148.75,595.00
+2025-07-05,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-05-22,Americano,Pastries,2,80.96,161.92
+2025-02-04,Cappuccino,Pastries,4,76.25,305.00
+2025-08-17,Tiramisu,Pastries,2,196.55,393.10
+2025-02-18,Cappuccino,Pastries,2,76.25,152.50
+2024-12-03,Americano,Pastries,5,80.96,404.80
+2025-02-02,Chai Latte,Pastries,4,100.50,402.00
+2025-06-29,Eclair,Pastries,2,146.12,292.24
+2024-12-08,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-03-09,Iced Mocha,Pastries,1,144.00,144.00
+2025-02-14,Mocha,Pastries,3,61.74,185.22
+2025-11-15,Chai Latte,Pastries,5,100.50,502.50
+2025-11-24,Apple Turnover,Pastries,1,154.54,154.54
+2025-05-03,Mocha,Pastries,5,61.74,308.70
+2025-03-16,Espresso,Pastries,1,195.76,195.76
+2025-07-29,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-10-13,Eclair,Pastries,2,146.12,292.24
+2025-10-12,Almonds,Pastries,4,5.59,22.36
+2025-04-13,Apple Turnover,Pastries,5,154.54,772.70
+2025-07-10,Apple Turnover,Pastries,1,154.54,154.54
+2025-04-03,Tea,Beverages,4,106.18,424.72
+2024-12-20,Apple Turnover,Pastries,4,154.54,618.16
+2025-02-08,Cappuccino,Pastries,5,76.25,381.25
+2025-08-12,Red Velvet Cake,Pastries,2,187.25,374.50
+2025-06-16,Apple Turnover,Pastries,5,154.54,772.70
+2025-05-14,Almonds,Pastries,4,5.59,22.36
+2025-05-11,Apple Turnover,Pastries,5,154.54,772.70
+2025-02-14,Espresso,Pastries,4,195.76,783.04
+2025-11-07,Flat White,Pastries,4,113.21,452.84
+2025-01-27,Baguette,Pastries,3,133.77,401.31
+2025-03-15,Espresso,Pastries,4,195.76,783.04
+2025-04-18,Almonds,Pastries,3,5.59,16.77
+2025-04-05,Tea,Beverages,5,106.18,530.90
+2025-09-06,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2025-07-18,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-04-16,Tiramisu,Pastries,4,196.55,786.20
+2025-06-17,Baguette,Pastries,2,133.77,267.54
+2025-03-29,Cappuccino,Pastries,2,76.25,152.50
+2025-06-05,Flat White,Pastries,2,113.21,226.42
+2025-05-17,Flat White,Pastries,5,113.21,566.05
+2025-03-05,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2025-10-18,Iced Mocha,Pastries,2,144.00,288.00
+2025-11-16,Cappuccino,Pastries,5,76.25,381.25
+2025-07-04,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-11-14,Almonds,Pastries,1,5.59,5.59
+2025-10-16,Almond Croissant,Pastries,1,8.42,8.42
+2025-11-09,Flat White,Pastries,4,113.21,452.84
+2025-09-14,Tea,Beverages,4,106.18,424.72
+2025-10-03,Espresso,Pastries,4,195.76,783.04
+2025-04-27,Tiramisu,Pastries,5,196.55,982.75
+2025-06-20,Flat White,Pastries,2,113.21,226.42
+2025-08-09,Almonds,Pastries,4,5.59,22.36
+2024-12-01,Latte,Pastries,3,108.74,326.22
+2025-02-04,Flat White,Pastries,3,113.21,339.63
+2025-11-19,Almond Croissant,Pastries,4,8.42,33.68
+2024-12-17,Almond Croissant,Pastries,5,8.42,42.10
+2025-02-16,Latte,Pastries,3,108.74,326.22
+2025-03-08,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-11-06,Red Velvet Cake,Pastries,2,187.25,374.50
+2025-02-11,Iced Coffee,Beverages,2,107.80,215.60
+2025-11-16,Cappuccino,Pastries,2,76.25,152.50
+2025-05-31,Latte,Pastries,1,108.74,108.74
+2025-03-16,Apple Turnover,Pastries,5,154.54,772.70
+2025-05-13,Cappuccino,Pastries,2,76.25,152.50
+2025-04-18,Apple Turnover,Pastries,5,154.54,772.70
+2025-08-09,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-09-06,Mocha,Pastries,5,61.74,308.70
+2024-12-15,Macchiato,Pastries,4,93.97,375.88
+2025-07-01,Iced Coffee,Beverages,5,107.80,539.00
+2025-04-13,Iced Mocha,Pastries,1,144.00,144.00
+2025-02-09,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-11-10,Apple Turnover,Pastries,1,154.54,154.54
+2025-08-09,Americano,Pastries,1,80.96,80.96
+2025-05-16,Mocha,Pastries,5,61.74,308.70
+2025-05-28,Mocha,Pastries,4,61.74,246.96
+2025-04-04,Cappuccino,Pastries,3,76.25,228.75
+2025-03-21,Almonds,Pastries,2,5.59,11.18
+2025-09-21,Macchiato,Pastries,1,93.97,93.97
+2025-03-28,Cappuccino,Pastries,4,76.25,305.00
+2025-09-30,Iced Mocha,Pastries,2,144.00,288.00
+2025-11-21,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-04-12,Iced Coffee,Beverages,1,107.80,107.80
+2025-11-13,Hot Chocolate,Pastries,4,131.53,526.12
+2025-03-07,Iced Coffee,Beverages,3,107.80,323.40
+2025-08-01,Tiramisu,Pastries,1,196.55,196.55
+2024-12-14,Eclair,Pastries,3,146.12,438.36
+2025-05-23,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-03-02,Tea,Beverages,5,106.18,530.90
+2025-01-26,Almonds,Pastries,4,5.59,22.36
+2025-09-21,Espresso,Pastries,5,195.76,978.80
+2025-09-18,Glazed Donut,Pastries,4,148.75,595.00
+2025-06-27,Hot Chocolate,Pastries,1,131.53,131.53
+2025-01-09,Macchiato,Pastries,5,93.97,469.85
+2025-04-22,Latte,Pastries,4,108.74,434.96
+2025-05-21,Iced Coffee,Beverages,4,107.80,431.20
+2025-09-19,Eclair,Pastries,1,146.12,146.12
+2025-05-13,Apple Turnover,Pastries,4,154.54,618.16
+2025-04-22,Almonds,Pastries,2,5.59,11.18
+2025-11-09,Americano,Pastries,2,80.96,161.92
+2025-06-28,Iced Mocha,Pastries,2,144.00,288.00
+2025-08-14,Espresso,Pastries,3,195.76,587.28
+2025-05-17,Almond Croissant,Pastries,1,8.42,8.42
+2025-03-08,Mocha,Pastries,2,61.74,123.48
+2025-06-05,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-05-02,Hot Chocolate,Pastries,2,131.53,263.06
+2025-10-22,Mocha,Pastries,5,61.74,308.70
+2025-10-18,Hot Chocolate,Pastries,2,131.53,263.06
+2025-02-11,Cappuccino,Pastries,1,76.25,76.25
+2025-05-14,Chai Latte,Pastries,5,100.50,502.50
+2025-01-26,Flat White,Pastries,4,113.21,452.84
+2025-08-17,Cappuccino,Pastries,2,76.25,152.50
+2025-02-04,Americano,Pastries,5,80.96,404.80
+2025-02-23,Eclair,Pastries,5,146.12,730.60
+2024-12-20,Apple Turnover,Pastries,3,154.54,463.62
+2025-06-24,Glazed Donut,Pastries,4,148.75,595.00
+2025-02-12,Iced Coffee,Beverages,4,107.80,431.20
+2025-03-30,Almond Croissant,Pastries,2,8.42,16.84
+2025-09-07,Glazed Donut,Pastries,3,148.75,446.25
+2025-07-06,Tea,Beverages,2,106.18,212.36
+2025-07-18,Iced Mocha,Pastries,4,144.00,576.00
+2024-12-22,Cappuccino,Pastries,3,76.25,228.75
+2025-10-17,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-08-30,Almond Croissant,Pastries,3,8.42,25.26
+2025-10-17,Tea,Beverages,2,106.18,212.36
+2025-01-17,Iced Mocha,Pastries,5,144.00,720.00
+2025-06-09,Cappuccino,Pastries,4,76.25,305.00
+2025-03-06,Almonds,Pastries,2,5.59,11.18
+2025-02-12,Flat White,Pastries,5,113.21,566.05
+2024-12-12,Almond Croissant,Pastries,2,8.42,16.84
+2025-08-12,Eclair,Pastries,5,146.12,730.60
+2025-09-26,Espresso,Pastries,4,195.76,783.04
+2025-03-29,Almond Croissant,Pastries,4,8.42,33.68
+2025-11-24,Almonds,Pastries,1,5.59,5.59
+2025-03-22,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-07-24,Latte,Pastries,4,108.74,434.96
+2025-07-06,Iced Coffee,Beverages,3,107.80,323.40
+2025-07-19,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-03-23,Tea,Beverages,4,106.18,424.72
+2025-07-17,Macchiato,Pastries,1,93.97,93.97
+2025-06-10,Iced Coffee,Beverages,3,107.80,323.40
+2025-02-28,Almond Croissant,Pastries,3,8.42,25.26
+2025-10-01,Chai Latte,Pastries,3,100.50,301.50
+2025-08-03,Apple Turnover,Pastries,4,154.54,618.16
+2025-08-14,Tiramisu,Pastries,2,196.55,393.10
+2025-09-23,Espresso,Pastries,2,195.76,391.52
+2025-09-29,Hot Chocolate,Pastries,3,131.53,394.59
+2025-04-29,Iced Mocha,Pastries,5,144.00,720.00
+2025-01-28,Hot Chocolate,Pastries,3,131.53,394.59
+2025-11-10,Macchiato,Pastries,3,93.97,281.91
+2025-04-05,Eclair,Pastries,1,146.12,146.12
+2024-12-12,Eclair,Pastries,2,146.12,292.24
+2025-02-10,Eclair,Pastries,3,146.12,438.36
+2025-02-12,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-10-01,Eclair,Pastries,5,146.12,730.60
+2025-01-08,Flat White,Pastries,3,113.21,339.63
+2025-07-31,Tea,Beverages,3,106.18,318.54
+2025-11-25,Almond Croissant,Pastries,1,8.42,8.42
+2025-11-21,Apple Turnover,Pastries,4,154.54,618.16
+2025-10-21,Almond Croissant,Pastries,5,8.42,42.10
+2025-03-13,Eclair,Pastries,2,146.12,292.24
+2025-03-07,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-04-12,Iced Mocha,Pastries,3,144.00,432.00
+2025-11-19,Apple Turnover,Pastries,2,154.54,309.08
+2025-08-13,Apple Turnover,Pastries,2,154.54,309.08
+2025-11-19,Americano,Pastries,2,80.96,161.92
+2025-10-10,Chai Latte,Pastries,5,100.50,502.50
+2025-11-18,Glazed Donut,Pastries,1,148.75,148.75
+2025-08-21,Chai Latte,Pastries,2,100.50,201.00
+2025-09-29,Chai Latte,Pastries,1,100.50,100.50
+2025-04-08,Apple Turnover,Pastries,2,154.54,309.08
+2024-11-30,Glazed Donut,Pastries,4,148.75,595.00
+2025-05-04,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-07-03,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-01-09,Glazed Donut,Pastries,2,148.75,297.50
+2025-08-03,Flat White,Pastries,4,113.21,452.84
+2025-11-25,Almond Croissant,Pastries,1,8.42,8.42
+2025-11-01,Almond Croissant,Pastries,3,8.42,25.26
+2025-03-31,Iced Mocha,Pastries,5,144.00,720.00
+2025-09-12,Hot Chocolate,Pastries,5,131.53,657.65
+2025-09-21,Iced Coffee,Beverages,5,107.80,539.00
+2025-09-22,Cappuccino,Pastries,2,76.25,152.50
+2025-09-05,Flat White,Pastries,5,113.21,566.05
+2025-07-27,Iced Mocha,Pastries,1,144.00,144.00
+2025-01-06,Hot Chocolate,Pastries,5,131.53,657.65
+2025-07-18,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2025-01-02,Mocha,Pastries,5,61.74,308.70
+2025-01-30,Cappuccino,Pastries,4,76.25,305.00
+2025-02-06,Iced Coffee,Beverages,3,107.80,323.40
+2025-01-21,Tiramisu,Pastries,1,196.55,196.55
+2025-05-24,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-07-10,Almond Croissant,Pastries,4,8.42,33.68
+2025-03-02,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-03-27,Glazed Donut,Pastries,3,148.75,446.25
+2025-11-17,Hot Chocolate,Pastries,4,131.53,526.12
+2024-12-23,Latte,Pastries,3,108.74,326.22
+2025-10-04,Eclair,Pastries,2,146.12,292.24
+2025-02-24,Macchiato,Pastries,2,93.97,187.94
+2025-10-06,Macchiato,Pastries,1,93.97,93.97
+2025-02-18,Mocha,Pastries,4,61.74,246.96
+2025-01-24,Americano,Pastries,4,80.96,323.84
+2024-11-27,Tea,Beverages,1,106.18,106.18
+2025-06-15,Glazed Donut,Pastries,5,148.75,743.75
+2025-08-12,Espresso,Pastries,1,195.76,195.76
+2025-04-08,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-09-22,Tiramisu,Pastries,1,196.55,196.55
+2025-09-28,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-08-26,Glazed Donut,Pastries,3,148.75,446.25
+2025-01-27,Mocha,Pastries,4,61.74,246.96
+2025-10-24,Eclair,Pastries,4,146.12,584.48
+2025-11-02,Cappuccino,Pastries,2,76.25,152.50
+2025-07-14,Apple Turnover,Pastries,5,154.54,772.70
+2025-10-04,Iced Coffee,Beverages,3,107.80,323.40
+2024-12-02,Iced Mocha,Pastries,1,144.00,144.00
+2025-08-10,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2025-04-20,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2025-04-30,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-05-13,Glazed Donut,Pastries,1,148.75,148.75
+2025-04-02,Macchiato,Pastries,4,93.97,375.88
+2025-02-17,Red Velvet Cake,Pastries,4,187.25,749.00
+2024-12-19,Chai Latte,Pastries,5,100.50,502.50
+2025-02-13,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-11-20,Iced Coffee,Beverages,1,107.80,107.80
+2025-11-13,Mocha,Pastries,5,61.74,308.70
+2024-12-07,Chai Latte,Pastries,5,100.50,502.50
+2025-01-15,Flat White,Pastries,3,113.21,339.63
+2025-09-25,Tiramisu,Pastries,3,196.55,589.65
+2025-04-12,Glazed Donut,Pastries,5,148.75,743.75
+2024-12-12,Mocha,Pastries,2,61.74,123.48
+2025-09-15,Flat White,Pastries,2,113.21,226.42
+2025-01-10,Macchiato,Pastries,3,93.97,281.91
+2025-08-09,Glazed Donut,Pastries,4,148.75,595.00
+2025-03-12,Iced Coffee,Beverages,3,107.80,323.40
+2025-05-23,Espresso,Pastries,4,195.76,783.04
+2025-11-14,Almonds,Pastries,5,5.59,27.95
+2025-10-11,Macchiato,Pastries,3,93.97,281.91
+2025-09-14,Blueberry Muffin,Pastries,4,185.15,740.60
+2024-11-26,Americano,Pastries,1,80.96,80.96
+2025-08-16,Cappuccino,Pastries,3,76.25,228.75
+2025-11-14,Macchiato,Pastries,4,93.97,375.88
+2025-07-23,Mocha,Pastries,1,61.74,61.74
+2025-09-15,Iced Mocha,Pastries,2,144.00,288.00
+2024-12-19,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-03-07,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-06-18,Tea,Beverages,5,106.18,530.90
+2024-12-30,Iced Mocha,Pastries,2,144.00,288.00
+2025-06-29,Tiramisu,Pastries,1,196.55,196.55
+2025-07-30,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-06-26,Mocha,Pastries,1,61.74,61.74
+2025-05-26,Red Velvet Cake,Pastries,4,187.25,749.00
+2025-02-25,Flat White,Pastries,4,113.21,452.84
+2025-06-29,Apple Turnover,Pastries,5,154.54,772.70
+2025-09-20,Almond Croissant,Pastries,3,8.42,25.26
+2025-06-01,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-02-17,Hot Chocolate,Pastries,5,131.53,657.65
+2025-04-02,Americano,Pastries,3,80.96,242.88
+2025-02-17,Glazed Donut,Pastries,5,148.75,743.75
+2025-11-06,Glazed Donut,Pastries,5,148.75,743.75
+2025-04-20,Almonds,Pastries,3,5.59,16.77
+2025-06-12,Eclair,Pastries,2,146.12,292.24
+2025-11-22,Chai Latte,Pastries,3,100.50,301.50
+2025-11-08,Macchiato,Pastries,1,93.97,93.97
+2025-03-24,Americano,Pastries,3,80.96,242.88
+2024-11-25,Apple Turnover,Pastries,3,154.54,463.62
+2025-06-26,Flat White,Pastries,5,113.21,566.05
+2025-11-09,Almond Croissant,Pastries,2,8.42,16.84
+2025-09-08,Tiramisu,Pastries,2,196.55,393.10
+2025-08-24,Tea,Beverages,4,106.18,424.72
+2025-11-02,Tiramisu,Pastries,2,196.55,393.10
+2025-07-22,Macchiato,Pastries,4,93.97,375.88
+2025-06-12,Iced Mocha,Pastries,2,144.00,288.00
+2025-03-09,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-10-27,Espresso,Pastries,4,195.76,783.04
+2025-06-25,Espresso,Pastries,1,195.76,195.76
+2025-06-08,Flat White,Pastries,1,113.21,113.21
+2024-12-16,Macchiato,Pastries,2,93.97,187.94
+2025-03-19,Chai Latte,Pastries,1,100.50,100.50
+2025-07-29,Americano,Pastries,5,80.96,404.80
+2025-06-24,Baguette,Pastries,3,133.77,401.31
+2024-11-25,Iced Mocha,Pastries,2,144.00,288.00
+2024-12-02,Tea,Beverages,4,106.18,424.72
+2025-02-27,Iced Coffee,Beverages,1,107.80,107.80
+2025-02-05,Mocha,Pastries,4,61.74,246.96
+2025-02-08,Americano,Pastries,4,80.96,323.84
+2025-04-14,Cappuccino,Pastries,5,76.25,381.25
+2025-02-16,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-09-30,Cappuccino,Pastries,3,76.25,228.75
+2025-02-23,Flat White,Pastries,1,113.21,113.21
+2025-07-10,Americano,Pastries,5,80.96,404.80
+2025-04-12,Almonds,Pastries,5,5.59,27.95
+2025-03-17,Iced Coffee,Beverages,2,107.80,215.60
+2025-10-16,Eclair,Pastries,4,146.12,584.48
+2025-05-29,Chai Latte,Pastries,1,100.50,100.50
+2025-01-23,Eclair,Pastries,4,146.12,584.48
+2025-04-12,Red Velvet Cake,Pastries,2,187.25,374.50
+2025-04-29,Eclair,Pastries,4,146.12,584.48
+2024-12-03,Glazed Donut,Pastries,1,148.75,148.75
+2025-01-28,Apple Turnover,Pastries,3,154.54,463.62
+2025-07-25,Cappuccino,Pastries,1,76.25,76.25
+2024-12-30,Macchiato,Pastries,5,93.97,469.85
+2025-10-31,Tiramisu,Pastries,1,196.55,196.55
+2025-08-12,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-11-01,Tea,Beverages,2,106.18,212.36
+2025-10-28,Iced Coffee,Beverages,5,107.80,539.00
+2025-04-27,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-02-26,Iced Coffee,Beverages,5,107.80,539.00
+2025-05-11,Macchiato,Pastries,3,93.97,281.91
+2025-01-09,Cappuccino,Pastries,3,76.25,228.75
+2025-10-18,Iced Coffee,Beverages,4,107.80,431.20
+2025-07-30,Iced Coffee,Beverages,4,107.80,431.20
+2025-11-21,Latte,Pastries,4,108.74,434.96
+2025-01-18,Macchiato,Pastries,1,93.97,93.97
+2025-10-15,Iced Mocha,Pastries,2,144.00,288.00
+2025-07-29,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-06-05,Glazed Donut,Pastries,5,148.75,743.75
+2025-06-14,Eclair,Pastries,3,146.12,438.36
+2024-12-18,Glazed Donut,Pastries,5,148.75,743.75
+2025-03-16,Glazed Donut,Pastries,4,148.75,595.00
+2025-03-09,Latte,Pastries,1,108.74,108.74
+2025-08-06,Apple Turnover,Pastries,5,154.54,772.70
+2025-02-03,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-07-09,Americano,Pastries,4,80.96,323.84
+2025-04-19,Flat White,Pastries,3,113.21,339.63
+2025-06-09,Eclair,Pastries,5,146.12,730.60
+2025-04-30,Red Velvet Cake,Pastries,4,187.25,749.00
+2024-11-29,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-11-02,Tea,Beverages,3,106.18,318.54
+2025-09-07,Eclair,Pastries,1,146.12,146.12
+2024-12-18,Iced Coffee,Beverages,5,107.80,539.00
+2025-01-07,Iced Coffee,Beverages,3,107.80,323.40
+2025-06-11,Chai Latte,Pastries,2,100.50,201.00
+2024-12-02,Hot Chocolate,Pastries,1,131.53,131.53
+2025-11-08,Tiramisu,Pastries,5,196.55,982.75
+2025-02-18,Baguette,Pastries,1,133.77,133.77
+2024-12-26,Hot Chocolate,Pastries,5,131.53,657.65
+2025-07-18,Apple Turnover,Pastries,3,154.54,463.62
+2025-08-11,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-05-20,Almond Croissant,Pastries,4,8.42,33.68
+2025-03-03,Americano,Pastries,1,80.96,80.96
+2025-05-10,Americano,Pastries,3,80.96,242.88
+2025-03-02,Cappuccino,Pastries,4,76.25,305.00
+2025-04-25,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2025-04-02,Flat White,Pastries,3,113.21,339.63
+2025-06-08,Iced Mocha,Pastries,1,144.00,144.00
+2025-04-29,Tea,Beverages,1,106.18,106.18
+2025-04-06,Chai Latte,Pastries,4,100.50,402.00
+2025-01-28,Flat White,Pastries,2,113.21,226.42
+2025-11-24,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-11-10,Tea,Beverages,4,106.18,424.72
+2024-12-06,Espresso,Pastries,3,195.76,587.28
+2025-02-03,Tea,Beverages,2,106.18,212.36
+2025-01-29,Cappuccino,Pastries,5,76.25,381.25
+2024-12-21,Iced Coffee,Beverages,5,107.80,539.00
+2025-07-11,Hot Chocolate,Pastries,4,131.53,526.12
+2025-07-07,Almond Croissant,Pastries,4,8.42,33.68
+2025-09-06,Flat White,Pastries,4,113.21,452.84
+2025-08-20,Chai Latte,Pastries,1,100.50,100.50
+2025-09-26,Apple Turnover,Pastries,2,154.54,309.08
+2025-05-28,Iced Coffee,Beverages,1,107.80,107.80
+2025-09-05,Tiramisu,Pastries,4,196.55,786.20
+2025-02-27,Iced Coffee,Beverages,5,107.80,539.00
+2025-07-20,Tiramisu,Pastries,4,196.55,786.20
+2025-08-24,Glazed Donut,Pastries,4,148.75,595.00
+2025-06-25,Almond Croissant,Pastries,5,8.42,42.10
+2025-08-13,Tiramisu,Pastries,4,196.55,786.20
+2025-11-01,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-07-02,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2025-09-04,Tea,Beverages,1,106.18,106.18
+2024-12-26,Almond Croissant,Pastries,5,8.42,42.10
+2025-10-26,Hot Chocolate,Pastries,1,131.53,131.53
+2025-09-12,Americano,Pastries,2,80.96,161.92
+2025-06-05,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-06-07,Almonds,Pastries,1,5.59,5.59
+2025-10-06,Cappuccino,Pastries,5,76.25,381.25
+2025-10-14,Hot Chocolate,Pastries,2,131.53,263.06
+2025-01-05,Mocha,Pastries,3,61.74,185.22
+2025-10-18,Tiramisu,Pastries,4,196.55,786.20
+2025-01-09,Eclair,Pastries,5,146.12,730.60
+2025-07-25,Latte,Pastries,3,108.74,326.22
+2025-09-07,Latte,Pastries,5,108.74,543.70
+2025-03-31,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-01-14,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-01-20,Apple Turnover,Pastries,5,154.54,772.70
+2025-01-06,Flat White,Pastries,5,113.21,566.05
+2025-06-15,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-08-24,Almonds,Pastries,5,5.59,27.95
+2024-12-17,Macchiato,Pastries,1,93.97,93.97
+2025-04-12,Macchiato,Pastries,4,93.97,375.88
+2025-11-20,Flat White,Pastries,5,113.21,566.05
+2025-06-24,Flat White,Pastries,5,113.21,566.05
+2025-01-07,Cappuccino,Pastries,2,76.25,152.50
+2025-06-26,Baguette,Pastries,1,133.77,133.77
+2025-11-18,Tea,Beverages,4,106.18,424.72
+2025-07-30,Almond Croissant,Pastries,1,8.42,8.42
+2025-02-01,Tea,Beverages,3,106.18,318.54
+2024-12-10,Almond Croissant,Pastries,2,8.42,16.84
+2024-12-16,Iced Mocha,Pastries,4,144.00,576.00
+2025-10-29,Hot Chocolate,Pastries,1,131.53,131.53
+2025-10-25,Mocha,Pastries,4,61.74,246.96
+2025-09-02,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-10-19,Tea,Beverages,5,106.18,530.90
+2025-11-01,Tiramisu,Pastries,5,196.55,982.75
+2025-05-14,Apple Turnover,Pastries,5,154.54,772.70
+2025-03-12,Eclair,Pastries,5,146.12,730.60
+2024-11-30,Iced Mocha,Pastries,2,144.00,288.00
+2025-03-14,Mocha,Pastries,2,61.74,123.48
+2025-03-15,Glazed Donut,Pastries,5,148.75,743.75
+2025-08-13,Hot Chocolate,Pastries,3,131.53,394.59
+2025-07-23,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-06-07,Tea,Beverages,3,106.18,318.54
+2025-10-07,Cappuccino,Pastries,2,76.25,152.50
+2025-10-31,Iced Mocha,Pastries,5,144.00,720.00
+2025-07-17,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-04-05,Latte,Pastries,3,108.74,326.22
+2025-08-15,Macchiato,Pastries,1,93.97,93.97
+2025-08-19,Almond Croissant,Pastries,3,8.42,25.26
+2025-03-20,Tiramisu,Pastries,3,196.55,589.65
+2025-07-13,Apple Turnover,Pastries,1,154.54,154.54
+2025-06-01,Chai Latte,Pastries,4,100.50,402.00
+2025-01-08,Cappuccino,Pastries,5,76.25,381.25
+2025-04-22,Macchiato,Pastries,3,93.97,281.91
+2025-03-23,Espresso,Pastries,1,195.76,195.76
+2025-04-02,Flat White,Pastries,1,113.21,113.21
+2025-02-23,Glazed Donut,Pastries,2,148.75,297.50
+2025-06-01,Macchiato,Pastries,2,93.97,187.94
+2025-04-01,Almonds,Pastries,3,5.59,16.77
+2025-09-25,Glazed Donut,Pastries,2,148.75,297.50
+2025-10-16,Red Velvet Cake,Pastries,1,187.25,187.25
+2024-12-13,Flat White,Pastries,3,113.21,339.63
+2025-06-15,Cappuccino,Pastries,2,76.25,152.50
+2025-03-07,Iced Mocha,Pastries,3,144.00,432.00
+2025-08-28,Cappuccino,Pastries,3,76.25,228.75
+2025-04-06,Chai Latte,Pastries,2,100.50,201.00
+2024-11-28,Flat White,Pastries,1,113.21,113.21
+2025-06-09,Iced Coffee,Beverages,1,107.80,107.80
+2025-07-16,Latte,Pastries,1,108.74,108.74
+2025-10-02,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-10-11,Flat White,Pastries,2,113.21,226.42
+2025-08-29,Chai Latte,Pastries,5,100.50,502.50
+2025-07-25,Macchiato,Pastries,2,93.97,187.94
+2025-07-18,Apple Turnover,Pastries,1,154.54,154.54
+2025-07-16,Tea,Beverages,2,106.18,212.36
+2025-03-20,Iced Mocha,Pastries,4,144.00,576.00
+2025-11-18,Glazed Donut,Pastries,1,148.75,148.75
+2025-07-25,Flat White,Pastries,1,113.21,113.21
+2025-06-13,Iced Mocha,Pastries,4,144.00,576.00
+2025-04-20,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-03-31,Almond Croissant,Pastries,1,8.42,8.42
+2024-12-27,Iced Mocha,Pastries,1,144.00,144.00
+2025-05-27,Apple Turnover,Pastries,3,154.54,463.62
+2025-03-17,Americano,Pastries,3,80.96,242.88
+2025-08-10,Baguette,Pastries,4,133.77,535.08
+2025-03-23,Apple Turnover,Pastries,2,154.54,309.08
+2025-10-09,Baguette,Pastries,4,133.77,535.08
+2025-04-29,Flat White,Pastries,5,113.21,566.05
+2025-06-26,Almonds,Pastries,3,5.59,16.77
+2025-04-13,Mocha,Pastries,3,61.74,185.22
+2025-01-29,Iced Mocha,Pastries,4,144.00,576.00
+2025-08-31,Almonds,Pastries,5,5.59,27.95
+2025-02-21,Glazed Donut,Pastries,1,148.75,148.75
+2025-09-07,Tea,Beverages,2,106.18,212.36
+2025-05-11,Flat White,Pastries,1,113.21,113.21
+2025-03-24,Baguette,Pastries,1,133.77,133.77
+2025-01-22,Glazed Donut,Pastries,1,148.75,148.75
+2024-12-02,Flat White,Pastries,4,113.21,452.84
+2025-02-05,Flat White,Pastries,4,113.21,452.84
+2025-05-01,Hot Chocolate,Pastries,2,131.53,263.06
+2025-10-08,Baguette,Pastries,4,133.77,535.08
+2025-11-16,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-08-24,Cappuccino,Pastries,3,76.25,228.75
+2025-03-03,Glazed Donut,Pastries,2,148.75,297.50
+2025-01-12,Latte,Pastries,1,108.74,108.74
+2025-09-09,Latte,Pastries,5,108.74,543.70
+2025-07-05,Iced Coffee,Beverages,2,107.80,215.60
+2025-02-27,Mocha,Pastries,4,61.74,246.96
+2025-09-07,Chai Latte,Pastries,1,100.50,100.50
+2025-08-28,Iced Coffee,Beverages,4,107.80,431.20
+2025-04-01,Almonds,Pastries,2,5.59,11.18
+2025-04-19,Flat White,Pastries,1,113.21,113.21
+2025-04-25,Tiramisu,Pastries,3,196.55,589.65
+2025-01-05,Tea,Beverages,2,106.18,212.36
+2024-12-23,Espresso,Pastries,2,195.76,391.52
+2025-03-30,Apple Turnover,Pastries,4,154.54,618.16
+2025-03-28,Iced Mocha,Pastries,4,144.00,576.00
+2025-01-11,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2024-12-13,Hot Chocolate,Pastries,2,131.53,263.06
+2025-06-22,Apple Turnover,Pastries,5,154.54,772.70
+2025-02-17,Apple Turnover,Pastries,3,154.54,463.62
+2024-12-11,Apple Turnover,Pastries,2,154.54,309.08
+2025-07-16,Glazed Donut,Pastries,4,148.75,595.00
+2025-04-23,Macchiato,Pastries,3,93.97,281.91
+2025-08-26,Baguette,Pastries,4,133.77,535.08
+2025-07-31,Iced Mocha,Pastries,2,144.00,288.00
+2025-09-12,Cappuccino,Pastries,5,76.25,381.25
+2025-01-05,Macchiato,Pastries,4,93.97,375.88
+2024-12-07,Baguette,Pastries,5,133.77,668.85
+2025-09-14,Baguette,Pastries,1,133.77,133.77
+2025-10-13,Baguette,Pastries,4,133.77,535.08
+2025-04-22,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-10-05,Cappuccino,Pastries,4,76.25,305.00
+2025-08-09,Latte,Pastries,2,108.74,217.48
+2025-08-03,Eclair,Pastries,3,146.12,438.36
+2025-11-25,Almonds,Pastries,1,5.59,5.59
+2025-09-14,Almond Croissant,Pastries,2,8.42,16.84
+2025-08-18,Mocha,Pastries,3,61.74,185.22
+2025-04-16,Eclair,Pastries,2,146.12,292.24
+2025-10-10,Cappuccino,Pastries,2,76.25,152.50
+2025-11-09,Hot Chocolate,Pastries,2,131.53,263.06
+2025-08-28,Americano,Pastries,2,80.96,161.92
+2025-07-26,Tea,Beverages,5,106.18,530.90
+2025-04-06,Eclair,Pastries,3,146.12,438.36
+2025-05-01,Tiramisu,Pastries,1,196.55,196.55
+2025-02-23,Glazed Donut,Pastries,5,148.75,743.75
+2025-06-11,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-02-02,Chai Latte,Pastries,4,100.50,402.00
+2025-04-04,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-02-16,Chai Latte,Pastries,2,100.50,201.00
+2025-02-08,Mocha,Pastries,3,61.74,185.22
+2025-02-01,Baguette,Pastries,2,133.77,267.54
+2025-01-04,Flat White,Pastries,1,113.21,113.21
+2025-09-20,Chai Latte,Pastries,3,100.50,301.50
+2025-04-06,Chai Latte,Pastries,3,100.50,301.50
+2025-09-05,Cappuccino,Pastries,5,76.25,381.25
+2025-11-13,Macchiato,Pastries,5,93.97,469.85
+2025-04-11,Iced Coffee,Beverages,5,107.80,539.00
+2025-04-22,Tiramisu,Pastries,5,196.55,982.75
+2024-12-09,Flat White,Pastries,1,113.21,113.21
+2025-01-13,Espresso,Pastries,1,195.76,195.76
+2025-08-02,Mocha,Pastries,2,61.74,123.48
+2025-04-12,Cappuccino,Pastries,2,76.25,152.50
+2025-03-27,Mocha,Pastries,2,61.74,123.48
+2025-08-19,Flat White,Pastries,3,113.21,339.63
+2025-04-18,Iced Mocha,Pastries,5,144.00,720.00
+2025-05-18,Chai Latte,Pastries,5,100.50,502.50
+2025-02-23,Mocha,Pastries,4,61.74,246.96
+2025-02-13,Eclair,Pastries,4,146.12,584.48
+2025-08-14,Espresso,Pastries,2,195.76,391.52
+2025-09-26,Latte,Pastries,3,108.74,326.22
+2025-02-16,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-03-09,Americano,Pastries,3,80.96,242.88
+2025-05-15,Mocha,Pastries,1,61.74,61.74
+2025-08-07,Almond Croissant,Pastries,4,8.42,33.68
+2025-07-07,Iced Mocha,Pastries,4,144.00,576.00
+2025-08-20,Glazed Donut,Pastries,2,148.75,297.50
+2025-04-18,Iced Coffee,Beverages,3,107.80,323.40
+2025-04-06,Flat White,Pastries,2,113.21,226.42
+2025-06-17,Espresso,Pastries,1,195.76,195.76
+2025-09-22,Espresso,Pastries,4,195.76,783.04
+2025-05-10,Apple Turnover,Pastries,1,154.54,154.54
+2025-05-07,Tea,Beverages,5,106.18,530.90
+2025-08-06,Hot Chocolate,Pastries,2,131.53,263.06
+2025-05-15,Tea,Beverages,4,106.18,424.72
+2025-08-17,Tea,Beverages,5,106.18,530.90
+2025-04-04,Baguette,Pastries,1,133.77,133.77
+2024-11-25,Glazed Donut,Pastries,2,148.75,297.50
+2025-06-23,Glazed Donut,Pastries,4,148.75,595.00
+2025-09-06,Chai Latte,Pastries,1,100.50,100.50
+2025-11-23,Mocha,Pastries,5,61.74,308.70
+2025-08-09,Tiramisu,Pastries,4,196.55,786.20
+2025-01-24,Hot Chocolate,Pastries,3,131.53,394.59
+2024-12-25,Flat White,Pastries,5,113.21,566.05
+2025-09-20,Baguette,Pastries,3,133.77,401.31
+2025-11-10,Iced Mocha,Pastries,3,144.00,432.00
+2025-09-20,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-03-22,Iced Mocha,Pastries,5,144.00,720.00
+2025-02-06,Iced Coffee,Beverages,2,107.80,215.60
+2025-07-18,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2025-07-23,Iced Mocha,Pastries,3,144.00,432.00
+2025-05-23,Hot Chocolate,Pastries,2,131.53,263.06
+2025-05-14,Glazed Donut,Pastries,1,148.75,148.75
+2025-11-19,Almond Croissant,Pastries,1,8.42,8.42
+2025-04-22,Apple Turnover,Pastries,3,154.54,463.62
+2024-12-05,Eclair,Pastries,3,146.12,438.36
+2025-03-30,Eclair,Pastries,2,146.12,292.24
+2025-05-06,Americano,Pastries,4,80.96,323.84
+2025-08-28,Red Velvet Cake,Pastries,4,187.25,749.00
+2025-04-04,Cappuccino,Pastries,1,76.25,76.25
+2025-11-10,Apple Turnover,Pastries,5,154.54,772.70
+2024-11-24,Espresso,Pastries,3,195.76,587.28
+2025-05-03,Almonds,Pastries,2,5.59,11.18
+2025-09-07,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-11-03,Chai Latte,Pastries,4,100.50,402.00
+2025-09-08,Iced Coffee,Beverages,2,107.80,215.60
+2025-05-23,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-09-07,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-03-07,Apple Turnover,Pastries,5,154.54,772.70
+2025-02-25,Almond Croissant,Pastries,5,8.42,42.10
+2025-06-06,Espresso,Pastries,2,195.76,391.52
+2025-10-03,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-03-10,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-08-08,Iced Coffee,Beverages,1,107.80,107.80
+2024-12-19,Iced Mocha,Pastries,4,144.00,576.00
+2024-12-06,Latte,Pastries,2,108.74,217.48
+2025-09-01,Espresso,Pastries,2,195.76,391.52
+2025-09-05,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-07-06,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-04-02,Almonds,Pastries,3,5.59,16.77
+2025-03-11,Almonds,Pastries,1,5.59,5.59
+2025-04-28,Hot Chocolate,Pastries,5,131.53,657.65
+2025-02-23,Glazed Donut,Pastries,4,148.75,595.00
+2025-10-17,Latte,Pastries,1,108.74,108.74
+2025-08-31,Mocha,Pastries,3,61.74,185.22
+2025-05-25,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-05-04,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-10-09,Americano,Pastries,2,80.96,161.92
+2024-11-26,Apple Turnover,Pastries,5,154.54,772.70
+2025-02-17,Macchiato,Pastries,4,93.97,375.88
+2025-05-15,Americano,Pastries,5,80.96,404.80
+2025-02-04,Tea,Beverages,2,106.18,212.36
+2025-09-09,Mocha,Pastries,2,61.74,123.48
+2025-04-12,Americano,Pastries,2,80.96,161.92
+2025-07-09,Macchiato,Pastries,3,93.97,281.91
+2025-04-06,Red Velvet Cake,Pastries,4,187.25,749.00
+2025-01-19,Glazed Donut,Pastries,1,148.75,148.75
+2025-02-07,Macchiato,Pastries,1,93.97,93.97
+2025-04-10,Mocha,Pastries,2,61.74,123.48
+2025-01-14,Cappuccino,Pastries,2,76.25,152.50
+2025-01-07,Baguette,Pastries,2,133.77,267.54
+2025-03-17,Almond Croissant,Pastries,5,8.42,42.10
+2025-01-27,Almond Croissant,Pastries,1,8.42,8.42
+2024-12-30,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-09-13,Eclair,Pastries,4,146.12,584.48
+2025-09-09,Apple Turnover,Pastries,5,154.54,772.70
+2025-08-14,Tea,Beverages,3,106.18,318.54
+2025-11-14,Almond Croissant,Pastries,1,8.42,8.42
+2025-07-05,Mocha,Pastries,4,61.74,246.96
+2025-09-01,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-08-16,Almond Croissant,Pastries,1,8.42,8.42
+2025-04-22,Flat White,Pastries,3,113.21,339.63
+2025-04-08,Cappuccino,Pastries,4,76.25,305.00
+2025-01-26,Latte,Pastries,2,108.74,217.48
+2025-08-18,Macchiato,Pastries,3,93.97,281.91
+2025-01-29,Red Velvet Cake,Pastries,4,187.25,749.00
+2025-11-09,Baguette,Pastries,4,133.77,535.08
+2025-09-03,Latte,Pastries,4,108.74,434.96
+2025-01-10,Cappuccino,Pastries,4,76.25,305.00
+2025-03-30,Latte,Pastries,1,108.74,108.74
+2025-07-12,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-06-18,Mocha,Pastries,5,61.74,308.70
+2025-11-12,Eclair,Pastries,4,146.12,584.48
+2025-09-04,Flat White,Pastries,2,113.21,226.42
+2024-12-10,Cappuccino,Pastries,1,76.25,76.25
+2024-12-25,Almonds,Pastries,1,5.59,5.59
+2025-06-21,Flat White,Pastries,4,113.21,452.84
+2024-12-06,Tiramisu,Pastries,5,196.55,982.75
+2025-04-16,Flat White,Pastries,5,113.21,566.05
+2025-09-21,Flat White,Pastries,5,113.21,566.05
+2025-01-13,Apple Turnover,Pastries,4,154.54,618.16
+2025-08-08,Hot Chocolate,Pastries,1,131.53,131.53
+2025-01-23,Flat White,Pastries,3,113.21,339.63
+2024-12-04,Flat White,Pastries,4,113.21,452.84
+2025-08-29,Americano,Pastries,4,80.96,323.84
+2025-08-11,Glazed Donut,Pastries,5,148.75,743.75
+2025-08-10,Iced Mocha,Pastries,5,144.00,720.00
+2025-08-01,Tea,Beverages,2,106.18,212.36
+2025-05-23,Latte,Pastries,4,108.74,434.96
+2025-06-01,Chai Latte,Pastries,3,100.50,301.50
+2025-02-16,Macchiato,Pastries,2,93.97,187.94
+2024-12-05,Baguette,Pastries,4,133.77,535.08
+2025-02-19,Glazed Donut,Pastries,5,148.75,743.75
+2025-02-15,Espresso,Pastries,5,195.76,978.80
+2025-06-20,Apple Turnover,Pastries,4,154.54,618.16
+2025-09-29,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2024-12-04,Flat White,Pastries,1,113.21,113.21
+2025-07-06,Iced Coffee,Beverages,2,107.80,215.60
+2025-01-31,Latte,Pastries,1,108.74,108.74
+2025-01-07,Iced Coffee,Beverages,1,107.80,107.80
+2025-04-09,Espresso,Pastries,2,195.76,391.52
+2025-05-10,Flat White,Pastries,3,113.21,339.63
+2025-09-24,Red Velvet Cake,Pastries,4,187.25,749.00
+2025-03-31,Glazed Donut,Pastries,2,148.75,297.50
+2025-04-21,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-01-14,Hot Chocolate,Pastries,2,131.53,263.06
+2025-11-01,Glazed Donut,Pastries,3,148.75,446.25
+2025-01-30,Espresso,Pastries,3,195.76,587.28
+2025-10-20,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-08-19,Tiramisu,Pastries,3,196.55,589.65
+2025-06-12,Red Velvet Cake,Pastries,2,187.25,374.50
+2025-04-29,Iced Coffee,Beverages,5,107.80,539.00
+2025-08-22,Iced Mocha,Pastries,3,144.00,432.00
+2025-09-07,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2025-10-06,Baguette,Pastries,1,133.77,133.77
+2025-11-08,Latte,Pastries,2,108.74,217.48
+2025-01-31,Espresso,Pastries,3,195.76,587.28
+2025-04-01,Macchiato,Pastries,4,93.97,375.88
+2025-10-27,Mocha,Pastries,4,61.74,246.96
+2025-05-15,Macchiato,Pastries,5,93.97,469.85
+2025-09-30,Cappuccino,Pastries,1,76.25,76.25
+2025-02-21,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-05-08,Americano,Pastries,3,80.96,242.88
+2025-04-14,Baguette,Pastries,1,133.77,133.77
+2025-03-24,Macchiato,Pastries,2,93.97,187.94
+2025-04-25,Eclair,Pastries,2,146.12,292.24
+2025-09-22,Mocha,Pastries,4,61.74,246.96
+2025-07-23,Almonds,Pastries,1,5.59,5.59
+2025-01-03,Baguette,Pastries,1,133.77,133.77
+2024-12-01,Iced Coffee,Beverages,5,107.80,539.00
+2025-05-21,Eclair,Pastries,3,146.12,438.36
+2025-11-23,Iced Mocha,Pastries,3,144.00,432.00
+2024-12-01,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-09-07,Apple Turnover,Pastries,1,154.54,154.54
+2024-11-27,Cappuccino,Pastries,1,76.25,76.25
+2025-06-30,Iced Coffee,Beverages,4,107.80,431.20
+2024-11-28,Flat White,Pastries,1,113.21,113.21
+2025-01-20,Tiramisu,Pastries,4,196.55,786.20
+2025-03-13,Flat White,Pastries,2,113.21,226.42
+2025-10-01,Glazed Donut,Pastries,3,148.75,446.25
+2025-10-26,Iced Coffee,Beverages,2,107.80,215.60
+2025-07-16,Mocha,Pastries,4,61.74,246.96
+2025-06-25,Tea,Beverages,3,106.18,318.54
+2025-09-24,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-09-06,Hot Chocolate,Pastries,5,131.53,657.65
+2025-09-20,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-10-20,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-05-02,Eclair,Pastries,4,146.12,584.48
+2024-12-12,Baguette,Pastries,4,133.77,535.08
+2024-12-05,Flat White,Pastries,3,113.21,339.63
+2025-02-10,Hot Chocolate,Pastries,5,131.53,657.65
+2024-12-18,Cappuccino,Pastries,1,76.25,76.25
+2025-11-25,Almonds,Pastries,1,5.59,5.59
+2025-08-01,Espresso,Pastries,3,195.76,587.28
+2025-04-03,Americano,Pastries,2,80.96,161.92
+2025-09-13,Blueberry Muffin,Pastries,3,185.15,555.45
+2024-12-20,Baguette,Pastries,1,133.77,133.77
+2025-09-23,Red Velvet Cake,Pastries,4,187.25,749.00
+2025-03-31,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-06-26,Cappuccino,Pastries,3,76.25,228.75
+2025-07-21,Iced Mocha,Pastries,2,144.00,288.00
+2025-06-08,Baguette,Pastries,5,133.77,668.85
+2025-09-05,Latte,Pastries,2,108.74,217.48
+2025-05-13,Hot Chocolate,Pastries,1,131.53,131.53
+2025-07-29,Iced Coffee,Beverages,3,107.80,323.40
+2025-11-10,Tea,Beverages,1,106.18,106.18
+2025-05-19,Tiramisu,Pastries,2,196.55,393.10
+2025-02-11,Tiramisu,Pastries,1,196.55,196.55
+2025-08-10,Latte,Pastries,4,108.74,434.96
+2025-04-02,Macchiato,Pastries,1,93.97,93.97
+2024-11-30,Tiramisu,Pastries,2,196.55,393.10
+2025-03-10,Cappuccino,Pastries,3,76.25,228.75
+2025-06-27,Apple Turnover,Pastries,2,154.54,309.08
+2025-07-17,Americano,Pastries,3,80.96,242.88
+2025-08-26,Flat White,Pastries,1,113.21,113.21
+2025-10-22,Iced Coffee,Beverages,5,107.80,539.00
+2025-04-09,Apple Turnover,Pastries,4,154.54,618.16
+2025-03-25,Mocha,Pastries,3,61.74,185.22
+2025-08-30,Tiramisu,Pastries,2,196.55,393.10
+2025-04-25,Flat White,Pastries,5,113.21,566.05
+2025-11-13,Glazed Donut,Pastries,3,148.75,446.25
+2025-11-25,Almond Croissant,Pastries,1,8.42,8.42
+2025-03-27,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-06-10,Tea,Beverages,3,106.18,318.54
+2024-12-08,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-02-24,Mocha,Pastries,4,61.74,246.96
+2025-01-07,Cappuccino,Pastries,5,76.25,381.25
+2025-08-18,Almond Croissant,Pastries,1,8.42,8.42
+2024-12-08,Americano,Pastries,4,80.96,323.84
+2025-01-25,Apple Turnover,Pastries,2,154.54,309.08
+2025-10-01,Baguette,Pastries,5,133.77,668.85
+2025-06-04,Iced Coffee,Beverages,3,107.80,323.40
+2024-12-30,Espresso,Pastries,1,195.76,195.76
+2025-05-28,Eclair,Pastries,3,146.12,438.36
+2025-06-04,Americano,Pastries,2,80.96,161.92
+2025-05-07,Hot Chocolate,Pastries,3,131.53,394.59
+2024-12-30,Latte,Pastries,1,108.74,108.74
+2025-11-19,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-06-11,Iced Mocha,Pastries,5,144.00,720.00
+2025-06-17,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-10-15,Iced Coffee,Beverages,4,107.80,431.20
+2024-12-31,Macchiato,Pastries,3,93.97,281.91
+2025-07-03,Espresso,Pastries,4,195.76,783.04
+2025-06-15,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2025-01-20,Latte,Pastries,3,108.74,326.22
+2025-06-02,Apple Turnover,Pastries,1,154.54,154.54
+2025-10-01,Glazed Donut,Pastries,2,148.75,297.50
+2025-02-04,Chai Latte,Pastries,5,100.50,502.50
+2025-03-17,Almond Croissant,Pastries,1,8.42,8.42
+2024-11-25,Americano,Pastries,4,80.96,323.84
+2025-01-06,Hot Chocolate,Pastries,2,131.53,263.06
+2025-04-10,Blueberry Muffin,Pastries,4,185.15,740.60
+2024-11-25,Macchiato,Pastries,2,93.97,187.94
+2025-05-23,Iced Coffee,Beverages,5,107.80,539.00
+2025-10-16,Tea,Beverages,5,106.18,530.90
+2025-11-02,Mocha,Pastries,3,61.74,185.22
+2025-11-08,Flat White,Pastries,2,113.21,226.42
+2025-04-19,Eclair,Pastries,3,146.12,438.36
+2025-05-21,Iced Coffee,Beverages,2,107.80,215.60
+2025-02-26,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-07-18,Baguette,Pastries,4,133.77,535.08
+2025-05-31,Tiramisu,Pastries,5,196.55,982.75
+2025-07-01,Chai Latte,Pastries,4,100.50,402.00
+2025-10-29,Espresso,Pastries,1,195.76,195.76
+2025-08-11,Tiramisu,Pastries,5,196.55,982.75
+2025-05-14,Tea,Beverages,5,106.18,530.90
+2025-11-24,Chai Latte,Pastries,1,100.50,100.50
+2025-02-21,Eclair,Pastries,4,146.12,584.48
+2025-02-26,Tea,Beverages,4,106.18,424.72
+2025-11-24,Espresso,Pastries,5,195.76,978.80
+2025-08-07,Espresso,Pastries,5,195.76,978.80
+2025-06-29,Latte,Pastries,5,108.74,543.70
+2025-11-13,Macchiato,Pastries,5,93.97,469.85
+2025-10-24,Iced Mocha,Pastries,4,144.00,576.00
+2025-01-03,Mocha,Pastries,4,61.74,246.96
+2025-10-16,Mocha,Pastries,2,61.74,123.48
+2025-08-01,Tiramisu,Pastries,2,196.55,393.10
+2025-11-13,Tiramisu,Pastries,5,196.55,982.75
+2025-02-28,Espresso,Pastries,4,195.76,783.04
+2025-10-12,Latte,Pastries,1,108.74,108.74
+2025-04-27,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-05-27,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2024-12-31,Iced Mocha,Pastries,3,144.00,432.00
+2025-11-25,Almonds,Pastries,1,5.59,5.59
+2025-06-09,Mocha,Pastries,1,61.74,61.74
+2025-07-08,Almonds,Pastries,1,5.59,5.59
+2025-07-24,Flat White,Pastries,5,113.21,566.05
+2025-03-03,Macchiato,Pastries,4,93.97,375.88
+2025-11-11,Hot Chocolate,Pastries,3,131.53,394.59
+2025-03-22,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-03-16,Hot Chocolate,Pastries,4,131.53,526.12
+2025-04-29,Espresso,Pastries,4,195.76,783.04
+2025-02-03,Iced Coffee,Beverages,4,107.80,431.20
+2024-11-27,Hot Chocolate,Pastries,4,131.53,526.12
+2025-10-04,Iced Mocha,Pastries,5,144.00,720.00
+2024-12-01,Latte,Pastries,1,108.74,108.74
+2025-08-27,Almond Croissant,Pastries,3,8.42,25.26
+2025-10-26,Iced Coffee,Beverages,3,107.80,323.40
+2025-09-10,Tiramisu,Pastries,4,196.55,786.20
+2025-01-22,Macchiato,Pastries,3,93.97,281.91
+2025-03-14,Espresso,Pastries,1,195.76,195.76
+2025-08-18,Hot Chocolate,Pastries,2,131.53,263.06
+2025-09-07,Tea,Beverages,4,106.18,424.72
+2025-11-01,Baguette,Pastries,5,133.77,668.85
+2025-07-20,Eclair,Pastries,5,146.12,730.60
+2025-06-01,Almond Croissant,Pastries,4,8.42,33.68
+2025-06-16,Tea,Beverages,2,106.18,212.36
+2024-12-21,Almond Croissant,Pastries,1,8.42,8.42
+2025-09-23,Iced Mocha,Pastries,4,144.00,576.00
+2025-05-17,Hot Chocolate,Pastries,2,131.53,263.06
+2025-05-14,Hot Chocolate,Pastries,2,131.53,263.06
+2025-01-27,Tiramisu,Pastries,2,196.55,393.10
+2025-08-30,Chai Latte,Pastries,3,100.50,301.50
+2025-08-08,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-08-03,Almonds,Pastries,1,5.59,5.59
+2025-09-04,Almond Croissant,Pastries,2,8.42,16.84
+2025-01-23,Americano,Pastries,4,80.96,323.84
+2024-12-24,Macchiato,Pastries,2,93.97,187.94
+2025-11-10,Latte,Pastries,5,108.74,543.70
+2025-07-30,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-10-01,Flat White,Pastries,4,113.21,452.84
+2025-04-04,Flat White,Pastries,3,113.21,339.63
+2025-01-19,Macchiato,Pastries,5,93.97,469.85
+2025-11-05,Americano,Pastries,5,80.96,404.80
+2025-02-12,Espresso,Pastries,3,195.76,587.28
+2025-09-24,Chai Latte,Pastries,4,100.50,402.00
+2024-12-07,Tiramisu,Pastries,5,196.55,982.75
+2025-02-24,Apple Turnover,Pastries,1,154.54,154.54
+2025-11-25,Almond Croissant,Pastries,1,8.42,8.42
+2025-11-02,Almonds,Pastries,2,5.59,11.18
+2025-01-16,Baguette,Pastries,5,133.77,668.85
+2025-06-04,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-03-18,Latte,Pastries,2,108.74,217.48
+2024-12-30,Iced Mocha,Pastries,4,144.00,576.00
+2025-04-18,Iced Coffee,Beverages,3,107.80,323.40
+2025-09-12,Hot Chocolate,Pastries,1,131.53,131.53
+2025-09-23,Flat White,Pastries,3,113.21,339.63
+2025-01-22,Hot Chocolate,Pastries,5,131.53,657.65
+2025-03-01,Mocha,Pastries,5,61.74,308.70
+2025-07-07,Cappuccino,Pastries,3,76.25,228.75
+2025-04-13,Latte,Pastries,4,108.74,434.96
+2024-11-28,Iced Coffee,Beverages,2,107.80,215.60
+2025-03-27,Hot Chocolate,Pastries,3,131.53,394.59
+2025-07-06,Mocha,Pastries,4,61.74,246.96
+2025-04-08,Almonds,Pastries,3,5.59,16.77
+2024-12-01,Flat White,Pastries,2,113.21,226.42
+2025-08-11,Americano,Pastries,2,80.96,161.92
+2025-01-01,Chai Latte,Pastries,5,100.50,502.50
+2025-10-08,Cappuccino,Pastries,5,76.25,381.25
+2025-02-26,Macchiato,Pastries,1,93.97,93.97
+2025-02-13,Latte,Pastries,4,108.74,434.96
+2025-04-21,Latte,Pastries,5,108.74,543.70
+2025-01-21,Almond Croissant,Pastries,3,8.42,25.26
+2025-09-23,Apple Turnover,Pastries,2,154.54,309.08
+2025-10-12,Cappuccino,Pastries,2,76.25,152.50
+2025-08-01,Macchiato,Pastries,1,93.97,93.97
+2025-09-15,Baguette,Pastries,3,133.77,401.31
+2025-06-26,Chai Latte,Pastries,5,100.50,502.50
+2025-08-12,Almond Croissant,Pastries,1,8.42,8.42
+2025-10-09,Iced Mocha,Pastries,4,144.00,576.00
+2025-05-22,Iced Mocha,Pastries,4,144.00,576.00
+2025-07-01,Chai Latte,Pastries,2,100.50,201.00
+2025-10-14,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2025-01-27,Mocha,Pastries,5,61.74,308.70
+2024-12-23,Flat White,Pastries,1,113.21,113.21
+2025-11-25,Almond Croissant,Pastries,1,8.42,8.42
+2025-08-14,Red Velvet Cake,Pastries,4,187.25,749.00
+2024-12-23,Tea,Beverages,1,106.18,106.18
+2024-12-24,Cappuccino,Pastries,2,76.25,152.50
+2025-02-03,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2024-12-20,Tea,Beverages,5,106.18,530.90
+2025-11-22,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-11-21,Flat White,Pastries,2,113.21,226.42
+2025-04-20,Americano,Pastries,2,80.96,161.92
+2025-10-05,Latte,Pastries,4,108.74,434.96
+2025-06-17,Flat White,Pastries,3,113.21,339.63
+2025-01-02,Latte,Pastries,2,108.74,217.48
+2024-11-24,Chai Latte,Pastries,4,100.50,402.00
+2025-10-22,Iced Mocha,Pastries,5,144.00,720.00
+2025-09-09,Tea,Beverages,1,106.18,106.18
+2025-04-18,Eclair,Pastries,4,146.12,584.48
+2025-08-16,Chai Latte,Pastries,2,100.50,201.00
+2025-03-11,Almonds,Pastries,3,5.59,16.77
+2025-04-05,Apple Turnover,Pastries,2,154.54,309.08
+2025-07-03,Mocha,Pastries,2,61.74,123.48
+2025-08-05,Iced Coffee,Beverages,5,107.80,539.00
+2025-07-13,Macchiato,Pastries,2,93.97,187.94
+2025-03-13,Glazed Donut,Pastries,1,148.75,148.75
+2025-04-19,Espresso,Pastries,4,195.76,783.04
+2025-05-02,Tiramisu,Pastries,3,196.55,589.65
+2025-04-24,Red Velvet Cake,Pastries,4,187.25,749.00
+2025-03-29,Chai Latte,Pastries,1,100.50,100.50
+2025-06-08,Baguette,Pastries,4,133.77,535.08
+2025-03-20,Eclair,Pastries,4,146.12,584.48
+2025-11-04,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2025-11-13,Almond Croissant,Pastries,1,8.42,8.42
+2025-10-16,Almonds,Pastries,1,5.59,5.59
+2025-10-19,Glazed Donut,Pastries,5,148.75,743.75
+2025-10-09,Iced Mocha,Pastries,5,144.00,720.00
+2024-12-19,Tiramisu,Pastries,5,196.55,982.75
+2024-12-06,Macchiato,Pastries,3,93.97,281.91
+2025-11-19,Almond Croissant,Pastries,5,8.42,42.10
+2025-05-17,Iced Coffee,Beverages,1,107.80,107.80
+2025-07-26,Latte,Pastries,3,108.74,326.22
+2025-08-25,Glazed Donut,Pastries,4,148.75,595.00
+2025-04-19,Tiramisu,Pastries,3,196.55,589.65
+2025-09-04,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-09-11,Baguette,Pastries,4,133.77,535.08
+2025-10-02,Americano,Pastries,2,80.96,161.92
+2025-09-28,Macchiato,Pastries,1,93.97,93.97
+2025-06-28,Hot Chocolate,Pastries,2,131.53,263.06
+2025-01-27,Baguette,Pastries,3,133.77,401.31
+2025-04-22,Apple Turnover,Pastries,3,154.54,463.62
+2025-11-08,Chai Latte,Pastries,1,100.50,100.50
+2025-03-21,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-07-18,Flat White,Pastries,5,113.21,566.05
+2025-10-06,Americano,Pastries,2,80.96,161.92
+2025-06-18,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-08-09,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-07-27,Tea,Beverages,2,106.18,212.36
+2025-01-12,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2025-09-22,Mocha,Pastries,2,61.74,123.48
+2025-06-08,Eclair,Pastries,3,146.12,438.36
+2025-10-23,Iced Coffee,Beverages,1,107.80,107.80
+2025-07-25,Iced Coffee,Beverages,4,107.80,431.20
+2025-04-27,Espresso,Pastries,3,195.76,587.28
+2025-01-31,Latte,Pastries,3,108.74,326.22
+2025-10-20,Almonds,Pastries,1,5.59,5.59
+2025-03-15,Mocha,Pastries,1,61.74,61.74
+2025-09-12,Iced Mocha,Pastries,5,144.00,720.00
+2025-10-21,Iced Mocha,Pastries,1,144.00,144.00
+2025-08-26,Americano,Pastries,4,80.96,323.84
+2025-06-27,Almond Croissant,Pastries,4,8.42,33.68
+2025-03-06,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-03-18,Chai Latte,Pastries,4,100.50,402.00
+2025-05-02,Apple Turnover,Pastries,5,154.54,772.70
+2025-01-21,Tiramisu,Pastries,4,196.55,786.20
+2025-11-17,Hot Chocolate,Pastries,5,131.53,657.65
+2025-04-05,Almond Croissant,Pastries,1,8.42,8.42
+2024-12-17,Flat White,Pastries,1,113.21,113.21
+2024-12-29,Hot Chocolate,Pastries,5,131.53,657.65
+2025-03-27,Baguette,Pastries,2,133.77,267.54
+2025-05-05,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-03-20,Cappuccino,Pastries,2,76.25,152.50
+2025-07-28,Cappuccino,Pastries,4,76.25,305.00
+2024-12-03,Almond Croissant,Pastries,4,8.42,33.68
+2025-01-14,Tea,Beverages,5,106.18,530.90
+2025-03-27,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2024-12-02,Almonds,Pastries,3,5.59,16.77
+2025-11-25,Almond Croissant,Pastries,1,8.42,8.42
+2025-05-16,Latte,Pastries,1,108.74,108.74
+2025-06-15,Americano,Pastries,4,80.96,323.84
+2025-03-11,Latte,Pastries,1,108.74,108.74
+2025-02-01,Eclair,Pastries,5,146.12,730.60
+2025-07-10,Chai Latte,Pastries,2,100.50,201.00
+2024-12-10,Flat White,Pastries,3,113.21,339.63
+2025-01-28,Iced Coffee,Beverages,5,107.80,539.00
+2025-11-01,Chai Latte,Pastries,5,100.50,502.50
+2025-01-07,Apple Turnover,Pastries,1,154.54,154.54
+2025-05-12,Apple Turnover,Pastries,3,154.54,463.62
+2024-12-10,Tiramisu,Pastries,1,196.55,196.55
+2025-02-15,Eclair,Pastries,1,146.12,146.12
+2025-02-14,Cappuccino,Pastries,5,76.25,381.25
+2025-10-22,Almond Croissant,Pastries,1,8.42,8.42
+2025-06-27,Tiramisu,Pastries,3,196.55,589.65
+2025-11-25,Almond Croissant,Pastries,2,8.42,16.84
+2024-11-30,Iced Mocha,Pastries,5,144.00,720.00
+2025-07-25,Chai Latte,Pastries,2,100.50,201.00
+2025-05-14,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-04-10,Iced Coffee,Beverages,5,107.80,539.00
+2024-11-27,Macchiato,Pastries,4,93.97,375.88
+2025-10-21,Cappuccino,Pastries,5,76.25,381.25
+2025-02-08,Glazed Donut,Pastries,4,148.75,595.00
+2025-09-09,Iced Coffee,Beverages,3,107.80,323.40
+2025-03-29,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-10-15,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-02-24,Eclair,Pastries,3,146.12,438.36
+2025-05-02,Latte,Pastries,4,108.74,434.96
+2025-03-20,Latte,Pastries,2,108.74,217.48
+2025-03-12,Tiramisu,Pastries,5,196.55,982.75
+2025-11-25,Almond Croissant,Pastries,1,8.42,8.42
+2025-08-22,Mocha,Pastries,1,61.74,61.74
+2025-11-20,Chai Latte,Pastries,4,100.50,402.00
+2025-03-11,Red Velvet Cake,Pastries,2,187.25,374.50
+2025-06-30,Hot Chocolate,Pastries,5,131.53,657.65
+2024-12-16,Apple Turnover,Pastries,4,154.54,618.16
+2025-10-04,Red Velvet Cake,Pastries,2,187.25,374.50
+2025-09-12,Iced Mocha,Pastries,5,144.00,720.00
+2025-07-12,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-05-21,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-05-20,Macchiato,Pastries,5,93.97,469.85
+2025-07-04,Mocha,Pastries,4,61.74,246.96
+2025-08-22,Espresso,Pastries,1,195.76,195.76
+2024-11-29,Tiramisu,Pastries,5,196.55,982.75
+2025-06-21,Chai Latte,Pastries,4,100.50,402.00
+2025-04-03,Hot Chocolate,Pastries,5,131.53,657.65
+2024-12-07,Espresso,Pastries,5,195.76,978.80
+2025-05-06,Americano,Pastries,2,80.96,161.92
+2025-09-29,Eclair,Pastries,5,146.12,730.60
+2024-11-27,Espresso,Pastries,1,195.76,195.76
+2025-02-22,Almond Croissant,Pastries,5,8.42,42.10
+2025-06-05,Iced Coffee,Beverages,3,107.80,323.40
+2025-10-24,Almonds,Pastries,1,5.59,5.59
+2025-09-27,Apple Turnover,Pastries,5,154.54,772.70
+2025-05-28,Baguette,Pastries,1,133.77,133.77
+2025-02-15,Flat White,Pastries,1,113.21,113.21
+2025-01-01,Latte,Pastries,1,108.74,108.74
+2025-05-10,Americano,Pastries,2,80.96,161.92
+2025-01-10,Apple Turnover,Pastries,5,154.54,772.70
+2025-09-20,Apple Turnover,Pastries,5,154.54,772.70
+2025-10-29,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-01-28,Red Velvet Cake,Pastries,3,187.25,561.75
+2024-11-29,Blueberry Muffin,Pastries,1,185.15,185.15
+2024-11-26,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-09-07,Iced Mocha,Pastries,5,144.00,720.00
+2024-12-07,Tea,Beverages,2,106.18,212.36
+2025-07-25,Macchiato,Pastries,3,93.97,281.91
+2025-10-28,Almonds,Pastries,4,5.59,22.36
+2025-09-24,Hot Chocolate,Pastries,4,131.53,526.12
+2025-06-30,Americano,Pastries,3,80.96,242.88
+2025-04-10,Cappuccino,Pastries,2,76.25,152.50
+2025-09-14,Iced Mocha,Pastries,3,144.00,432.00
+2025-05-30,Latte,Pastries,2,108.74,217.48
+2025-05-10,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-09-11,Cappuccino,Pastries,3,76.25,228.75
+2025-03-22,Mocha,Pastries,4,61.74,246.96
+2025-09-19,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-03-05,Eclair,Pastries,5,146.12,730.60
+2025-11-12,Apple Turnover,Pastries,1,154.54,154.54
+2024-12-28,Chai Latte,Pastries,3,100.50,301.50
+2025-11-21,Espresso,Pastries,3,195.76,587.28
+2025-10-09,Hot Chocolate,Pastries,4,131.53,526.12
+2025-08-26,Latte,Pastries,4,108.74,434.96
+2025-07-25,Americano,Pastries,5,80.96,404.80
+2025-09-01,Macchiato,Pastries,1,93.97,93.97
+2025-09-11,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-02-25,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-11-05,Hot Chocolate,Pastries,5,131.53,657.65
+2025-11-07,Cappuccino,Pastries,2,76.25,152.50
+2025-05-01,Latte,Pastries,1,108.74,108.74
+2025-03-28,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-04-12,Almond Croissant,Pastries,3,8.42,25.26
+2025-02-11,Flat White,Pastries,1,113.21,113.21
+2025-10-23,Mocha,Pastries,5,61.74,308.70
+2025-06-01,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-01-21,Americano,Pastries,2,80.96,161.92
+2025-06-24,Chai Latte,Pastries,3,100.50,301.50
+2025-05-05,Iced Mocha,Pastries,5,144.00,720.00
+2025-07-18,Latte,Pastries,3,108.74,326.22
+2025-08-12,Flat White,Pastries,1,113.21,113.21
+2025-01-03,Mocha,Pastries,4,61.74,246.96
+2025-07-09,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-02-13,Macchiato,Pastries,5,93.97,469.85
+2025-10-16,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-04-27,Glazed Donut,Pastries,5,148.75,743.75
+2025-04-16,Almonds,Pastries,1,5.59,5.59
+2025-02-17,Almonds,Pastries,3,5.59,16.77
+2025-05-15,Tea,Beverages,5,106.18,530.90
+2025-07-22,Tea,Beverages,3,106.18,318.54
+2025-08-09,Flat White,Pastries,3,113.21,339.63
+2025-08-15,Baguette,Pastries,5,133.77,668.85
+2025-04-10,Cappuccino,Pastries,3,76.25,228.75
+2025-10-05,Mocha,Pastries,2,61.74,123.48
+2025-06-28,Iced Mocha,Pastries,3,144.00,432.00
+2025-01-19,Latte,Pastries,3,108.74,326.22
+2025-06-25,Eclair,Pastries,2,146.12,292.24
+2025-03-07,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-05-22,Eclair,Pastries,1,146.12,146.12
+2024-12-09,Tiramisu,Pastries,1,196.55,196.55
+2025-11-05,Apple Turnover,Pastries,5,154.54,772.70
+2025-05-26,Espresso,Pastries,3,195.76,587.28
+2025-11-18,Apple Turnover,Pastries,4,154.54,618.16
+2025-03-12,Macchiato,Pastries,5,93.97,469.85
+2025-09-11,Hot Chocolate,Pastries,4,131.53,526.12
+2025-02-15,Hot Chocolate,Pastries,2,131.53,263.06
+2025-08-31,Espresso,Pastries,5,195.76,978.80
+2025-03-07,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-03-15,Chai Latte,Pastries,3,100.50,301.50
+2025-01-20,Hot Chocolate,Pastries,4,131.53,526.12
+2025-09-07,Espresso,Pastries,4,195.76,783.04
+2025-04-03,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2025-06-06,Macchiato,Pastries,4,93.97,375.88
+2024-12-09,Espresso,Pastries,1,195.76,195.76
+2025-04-16,Almonds,Pastries,1,5.59,5.59
+2025-05-22,Espresso,Pastries,5,195.76,978.80
+2025-02-26,Glazed Donut,Pastries,2,148.75,297.50
+2025-05-18,Iced Coffee,Beverages,1,107.80,107.80
+2025-07-31,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-03-22,Iced Mocha,Pastries,2,144.00,288.00
+2025-01-18,Tiramisu,Pastries,4,196.55,786.20
+2025-04-11,Chai Latte,Pastries,4,100.50,402.00
+2025-04-10,Espresso,Pastries,2,195.76,391.52
+2025-04-25,Macchiato,Pastries,2,93.97,187.94
+2024-12-09,Iced Mocha,Pastries,1,144.00,144.00
+2025-03-09,Tiramisu,Pastries,3,196.55,589.65
+2025-06-02,Tea,Beverages,4,106.18,424.72
+2025-11-25,Almonds,Pastries,1,5.59,5.59
+2025-09-13,Macchiato,Pastries,4,93.97,375.88
+2025-07-10,Tiramisu,Pastries,4,196.55,786.20
+2025-10-26,Iced Mocha,Pastries,2,144.00,288.00
+2025-08-14,Cappuccino,Pastries,5,76.25,381.25
+2025-01-28,Tiramisu,Pastries,5,196.55,982.75
+2025-07-16,Hot Chocolate,Pastries,2,131.53,263.06
+2025-04-11,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-09-18,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-02-20,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-04-02,Iced Mocha,Pastries,1,144.00,144.00
+2024-12-29,Macchiato,Pastries,4,93.97,375.88
+2024-11-28,Latte,Pastries,2,108.74,217.48
+2025-11-09,Almonds,Pastries,5,5.59,27.95
+2025-08-13,Cappuccino,Pastries,2,76.25,152.50
+2025-04-11,Iced Coffee,Beverages,2,107.80,215.60
+2025-04-22,Macchiato,Pastries,5,93.97,469.85
+2025-08-11,Espresso,Pastries,1,195.76,195.76
+2025-10-20,Americano,Pastries,3,80.96,242.88
+2025-06-08,Glazed Donut,Pastries,2,148.75,297.50
+2025-08-30,Mocha,Pastries,1,61.74,61.74
+2025-01-11,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-07-10,Tea,Beverages,2,106.18,212.36
+2025-09-28,Flat White,Pastries,5,113.21,566.05
+2025-06-09,Glazed Donut,Pastries,2,148.75,297.50
+2024-12-26,Baguette,Pastries,2,133.77,267.54
+2025-09-21,Apple Turnover,Pastries,2,154.54,309.08
+2025-02-18,Tea,Beverages,5,106.18,530.90
+2025-03-17,Almonds,Pastries,4,5.59,22.36
+2024-12-12,Macchiato,Pastries,1,93.97,93.97
+2025-02-28,Hot Chocolate,Pastries,2,131.53,263.06
+2025-09-19,Eclair,Pastries,3,146.12,438.36
+2025-02-19,Tiramisu,Pastries,2,196.55,393.10
+2024-12-15,Baguette,Pastries,5,133.77,668.85
+2025-01-06,Flat White,Pastries,4,113.21,452.84
+2025-04-07,Glazed Donut,Pastries,2,148.75,297.50
+2025-11-06,Espresso,Pastries,2,195.76,391.52
+2025-10-17,Tiramisu,Pastries,3,196.55,589.65
+2025-03-26,Hot Chocolate,Pastries,4,131.53,526.12
+2025-10-23,Glazed Donut,Pastries,1,148.75,148.75
+2025-11-12,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2025-04-08,Almonds,Pastries,3,5.59,16.77
+2025-01-06,Americano,Pastries,4,80.96,323.84
+2025-06-27,Flat White,Pastries,1,113.21,113.21
+2025-05-05,Iced Coffee,Beverages,3,107.80,323.40
+2025-10-29,Iced Mocha,Pastries,2,144.00,288.00
+2025-09-11,Tea,Beverages,3,106.18,318.54
+2025-08-20,Eclair,Pastries,4,146.12,584.48
+2025-11-15,Baguette,Pastries,4,133.77,535.08
+2025-10-12,Chai Latte,Pastries,2,100.50,201.00
+2025-11-23,Almonds,Pastries,3,5.59,16.77
+2025-03-08,Almonds,Pastries,1,5.59,5.59
+2025-08-02,Latte,Pastries,5,108.74,543.70
+2024-12-28,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-03-28,Macchiato,Pastries,3,93.97,281.91
+2025-04-24,Chai Latte,Pastries,3,100.50,301.50
+2025-02-11,Hot Chocolate,Pastries,5,131.53,657.65
+2025-07-30,Chai Latte,Pastries,4,100.50,402.00
+2025-10-12,Eclair,Pastries,3,146.12,438.36
+2025-05-03,Blueberry Muffin,Pastries,5,185.15,925.75
+2024-11-26,Espresso,Pastries,5,195.76,978.80
+2025-04-15,Tiramisu,Pastries,1,196.55,196.55
+2025-01-09,Tiramisu,Pastries,2,196.55,393.10
+2024-12-22,Flat White,Pastries,2,113.21,226.42
+2025-06-23,Almonds,Pastries,1,5.59,5.59
+2025-07-25,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-07-09,Almond Croissant,Pastries,3,8.42,25.26
+2025-09-30,Tea,Beverages,2,106.18,212.36
+2025-01-08,Glazed Donut,Pastries,4,148.75,595.00
+2025-06-26,Almond Croissant,Pastries,2,8.42,16.84
+2025-07-23,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-11-21,Hot Chocolate,Pastries,5,131.53,657.65
+2025-10-27,Chai Latte,Pastries,3,100.50,301.50
+2025-08-20,Espresso,Pastries,3,195.76,587.28
+2024-12-20,Tiramisu,Pastries,3,196.55,589.65
+2024-11-30,Flat White,Pastries,2,113.21,226.42
+2025-05-14,Baguette,Pastries,3,133.77,401.31
+2025-06-08,Eclair,Pastries,4,146.12,584.48
+2025-09-13,Almond Croissant,Pastries,3,8.42,25.26
+2025-01-27,Latte,Pastries,4,108.74,434.96
+2025-09-23,Red Velvet Cake,Pastries,2,187.25,374.50
+2024-11-25,Tea,Beverages,5,106.18,530.90
+2024-12-02,Almond Croissant,Pastries,3,8.42,25.26
+2025-03-15,Espresso,Pastries,1,195.76,195.76
+2025-05-14,Flat White,Pastries,3,113.21,339.63
+2025-01-03,Hot Chocolate,Pastries,5,131.53,657.65
+2024-12-09,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-10-03,Macchiato,Pastries,1,93.97,93.97
+2025-03-12,Tiramisu,Pastries,1,196.55,196.55
+2025-03-11,Baguette,Pastries,3,133.77,401.31
+2025-01-18,Chai Latte,Pastries,3,100.50,301.50
+2025-10-07,Flat White,Pastries,4,113.21,452.84
+2025-07-15,Espresso,Pastries,3,195.76,587.28
+2025-08-15,Almonds,Pastries,2,5.59,11.18
+2025-11-16,Chai Latte,Pastries,2,100.50,201.00
+2025-11-07,Macchiato,Pastries,3,93.97,281.91
+2024-12-03,Hot Chocolate,Pastries,4,131.53,526.12
+2024-11-27,Glazed Donut,Pastries,1,148.75,148.75
+2025-01-20,Mocha,Pastries,4,61.74,246.96
+2025-07-12,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-03-16,Cappuccino,Pastries,5,76.25,381.25
+2025-11-03,Espresso,Pastries,1,195.76,195.76
+2025-10-10,Almond Croissant,Pastries,4,8.42,33.68
+2025-09-25,Latte,Pastries,5,108.74,543.70
+2025-03-14,Tea,Beverages,3,106.18,318.54
+2025-08-03,Iced Mocha,Pastries,3,144.00,432.00
+2024-12-18,Tea,Beverages,2,106.18,212.36
+2025-05-30,Glazed Donut,Pastries,5,148.75,743.75
+2025-07-10,Mocha,Pastries,4,61.74,246.96
+2025-07-04,Glazed Donut,Pastries,5,148.75,743.75
+2025-09-02,Iced Coffee,Beverages,2,107.80,215.60
+2025-02-10,Latte,Pastries,4,108.74,434.96
+2024-12-24,Baguette,Pastries,5,133.77,668.85
+2025-03-10,Americano,Pastries,5,80.96,404.80
+2025-09-09,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-08-12,Espresso,Pastries,1,195.76,195.76
+2025-06-13,Baguette,Pastries,4,133.77,535.08
+2025-09-23,Cappuccino,Pastries,5,76.25,381.25
+2025-11-06,Hot Chocolate,Pastries,4,131.53,526.12
+2025-03-24,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-08-15,Americano,Pastries,4,80.96,323.84
+2025-04-05,Mocha,Pastries,5,61.74,308.70
+2025-09-29,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2024-12-25,Cappuccino,Pastries,2,76.25,152.50
+2025-02-23,Macchiato,Pastries,2,93.97,187.94
+2025-05-28,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2025-07-08,Flat White,Pastries,3,113.21,339.63
+2025-07-11,Americano,Pastries,3,80.96,242.88
+2024-12-02,Americano,Pastries,3,80.96,242.88
+2025-08-12,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-09-11,Apple Turnover,Pastries,2,154.54,309.08
+2025-06-30,Mocha,Pastries,5,61.74,308.70
+2025-06-10,Almond Croissant,Pastries,5,8.42,42.10
+2025-08-30,Glazed Donut,Pastries,1,148.75,148.75
+2025-03-18,Iced Coffee,Beverages,2,107.80,215.60
+2025-06-16,Iced Coffee,Beverages,4,107.80,431.20
+2025-10-12,Almond Croissant,Pastries,4,8.42,33.68
+2025-10-04,Cappuccino,Pastries,4,76.25,305.00
+2025-07-03,Flat White,Pastries,1,113.21,113.21
+2025-06-25,Americano,Pastries,5,80.96,404.80
+2025-07-25,Americano,Pastries,4,80.96,323.84
+2024-12-12,Iced Coffee,Beverages,1,107.80,107.80
+2025-05-28,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-06-07,Flat White,Pastries,5,113.21,566.05
+2025-05-22,Glazed Donut,Pastries,2,148.75,297.50
+2024-12-12,Almond Croissant,Pastries,1,8.42,8.42
+2025-07-06,Baguette,Pastries,5,133.77,668.85
+2025-09-30,Eclair,Pastries,3,146.12,438.36
+2025-09-10,Almonds,Pastries,4,5.59,22.36
+2025-02-28,Tiramisu,Pastries,5,196.55,982.75
+2025-08-20,Iced Mocha,Pastries,4,144.00,576.00
+2025-10-04,Chai Latte,Pastries,2,100.50,201.00
+2025-07-23,Espresso,Pastries,4,195.76,783.04
+2025-11-18,Cappuccino,Pastries,3,76.25,228.75
+2025-11-02,Americano,Pastries,4,80.96,323.84
+2025-04-27,Eclair,Pastries,1,146.12,146.12
+2025-08-28,Cappuccino,Pastries,5,76.25,381.25
+2024-12-25,Apple Turnover,Pastries,5,154.54,772.70
+2025-03-29,Macchiato,Pastries,3,93.97,281.91
+2025-10-02,Almonds,Pastries,4,5.59,22.36
+2025-08-07,Apple Turnover,Pastries,2,154.54,309.08
+2025-08-05,Glazed Donut,Pastries,5,148.75,743.75
+2024-12-25,Iced Coffee,Beverages,3,107.80,323.40
+2025-02-23,Macchiato,Pastries,3,93.97,281.91
+2025-03-11,Americano,Pastries,5,80.96,404.80
+2025-11-07,Iced Mocha,Pastries,2,144.00,288.00
+2025-03-08,Espresso,Pastries,1,195.76,195.76
+2025-11-16,Flat White,Pastries,3,113.21,339.63
+2025-06-18,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-02-08,Hot Chocolate,Pastries,3,131.53,394.59
+2025-11-02,Eclair,Pastries,1,146.12,146.12
+2025-09-30,Iced Coffee,Beverages,1,107.80,107.80
+2025-05-20,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-06-01,Macchiato,Pastries,2,93.97,187.94
+2025-05-25,Tea,Beverages,4,106.18,424.72
+2024-12-31,Chai Latte,Pastries,2,100.50,201.00
+2025-11-26,Almonds,Pastries,1,5.59,5.59
+2025-07-09,Apple Turnover,Pastries,5,154.54,772.70
+2025-10-03,Tiramisu,Pastries,3,196.55,589.65
+2025-11-24,Red Velvet Cake,Pastries,2,187.25,374.50
+2025-03-13,Cappuccino,Pastries,4,76.25,305.00
+2025-01-18,Tiramisu,Pastries,2,196.55,393.10
+2025-07-08,Eclair,Pastries,3,146.12,438.36
+2025-03-05,Macchiato,Pastries,3,93.97,281.91
+2025-11-26,Almond,Pastries,1,5.59,5.59
+2025-01-27,Almond Croissant,Pastries,2,8.42,16.84
+2024-12-27,Almond Croissant,Pastries,5,8.42,42.10
+2025-09-22,Macchiato,Pastries,4,93.97,375.88
+2025-05-01,Hot Chocolate,Pastries,1,131.53,131.53
+2025-04-20,Espresso,Pastries,2,195.76,391.52
+2025-05-09,Iced Mocha,Pastries,2,144.00,288.00
+2025-03-18,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-06-19,Flat White,Pastries,3,113.21,339.63
+2025-08-12,Eclair,Pastries,3,146.12,438.36
+2025-09-16,Glazed Donut,Pastries,2,148.75,297.50
+2025-08-10,Americano,Pastries,1,80.96,80.96
+2025-05-09,Hot Chocolate,Pastries,2,131.53,263.06
+2024-12-23,Apple Turnover,Pastries,1,154.54,154.54
+2025-08-04,Glazed Donut,Pastries,3,148.75,446.25
+2025-01-12,Hot Chocolate,Pastries,3,131.53,394.59
+2025-11-20,Mocha,Pastries,2,61.74,123.48
+2025-06-09,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-01-26,Almonds,Pastries,3,5.59,16.77
+2025-11-03,Iced Coffee,Beverages,5,107.80,539.00
+2025-04-14,Almond Croissant,Pastries,3,8.42,25.26
+2024-11-29,Hot Chocolate,Pastries,2,131.53,263.06
+2025-03-15,Hot Chocolate,Pastries,4,131.53,526.12
+2025-03-07,Eclair,Pastries,4,146.12,584.48
+2025-06-23,Iced Mocha,Pastries,4,144.00,576.00
+2025-01-31,Americano,Pastries,5,80.96,404.80
+2025-07-04,Almonds,Pastries,2,5.59,11.18
+2025-04-19,Chai Latte,Pastries,1,100.50,100.50
+2024-12-12,Almond Croissant,Pastries,3,8.42,25.26
+2025-06-27,Macchiato,Pastries,5,93.97,469.85
+2025-03-04,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-05-17,Cappuccino,Pastries,2,76.25,152.50
+2025-08-23,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2025-01-31,Eclair,Pastries,3,146.12,438.36
+2025-02-18,Cappuccino,Pastries,1,76.25,76.25
+2025-09-11,Almonds,Pastries,1,5.59,5.59
+2025-09-10,Tea,Beverages,2,106.18,212.36
+2025-07-13,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-03-12,Almond Croissant,Pastries,2,8.42,16.84
+2025-10-06,Macchiato,Pastries,5,93.97,469.85
+2025-02-21,Tea,Beverages,1,106.18,106.18
+2024-12-13,Red Velvet Cake,Pastries,4,187.25,749.00
+2024-12-02,Tiramisu,Pastries,4,196.55,786.20
+2025-08-26,Mocha,Pastries,2,61.74,123.48
+2025-09-09,Glazed Donut,Pastries,5,148.75,743.75
+2025-03-05,Iced Mocha,Pastries,5,144.00,720.00
+2025-07-22,Mocha,Pastries,2,61.74,123.48
+2024-12-01,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-08-01,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-02-15,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-06-12,Tiramisu,Pastries,4,196.55,786.20
+2025-04-05,Tea,Beverages,1,106.18,106.18
+2025-06-29,Iced Coffee,Beverages,3,107.80,323.40
+2025-05-10,Iced Coffee,Beverages,4,107.80,431.20
+2025-01-18,Espresso,Pastries,3,195.76,587.28
+2025-03-07,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2025-10-31,Blueberry Muffin,Pastries,3,185.15,555.45
+2024-12-21,Eclair,Pastries,4,146.12,584.48
+2025-06-17,Macchiato,Pastries,5,93.97,469.85
+2025-03-07,Macchiato,Pastries,2,93.97,187.94
+2025-06-20,Cappuccino,Pastries,4,76.25,305.00
+2025-03-27,Almond Croissant,Pastries,5,8.42,42.10
+2024-12-04,Glazed Donut,Pastries,4,148.75,595.00
+2025-05-14,Almonds,Pastries,5,5.59,27.95
+2025-11-17,Iced Coffee,Beverages,5,107.80,539.00
+2025-04-24,Latte,Pastries,5,108.74,543.70
+2025-10-16,Hot Chocolate,Pastries,4,131.53,526.12
+2025-07-06,Chai Latte,Pastries,2,100.50,201.00
+2025-05-23,Espresso,Pastries,5,195.76,978.80
+2025-09-27,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-07-04,Cappuccino,Pastries,1,76.25,76.25
+2025-11-15,Almonds,Pastries,5,5.59,27.95
+2025-07-07,Hot Chocolate,Pastries,2,131.53,263.06
+2025-08-08,Eclair,Pastries,5,146.12,730.60
+2025-02-01,Baguette,Pastries,1,133.77,133.77
+2025-10-10,Mocha,Pastries,3,61.74,185.22
+2025-02-09,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-02-19,Hot Chocolate,Pastries,2,131.53,263.06
+2024-12-16,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-03-10,Mocha,Pastries,5,61.74,308.70
+2025-02-07,Latte,Pastries,2,108.74,217.48
+2025-08-16,Almond Croissant,Pastries,1,8.42,8.42
+2025-01-19,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-06-27,Red Velvet Cake,Pastries,4,187.25,749.00
+2025-09-12,Eclair,Pastries,3,146.12,438.36
+2025-10-24,Latte,Pastries,1,108.74,108.74
+2025-05-17,Tea,Beverages,4,106.18,424.72
+2024-12-27,Espresso,Pastries,3,195.76,587.28
+2025-08-29,Mocha,Pastries,2,61.74,123.48
+2025-08-12,Cappuccino,Pastries,5,76.25,381.25
+2025-08-18,Mocha,Pastries,5,61.74,308.70
+2025-07-23,Cappuccino,Pastries,3,76.25,228.75
+2025-11-13,Iced Coffee,Beverages,3,107.80,323.40
+2025-11-13,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-05-16,Latte,Pastries,2,108.74,217.48
+2025-03-21,Baguette,Pastries,3,133.77,401.31
+2025-03-20,Almonds,Pastries,1,5.59,5.59
+2025-03-02,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-01-30,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-02-18,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-07-19,Glazed Donut,Pastries,2,148.75,297.50
+2025-05-08,Almond Croissant,Pastries,4,8.42,33.68
+2025-04-29,Flat White,Pastries,4,113.21,452.84
+2025-05-20,Flat White,Pastries,5,113.21,566.05
+2025-05-27,Latte,Pastries,1,108.74,108.74
+2025-04-25,Baguette,Pastries,4,133.77,535.08
+2025-02-15,Tea,Beverages,4,106.18,424.72
+2025-08-16,Macchiato,Pastries,1,93.97,93.97
+2025-06-25,Glazed Donut,Pastries,5,148.75,743.75
+2025-11-18,Hot Chocolate,Pastries,3,131.53,394.59
+2025-01-19,Mocha,Pastries,2,61.74,123.48
+2025-04-14,Baguette,Pastries,4,133.77,535.08
+2025-01-13,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-01-10,Flat White,Pastries,2,113.21,226.42
+2025-04-16,Latte,Pastries,3,108.74,326.22
+2025-06-04,Mocha,Pastries,4,61.74,246.96
+2025-09-19,Iced Mocha,Pastries,4,144.00,576.00
+2025-04-28,Macchiato,Pastries,4,93.97,375.88
+2024-12-01,Almond Croissant,Pastries,2,8.42,16.84
+2025-05-06,Tea,Beverages,4,106.18,424.72
+2024-12-08,Mocha,Pastries,1,61.74,61.74
+2025-03-17,Apple Turnover,Pastries,1,154.54,154.54
+2025-04-05,Latte,Pastries,3,108.74,326.22
+2025-11-26,Almonds Croissant,Pastries,1,179.86,179.86
+2025-10-02,Apple Turnover,Pastries,3,154.54,463.62
+2025-02-19,Cappuccino,Pastries,1,76.25,76.25
+2025-07-17,Baguette,Pastries,1,133.77,133.77
+2024-11-27,Eclair,Pastries,3,146.12,438.36
+2025-09-26,Latte,Pastries,4,108.74,434.96
+2025-06-06,Chai Latte,Pastries,4,100.50,402.00
+2025-01-27,Latte,Pastries,3,108.74,326.22
+2025-04-26,Flat White,Pastries,3,113.21,339.63
+2025-07-10,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-04-18,Flat White,Pastries,4,113.21,452.84
+2025-08-11,Tiramisu,Pastries,3,196.55,589.65
+2025-01-24,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-07-15,Apple Turnover,Pastries,5,154.54,772.70
+2025-10-13,Iced Mocha,Pastries,3,144.00,432.00
+2025-01-17,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-09-12,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-11-19,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-09-25,Almond Croissant,Pastries,5,8.42,42.10
+2025-07-17,Almonds,Pastries,4,5.59,22.36
+2025-05-22,Tiramisu,Pastries,5,196.55,982.75
+2025-02-14,Baguette,Pastries,3,133.77,401.31
+2025-04-26,Tiramisu,Pastries,4,196.55,786.20
+2024-12-08,Baguette,Pastries,1,133.77,133.77
+2025-09-26,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-09-19,Mocha,Pastries,2,61.74,123.48
+2025-02-07,Tea,Beverages,4,106.18,424.72
+2024-11-25,Espresso,Pastries,4,195.76,783.04
+2025-03-08,Latte,Pastries,4,108.74,434.96
+2025-11-15,Iced Mocha,Pastries,2,144.00,288.00
+2025-02-09,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-08-13,Latte,Pastries,4,108.74,434.96
+2025-07-20,Espresso,Pastries,3,195.76,587.28
+2024-12-01,Baguette,Pastries,1,133.77,133.77
+2025-11-07,Tiramisu,Pastries,5,196.55,982.75
+2025-08-06,Cappuccino,Pastries,1,76.25,76.25
+2025-09-21,Macchiato,Pastries,2,93.97,187.94
+2025-05-19,Iced Mocha,Pastries,3,144.00,432.00
+2025-05-08,Chai Latte,Pastries,4,100.50,402.00
+2025-09-14,Baguette,Pastries,2,133.77,267.54
+2025-06-07,Americano,Pastries,3,80.96,242.88
+2025-10-21,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-07-27,Baguette,Pastries,3,133.77,401.31
+2025-10-11,Hot Chocolate,Pastries,3,131.53,394.59
+2025-08-09,Cappuccino,Pastries,1,76.25,76.25
+2024-11-29,Latte,Pastries,1,108.74,108.74
+2025-10-03,Baguette,Pastries,5,133.77,668.85
+2025-07-16,Macchiato,Pastries,1,93.97,93.97
+2025-07-04,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-05-25,Flat White,Pastries,4,113.21,452.84
+2025-05-02,Flat White,Pastries,3,113.21,339.63
+2025-03-05,Apple Turnover,Pastries,2,154.54,309.08
+2025-02-23,Almonds,Pastries,3,5.59,16.77
+2025-04-29,Glazed Donut,Pastries,4,148.75,595.00
+2025-05-28,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-02-27,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-08-11,Red Velvet Cake,Pastries,4,187.25,749.00
+2025-03-15,Glazed Donut,Pastries,4,148.75,595.00
+2025-07-22,Tiramisu,Pastries,3,196.55,589.65
+2024-12-01,Baguette,Pastries,4,133.77,535.08
+2025-09-03,Chai Latte,Pastries,2,100.50,201.00
+2025-06-13,Macchiato,Pastries,3,93.97,281.91
+2024-11-25,Espresso,Pastries,5,195.76,978.80
+2025-03-12,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2025-04-26,Espresso,Pastries,2,195.76,391.52
+2025-09-05,Cappuccino,Pastries,1,76.25,76.25
+2025-11-14,Mocha,Pastries,5,61.74,308.70
+2025-01-02,Americano,Pastries,1,80.96,80.96
+2024-11-28,Apple Turnover,Pastries,2,154.54,309.08
+2025-11-08,Apple Turnover,Pastries,2,154.54,309.08
+2025-06-17,Hot Chocolate,Pastries,3,131.53,394.59
+2024-12-25,Tea,Beverages,1,106.18,106.18
+2025-04-11,Almonds,Pastries,3,5.59,16.77
+2025-08-09,Almond Croissant,Pastries,3,8.42,25.26
+2025-04-08,Hot Chocolate,Pastries,3,131.53,394.59
+2025-06-24,Flat White,Pastries,1,113.21,113.21
+2025-03-27,Cappuccino,Pastries,2,76.25,152.50
+2025-04-11,Mocha,Pastries,4,61.74,246.96
+2025-05-20,Apple Turnover,Pastries,4,154.54,618.16
+2025-03-20,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-09-15,Hot Chocolate,Pastries,4,131.53,526.12
+2025-09-13,Red Velvet Cake,Pastries,4,187.25,749.00
+2025-06-30,Iced Coffee,Beverages,5,107.80,539.00
+2025-03-02,Blueberry Muffin,Pastries,3,185.15,555.45
+2024-12-27,Eclair,Pastries,3,146.12,438.36
+2025-08-04,Eclair,Pastries,1,146.12,146.12
+2025-01-16,Iced Coffee,Beverages,2,107.80,215.60
+2025-01-19,Tea,Beverages,1,106.18,106.18
+2025-04-20,Tiramisu,Pastries,3,196.55,589.65
+2025-06-12,Tiramisu,Pastries,3,196.55,589.65
+2025-09-28,Iced Coffee,Beverages,4,107.80,431.20
+2025-11-06,Tea,Beverages,5,106.18,530.90
+2025-11-19,Americano,Pastries,4,80.96,323.84
+2025-11-10,Americano,Pastries,2,80.96,161.92
+2025-03-25,Latte,Pastries,2,108.74,217.48
+2025-02-09,Cappuccino,Pastries,5,76.25,381.25
+2025-03-23,Chai Latte,Pastries,5,100.50,502.50
+2025-06-26,Cappuccino,Pastries,4,76.25,305.00
+2025-08-15,Tea,Beverages,5,106.18,530.90
+2024-11-26,Eclair,Pastries,3,146.12,438.36
+2025-03-22,Almond Croissant,Pastries,5,8.42,42.10
+2025-01-27,Chai Latte,Pastries,3,100.50,301.50
+2025-03-30,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-08-03,Latte,Pastries,2,108.74,217.48
+2025-03-17,Espresso,Pastries,3,195.76,587.28
+2025-02-07,Almonds,Pastries,4,5.59,22.36
+2025-04-01,Glazed Donut,Pastries,4,148.75,595.00
+2025-11-16,Macchiato,Pastries,5,93.97,469.85
+2025-10-27,Hot Chocolate,Pastries,4,131.53,526.12
+2025-04-08,Cappuccino,Pastries,5,76.25,381.25
+2024-12-03,Espresso,Pastries,2,195.76,391.52
+2024-12-22,Cappuccino,Pastries,2,76.25,152.50
+2025-05-09,Espresso,Pastries,1,195.76,195.76
+2025-01-17,Almonds,Pastries,1,5.59,5.59
+2025-08-29,Apple Turnover,Pastries,1,154.54,154.54
+2025-10-11,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-04-29,Mocha,Pastries,1,61.74,61.74
+2025-10-20,Latte,Pastries,2,108.74,217.48
+2025-02-17,Iced Coffee,Beverages,3,107.80,323.40
+2025-08-08,Flat White,Pastries,3,113.21,339.63
+2025-07-20,Tiramisu,Pastries,5,196.55,982.75
+2025-09-20,Espresso,Pastries,1,195.76,195.76
+2025-01-26,Apple Turnover,Pastries,4,154.54,618.16
+2025-07-25,Hot Chocolate,Pastries,3,131.53,394.59
+2025-08-15,Iced Coffee,Beverages,1,107.80,107.80
+2025-09-23,Cappuccino,Pastries,2,76.25,152.50
+2025-11-08,Flat White,Pastries,2,113.21,226.42
+2025-04-12,Chai Latte,Pastries,4,100.50,402.00
+2025-07-28,Tea,Beverages,3,106.18,318.54
+2025-04-09,Macchiato,Pastries,4,93.97,375.88
+2025-11-03,Cappuccino,Pastries,1,76.25,76.25
+2025-08-25,Eclair,Pastries,4,146.12,584.48
+2025-10-24,Iced Mocha,Pastries,5,144.00,720.00
+2024-11-25,Apple Turnover,Pastries,1,154.54,154.54
+2025-05-13,Americano,Pastries,2,80.96,161.92
+2025-06-21,Latte,Pastries,3,108.74,326.22
+2025-10-03,Tiramisu,Pastries,1,196.55,196.55
+2025-05-02,Hot Chocolate,Pastries,1,131.53,131.53
+2025-10-09,Apple Turnover,Pastries,2,154.54,309.08
+2025-10-09,Tiramisu,Pastries,2,196.55,393.10
+2025-05-22,Chai Latte,Pastries,1,100.50,100.50
+2025-11-15,Mocha,Pastries,1,61.74,61.74
+2025-01-30,Tea,Beverages,4,106.18,424.72
+2025-04-09,Baguette,Pastries,5,133.77,668.85
+2024-12-16,Cappuccino,Pastries,5,76.25,381.25
+2025-06-22,Espresso,Pastries,2,195.76,391.52
+2025-05-13,Iced Coffee,Beverages,3,107.80,323.40
+2025-11-26,Almonds Croissant,Pastries,1,179.86,179.86
+2025-10-27,Latte,Pastries,3,108.74,326.22
+2025-05-09,Apple Turnover,Pastries,4,154.54,618.16
+2025-05-29,Cappuccino,Pastries,2,76.25,152.50
+2025-09-30,Baguette,Pastries,1,133.77,133.77
+2025-08-28,Macchiato,Pastries,4,93.97,375.88
+2025-03-18,Almond Croissant,Pastries,1,8.42,8.42
+2025-01-10,Tiramisu,Pastries,4,196.55,786.20
+2025-02-28,Glazed Donut,Pastries,2,148.75,297.50
+2025-03-07,Baguette,Pastries,2,133.77,267.54
+2025-06-01,Tiramisu,Pastries,4,196.55,786.20
+2025-04-13,Tiramisu,Pastries,1,196.55,196.55
+2025-10-08,Almond Croissant,Pastries,1,8.42,8.42
+2025-08-24,Almond Croissant,Pastries,2,8.42,16.84
+2025-11-04,Macchiato,Pastries,2,93.97,187.94
+2025-05-31,Americano,Pastries,2,80.96,161.92
+2025-08-30,Tiramisu,Pastries,4,196.55,786.20
+2025-04-24,Glazed Donut,Pastries,4,148.75,595.00
+2025-01-15,Espresso,Pastries,1,195.76,195.76
+2025-06-16,Iced Mocha,Pastries,3,144.00,432.00
+2025-01-31,Flat White,Pastries,4,113.21,452.84
+2025-09-17,Hot Chocolate,Pastries,3,131.53,394.59
+2025-09-21,Eclair,Pastries,4,146.12,584.48
+2025-07-29,Flat White,Pastries,1,113.21,113.21
+2025-07-16,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-05-13,Almond Croissant,Pastries,3,8.42,25.26
+2025-05-22,Hot Chocolate,Pastries,3,131.53,394.59
+2025-01-20,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-11-26,Almonds Croissant,Pastries,1,179.86,179.86
+2025-02-12,Macchiato,Pastries,5,93.97,469.85
+2025-08-24,Eclair,Pastries,5,146.12,730.60
+2025-05-18,Baguette,Pastries,5,133.77,668.85
+2025-07-07,Latte,Pastries,3,108.74,326.22
+2025-06-10,Iced Mocha,Pastries,3,144.00,432.00
+2025-01-08,Cappuccino,Pastries,3,76.25,228.75
+2025-03-03,Espresso,Pastries,3,195.76,587.28
+2025-10-13,Chai Latte,Pastries,5,100.50,502.50
+2025-03-20,Iced Mocha,Pastries,1,144.00,144.00
+2025-05-13,Almonds,Pastries,5,5.59,27.95
+2025-07-27,Iced Mocha,Pastries,3,144.00,432.00
+2025-04-03,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-03-02,Apple Turnover,Pastries,2,154.54,309.08
+2025-10-24,Almonds,Pastries,4,5.59,22.36
+2025-01-06,Espresso,Pastries,2,195.76,391.52
+2024-11-30,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-10-12,Latte,Pastries,2,108.74,217.48
+2025-03-31,Latte,Pastries,2,108.74,217.48
+2025-05-09,Hot Chocolate,Pastries,3,131.53,394.59
+2025-08-26,Latte,Pastries,3,108.74,326.22
+2025-09-24,Almond Croissant,Pastries,1,8.42,8.42
+2025-07-31,Macchiato,Pastries,2,93.97,187.94
+2025-07-30,Tea,Beverages,4,106.18,424.72
+2025-01-17,Baguette,Pastries,3,133.77,401.31
+2025-05-16,Baguette,Pastries,1,133.77,133.77
+2025-04-14,Iced Mocha,Pastries,1,144.00,144.00
+2025-08-28,Macchiato,Pastries,1,93.97,93.97
+2024-12-23,Mocha,Pastries,2,61.74,123.48
+2024-12-10,Chai Latte,Pastries,4,100.50,402.00
+2025-01-02,Almond Croissant,Pastries,2,8.42,16.84
+2025-05-18,Macchiato,Pastries,3,93.97,281.91
+2025-10-29,Tea,Beverages,1,106.18,106.18
+2025-06-10,Chai Latte,Pastries,4,100.50,402.00
+2025-05-19,Almonds,Pastries,2,5.59,11.18
+2024-12-04,Almond Croissant,Pastries,3,8.42,25.26
+2025-11-23,Iced Mocha,Pastries,3,144.00,432.00
+2025-03-31,Apple Turnover,Pastries,3,154.54,463.62
+2025-11-26,Americano,Beverages,1,80.96,80.96
+2025-01-31,Hot Chocolate,Pastries,3,131.53,394.59
+2024-12-30,Tea,Beverages,4,106.18,424.72
+2024-12-27,Tiramisu,Pastries,5,196.55,982.75
+2025-04-14,Almond Croissant,Pastries,5,8.42,42.10
+2025-03-06,Eclair,Pastries,2,146.12,292.24
+2025-06-13,Iced Coffee,Beverages,5,107.80,539.00
+2025-01-26,Baguette,Pastries,5,133.77,668.85
+2025-07-26,Macchiato,Pastries,1,93.97,93.97
+2025-08-20,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-09-24,Macchiato,Pastries,1,93.97,93.97
+2025-05-04,Iced Mocha,Pastries,3,144.00,432.00
+2024-11-28,Mocha,Pastries,5,61.74,308.70
+2025-01-13,Baguette,Pastries,3,133.77,401.31
+2025-04-12,Cappuccino,Pastries,4,76.25,305.00
+2025-11-17,Macchiato,Pastries,5,93.97,469.85
+2025-05-09,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-03-26,Baguette,Pastries,4,133.77,535.08
+2025-10-05,Macchiato,Pastries,2,93.97,187.94
+2025-04-25,Eclair,Pastries,5,146.12,730.60
+2025-02-18,Flat White,Pastries,1,113.21,113.21
+2025-04-20,Iced Coffee,Beverages,4,107.80,431.20
+2025-01-13,Tiramisu,Pastries,5,196.55,982.75
+2025-06-23,Iced Coffee,Beverages,4,107.80,431.20
+2025-07-15,Baguette,Pastries,5,133.77,668.85
+2024-12-15,Tiramisu,Pastries,5,196.55,982.75
+2025-02-23,Latte,Pastries,3,108.74,326.22
+2025-08-05,Almonds,Pastries,1,5.59,5.59
+2025-09-12,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2025-08-28,Macchiato,Pastries,2,93.97,187.94
+2025-09-04,Iced Coffee,Beverages,4,107.80,431.20
+2025-07-09,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-04-01,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-05-02,Americano,Pastries,1,80.96,80.96
+2025-11-26,Almonds Croissant,Pastries,1,179.86,179.86
+2025-07-14,Iced Coffee,Beverages,3,107.80,323.40
+2025-03-30,Red Velvet Cake,Pastries,2,187.25,374.50
+2025-02-08,Chai Latte,Pastries,2,100.50,201.00
+2025-04-21,Cappuccino,Pastries,4,76.25,305.00
+2024-11-26,Iced Mocha,Pastries,5,144.00,720.00
+2025-06-11,Mocha,Pastries,5,61.74,308.70
+2025-11-15,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2025-07-14,Tiramisu,Pastries,5,196.55,982.75
+2025-10-28,Almond Croissant,Pastries,5,8.42,42.10
+2025-09-12,Cappuccino,Pastries,2,76.25,152.50
+2025-02-07,Iced Coffee,Beverages,1,107.80,107.80
+2025-06-06,Eclair,Pastries,5,146.12,730.60
+2025-11-18,Hot Chocolate,Pastries,2,131.53,263.06
+2025-08-05,Americano,Pastries,3,80.96,242.88
+2025-02-11,Mocha,Pastries,3,61.74,185.22
+2025-03-17,Iced Mocha,Pastries,3,144.00,432.00
+2025-03-09,Iced Mocha,Pastries,1,144.00,144.00
+2025-07-22,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2025-01-25,Tiramisu,Pastries,3,196.55,589.65
+2025-08-30,Iced Coffee,Beverages,2,107.80,215.60
+2025-08-06,Cappuccino,Pastries,2,76.25,152.50
+2025-10-22,Almond Croissant,Pastries,4,8.42,33.68
+2024-11-26,Glazed Donut,Pastries,4,148.75,595.00
+2025-01-09,Mocha,Pastries,2,61.74,123.48
+2025-07-30,Espresso,Pastries,4,195.76,783.04
+2025-10-30,Macchiato,Pastries,2,93.97,187.94
+2025-07-03,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-04-27,Eclair,Pastries,4,146.12,584.48
+2025-01-17,Macchiato,Pastries,1,93.97,93.97
+2025-04-01,Cappuccino,Pastries,1,76.25,76.25
+2025-10-14,Hot Chocolate,Pastries,1,131.53,131.53
+2025-02-07,Flat White,Pastries,2,113.21,226.42
+2025-11-08,Baguette,Pastries,4,133.77,535.08
+2024-12-30,Tea,Beverages,2,106.18,212.36
+2024-12-24,Americano,Pastries,4,80.96,323.84
+2025-08-20,Iced Coffee,Beverages,2,107.80,215.60
+2025-03-10,Apple Turnover,Pastries,3,154.54,463.62
+2025-07-12,Tea,Beverages,3,106.18,318.54
+2025-01-08,Almond Croissant,Pastries,5,8.42,42.10
+2025-05-08,Eclair,Pastries,3,146.12,438.36
+2025-04-16,Cappuccino,Pastries,3,76.25,228.75
+2025-02-18,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-05-27,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-11-06,Macchiato,Pastries,4,93.97,375.88
+2025-05-23,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-01-12,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2025-07-01,Mocha,Pastries,1,61.74,61.74
+2025-03-03,Latte,Pastries,3,108.74,326.22
+2025-04-07,Red Velvet Cake,Pastries,5,187.25,936.25
+2024-12-24,Apple Turnover,Pastries,1,154.54,154.54
+2025-06-08,Americano,Pastries,3,80.96,242.88
+2025-03-30,Cappuccino,Pastries,3,76.25,228.75
+2024-12-11,Cappuccino,Pastries,3,76.25,228.75
+2025-05-27,Tea,Beverages,4,106.18,424.72
+2025-11-16,Iced Mocha,Pastries,2,144.00,288.00
+2025-07-23,Flat White,Pastries,4,113.21,452.84
+2025-03-30,Tiramisu,Pastries,3,196.55,589.65
+2025-05-30,Apple Turnover,Pastries,1,154.54,154.54
+2025-07-13,Americano,Pastries,1,80.96,80.96
+2025-02-28,Americano,Pastries,2,80.96,161.92
+2025-08-15,Eclair,Pastries,3,146.12,438.36
+2025-06-28,Flat White,Pastries,3,113.21,339.63
+2025-02-17,Macchiato,Pastries,4,93.97,375.88
+2025-09-29,Almond Croissant,Pastries,5,8.42,42.10
+2025-01-12,Latte,Pastries,4,108.74,434.96
+2025-10-30,Hot Chocolate,Pastries,2,131.53,263.06
+2025-05-02,Macchiato,Pastries,4,93.97,375.88
+2025-06-22,Macchiato,Pastries,4,93.97,375.88
+2024-12-07,Baguette,Pastries,5,133.77,668.85
+2025-09-24,Hot Chocolate,Pastries,2,131.53,263.06
+2025-05-26,Glazed Donut,Pastries,3,148.75,446.25
+2025-02-17,Latte,Pastries,2,108.74,217.48
+2025-10-20,Cappuccino,Pastries,5,76.25,381.25
+2025-07-26,Cappuccino,Pastries,2,76.25,152.50
+2025-04-22,Glazed Donut,Pastries,1,148.75,148.75
+2025-04-18,Almonds,Pastries,4,5.59,22.36
+2025-06-14,Glazed Donut,Pastries,1,148.75,148.75
+2025-03-27,Espresso,Pastries,2,195.76,391.52
+2025-04-23,Hot Chocolate,Pastries,3,131.53,394.59
+2025-03-29,Latte,Pastries,5,108.74,543.70
+2025-01-25,Tea,Beverages,5,106.18,530.90
+2025-04-11,Cappuccino,Pastries,5,76.25,381.25
+2025-07-18,Espresso,Pastries,4,195.76,783.04
+2025-10-08,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-01-03,Iced Mocha,Pastries,1,144.00,144.00
+2025-11-23,Baguette,Pastries,3,133.77,401.31
+2025-06-22,Latte,Pastries,5,108.74,543.70
+2025-09-24,Apple Turnover,Pastries,3,154.54,463.62
+2025-08-04,Eclair,Pastries,1,146.12,146.12
+2025-08-08,Iced Mocha,Pastries,3,144.00,432.00
+2025-03-23,Red Velvet Cake,Pastries,2,187.25,374.50
+2024-12-27,Macchiato,Pastries,5,93.97,469.85
+2025-05-30,Mocha,Pastries,3,61.74,185.22
+2025-08-10,Macchiato,Pastries,3,93.97,281.91
+2025-06-23,Flat White,Pastries,4,113.21,452.84
+2025-02-18,Tiramisu,Pastries,4,196.55,786.20
+2025-04-18,Cappuccino,Pastries,1,76.25,76.25
+2024-11-29,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2025-04-16,Tea,Beverages,1,106.18,106.18
+2025-06-28,Glazed Donut,Pastries,4,148.75,595.00
+2025-04-16,Latte,Pastries,1,108.74,108.74
+2025-04-16,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-02-20,Cappuccino,Pastries,2,76.25,152.50
+2025-04-03,Hot Chocolate,Pastries,2,131.53,263.06
+2025-02-01,Espresso,Pastries,4,195.76,783.04
+2024-12-21,Americano,Pastries,3,80.96,242.88
+2025-02-22,Tiramisu,Pastries,4,196.55,786.20
+2025-01-04,Hot Chocolate,Pastries,4,131.53,526.12
+2025-04-21,Latte,Pastries,5,108.74,543.70
+2025-06-20,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-10-15,Eclair,Pastries,3,146.12,438.36
+2025-11-13,Hot Chocolate,Pastries,1,131.53,131.53
+2025-07-11,Almond Croissant,Pastries,4,8.42,33.68
+2025-04-19,Red Velvet Cake,Pastries,1,187.25,187.25
+2024-12-04,Tiramisu,Pastries,5,196.55,982.75
+2025-11-26,Apple Turnover,Pastries,1,154.54,154.54
+2025-10-04,Espresso,Pastries,1,195.76,195.76
+2025-05-15,Hot Chocolate,Pastries,3,131.53,394.59
+2024-11-26,Iced Mocha,Pastries,5,144.00,720.00
+2025-11-23,Chai Latte,Pastries,5,100.50,502.50
+2024-12-10,Americano,Pastries,1,80.96,80.96
+2025-07-24,Latte,Pastries,1,108.74,108.74
+2025-02-16,Chai Latte,Pastries,1,100.50,100.50
+2025-04-17,Iced Coffee,Beverages,1,107.80,107.80
+2025-02-24,Apple Turnover,Pastries,2,154.54,309.08
+2025-11-23,Flat White,Pastries,3,113.21,339.63
+2025-02-12,Hot Chocolate,Pastries,4,131.53,526.12
+2025-08-01,Tiramisu,Pastries,1,196.55,196.55
+2025-10-22,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-05-07,Tea,Beverages,4,106.18,424.72
+2025-03-05,Cappuccino,Pastries,1,76.25,76.25
+2025-05-07,Baguette,Pastries,2,133.77,267.54
+2025-04-27,Almond Croissant,Pastries,5,8.42,42.10
+2025-10-03,Iced Coffee,Beverages,5,107.80,539.00
+2025-05-11,Macchiato,Pastries,3,93.97,281.91
+2025-07-08,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-06-12,Apple Turnover,Pastries,1,154.54,154.54
+2025-04-25,Iced Mocha,Pastries,1,144.00,144.00
+2025-11-01,Iced Coffee,Beverages,1,107.80,107.80
+2024-11-25,Americano,Pastries,2,80.96,161.92
+2025-08-15,Americano,Pastries,3,80.96,242.88
+2025-09-22,Baguette,Pastries,5,133.77,668.85
+2025-07-22,Macchiato,Pastries,5,93.97,469.85
+2024-12-08,Cappuccino,Pastries,5,76.25,381.25
+2025-11-08,Chai Latte,Pastries,5,100.50,502.50
+2025-09-12,Apple Turnover,Pastries,5,154.54,772.70
+2025-07-17,Eclair,Pastries,1,146.12,146.12
+2025-09-22,Espresso,Pastries,2,195.76,391.52
+2024-12-12,Apple Turnover,Pastries,1,154.54,154.54
+2025-11-18,Apple Turnover,Pastries,3,154.54,463.62
+2025-07-17,Tiramisu,Pastries,5,196.55,982.75
+2025-07-28,Tea,Beverages,3,106.18,318.54
+2025-08-30,Americano,Pastries,3,80.96,242.88
+2025-10-22,Americano,Pastries,4,80.96,323.84
+2025-02-13,Glazed Donut,Pastries,2,148.75,297.50
+2025-09-28,Cappuccino,Pastries,2,76.25,152.50
+2025-04-26,Flat White,Pastries,2,113.21,226.42
+2025-03-20,Cappuccino,Pastries,4,76.25,305.00
+2025-02-06,Mocha,Pastries,3,61.74,185.22
+2025-07-26,Eclair,Pastries,1,146.12,146.12
+2025-03-13,Latte,Pastries,1,108.74,108.74
+2025-05-14,Iced Mocha,Pastries,2,144.00,288.00
+2025-08-23,Iced Mocha,Pastries,1,144.00,144.00
+2025-07-15,Almonds,Pastries,3,5.59,16.77
+2025-07-23,Apple Turnover,Pastries,2,154.54,309.08
+2025-11-20,Mocha,Pastries,3,61.74,185.22
+2025-05-29,Almonds,Pastries,2,5.59,11.18
+2025-01-14,Hot Chocolate,Pastries,3,131.53,394.59
+2025-03-09,Almonds,Pastries,3,5.59,16.77
+2025-02-11,Apple Turnover,Pastries,2,154.54,309.08
+2025-10-21,Tea,Beverages,3,106.18,318.54
+2025-12-16,Americano,Beverages,1,80.96,80.96
+2025-05-21,Americano,Pastries,3,80.96,242.88
+2025-11-15,Latte,Pastries,3,108.74,326.22
+2025-07-17,Macchiato,Pastries,4,93.97,375.88
+2024-12-27,Baguette,Pastries,1,133.77,133.77
+2025-01-02,Latte,Pastries,5,108.74,543.70
+2025-10-21,Tea,Beverages,1,106.18,106.18
+2025-07-27,Iced Mocha,Pastries,4,144.00,576.00
+2025-10-20,Cappuccino,Pastries,2,76.25,152.50
+2025-07-13,Macchiato,Pastries,2,93.97,187.94
+2025-03-27,Tea,Beverages,5,106.18,530.90
+2025-04-01,Hot Chocolate,Pastries,5,131.53,657.65
+2025-07-09,Espresso,Pastries,1,195.76,195.76
+2025-11-01,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-04-16,Red Velvet Cake,Pastries,2,187.25,374.50
+2025-06-06,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-02-10,Macchiato,Pastries,2,93.97,187.94
+2025-07-16,Tea,Beverages,3,106.18,318.54
+2025-04-16,Macchiato,Pastries,5,93.97,469.85
+2025-01-25,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-09-29,Espresso,Pastries,4,195.76,783.04
+2025-08-23,Mocha,Pastries,3,61.74,185.22
+2025-08-02,Tea,Beverages,3,106.18,318.54
+2024-12-04,Americano,Pastries,5,80.96,404.80
+2025-04-03,Macchiato,Pastries,5,93.97,469.85
+2025-06-03,Hot Chocolate,Pastries,5,131.53,657.65
+2024-12-16,Glazed Donut,Pastries,1,148.75,148.75
+2025-01-10,Iced Mocha,Pastries,4,144.00,576.00
+2025-02-09,Almond Croissant,Pastries,5,8.42,42.10
+2025-06-06,Tiramisu,Pastries,2,196.55,393.10
+2025-08-08,Tiramisu,Pastries,3,196.55,589.65
+2025-04-19,Hot Chocolate,Pastries,1,131.53,131.53
+2025-04-28,Macchiato,Pastries,3,93.97,281.91
+2025-05-06,Flat White,Pastries,5,113.21,566.05
+2025-03-26,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-02-02,Iced Mocha,Pastries,3,144.00,432.00
+2025-08-19,Iced Mocha,Pastries,4,144.00,576.00
+2025-02-23,Tiramisu,Pastries,4,196.55,786.20
+2025-08-23,Tiramisu,Pastries,4,196.55,786.20
+2025-10-12,Eclair,Pastries,4,146.12,584.48
+2025-09-14,Macchiato,Pastries,4,93.97,375.88
+2025-02-28,Macchiato,Pastries,5,93.97,469.85
+2025-01-06,Almonds,Pastries,2,5.59,11.18
+2025-02-02,Glazed Donut,Pastries,2,148.75,297.50
+2025-07-28,Flat White,Pastries,1,113.21,113.21
+2025-01-28,Tea,Beverages,4,106.18,424.72
+2025-04-25,Eclair,Pastries,2,146.12,292.24
+2025-10-26,Glazed Donut,Pastries,5,148.75,743.75
+2025-07-23,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-03-15,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2024-12-31,Flat White,Pastries,3,113.21,339.63
+2025-05-27,Mocha,Pastries,1,61.74,61.74
+2025-09-09,Mocha,Pastries,5,61.74,308.70
+2025-04-06,Latte,Pastries,1,108.74,108.74
+2025-01-22,Glazed Donut,Pastries,5,148.75,743.75
+2025-10-07,Cappuccino,Pastries,4,76.25,305.00
+2025-01-19,Iced Coffee,Beverages,4,107.80,431.20
+2025-07-01,Tiramisu,Pastries,3,196.55,589.65
+2025-10-30,Almonds,Pastries,1,5.59,5.59
+2025-02-20,Almonds,Pastries,1,5.59,5.59
+2025-07-24,Eclair,Pastries,5,146.12,730.60
+2025-03-30,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-02-28,Almond Croissant,Pastries,2,8.42,16.84
+2025-07-16,Chai Latte,Pastries,1,100.50,100.50
+2025-03-23,Almonds,Pastries,3,5.59,16.77
+2025-05-13,Latte,Pastries,3,108.74,326.22
+2025-02-04,Red Velvet Cake,Pastries,4,187.25,749.00
+2025-04-02,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-02-09,Cappuccino,Pastries,5,76.25,381.25
+2025-10-20,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-04-30,Iced Coffee,Beverages,1,107.80,107.80
+2025-07-21,Espresso,Pastries,5,195.76,978.80
+2025-05-01,Macchiato,Pastries,2,93.97,187.94
+2025-02-28,Macchiato,Pastries,1,93.97,93.97
+2025-03-19,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-03-10,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-08-29,Tea,Beverages,4,106.18,424.72
+2025-02-23,Iced Coffee,Beverages,4,107.80,431.20
+2025-04-17,Red Velvet Cake,Pastries,5,187.25,936.25
+2024-12-13,Latte,Pastries,3,108.74,326.22
+2024-12-05,Americano,Pastries,4,80.96,323.84
+2025-07-18,Espresso,Pastries,1,195.76,195.76
+2024-12-19,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-04-18,Iced Mocha,Pastries,1,144.00,144.00
+2025-05-12,Eclair,Pastries,5,146.12,730.60
+2025-03-01,Iced Coffee,Beverages,5,107.80,539.00
+2025-04-19,Apple Turnover,Pastries,3,154.54,463.62
+2024-12-20,Hot Chocolate,Pastries,2,131.53,263.06
+2025-08-02,Americano,Pastries,5,80.96,404.80
+2025-05-15,Iced Mocha,Pastries,3,144.00,432.00
+2025-02-09,Macchiato,Pastries,2,93.97,187.94
+2025-04-19,Iced Coffee,Beverages,3,107.80,323.40
+2025-01-03,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-08-25,Almond Croissant,Pastries,5,8.42,42.10
+2025-05-13,Almonds,Pastries,1,5.59,5.59
+2025-01-13,Cappuccino,Pastries,4,76.25,305.00
+2024-11-24,Hot Chocolate,Pastries,1,131.53,131.53
+2024-11-30,Eclair,Pastries,3,146.12,438.36
+2025-02-06,Latte,Pastries,2,108.74,217.48
+2025-10-13,Hot Chocolate,Pastries,4,131.53,526.12
+2025-01-14,Iced Coffee,Beverages,5,107.80,539.00
+2025-04-22,Apple Turnover,Pastries,2,154.54,309.08
+2025-08-21,Baguette,Pastries,4,133.77,535.08
+2025-10-22,Macchiato,Pastries,3,93.97,281.91
+2025-05-15,Flat White,Pastries,3,113.21,339.63
+2025-04-06,Chai Latte,Pastries,4,100.50,402.00
+2025-09-02,Eclair,Pastries,1,146.12,146.12
+2024-11-26,Hot Chocolate,Pastries,1,131.53,131.53
+2025-09-01,Americano,Pastries,1,80.96,80.96
+2025-10-02,Apple Turnover,Pastries,5,154.54,772.70
+2024-12-27,Chai Latte,Pastries,4,100.50,402.00
+2025-09-09,Almonds,Pastries,3,5.59,16.77
+2025-03-17,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-06-29,Almond Croissant,Pastries,2,8.42,16.84
+2025-11-21,Almonds,Pastries,3,5.59,16.77
+2025-08-24,Chai Latte,Pastries,4,100.50,402.00
+2024-12-27,Americano,Pastries,4,80.96,323.84
+2025-03-04,Americano,Pastries,5,80.96,404.80
+2025-05-28,Glazed Donut,Pastries,5,148.75,743.75
+2025-04-23,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-04-25,Apple Turnover,Pastries,1,154.54,154.54
+2025-10-08,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-10-26,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-10-17,Tiramisu,Pastries,1,196.55,196.55
+2025-03-05,Glazed Donut,Pastries,4,148.75,595.00
+2025-07-24,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-09-14,Mocha,Pastries,2,61.74,123.48
+2025-03-21,Baguette,Pastries,3,133.77,401.31
+2025-07-17,Apple Turnover,Pastries,4,154.54,618.16
+2025-09-15,Almond Croissant,Pastries,2,8.42,16.84
+2025-01-16,Apple Turnover,Pastries,4,154.54,618.16
+2025-01-10,Macchiato,Pastries,1,93.97,93.97
+2025-01-26,Baguette,Pastries,3,133.77,401.31
+2025-09-25,Hot Chocolate,Pastries,1,131.53,131.53
+2025-08-26,Almonds,Pastries,3,5.59,16.77
+2025-10-16,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2025-10-30,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-07-31,Tiramisu,Pastries,5,196.55,982.75
+2025-08-22,Tiramisu,Pastries,2,196.55,393.10
+2025-03-01,Chai Latte,Pastries,1,100.50,100.50
+2025-01-24,Apple Turnover,Pastries,2,154.54,309.08
+2025-08-30,Chai Latte,Pastries,4,100.50,402.00
+2025-05-31,Tea,Beverages,2,106.18,212.36
+2025-03-25,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2025-05-02,Latte,Pastries,3,108.74,326.22
+2025-06-05,Mocha,Pastries,5,61.74,308.70
+2025-01-28,Tea,Beverages,3,106.18,318.54
+2025-05-22,Iced Mocha,Pastries,2,144.00,288.00
+2025-03-28,Iced Coffee,Beverages,2,107.80,215.60
+2025-01-29,Latte,Pastries,5,108.74,543.70
+2025-07-23,Tiramisu,Pastries,2,196.55,393.10
+2025-02-11,Hot Chocolate,Pastries,2,131.53,263.06
+2025-01-27,Cappuccino,Pastries,4,76.25,305.00
+2025-10-31,Chai Latte,Pastries,4,100.50,402.00
+2025-09-13,Tea,Beverages,4,106.18,424.72
+2025-06-30,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2025-01-24,Almonds,Pastries,2,5.59,11.18
+2025-03-22,Apple Turnover,Pastries,2,154.54,309.08
+2025-06-28,Iced Mocha,Pastries,1,144.00,144.00
+2025-10-27,Blueberry Muffin,Pastries,3,185.15,555.45
+2024-11-30,Cappuccino,Pastries,3,76.25,228.75
+2025-07-19,Baguette,Pastries,4,133.77,535.08
+2025-04-26,Espresso,Pastries,3,195.76,587.28
+2025-03-21,Iced Mocha,Pastries,4,144.00,576.00
+2025-02-25,Tea,Beverages,2,106.18,212.36
+2025-09-14,Chai Latte,Pastries,2,100.50,201.00
+2025-10-07,Espresso,Pastries,5,195.76,978.80
+2025-05-04,Glazed Donut,Pastries,1,148.75,148.75
+2025-05-23,Latte,Pastries,4,108.74,434.96
+2025-05-15,Espresso,Pastries,3,195.76,587.28
+2025-03-02,Latte,Pastries,3,108.74,326.22
+2025-04-01,Flat White,Pastries,3,113.21,339.63
+2025-03-04,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-02-05,Tiramisu,Pastries,1,196.55,196.55
+2025-04-16,Glazed Donut,Pastries,3,148.75,446.25
+2025-11-05,Flat White,Pastries,2,113.21,226.42
+2025-07-29,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-01-09,Americano,Pastries,4,80.96,323.84
+2025-10-31,Macchiato,Pastries,4,93.97,375.88
+2025-07-10,Blueberry Muffin,Pastries,3,185.15,555.45
+2024-12-17,Almond Croissant,Pastries,3,8.42,25.26
+2025-05-13,Latte,Pastries,2,108.74,217.48
+2025-09-26,Tea,Beverages,2,106.18,212.36
+2025-03-27,Hot Chocolate,Pastries,1,131.53,131.53
+2024-12-31,Iced Coffee,Beverages,4,107.80,431.20
+2025-01-06,Mocha,Pastries,4,61.74,246.96
+2025-11-07,Almond Croissant,Pastries,2,8.42,16.84
+2025-01-29,Apple Turnover,Pastries,3,154.54,463.62
+2025-11-12,Chai Latte,Pastries,2,100.50,201.00
+2025-10-26,Flat White,Pastries,1,113.21,113.21
+2025-03-12,Glazed Donut,Pastries,4,148.75,595.00
+2025-06-07,Latte,Pastries,2,108.74,217.48
+2025-03-13,Tiramisu,Pastries,2,196.55,393.10
+2025-10-21,Hot Chocolate,Pastries,1,131.53,131.53
+2025-02-24,Apple Turnover,Pastries,5,154.54,772.70
+2025-08-20,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2025-01-14,Tea,Beverages,4,106.18,424.72
+2025-08-28,Hot Chocolate,Pastries,3,131.53,394.59
+2025-06-09,Tea,Beverages,5,106.18,530.90
+2025-04-15,Eclair,Pastries,5,146.12,730.60
+2025-01-18,Hot Chocolate,Pastries,3,131.53,394.59
+2025-02-08,Flat White,Pastries,4,113.21,452.84
+2024-12-23,Chai Latte,Pastries,4,100.50,402.00
+2025-09-08,Macchiato,Pastries,5,93.97,469.85
+2025-02-23,Tiramisu,Pastries,3,196.55,589.65
+2025-05-07,Cappuccino,Pastries,1,76.25,76.25
+2025-11-10,Iced Mocha,Pastries,3,144.00,432.00
+2025-02-15,Hot Chocolate,Pastries,3,131.53,394.59
+2025-10-17,Apple Turnover,Pastries,2,154.54,309.08
+2025-06-27,Almond Croissant,Pastries,3,8.42,25.26
+2025-05-22,Macchiato,Pastries,1,93.97,93.97
+2024-12-28,Glazed Donut,Pastries,2,148.75,297.50
+2025-01-12,Tiramisu,Pastries,4,196.55,786.20
+2025-08-07,Iced Mocha,Pastries,5,144.00,720.00
+2025-05-20,Almonds,Pastries,1,5.59,5.59
+2025-02-19,Red Velvet Cake,Pastries,4,187.25,749.00
+2025-04-11,Flat White,Pastries,5,113.21,566.05
+2024-12-30,Iced Mocha,Pastries,4,144.00,576.00
+2025-01-06,Almond Croissant,Pastries,3,8.42,25.26
+2025-02-17,Iced Mocha,Pastries,5,144.00,720.00
+2025-08-14,Latte,Pastries,1,108.74,108.74
+2025-02-03,Eclair,Pastries,5,146.12,730.60
+2025-06-28,Glazed Donut,Pastries,1,148.75,148.75
+2025-09-21,Flat White,Pastries,4,113.21,452.84
+2025-05-25,Mocha,Pastries,3,61.74,185.22
+2025-11-24,Cappuccino,Pastries,1,76.25,76.25
+2025-08-07,Eclair,Pastries,3,146.12,438.36
+2025-09-23,Macchiato,Pastries,4,93.97,375.88
+2025-11-11,Baguette,Pastries,3,133.77,401.31
+2025-09-13,Glazed Donut,Pastries,1,148.75,148.75
+2025-08-10,Almond Croissant,Pastries,4,8.42,33.68
+2024-12-10,Almonds,Pastries,3,5.59,16.77
+2025-05-24,Espresso,Pastries,5,195.76,978.80
+2025-06-06,Eclair,Pastries,2,146.12,292.24
+2025-09-20,Apple Turnover,Pastries,5,154.54,772.70
+2025-03-29,Iced Coffee,Beverages,1,107.80,107.80
+2025-06-15,Apple Turnover,Pastries,5,154.54,772.70
+2025-09-18,Eclair,Pastries,4,146.12,584.48
+2025-03-04,Baguette,Pastries,1,133.77,133.77
+2025-11-17,Almond Croissant,Pastries,4,8.42,33.68
+2025-04-26,Espresso,Pastries,1,195.76,195.76
+2025-09-15,Apple Turnover,Pastries,3,154.54,463.62
+2025-04-21,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2025-05-18,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-06-21,Almonds,Pastries,3,5.59,16.77
+2025-03-25,Baguette,Pastries,3,133.77,401.31
+2025-04-26,Hot Chocolate,Pastries,1,131.53,131.53
+2025-08-31,Iced Mocha,Pastries,4,144.00,576.00
+2025-08-08,Chai Latte,Pastries,5,100.50,502.50
+2025-01-31,Apple Turnover,Pastries,5,154.54,772.70
+2025-04-06,Hot Chocolate,Pastries,1,131.53,131.53
+2025-09-07,Almonds,Pastries,1,5.59,5.59
+2025-02-08,Baguette,Pastries,1,133.77,133.77
+2025-02-03,Almond Croissant,Pastries,3,8.42,25.26
+2024-12-09,Iced Coffee,Beverages,1,107.80,107.80
+2025-02-28,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-05-07,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-05-30,Hot Chocolate,Pastries,3,131.53,394.59
+2024-12-03,Chai Latte,Pastries,5,100.50,502.50
+2025-10-27,Cappuccino,Pastries,5,76.25,381.25
+2025-05-15,Cappuccino,Pastries,1,76.25,76.25
+2025-08-21,Almonds,Pastries,2,5.59,11.18
+2025-08-03,Apple Turnover,Pastries,1,154.54,154.54
+2025-10-01,Tiramisu,Pastries,4,196.55,786.20
+2025-02-17,Apple Turnover,Pastries,2,154.54,309.08
+2024-12-18,Almonds,Pastries,4,5.59,22.36
+2025-11-08,Hot Chocolate,Pastries,5,131.53,657.65
+2025-11-20,Iced Coffee,Beverages,4,107.80,431.20
+2024-12-30,Hot Chocolate,Pastries,2,131.53,263.06
+2025-05-21,Almonds,Pastries,5,5.59,27.95
+2025-07-07,Iced Mocha,Pastries,1,144.00,144.00
+2025-09-30,Apple Turnover,Pastries,1,154.54,154.54
+2024-12-03,Chai Latte,Pastries,2,100.50,201.00
+2025-08-15,Iced Coffee,Beverages,1,107.80,107.80
+2025-07-02,Macchiato,Pastries,2,93.97,187.94
+2025-07-31,Almond Croissant,Pastries,3,8.42,25.26
+2024-12-03,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-06-18,Hot Chocolate,Pastries,4,131.53,526.12
+2025-06-28,Hot Chocolate,Pastries,5,131.53,657.65
+2025-05-24,Hot Chocolate,Pastries,1,131.53,131.53
+2024-12-20,Apple Turnover,Pastries,1,154.54,154.54
+2025-08-23,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-10-26,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-01-25,Tiramisu,Pastries,2,196.55,393.10
+2025-08-29,Espresso,Pastries,1,195.76,195.76
+2025-11-23,Glazed Donut,Pastries,3,148.75,446.25
+2025-10-11,Flat White,Pastries,1,113.21,113.21
+2025-08-12,Almonds,Pastries,3,5.59,16.77
+2025-01-19,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-07-07,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-02-14,Almond Croissant,Pastries,5,8.42,42.10
+2025-04-07,Iced Mocha,Pastries,3,144.00,432.00
+2025-02-01,Baguette,Pastries,5,133.77,668.85
+2025-01-05,Americano,Pastries,5,80.96,404.80
+2025-03-30,Iced Coffee,Beverages,3,107.80,323.40
+2024-12-31,Mocha,Pastries,2,61.74,123.48
+2025-05-03,Iced Mocha,Pastries,2,144.00,288.00
+2025-05-12,Espresso,Pastries,1,195.76,195.76
+2025-06-14,Latte,Pastries,1,108.74,108.74
+2025-04-30,Eclair,Pastries,1,146.12,146.12
+2025-07-27,Almonds,Pastries,4,5.59,22.36
+2025-10-28,Espresso,Pastries,4,195.76,783.04
+2025-08-31,Iced Coffee,Beverages,2,107.80,215.60
+2025-09-09,Espresso,Pastries,3,195.76,587.28
+2025-06-14,Hot Chocolate,Pastries,3,131.53,394.59
+2024-11-26,Macchiato,Pastries,3,93.97,281.91
+2025-11-01,Flat White,Pastries,2,113.21,226.42
+2025-01-30,Baguette,Pastries,4,133.77,535.08
+2025-07-15,Glazed Donut,Pastries,3,148.75,446.25
+2024-11-27,Tea,Beverages,5,106.18,530.90
+2025-08-31,Almonds,Pastries,4,5.59,22.36
+2025-07-26,Chai Latte,Pastries,4,100.50,402.00
+2025-02-19,Eclair,Pastries,5,146.12,730.60
+2025-04-01,Tiramisu,Pastries,5,196.55,982.75
+2025-03-30,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-04-07,Iced Mocha,Pastries,1,144.00,144.00
+2025-07-15,Baguette,Pastries,5,133.77,668.85
+2025-07-27,Baguette,Pastries,3,133.77,401.31
+2025-10-18,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-02-09,Almonds,Pastries,5,5.59,27.95
+2025-03-08,Chai Latte,Pastries,2,100.50,201.00
+2025-08-01,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2025-08-01,Glazed Donut,Pastries,3,148.75,446.25
+2025-10-17,Mocha,Pastries,3,61.74,185.22
+2025-06-21,Apple Turnover,Pastries,3,154.54,463.62
+2025-04-19,Glazed Donut,Pastries,5,148.75,743.75
+2025-09-23,Flat White,Pastries,3,113.21,339.63
+2025-09-08,Tea,Beverages,4,106.18,424.72
+2025-06-05,Tea,Beverages,3,106.18,318.54
+2025-06-29,Macchiato,Pastries,4,93.97,375.88
+2025-04-26,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-08-16,Apple Turnover,Pastries,2,154.54,309.08
+2025-10-06,Chai Latte,Pastries,3,100.50,301.50
+2025-09-08,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-04-03,Espresso,Pastries,2,195.76,391.52
+2025-07-15,Mocha,Pastries,4,61.74,246.96
+2025-03-17,Latte,Pastries,2,108.74,217.48
+2025-01-15,Baguette,Pastries,1,133.77,133.77
+2025-01-12,Mocha,Pastries,3,61.74,185.22
+2025-04-24,Espresso,Pastries,5,195.76,978.80
+2025-09-06,Latte,Pastries,5,108.74,543.70
+2025-07-11,Red Velvet Cake,Pastries,4,187.25,749.00
+2025-01-22,Flat White,Pastries,2,113.21,226.42
+2025-07-18,Latte,Pastries,3,108.74,326.22
+2024-12-12,Iced Coffee,Beverages,5,107.80,539.00
+2025-06-24,Baguette,Pastries,5,133.77,668.85
+2025-10-06,Iced Coffee,Beverages,2,107.80,215.60
+2025-07-02,Red Velvet Cake,Pastries,2,187.25,374.50
+2025-02-07,Americano,Pastries,1,80.96,80.96
+2025-04-06,Americano,Pastries,2,80.96,161.92
+2025-04-26,Latte,Pastries,5,108.74,543.70
+2025-08-29,Baguette,Pastries,4,133.77,535.08
+2025-09-08,Glazed Donut,Pastries,5,148.75,743.75
+2025-06-10,Almond Croissant,Pastries,5,8.42,42.10
+2025-08-16,Apple Turnover,Pastries,4,154.54,618.16
+2025-06-22,Espresso,Pastries,2,195.76,391.52
+2025-09-15,Macchiato,Pastries,4,93.97,375.88
+2025-08-01,Americano,Pastries,3,80.96,242.88
+2024-12-06,Mocha,Pastries,4,61.74,246.96
+2025-11-02,Macchiato,Pastries,5,93.97,469.85
+2024-12-26,Iced Coffee,Beverages,5,107.80,539.00
+2025-08-15,Flat White,Pastries,2,113.21,226.42
+2025-10-10,Flat White,Pastries,3,113.21,339.63
+2025-03-19,Flat White,Pastries,4,113.21,452.84
+2025-11-17,Flat White,Pastries,1,113.21,113.21
+2025-05-30,Apple Turnover,Pastries,3,154.54,463.62
+2025-07-30,Cappuccino,Pastries,4,76.25,305.00
+2025-08-29,Iced Coffee,Beverages,4,107.80,431.20
+2025-07-14,Eclair,Pastries,4,146.12,584.48
+2024-12-09,Chai Latte,Pastries,4,100.50,402.00
+2025-03-08,Chai Latte,Pastries,3,100.50,301.50
+2025-01-18,Blueberry Muffin,Pastries,3,185.15,555.45
+2024-12-13,Apple Turnover,Pastries,1,154.54,154.54
+2025-11-09,Tea,Beverages,2,106.18,212.36
+2025-11-05,Espresso,Pastries,5,195.76,978.80
+2025-05-18,Baguette,Pastries,2,133.77,267.54
+2025-01-23,Tiramisu,Pastries,4,196.55,786.20
+2025-05-22,Apple Turnover,Pastries,1,154.54,154.54
+2024-12-10,Latte,Pastries,4,108.74,434.96
+2025-03-13,Chai Latte,Pastries,1,100.50,100.50
+2025-10-08,Latte,Pastries,4,108.74,434.96
+2025-10-28,Tiramisu,Pastries,5,196.55,982.75
+2025-07-03,Mocha,Pastries,4,61.74,246.96
+2025-07-17,Chai Latte,Pastries,4,100.50,402.00
+2025-06-17,Apple Turnover,Pastries,3,154.54,463.62
+2024-12-15,Blueberry Muffin,Pastries,5,185.15,925.75
+2024-12-18,Americano,Pastries,1,80.96,80.96
+2025-09-11,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2024-12-11,Iced Mocha,Pastries,1,144.00,144.00
+2025-09-19,Espresso,Pastries,3,195.76,587.28
+2025-09-21,Mocha,Pastries,5,61.74,308.70
+2025-02-11,Red Velvet Cake,Pastries,4,187.25,749.00
+2025-09-10,Eclair,Pastries,4,146.12,584.48
+2025-08-19,Almonds,Pastries,5,5.59,27.95
+2025-09-04,Espresso,Pastries,1,195.76,195.76
+2025-03-01,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-05-25,Cappuccino,Pastries,5,76.25,381.25
+2025-09-19,Baguette,Pastries,2,133.77,267.54
+2024-12-10,Flat White,Pastries,1,113.21,113.21
+2025-06-11,Iced Coffee,Beverages,4,107.80,431.20
+2025-08-16,Eclair,Pastries,3,146.12,438.36
+2025-03-30,Almonds,Pastries,2,5.59,11.18
+2025-01-05,Mocha,Pastries,1,61.74,61.74
+2025-03-16,Flat White,Pastries,1,113.21,113.21
+2025-05-07,Latte,Pastries,3,108.74,326.22
+2025-10-20,Iced Mocha,Pastries,5,144.00,720.00
+2025-10-07,Latte,Pastries,3,108.74,326.22
+2024-12-11,Chai Latte,Pastries,1,100.50,100.50
+2025-02-05,Baguette,Pastries,2,133.77,267.54
+2025-04-17,Almonds,Pastries,5,5.59,27.95
+2025-08-01,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-02-05,Hot Chocolate,Pastries,2,131.53,263.06
+2025-02-19,Chai Latte,Pastries,2,100.50,201.00
+2024-12-23,Mocha,Pastries,5,61.74,308.70
+2025-10-05,Americano,Pastries,4,80.96,323.84
+2025-07-19,Almonds,Pastries,1,5.59,5.59
+2025-11-08,Mocha,Pastries,1,61.74,61.74
+2025-02-21,Iced Mocha,Pastries,1,144.00,144.00
+2025-07-02,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-01-03,Latte,Pastries,5,108.74,543.70
+2025-02-14,Tea,Beverages,3,106.18,318.54
+2025-09-10,Almond Croissant,Pastries,2,8.42,16.84
+2025-09-24,Tea,Beverages,3,106.18,318.54
+2025-09-14,Iced Coffee,Beverages,2,107.80,215.60
+2025-05-18,Cappuccino,Pastries,4,76.25,305.00
+2024-12-04,Flat White,Pastries,5,113.21,566.05
+2025-09-24,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-01-15,Almond Croissant,Pastries,5,8.42,42.10
+2025-07-02,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-10-13,Iced Mocha,Pastries,5,144.00,720.00
+2025-01-08,Tea,Beverages,3,106.18,318.54
+2025-10-23,Macchiato,Pastries,3,93.97,281.91
+2025-01-07,Almonds,Pastries,4,5.59,22.36
+2025-06-06,Iced Coffee,Beverages,4,107.80,431.20
+2025-09-20,Americano,Pastries,4,80.96,323.84
+2025-01-17,Americano,Pastries,2,80.96,161.92
+2024-12-07,Tiramisu,Pastries,1,196.55,196.55
+2025-10-21,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-07-25,Americano,Pastries,5,80.96,404.80
+2025-07-26,Mocha,Pastries,4,61.74,246.96
+2025-09-09,Hot Chocolate,Pastries,5,131.53,657.65
+2025-10-17,Chai Latte,Pastries,4,100.50,402.00
+2025-04-30,Flat White,Pastries,4,113.21,452.84
+2025-11-03,Hot Chocolate,Pastries,2,131.53,263.06
+2025-05-01,Almonds,Pastries,2,5.59,11.18
+2025-07-25,Tea,Beverages,3,106.18,318.54
+2025-11-12,Iced Mocha,Pastries,1,144.00,144.00
+2025-03-30,Iced Coffee,Beverages,1,107.80,107.80
+2024-11-30,Hot Chocolate,Pastries,1,131.53,131.53
+2025-05-04,Red Velvet Cake,Pastries,4,187.25,749.00
+2025-05-11,Iced Coffee,Beverages,5,107.80,539.00
+2025-01-31,Hot Chocolate,Pastries,5,131.53,657.65
+2025-08-25,Apple Turnover,Pastries,5,154.54,772.70
+2025-06-30,Hot Chocolate,Pastries,2,131.53,263.06
+2025-07-01,Hot Chocolate,Pastries,5,131.53,657.65
+2025-07-16,Flat White,Pastries,3,113.21,339.63
+2025-11-23,Flat White,Pastries,1,113.21,113.21
+2025-11-04,Almond Croissant,Pastries,3,8.42,25.26
+2025-08-22,Latte,Pastries,3,108.74,326.22
+2025-05-17,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-09-25,Eclair,Pastries,5,146.12,730.60
+2025-07-08,Macchiato,Pastries,1,93.97,93.97
+2025-06-19,Almond Croissant,Pastries,1,8.42,8.42
+2025-01-11,Espresso,Pastries,4,195.76,783.04
+2025-05-22,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-08-02,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-01-15,Espresso,Pastries,3,195.76,587.28
+2025-09-29,Apple Turnover,Pastries,2,154.54,309.08
+2025-08-23,Tea,Beverages,1,106.18,106.18
+2025-10-14,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-08-07,Almonds,Pastries,4,5.59,22.36
+2025-06-30,Baguette,Pastries,4,133.77,535.08
+2025-04-19,Iced Coffee,Beverages,4,107.80,431.20
+2025-10-30,Americano,Pastries,4,80.96,323.84
+2025-07-23,Espresso,Pastries,4,195.76,783.04
+2025-05-06,Glazed Donut,Pastries,5,148.75,743.75
+2024-11-28,Tea,Beverages,2,106.18,212.36
+2025-09-23,Cappuccino,Pastries,2,76.25,152.50
+2025-07-21,Latte,Pastries,2,108.74,217.48
+2024-12-15,Glazed Donut,Pastries,1,148.75,148.75
+2025-10-12,Iced Coffee,Beverages,5,107.80,539.00
+2024-12-31,Eclair,Pastries,3,146.12,438.36
+2025-11-14,Almonds,Pastries,1,5.59,5.59
+2024-12-14,Hot Chocolate,Pastries,2,131.53,263.06
+2024-12-29,Tiramisu,Pastries,4,196.55,786.20
+2024-12-08,Macchiato,Pastries,5,93.97,469.85
+2025-01-29,Iced Mocha,Pastries,3,144.00,432.00
+2025-09-19,Mocha,Pastries,5,61.74,308.70
+2025-07-09,Mocha,Pastries,2,61.74,123.48
+2025-05-28,Almonds,Pastries,4,5.59,22.36
+2025-03-20,Latte,Pastries,1,108.74,108.74
+2025-01-23,Tea,Beverages,3,106.18,318.54
+2025-04-12,Americano,Pastries,4,80.96,323.84
+2025-06-08,Eclair,Pastries,3,146.12,438.36
+2025-08-25,Iced Coffee,Beverages,3,107.80,323.40
+2025-08-03,Chai Latte,Pastries,2,100.50,201.00
+2025-10-02,Eclair,Pastries,4,146.12,584.48
+2025-05-14,Iced Coffee,Beverages,4,107.80,431.20
+2025-08-29,Iced Mocha,Pastries,4,144.00,576.00
+2025-02-08,Americano,Pastries,4,80.96,323.84
+2025-08-16,Eclair,Pastries,4,146.12,584.48
+2025-04-17,Hot Chocolate,Pastries,2,131.53,263.06
+2025-02-20,Chai Latte,Pastries,3,100.50,301.50
+2025-08-01,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2024-12-02,Flat White,Pastries,3,113.21,339.63
+2025-03-23,Latte,Pastries,5,108.74,543.70
+2025-04-21,Baguette,Pastries,4,133.77,535.08
+2025-11-14,Flat White,Pastries,1,113.21,113.21
+2025-08-08,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2025-04-11,Americano,Pastries,1,80.96,80.96
+2025-06-06,Mocha,Pastries,4,61.74,246.96
+2025-05-31,Chai Latte,Pastries,3,100.50,301.50
+2025-11-07,Cappuccino,Pastries,4,76.25,305.00
+2025-05-20,Flat White,Pastries,5,113.21,566.05
+2025-08-18,Macchiato,Pastries,5,93.97,469.85
+2025-03-13,Espresso,Pastries,2,195.76,391.52
+2025-10-26,Espresso,Pastries,2,195.76,391.52
+2025-07-03,Flat White,Pastries,1,113.21,113.21
+2025-11-05,Americano,Pastries,4,80.96,323.84
+2025-07-22,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-06-13,Almond Croissant,Pastries,3,8.42,25.26
+2025-01-01,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-01-08,Glazed Donut,Pastries,1,148.75,148.75
+2025-04-29,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-11-15,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-10-28,Iced Coffee,Beverages,1,107.80,107.80
+2025-02-04,Americano,Pastries,2,80.96,161.92
+2024-12-18,Almonds,Pastries,1,5.59,5.59
+2025-10-28,Hot Chocolate,Pastries,3,131.53,394.59
+2025-10-07,Flat White,Pastries,2,113.21,226.42
+2025-06-15,Americano,Pastries,2,80.96,161.92
+2025-04-21,Hot Chocolate,Pastries,5,131.53,657.65
+2025-05-25,Tea,Beverages,2,106.18,212.36
+2025-10-01,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-03-01,Apple Turnover,Pastries,3,154.54,463.62
+2025-01-01,Chai Latte,Pastries,4,100.50,402.00
+2025-09-01,Iced Coffee,Beverages,3,107.80,323.40
+2024-12-28,Iced Coffee,Beverages,3,107.80,323.40
+2025-05-29,Hot Chocolate,Pastries,1,131.53,131.53
+2024-12-12,Macchiato,Pastries,2,93.97,187.94
+2024-12-03,Americano,Pastries,4,80.96,323.84
+2025-02-24,Iced Mocha,Pastries,5,144.00,720.00
+2025-03-19,Blueberry Muffin,Pastries,4,185.15,740.60
+2024-12-14,Macchiato,Pastries,2,93.97,187.94
+2025-08-30,Eclair,Pastries,2,146.12,292.24
+2025-04-06,Mocha,Pastries,2,61.74,123.48
+2025-07-20,Flat White,Pastries,2,113.21,226.42
+2025-03-08,Baguette,Pastries,2,133.77,267.54
+2025-10-25,Tiramisu,Pastries,1,196.55,196.55
+2025-09-18,Almond Croissant,Pastries,2,8.42,16.84
+2025-06-30,Americano,Pastries,3,80.96,242.88
+2025-04-23,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-01-24,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-02-04,Apple Turnover,Pastries,4,154.54,618.16
+2025-11-06,Almond Croissant,Pastries,4,8.42,33.68
+2025-02-17,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-10-05,Hot Chocolate,Pastries,4,131.53,526.12
+2025-11-07,Espresso,Pastries,4,195.76,783.04
+2025-02-12,Baguette,Pastries,5,133.77,668.85
+2025-10-10,Americano,Pastries,4,80.96,323.84
+2025-07-05,Chai Latte,Pastries,1,100.50,100.50
+2025-10-28,Baguette,Pastries,2,133.77,267.54
+2025-06-16,Apple Turnover,Pastries,4,154.54,618.16
+2025-01-15,Almonds,Pastries,1,5.59,5.59
+2025-03-21,Cappuccino,Pastries,5,76.25,381.25
+2025-05-05,Eclair,Pastries,2,146.12,292.24
+2025-03-24,Apple Turnover,Pastries,4,154.54,618.16
+2025-06-09,Cappuccino,Pastries,2,76.25,152.50
+2024-12-07,Eclair,Pastries,4,146.12,584.48
+2025-10-26,Tiramisu,Pastries,3,196.55,589.65
+2025-05-26,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-08-03,Tea,Beverages,1,106.18,106.18
+2025-06-13,Cappuccino,Pastries,5,76.25,381.25
+2025-05-04,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-05-31,Flat White,Pastries,5,113.21,566.05
+2025-09-16,Macchiato,Pastries,1,93.97,93.97
+2024-11-29,Iced Mocha,Pastries,1,144.00,144.00
+2025-10-23,Almond Croissant,Pastries,4,8.42,33.68
+2025-08-27,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-04-15,Almonds,Pastries,4,5.59,22.36
+2024-12-22,Iced Coffee,Beverages,4,107.80,431.20
+2024-12-08,Apple Turnover,Pastries,5,154.54,772.70
+2025-11-06,Apple Turnover,Pastries,4,154.54,618.16
+2024-12-13,Almond Croissant,Pastries,4,8.42,33.68
+2025-08-18,Latte,Pastries,2,108.74,217.48
+2025-02-27,Almonds,Pastries,2,5.59,11.18
+2025-02-05,Baguette,Pastries,2,133.77,267.54
+2025-04-01,Latte,Pastries,2,108.74,217.48
+2025-02-24,Americano,Pastries,1,80.96,80.96
+2024-11-25,Hot Chocolate,Pastries,3,131.53,394.59
+2025-03-05,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-01-04,Apple Turnover,Pastries,3,154.54,463.62
+2024-11-24,Chai Latte,Pastries,5,100.50,502.50
+2024-12-12,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-09-19,Espresso,Pastries,1,195.76,195.76
+2025-10-04,Almond Croissant,Pastries,1,8.42,8.42
+2025-06-18,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-09-03,Iced Mocha,Pastries,5,144.00,720.00
+2025-09-09,Almonds,Pastries,5,5.59,27.95
+2024-12-28,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-10-21,Almonds,Pastries,3,5.59,16.77
+2025-04-16,Apple Turnover,Pastries,1,154.54,154.54
+2025-01-08,Chai Latte,Pastries,5,100.50,502.50
+2025-02-18,Espresso,Pastries,4,195.76,783.04
+2025-06-23,Glazed Donut,Pastries,4,148.75,595.00
+2025-01-01,Apple Turnover,Pastries,2,154.54,309.08
+2025-07-16,Latte,Pastries,1,108.74,108.74
+2025-10-09,Macchiato,Pastries,2,93.97,187.94
+2025-05-23,Macchiato,Pastries,5,93.97,469.85
+2025-11-13,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-06-26,Tiramisu,Pastries,3,196.55,589.65
+2025-10-04,Chai Latte,Pastries,3,100.50,301.50
+2025-10-06,Cappuccino,Pastries,5,76.25,381.25
+2025-02-23,Tea,Beverages,5,106.18,530.90
+2025-07-28,Tea,Beverages,2,106.18,212.36
+2025-09-28,Iced Coffee,Beverages,1,107.80,107.80
+2025-01-06,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2025-04-23,Iced Coffee,Beverages,3,107.80,323.40
+2025-04-04,Mocha,Pastries,5,61.74,308.70
+2025-01-08,Chai Latte,Pastries,4,100.50,402.00
+2025-11-04,Espresso,Pastries,1,195.76,195.76
+2025-07-21,Hot Chocolate,Pastries,3,131.53,394.59
+2025-07-11,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-10-19,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-06-23,Mocha,Pastries,2,61.74,123.48
+2025-11-06,Almonds,Pastries,4,5.59,22.36
+2024-12-02,Glazed Donut,Pastries,5,148.75,743.75
+2025-10-12,Latte,Pastries,5,108.74,543.70
+2025-10-06,Cappuccino,Pastries,4,76.25,305.00
+2025-01-25,Glazed Donut,Pastries,5,148.75,743.75
+2025-01-06,Apple Turnover,Pastries,3,154.54,463.62
+2025-09-09,Tea,Beverages,1,106.18,106.18
+2025-02-12,Chai Latte,Pastries,3,100.50,301.50
+2025-06-22,Iced Coffee,Beverages,3,107.80,323.40
+2025-06-26,Almond Croissant,Pastries,1,8.42,8.42
+2025-05-22,Tea,Beverages,2,106.18,212.36
+2025-10-24,Flat White,Pastries,4,113.21,452.84
+2025-11-24,Hot Chocolate,Pastries,2,131.53,263.06
+2024-12-20,Tiramisu,Pastries,1,196.55,196.55
+2025-09-02,Almonds,Pastries,3,5.59,16.77
+2025-09-04,Baguette,Pastries,5,133.77,668.85
+2025-07-12,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-07-13,Almond Croissant,Pastries,4,8.42,33.68
+2025-03-21,Hot Chocolate,Pastries,4,131.53,526.12
+2025-08-30,Tiramisu,Pastries,3,196.55,589.65
+2025-07-01,Flat White,Pastries,1,113.21,113.21
+2025-09-13,Hot Chocolate,Pastries,5,131.53,657.65
+2025-07-17,Glazed Donut,Pastries,5,148.75,743.75
+2024-12-02,Almonds,Pastries,3,5.59,16.77
+2025-04-08,Mocha,Pastries,5,61.74,308.70
+2025-06-22,Baguette,Pastries,1,133.77,133.77
+2025-06-04,Almond Croissant,Pastries,5,8.42,42.10
+2024-12-15,Flat White,Pastries,4,113.21,452.84
+2025-05-02,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-10-14,Cappuccino,Pastries,2,76.25,152.50
+2025-01-01,Latte,Pastries,1,108.74,108.74
+2025-04-30,Tiramisu,Pastries,4,196.55,786.20
+2024-11-26,Tiramisu,Pastries,3,196.55,589.65
+2025-06-23,Macchiato,Pastries,2,93.97,187.94
+2025-09-20,Americano,Pastries,3,80.96,242.88
+2025-08-22,Iced Mocha,Pastries,5,144.00,720.00
+2025-07-03,Almond Croissant,Pastries,4,8.42,33.68
+2025-02-20,Eclair,Pastries,4,146.12,584.48
+2025-09-15,Tea,Beverages,5,106.18,530.90
+2025-04-14,Red Velvet Cake,Pastries,2,187.25,374.50
+2025-08-05,Red Velvet Cake,Pastries,5,187.25,936.25
+2024-12-27,Espresso,Pastries,2,195.76,391.52
+2025-05-19,Americano,Pastries,4,80.96,323.84
+2025-06-04,Iced Mocha,Pastries,3,144.00,432.00
+2025-09-01,Chai Latte,Pastries,3,100.50,301.50
+2025-03-01,Cappuccino,Pastries,2,76.25,152.50
+2025-09-14,Iced Coffee,Beverages,1,107.80,107.80
+2025-10-09,Baguette,Pastries,3,133.77,401.31
+2025-02-03,Chai Latte,Pastries,5,100.50,502.50
+2025-05-17,Iced Coffee,Beverages,3,107.80,323.40
+2025-11-04,Iced Mocha,Pastries,1,144.00,144.00
+2025-09-15,Hot Chocolate,Pastries,3,131.53,394.59
+2024-12-31,Americano,Pastries,2,80.96,161.92
+2025-02-10,Baguette,Pastries,3,133.77,401.31
+2025-07-20,Cappuccino,Pastries,1,76.25,76.25
+2024-12-07,Tea,Beverages,2,106.18,212.36
+2025-06-09,Macchiato,Pastries,1,93.97,93.97
+2025-10-15,Baguette,Pastries,4,133.77,535.08
+2025-01-14,Chai Latte,Pastries,4,100.50,402.00
+2025-03-21,Tea,Beverages,1,106.18,106.18
+2025-10-22,Cappuccino,Pastries,1,76.25,76.25
+2025-07-07,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-02-24,Red Velvet Cake,Pastries,4,187.25,749.00
+2025-03-18,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-09-05,Iced Mocha,Pastries,3,144.00,432.00
+2025-11-04,Cappuccino,Pastries,4,76.25,305.00
+2025-08-02,Cappuccino,Pastries,1,76.25,76.25
+2025-02-18,Latte,Pastries,4,108.74,434.96
+2025-11-24,Glazed Donut,Pastries,5,148.75,743.75
+2025-11-19,Flat White,Pastries,2,113.21,226.42
+2025-04-13,Almond Croissant,Pastries,1,8.42,8.42
+2024-11-30,Cappuccino,Pastries,5,76.25,381.25
+2025-03-25,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-03-25,Baguette,Pastries,3,133.77,401.31
+2025-03-13,Glazed Donut,Pastries,3,148.75,446.25
+2025-08-30,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-04-10,Almond Croissant,Pastries,3,8.42,25.26
+2024-12-14,Tiramisu,Pastries,4,196.55,786.20
+2025-03-13,Tiramisu,Pastries,1,196.55,196.55
+2025-06-28,Iced Mocha,Pastries,3,144.00,432.00
+2025-06-28,Eclair,Pastries,4,146.12,584.48
+2025-05-10,Espresso,Pastries,3,195.76,587.28
+2025-02-24,Almond Croissant,Pastries,5,8.42,42.10
+2025-07-05,Flat White,Pastries,2,113.21,226.42
+2025-05-20,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-03-17,Latte,Pastries,4,108.74,434.96
+2025-07-27,Mocha,Pastries,5,61.74,308.70
+2025-04-05,Almond Croissant,Pastries,2,8.42,16.84
+2024-12-08,Cappuccino,Pastries,2,76.25,152.50
+2025-02-28,Tea,Beverages,5,106.18,530.90
+2024-12-24,Hot Chocolate,Pastries,3,131.53,394.59
+2025-05-20,Apple Turnover,Pastries,4,154.54,618.16
+2025-01-09,Tiramisu,Pastries,4,196.55,786.20
+2025-03-08,Americano,Pastries,1,80.96,80.96
+2025-03-01,Eclair,Pastries,4,146.12,584.48
+2025-01-18,Iced Mocha,Pastries,5,144.00,720.00
+2025-09-29,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-11-11,Tea,Beverages,4,106.18,424.72
+2025-02-09,Baguette,Pastries,3,133.77,401.31
+2025-11-05,Chai Latte,Pastries,4,100.50,402.00
+2025-05-19,Hot Chocolate,Pastries,1,131.53,131.53
+2025-11-03,Iced Mocha,Pastries,4,144.00,576.00
+2025-07-13,Almonds,Pastries,5,5.59,27.95
+2024-12-26,Chai Latte,Pastries,3,100.50,301.50
+2025-10-25,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-08-16,Macchiato,Pastries,4,93.97,375.88
+2025-06-22,Iced Mocha,Pastries,3,144.00,432.00
+2025-08-21,Latte,Pastries,5,108.74,543.70
+2025-02-10,Flat White,Pastries,3,113.21,339.63
+2025-08-19,Iced Coffee,Beverages,5,107.80,539.00
+2025-03-21,Eclair,Pastries,2,146.12,292.24
+2025-01-26,Macchiato,Pastries,4,93.97,375.88
+2024-12-14,Glazed Donut,Pastries,4,148.75,595.00
+2025-08-20,Baguette,Pastries,1,133.77,133.77
+2025-03-02,Chai Latte,Pastries,4,100.50,402.00
+2025-05-14,Iced Coffee,Beverages,1,107.80,107.80
+2025-08-27,Almonds,Pastries,5,5.59,27.95
+2025-06-28,Almonds,Pastries,3,5.59,16.77
+2025-09-25,Almond Croissant,Pastries,3,8.42,25.26
+2025-09-21,Baguette,Pastries,3,133.77,401.31
+2025-05-23,Americano,Pastries,1,80.96,80.96
+2025-01-16,Tiramisu,Pastries,2,196.55,393.10
+2025-03-09,Mocha,Pastries,3,61.74,185.22
+2025-06-18,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-08-27,Tea,Beverages,2,106.18,212.36
+2025-01-11,Baguette,Pastries,1,133.77,133.77
+2025-03-31,Iced Coffee,Beverages,1,107.80,107.80
+2025-03-06,Macchiato,Pastries,4,93.97,375.88
+2025-09-14,Eclair,Pastries,5,146.12,730.60
+2025-07-31,Cappuccino,Pastries,3,76.25,228.75
+2025-07-18,Baguette,Pastries,2,133.77,267.54
+2025-05-29,Almond Croissant,Pastries,5,8.42,42.10
+2025-02-16,Latte,Pastries,3,108.74,326.22
+2025-08-01,Hot Chocolate,Pastries,4,131.53,526.12
+2025-02-10,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2024-12-17,Glazed Donut,Pastries,3,148.75,446.25
+2025-09-07,Hot Chocolate,Pastries,1,131.53,131.53
+2025-05-26,Cappuccino,Pastries,4,76.25,305.00
+2025-04-01,Eclair,Pastries,4,146.12,584.48
+2025-10-07,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-06-16,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-04-19,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-11-23,Americano,Pastries,4,80.96,323.84
+2025-09-01,Iced Coffee,Beverages,2,107.80,215.60
+2025-11-05,Espresso,Pastries,2,195.76,391.52
+2025-09-18,Apple Turnover,Pastries,4,154.54,618.16
+2025-10-23,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-03-24,Iced Mocha,Pastries,5,144.00,720.00
+2025-03-09,Baguette,Pastries,3,133.77,401.31
+2025-06-10,Almond Croissant,Pastries,3,8.42,25.26
+2025-04-27,Iced Coffee,Beverages,3,107.80,323.40
+2025-01-22,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-03-29,Glazed Donut,Pastries,4,148.75,595.00
+2025-01-07,Eclair,Pastries,1,146.12,146.12
+2025-05-09,Iced Coffee,Beverages,2,107.80,215.60
+2025-03-02,Mocha,Pastries,3,61.74,185.22
+2025-04-26,Iced Coffee,Beverages,1,107.80,107.80
+2025-05-08,Iced Mocha,Pastries,4,144.00,576.00
+2025-06-14,Glazed Donut,Pastries,5,148.75,743.75
+2025-11-17,Mocha,Pastries,4,61.74,246.96
+2025-01-05,Almond Croissant,Pastries,5,8.42,42.10
+2024-12-01,Iced Coffee,Beverages,5,107.80,539.00
+2025-04-22,Glazed Donut,Pastries,5,148.75,743.75
+2025-06-15,Tiramisu,Pastries,2,196.55,393.10
+2025-03-31,Mocha,Pastries,3,61.74,185.22
+2025-07-16,Cappuccino,Pastries,1,76.25,76.25
+2025-07-15,Blueberry Muffin,Pastries,1,185.15,185.15
+2024-12-22,Americano,Pastries,5,80.96,404.80
+2025-04-15,Macchiato,Pastries,2,93.97,187.94
+2024-11-26,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-07-30,Chai Latte,Pastries,1,100.50,100.50
+2025-01-06,Apple Turnover,Pastries,1,154.54,154.54
+2025-03-07,Espresso,Pastries,3,195.76,587.28
+2025-03-17,Baguette,Pastries,4,133.77,535.08
+2025-03-13,Tea,Beverages,2,106.18,212.36
+2025-06-18,Iced Coffee,Beverages,1,107.80,107.80
+2024-12-19,Latte,Pastries,4,108.74,434.96
+2025-10-17,Macchiato,Pastries,2,93.97,187.94
+2025-10-13,Eclair,Pastries,5,146.12,730.60
+2025-08-11,Glazed Donut,Pastries,5,148.75,743.75
+2025-02-17,Latte,Pastries,2,108.74,217.48
+2025-03-07,Almond Croissant,Pastries,3,8.42,25.26
+2025-02-24,Chai Latte,Pastries,1,100.50,100.50
+2025-01-17,Glazed Donut,Pastries,1,148.75,148.75
+2025-08-09,Eclair,Pastries,3,146.12,438.36
+2025-02-28,Chai Latte,Pastries,5,100.50,502.50
+2025-01-28,Apple Turnover,Pastries,3,154.54,463.62
+2025-03-31,Almond Croissant,Pastries,3,8.42,25.26
+2025-10-10,Iced Mocha,Pastries,1,144.00,144.00
+2025-03-10,Iced Coffee,Beverages,4,107.80,431.20
+2025-04-14,Mocha,Pastries,4,61.74,246.96
+2025-01-22,Americano,Pastries,1,80.96,80.96
+2025-02-17,Mocha,Pastries,3,61.74,185.22
+2025-01-19,Almond Croissant,Pastries,5,8.42,42.10
+2025-01-13,Iced Coffee,Beverages,2,107.80,215.60
+2025-05-21,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2025-08-21,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-03-06,Eclair,Pastries,2,146.12,292.24
+2025-06-19,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2025-04-12,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-09-29,Espresso,Pastries,4,195.76,783.04
+2025-03-10,Flat White,Pastries,4,113.21,452.84
+2025-10-25,Americano,Pastries,5,80.96,404.80
+2025-04-16,Iced Coffee,Beverages,2,107.80,215.60
+2025-09-13,Eclair,Pastries,5,146.12,730.60
+2025-02-27,Iced Mocha,Pastries,2,144.00,288.00
+2025-10-06,Almonds,Pastries,2,5.59,11.18
+2025-09-15,Almonds,Pastries,1,5.59,5.59
+2025-11-08,Flat White,Pastries,1,113.21,113.21
+2025-03-03,Almond Croissant,Pastries,4,8.42,33.68
+2025-04-26,Iced Coffee,Beverages,4,107.80,431.20
+2025-05-03,Blueberry Muffin,Pastries,4,185.15,740.60
+2024-12-25,Iced Coffee,Beverages,1,107.80,107.80
+2025-10-22,Tiramisu,Pastries,2,196.55,393.10
+2024-12-13,Flat White,Pastries,1,113.21,113.21
+2025-10-24,Iced Coffee,Beverages,1,107.80,107.80
+2025-03-22,Tea,Beverages,1,106.18,106.18
+2025-02-09,Red Velvet Cake,Pastries,2,187.25,374.50
+2025-10-16,Americano,Pastries,1,80.96,80.96
+2025-06-02,Hot Chocolate,Pastries,2,131.53,263.06
+2025-02-22,Espresso,Pastries,4,195.76,783.04
+2025-08-24,Apple Turnover,Pastries,5,154.54,772.70
+2025-08-11,Almonds,Pastries,4,5.59,22.36
+2025-07-30,Glazed Donut,Pastries,1,148.75,148.75
+2025-01-29,Cappuccino,Pastries,3,76.25,228.75
+2025-10-03,Apple Turnover,Pastries,4,154.54,618.16
+2025-06-17,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-01-01,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-01-13,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-09-01,Baguette,Pastries,3,133.77,401.31
+2025-05-13,Almond Croissant,Pastries,4,8.42,33.68
+2025-01-07,Espresso,Pastries,3,195.76,587.28
+2024-12-27,Latte,Pastries,3,108.74,326.22
+2024-12-31,Flat White,Pastries,4,113.21,452.84
+2025-11-09,Chai Latte,Pastries,5,100.50,502.50
+2025-03-27,Glazed Donut,Pastries,5,148.75,743.75
+2025-03-21,Baguette,Pastries,5,133.77,668.85
+2025-09-13,Espresso,Pastries,5,195.76,978.80
+2025-06-29,Glazed Donut,Pastries,3,148.75,446.25
+2025-04-07,Red Velvet Cake,Pastries,5,187.25,936.25
+2024-12-26,Tiramisu,Pastries,2,196.55,393.10
+2025-10-23,Red Velvet Cake,Pastries,2,187.25,374.50
+2025-09-06,Red Velvet Cake,Pastries,4,187.25,749.00
+2025-07-21,Hot Chocolate,Pastries,1,131.53,131.53
+2025-03-28,Chai Latte,Pastries,3,100.50,301.50
+2024-11-29,Latte,Pastries,2,108.74,217.48
+2025-04-07,Tiramisu,Pastries,1,196.55,196.55
+2025-02-24,Tea,Beverages,3,106.18,318.54
+2025-09-05,Eclair,Pastries,3,146.12,438.36
+2025-11-19,Iced Mocha,Pastries,3,144.00,432.00
+2025-04-12,Almond Croissant,Pastries,4,8.42,33.68
+2025-11-01,Tea,Beverages,5,106.18,530.90
+2025-04-16,Hot Chocolate,Pastries,4,131.53,526.12
+2025-01-25,Red Velvet Cake,Pastries,4,187.25,749.00
+2025-06-26,Mocha,Pastries,2,61.74,123.48
+2024-12-27,Espresso,Pastries,3,195.76,587.28
+2025-01-05,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-01-26,Tea,Beverages,1,106.18,106.18
+2025-02-22,Tea,Beverages,2,106.18,212.36
+2025-10-03,Apple Turnover,Pastries,3,154.54,463.62
+2025-04-29,Espresso,Pastries,2,195.76,391.52
+2025-05-14,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-08-23,Latte,Pastries,5,108.74,543.70
+2025-01-05,Glazed Donut,Pastries,1,148.75,148.75
+2025-03-29,Americano,Pastries,3,80.96,242.88
+2025-02-14,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-08-21,Americano,Pastries,2,80.96,161.92
+2025-03-08,Flat White,Pastries,2,113.21,226.42
+2025-05-18,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2025-08-27,Latte,Pastries,3,108.74,326.22
+2025-02-22,Hot Chocolate,Pastries,5,131.53,657.65
+2025-06-27,Apple Turnover,Pastries,1,154.54,154.54
+2025-10-21,Chai Latte,Pastries,1,100.50,100.50
+2025-04-08,Apple Turnover,Pastries,2,154.54,309.08
+2025-03-21,Macchiato,Pastries,5,93.97,469.85
+2025-04-02,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-01-11,Espresso,Pastries,3,195.76,587.28
+2025-07-01,Espresso,Pastries,2,195.76,391.52
+2025-10-09,Mocha,Pastries,1,61.74,61.74
+2025-08-21,Espresso,Pastries,5,195.76,978.80
+2025-01-02,Cappuccino,Pastries,3,76.25,228.75
+2024-11-28,Latte,Pastries,5,108.74,543.70
+2025-08-13,Baguette,Pastries,5,133.77,668.85
+2025-05-05,Iced Mocha,Pastries,2,144.00,288.00
+2025-11-06,Flat White,Pastries,1,113.21,113.21
+2025-03-15,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-01-26,Almond Croissant,Pastries,3,8.42,25.26
+2025-09-18,Tea,Beverages,1,106.18,106.18
+2025-09-20,Almonds,Pastries,3,5.59,16.77
+2025-10-09,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-02-27,Apple Turnover,Pastries,4,154.54,618.16
+2025-04-09,Cappuccino,Pastries,1,76.25,76.25
+2025-02-02,Tea,Beverages,3,106.18,318.54
+2025-11-23,Americano,Pastries,2,80.96,161.92
+2025-03-13,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-01-12,Tiramisu,Pastries,2,196.55,393.10
+2025-01-14,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-09-14,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-09-24,Chai Latte,Pastries,2,100.50,201.00
+2025-04-27,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-06-16,Iced Coffee,Beverages,4,107.80,431.20
+2025-08-01,Baguette,Pastries,2,133.77,267.54
+2025-05-13,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-10-31,Hot Chocolate,Pastries,2,131.53,263.06
+2024-12-21,Glazed Donut,Pastries,5,148.75,743.75
+2025-05-11,Flat White,Pastries,4,113.21,452.84
+2025-07-30,Cappuccino,Pastries,3,76.25,228.75
+2025-01-07,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-01-12,Americano,Pastries,1,80.96,80.96
+2024-12-08,Eclair,Pastries,3,146.12,438.36
+2025-09-25,Iced Coffee,Beverages,1,107.80,107.80
+2025-09-23,Almond Croissant,Pastries,4,8.42,33.68
+2025-05-23,Almond Croissant,Pastries,4,8.42,33.68
+2025-07-17,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2024-12-16,Hot Chocolate,Pastries,5,131.53,657.65
+2025-01-08,Tea,Beverages,1,106.18,106.18
+2025-02-07,Cappuccino,Pastries,3,76.25,228.75
+2025-05-15,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2025-01-16,Iced Mocha,Pastries,2,144.00,288.00
+2025-09-14,Flat White,Pastries,4,113.21,452.84
+2025-05-02,Chai Latte,Pastries,1,100.50,100.50
+2025-08-04,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-03-09,Red Velvet Cake,Pastries,4,187.25,749.00
+2025-11-14,Chai Latte,Pastries,1,100.50,100.50
+2025-06-19,Hot Chocolate,Pastries,1,131.53,131.53
+2025-09-22,Iced Coffee,Beverages,1,107.80,107.80
+2025-04-16,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2025-11-11,Almond Croissant,Pastries,3,8.42,25.26
+2025-11-01,Macchiato,Pastries,1,93.97,93.97
+2025-09-08,Baguette,Pastries,5,133.77,668.85
+2025-04-10,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-06-28,Red Velvet Cake,Pastries,2,187.25,374.50
+2025-08-18,Macchiato,Pastries,1,93.97,93.97
+2025-09-14,Baguette,Pastries,5,133.77,668.85
+2025-04-06,Tiramisu,Pastries,3,196.55,589.65
+2025-10-27,Mocha,Pastries,1,61.74,61.74
+2025-01-05,Americano,Pastries,1,80.96,80.96
+2025-02-21,Americano,Pastries,2,80.96,161.92
+2024-12-26,Espresso,Pastries,4,195.76,783.04
+2025-03-30,Iced Coffee,Beverages,4,107.80,431.20
+2025-11-03,Espresso,Pastries,4,195.76,783.04
+2025-02-04,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-02-25,Almonds,Pastries,3,5.59,16.77
+2025-06-17,Tea,Beverages,3,106.18,318.54
+2025-08-06,Iced Coffee,Beverages,2,107.80,215.60
+2025-11-03,Flat White,Pastries,2,113.21,226.42
+2024-12-01,Iced Mocha,Pastries,4,144.00,576.00
+2024-12-07,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-03-01,Flat White,Pastries,3,113.21,339.63
+2025-10-20,Flat White,Pastries,2,113.21,226.42
+2025-06-17,Flat White,Pastries,5,113.21,566.05
+2024-12-04,Latte,Pastries,5,108.74,543.70
+2025-10-25,Hot Chocolate,Pastries,5,131.53,657.65
+2025-11-09,Latte,Pastries,4,108.74,434.96
+2025-09-28,Flat White,Pastries,5,113.21,566.05
+2025-09-30,Iced Mocha,Pastries,3,144.00,432.00
+2024-12-25,Baguette,Pastries,4,133.77,535.08
+2025-05-17,Tiramisu,Pastries,1,196.55,196.55
+2025-07-04,Hot Chocolate,Pastries,1,131.53,131.53
+2025-11-23,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-05-13,Almonds,Pastries,1,5.59,5.59
+2025-03-08,Macchiato,Pastries,4,93.97,375.88
+2025-11-16,Cappuccino,Pastries,2,76.25,152.50
+2025-04-14,Apple Turnover,Pastries,4,154.54,618.16
+2025-02-06,Iced Mocha,Pastries,2,144.00,288.00
+2025-02-27,Iced Coffee,Beverages,5,107.80,539.00
+2025-08-29,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-04-24,Baguette,Pastries,4,133.77,535.08
+2024-12-23,Almond Croissant,Pastries,3,8.42,25.26
+2025-10-25,Flat White,Pastries,5,113.21,566.05
+2025-06-25,Latte,Pastries,5,108.74,543.70
+2025-03-15,Chai Latte,Pastries,2,100.50,201.00
+2025-04-22,Macchiato,Pastries,5,93.97,469.85
+2025-07-16,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-09-26,Eclair,Pastries,5,146.12,730.60
+2025-09-01,Cappuccino,Pastries,4,76.25,305.00
+2025-01-13,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-08-20,Cappuccino,Pastries,4,76.25,305.00
+2025-04-28,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-08-24,Apple Turnover,Pastries,3,154.54,463.62
+2025-08-02,Tea,Beverages,2,106.18,212.36
+2025-07-19,Baguette,Pastries,5,133.77,668.85
+2025-06-21,Latte,Pastries,5,108.74,543.70
+2025-02-01,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2024-11-29,Tea,Beverages,5,106.18,530.90
+2024-12-18,Tiramisu,Pastries,2,196.55,393.10
+2025-08-06,Cappuccino,Pastries,2,76.25,152.50
+2024-12-03,Cappuccino,Pastries,4,76.25,305.00
+2025-06-20,Latte,Pastries,4,108.74,434.96
+2025-08-31,Cappuccino,Pastries,1,76.25,76.25
+2025-11-09,Chai Latte,Pastries,2,100.50,201.00
+2025-11-15,Espresso,Pastries,2,195.76,391.52
+2025-09-13,Red Velvet Cake,Pastries,2,187.25,374.50
+2025-01-21,Glazed Donut,Pastries,1,148.75,148.75
+2025-09-09,Glazed Donut,Pastries,3,148.75,446.25
+2025-07-07,Iced Coffee,Beverages,3,107.80,323.40
+2025-03-17,Macchiato,Pastries,3,93.97,281.91
+2025-05-22,Chai Latte,Pastries,5,100.50,502.50
+2025-05-13,Mocha,Pastries,5,61.74,308.70
+2025-09-30,Espresso,Pastries,5,195.76,978.80
+2025-07-03,Almond Croissant,Pastries,4,8.42,33.68
+2025-06-04,Glazed Donut,Pastries,5,148.75,743.75
+2025-11-22,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-09-26,Glazed Donut,Pastries,3,148.75,446.25
+2025-08-22,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-02-25,Espresso,Pastries,1,195.76,195.76
+2025-11-08,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-02-20,Hot Chocolate,Pastries,1,131.53,131.53
+2025-04-25,Americano,Pastries,4,80.96,323.84
+2025-05-21,Almonds,Pastries,5,5.59,27.95
+2025-08-10,Americano,Pastries,2,80.96,161.92
+2025-07-18,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-11-16,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-07-27,Almond Croissant,Pastries,2,8.42,16.84
+2025-08-02,Tea,Beverages,5,106.18,530.90
+2025-09-25,Tea,Beverages,5,106.18,530.90
+2025-02-10,Iced Coffee,Beverages,1,107.80,107.80
+2025-02-24,Baguette,Pastries,5,133.77,668.85
+2025-03-10,Baguette,Pastries,5,133.77,668.85
+2025-11-19,Glazed Donut,Pastries,3,148.75,446.25
+2025-02-21,Chai Latte,Pastries,5,100.50,502.50
+2025-11-08,Eclair,Pastries,5,146.12,730.60
+2025-08-15,Iced Mocha,Pastries,2,144.00,288.00
+2025-05-05,Tiramisu,Pastries,5,196.55,982.75
+2025-09-21,Latte,Pastries,1,108.74,108.74
+2025-09-25,Eclair,Pastries,1,146.12,146.12
+2025-01-17,Glazed Donut,Pastries,1,148.75,148.75
+2025-11-08,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-08-03,Baguette,Pastries,5,133.77,668.85
+2025-04-28,Chai Latte,Pastries,2,100.50,201.00
+2025-09-10,Apple Turnover,Pastries,5,154.54,772.70
+2025-03-18,Apple Turnover,Pastries,5,154.54,772.70
+2025-01-30,Cappuccino,Pastries,4,76.25,305.00
+2025-11-17,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-02-20,Americano,Pastries,1,80.96,80.96
+2025-02-11,Glazed Donut,Pastries,3,148.75,446.25
+2025-05-14,Iced Mocha,Pastries,3,144.00,432.00
+2025-08-03,Chai Latte,Pastries,4,100.50,402.00
+2025-09-29,Iced Coffee,Beverages,2,107.80,215.60
+2024-12-14,Almond Croissant,Pastries,3,8.42,25.26
+2025-05-04,Glazed Donut,Pastries,1,148.75,148.75
+2024-12-12,Almonds,Pastries,2,5.59,11.18
+2025-10-31,Iced Coffee,Beverages,3,107.80,323.40
+2025-02-03,Iced Mocha,Pastries,3,144.00,432.00
+2025-08-11,Tea,Beverages,5,106.18,530.90
+2025-05-16,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-07-29,Eclair,Pastries,5,146.12,730.60
+2025-07-15,Apple Turnover,Pastries,4,154.54,618.16
+2025-10-17,Eclair,Pastries,3,146.12,438.36
+2025-08-03,Tiramisu,Pastries,2,196.55,393.10
+2024-12-01,Americano,Pastries,4,80.96,323.84
+2025-03-14,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-07-18,Eclair,Pastries,1,146.12,146.12
+2025-10-25,Baguette,Pastries,3,133.77,401.31
+2025-06-07,Baguette,Pastries,1,133.77,133.77
+2025-06-29,Mocha,Pastries,4,61.74,246.96
+2025-04-19,Americano,Pastries,2,80.96,161.92
+2025-05-03,Americano,Pastries,1,80.96,80.96
+2025-10-12,Almonds,Pastries,5,5.59,27.95
+2025-11-06,Espresso,Pastries,4,195.76,783.04
+2024-12-19,Tiramisu,Pastries,2,196.55,393.10
+2025-03-02,Chai Latte,Pastries,4,100.50,402.00
+2025-05-23,Flat White,Pastries,3,113.21,339.63
+2025-08-31,Tea,Beverages,4,106.18,424.72
+2025-03-16,Hot Chocolate,Pastries,2,131.53,263.06
+2025-02-13,Iced Coffee,Beverages,2,107.80,215.60
+2025-07-22,Macchiato,Pastries,2,93.97,187.94
+2025-10-15,Almonds,Pastries,1,5.59,5.59
+2025-09-10,Tea,Beverages,2,106.18,212.36
+2025-02-26,Chai Latte,Pastries,4,100.50,402.00
+2025-10-02,Almond Croissant,Pastries,5,8.42,42.10
+2025-11-15,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-03-24,Eclair,Pastries,5,146.12,730.60
+2024-11-29,Iced Coffee,Beverages,5,107.80,539.00
+2025-03-17,Espresso,Pastries,4,195.76,783.04
+2025-08-09,Tiramisu,Pastries,1,196.55,196.55
+2025-08-18,Latte,Pastries,3,108.74,326.22
+2025-04-12,Almond Croissant,Pastries,4,8.42,33.68
+2025-03-09,Latte,Pastries,1,108.74,108.74
+2025-09-24,Baguette,Pastries,2,133.77,267.54
+2025-01-19,Apple Turnover,Pastries,5,154.54,772.70
+2025-07-28,Macchiato,Pastries,3,93.97,281.91
+2025-07-10,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2025-10-05,Iced Coffee,Beverages,1,107.80,107.80
+2025-06-29,Almond Croissant,Pastries,1,8.42,8.42
+2025-04-29,Tiramisu,Pastries,5,196.55,982.75
+2024-12-10,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-10-16,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-09-29,Cappuccino,Pastries,2,76.25,152.50
+2025-08-27,Cappuccino,Pastries,5,76.25,381.25
+2024-12-20,Espresso,Pastries,1,195.76,195.76
+2025-08-01,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-09-01,Latte,Pastries,5,108.74,543.70
+2025-05-19,Tiramisu,Pastries,4,196.55,786.20
+2025-01-10,Iced Mocha,Pastries,5,144.00,720.00
+2025-09-14,Almond Croissant,Pastries,1,8.42,8.42
+2025-01-04,Espresso,Pastries,3,195.76,587.28
+2025-06-15,Chai Latte,Pastries,5,100.50,502.50
+2025-10-10,Latte,Pastries,3,108.74,326.22
+2025-11-18,Hot Chocolate,Pastries,2,131.53,263.06
+2025-03-02,Iced Coffee,Beverages,4,107.80,431.20
+2025-11-12,Flat White,Pastries,3,113.21,339.63
+2025-01-26,Iced Coffee,Beverages,5,107.80,539.00
+2025-09-29,Cappuccino,Pastries,2,76.25,152.50
+2025-09-30,Almond Croissant,Pastries,5,8.42,42.10
+2025-11-24,Baguette,Pastries,1,133.77,133.77
+2025-08-15,Macchiato,Pastries,2,93.97,187.94
+2024-12-26,Iced Coffee,Beverages,3,107.80,323.40
+2025-11-13,Latte,Pastries,5,108.74,543.70
+2025-10-10,Mocha,Pastries,4,61.74,246.96
+2025-05-04,Iced Mocha,Pastries,2,144.00,288.00
+2025-07-31,Latte,Pastries,2,108.74,217.48
+2025-03-02,Glazed Donut,Pastries,3,148.75,446.25
+2025-08-03,Tea,Beverages,2,106.18,212.36
+2024-12-14,Apple Turnover,Pastries,3,154.54,463.62
+2025-09-06,Cappuccino,Pastries,3,76.25,228.75
+2025-09-01,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-06-09,Almond Croissant,Pastries,3,8.42,25.26
+2025-10-03,Tea,Beverages,5,106.18,530.90
+2025-10-26,Glazed Donut,Pastries,1,148.75,148.75
+2025-05-26,Almonds,Pastries,4,5.59,22.36
+2025-06-29,Baguette,Pastries,1,133.77,133.77
+2025-08-13,Glazed Donut,Pastries,1,148.75,148.75
+2025-05-10,Hot Chocolate,Pastries,2,131.53,263.06
+2025-10-11,Latte,Pastries,5,108.74,543.70
+2025-08-16,Tea,Beverages,5,106.18,530.90
+2025-09-28,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-09-04,Chai Latte,Pastries,5,100.50,502.50
+2025-02-08,Latte,Pastries,4,108.74,434.96
+2024-12-02,Americano,Pastries,1,80.96,80.96
+2025-09-05,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-06-22,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-10-16,Glazed Donut,Pastries,1,148.75,148.75
+2025-05-17,Iced Mocha,Pastries,1,144.00,144.00
+2025-06-10,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-10-14,Almonds,Pastries,5,5.59,27.95
+2025-08-03,Latte,Pastries,3,108.74,326.22
+2024-12-04,Cappuccino,Pastries,1,76.25,76.25
+2025-11-14,Tea,Beverages,2,106.18,212.36
+2025-01-17,Almond Croissant,Pastries,2,8.42,16.84
+2025-09-14,Cappuccino,Pastries,1,76.25,76.25
+2025-10-25,Glazed Donut,Pastries,4,148.75,595.00
+2025-03-13,Iced Mocha,Pastries,5,144.00,720.00
+2025-05-11,Tiramisu,Pastries,4,196.55,786.20
+2025-07-13,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-01-02,Hot Chocolate,Pastries,5,131.53,657.65
+2025-10-05,Macchiato,Pastries,4,93.97,375.88
+2025-07-27,Espresso,Pastries,3,195.76,587.28
+2025-03-09,Iced Mocha,Pastries,5,144.00,720.00
+2025-02-17,Latte,Pastries,2,108.74,217.48
+2025-04-17,Almond Croissant,Pastries,5,8.42,42.10
+2025-09-09,Tea,Beverages,5,106.18,530.90
+2025-09-15,Eclair,Pastries,2,146.12,292.24
+2024-11-28,Almonds,Pastries,1,5.59,5.59
+2024-12-28,Tea,Beverages,4,106.18,424.72
+2024-12-26,Hot Chocolate,Pastries,5,131.53,657.65
+2025-01-29,Glazed Donut,Pastries,3,148.75,446.25
+2025-10-01,Iced Mocha,Pastries,3,144.00,432.00
+2025-11-01,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-04-22,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-02-16,Almond Croissant,Pastries,3,8.42,25.26
+2025-05-29,Almond Croissant,Pastries,2,8.42,16.84
+2025-01-02,Glazed Donut,Pastries,5,148.75,743.75
+2025-07-30,Iced Coffee,Beverages,5,107.80,539.00
+2025-06-08,Flat White,Pastries,3,113.21,339.63
+2025-07-05,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-07-07,Eclair,Pastries,5,146.12,730.60
+2025-02-10,Macchiato,Pastries,5,93.97,469.85
+2025-02-10,Macchiato,Pastries,2,93.97,187.94
+2025-07-31,Hot Chocolate,Pastries,1,131.53,131.53
+2025-04-23,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-01-26,Eclair,Pastries,3,146.12,438.36
+2025-11-05,Americano,Pastries,2,80.96,161.92
+2025-02-17,Glazed Donut,Pastries,1,148.75,148.75
+2025-10-31,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-09-16,Iced Coffee,Beverages,4,107.80,431.20
+2025-09-29,Latte,Pastries,5,108.74,543.70
+2025-01-30,Iced Mocha,Pastries,2,144.00,288.00
+2025-03-19,Cappuccino,Pastries,4,76.25,305.00
+2025-08-19,Iced Coffee,Beverages,5,107.80,539.00
+2025-08-11,Americano,Pastries,5,80.96,404.80
+2025-01-30,Mocha,Pastries,4,61.74,246.96
+2025-09-15,Mocha,Pastries,1,61.74,61.74
+2025-03-05,Americano,Pastries,4,80.96,323.84
+2024-12-03,Iced Coffee,Beverages,4,107.80,431.20
+2025-09-27,Apple Turnover,Pastries,3,154.54,463.62
+2025-01-05,Macchiato,Pastries,3,93.97,281.91
+2025-06-17,Tiramisu,Pastries,2,196.55,393.10
+2025-02-09,Mocha,Pastries,3,61.74,185.22
+2025-03-02,Apple Turnover,Pastries,1,154.54,154.54
+2025-03-18,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-06-17,Glazed Donut,Pastries,3,148.75,446.25
+2025-02-28,Almonds,Pastries,1,5.59,5.59
+2025-06-28,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-08-19,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-09-12,Almond Croissant,Pastries,5,8.42,42.10
+2025-07-03,Cappuccino,Pastries,1,76.25,76.25
+2025-04-04,Cappuccino,Pastries,3,76.25,228.75
+2025-04-09,Chai Latte,Pastries,1,100.50,100.50
+2025-03-19,Eclair,Pastries,3,146.12,438.36
+2025-01-31,Americano,Pastries,1,80.96,80.96
+2025-08-02,Almond Croissant,Pastries,4,8.42,33.68
+2025-02-25,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-04-03,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-09-09,Tiramisu,Pastries,2,196.55,393.10
+2025-01-25,Red Velvet Cake,Pastries,4,187.25,749.00
+2025-06-25,Eclair,Pastries,2,146.12,292.24
+2025-09-19,Almond Croissant,Pastries,1,8.42,8.42
+2024-12-23,Latte,Pastries,3,108.74,326.22
+2025-10-01,Apple Turnover,Pastries,4,154.54,618.16
+2024-11-24,Americano,Pastries,1,80.96,80.96
+2025-02-07,Almonds,Pastries,4,5.59,22.36
+2025-03-08,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-01-16,Mocha,Pastries,3,61.74,185.22
+2025-07-15,Baguette,Pastries,3,133.77,401.31
+2024-12-19,Eclair,Pastries,1,146.12,146.12
+2025-10-18,Tea,Beverages,1,106.18,106.18
+2025-10-23,Mocha,Pastries,3,61.74,185.22
+2025-09-27,Chai Latte,Pastries,2,100.50,201.00
+2025-09-13,Almonds,Pastries,3,5.59,16.77
+2025-04-05,Tiramisu,Pastries,4,196.55,786.20
+2025-06-19,Eclair,Pastries,2,146.12,292.24
+2025-07-13,Espresso,Pastries,4,195.76,783.04
+2025-09-23,Glazed Donut,Pastries,2,148.75,297.50
+2025-10-13,Apple Turnover,Pastries,2,154.54,309.08
+2025-11-03,Flat White,Pastries,2,113.21,226.42
+2024-12-29,Almonds,Pastries,5,5.59,27.95
+2024-12-13,Baguette,Pastries,3,133.77,401.31
+2025-09-06,Glazed Donut,Pastries,3,148.75,446.25
+2025-11-16,Tiramisu,Pastries,2,196.55,393.10
+2025-06-08,Tiramisu,Pastries,4,196.55,786.20
+2025-07-21,Almonds,Pastries,4,5.59,22.36
+2025-08-25,Espresso,Pastries,3,195.76,587.28
+2025-03-21,Tea,Beverages,1,106.18,106.18
+2025-08-13,Iced Mocha,Pastries,1,144.00,144.00
+2024-12-31,Mocha,Pastries,3,61.74,185.22
+2025-08-06,Tea,Beverages,4,106.18,424.72
+2025-05-07,Red Velvet Cake,Pastries,2,187.25,374.50
+2025-05-31,Iced Coffee,Beverages,1,107.80,107.80
+2025-08-18,Espresso,Pastries,3,195.76,587.28
+2025-03-27,Iced Coffee,Beverages,3,107.80,323.40
+2025-08-15,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-02-22,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-04-01,Baguette,Pastries,3,133.77,401.31
+2025-01-11,Baguette,Pastries,1,133.77,133.77
+2025-04-12,Glazed Donut,Pastries,3,148.75,446.25
+2025-03-27,Iced Mocha,Pastries,3,144.00,432.00
+2025-06-29,Tea,Beverages,5,106.18,530.90
+2024-12-28,Macchiato,Pastries,2,93.97,187.94
+2025-07-20,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-11-18,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-01-11,Cappuccino,Pastries,2,76.25,152.50
+2025-09-30,Hot Chocolate,Pastries,1,131.53,131.53
+2025-10-21,Almond Croissant,Pastries,2,8.42,16.84
+2025-07-01,Tiramisu,Pastries,1,196.55,196.55
+2025-09-18,Apple Turnover,Pastries,1,154.54,154.54
+2025-11-07,Cappuccino,Pastries,1,76.25,76.25
+2024-12-28,Glazed Donut,Pastries,3,148.75,446.25
+2025-10-30,Flat White,Pastries,2,113.21,226.42
+2024-11-26,Eclair,Pastries,5,146.12,730.60
+2025-11-14,Tiramisu,Pastries,5,196.55,982.75
+2025-02-10,Almond Croissant,Pastries,1,8.42,8.42
+2025-11-13,Almonds,Pastries,5,5.59,27.95
+2025-03-07,Almond Croissant,Pastries,4,8.42,33.68
+2025-08-25,Iced Coffee,Beverages,5,107.80,539.00
+2025-09-02,Tiramisu,Pastries,4,196.55,786.20
+2025-05-02,Tiramisu,Pastries,5,196.55,982.75
+2025-01-06,Eclair,Pastries,5,146.12,730.60
+2025-01-01,Chai Latte,Pastries,2,100.50,201.00
+2025-02-15,Tiramisu,Pastries,3,196.55,589.65
+2025-05-22,Iced Mocha,Pastries,3,144.00,432.00
+2025-06-25,Chai Latte,Pastries,2,100.50,201.00
+2025-03-31,Almonds,Pastries,4,5.59,22.36
+2025-04-09,Apple Turnover,Pastries,5,154.54,772.70
+2025-03-30,Latte,Pastries,3,108.74,326.22
+2024-11-24,Eclair,Pastries,1,146.12,146.12
+2025-08-23,Latte,Pastries,5,108.74,543.70
+2025-06-15,Cappuccino,Pastries,1,76.25,76.25
+2025-03-26,Chai Latte,Pastries,5,100.50,502.50
+2025-06-25,Cappuccino,Pastries,1,76.25,76.25
+2025-07-23,Almond Croissant,Pastries,4,8.42,33.68
+2025-10-19,Glazed Donut,Pastries,4,148.75,595.00
+2025-02-04,Eclair,Pastries,2,146.12,292.24
+2025-02-05,Latte,Pastries,2,108.74,217.48
+2025-09-24,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2024-12-24,Baguette,Pastries,2,133.77,267.54
+2025-03-20,Tiramisu,Pastries,3,196.55,589.65
+2025-10-12,Almonds,Pastries,2,5.59,11.18
+2025-04-07,Eclair,Pastries,5,146.12,730.60
+2025-11-15,Cappuccino,Pastries,2,76.25,152.50
+2025-07-31,Apple Turnover,Pastries,2,154.54,309.08
+2025-10-22,Mocha,Pastries,2,61.74,123.48
+2025-08-23,Macchiato,Pastries,3,93.97,281.91
+2025-10-16,Iced Mocha,Pastries,1,144.00,144.00
+2025-08-18,Chai Latte,Pastries,4,100.50,402.00
+2025-08-10,Tiramisu,Pastries,5,196.55,982.75
+2025-03-13,Espresso,Pastries,3,195.76,587.28
+2025-03-28,Iced Mocha,Pastries,5,144.00,720.00
+2025-07-09,Eclair,Pastries,3,146.12,438.36
+2025-01-11,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-10-02,Mocha,Pastries,4,61.74,246.96
+2025-08-27,Flat White,Pastries,3,113.21,339.63
+2025-11-09,Latte,Pastries,5,108.74,543.70
+2024-12-08,Chocolate Chip Muffin,Pastries,1,103.79,103.79
+2025-03-28,Glazed Donut,Pastries,5,148.75,743.75
+2025-11-07,Flat White,Pastries,1,113.21,113.21
+2024-12-31,Eclair,Pastries,2,146.12,292.24
+2025-01-29,Apple Turnover,Pastries,5,154.54,772.70
+2025-11-18,Glazed Donut,Pastries,2,148.75,297.50
+2025-09-22,Iced Mocha,Pastries,4,144.00,576.00
+2025-06-02,Glazed Donut,Pastries,5,148.75,743.75
+2025-02-19,Red Velvet Cake,Pastries,2,187.25,374.50
+2025-04-27,Tiramisu,Pastries,4,196.55,786.20
+2024-12-11,Eclair,Pastries,1,146.12,146.12
+2025-02-06,Blueberry Muffin,Pastries,1,185.15,185.15
+2025-03-27,Macchiato,Pastries,2,93.97,187.94
+2024-12-13,Iced Mocha,Pastries,3,144.00,432.00
+2025-02-02,Flat White,Pastries,4,113.21,452.84
+2025-11-21,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-03-06,Chocolate Chip Muffin,Pastries,5,103.79,518.95
+2025-09-03,Latte,Pastries,5,108.74,543.70
+2025-01-13,Tea,Beverages,3,106.18,318.54
+2025-07-28,Flat White,Pastries,2,113.21,226.42
+2025-07-26,Baguette,Pastries,4,133.77,535.08
+2025-04-29,Chocolate Chip Muffin,Pastries,4,103.79,415.16
+2024-11-24,Tiramisu,Pastries,3,196.55,589.65
+2025-08-03,Mocha,Pastries,1,61.74,61.74
+2025-05-29,Almonds,Pastries,4,5.59,22.36
+2025-01-29,Tiramisu,Pastries,5,196.55,982.75
+2025-02-11,Espresso,Pastries,2,195.76,391.52
+2025-03-29,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-05-20,Red Velvet Cake,Pastries,3,187.25,561.75
+2025-06-07,Eclair,Pastries,5,146.12,730.60
+2025-11-23,Eclair,Pastries,2,146.12,292.24
+2025-05-19,Baguette,Pastries,1,133.77,133.77
+2025-11-02,Baguette,Pastries,5,133.77,668.85
+2025-03-07,Cappuccino,Pastries,1,76.25,76.25
+2025-11-11,Chai Latte,Pastries,3,100.50,301.50
+2025-10-26,Baguette,Pastries,2,133.77,267.54
+2025-01-13,Tiramisu,Pastries,5,196.55,982.75
+2025-04-16,Americano,Pastries,4,80.96,323.84
+2025-08-26,Baguette,Pastries,5,133.77,668.85
+2025-09-03,Baguette,Pastries,1,133.77,133.77
+2025-08-05,Latte,Pastries,1,108.74,108.74
+2025-07-07,Tiramisu,Pastries,2,196.55,393.10
+2025-08-14,Tiramisu,Pastries,2,196.55,393.10
+2025-02-25,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-08-04,Almonds,Pastries,3,5.59,16.77
+2025-06-11,Espresso,Pastries,2,195.76,391.52
+2025-09-20,Iced Mocha,Pastries,1,144.00,144.00
+2025-07-25,Iced Mocha,Pastries,4,144.00,576.00
+2025-07-27,Americano,Pastries,1,80.96,80.96
+2024-11-24,Eclair,Pastries,4,146.12,584.48
+2025-10-12,Espresso,Pastries,1,195.76,195.76
+2024-11-29,Latte,Pastries,2,108.74,217.48
+2025-07-23,Mocha,Pastries,3,61.74,185.22
+2025-02-05,Espresso,Pastries,2,195.76,391.52
+2025-08-20,Tiramisu,Pastries,2,196.55,393.10
+2025-10-22,Americano,Pastries,1,80.96,80.96
+2024-12-14,Latte,Pastries,5,108.74,543.70
+2025-05-15,Americano,Pastries,3,80.96,242.88
+2025-03-13,Almonds,Pastries,4,5.59,22.36
+2025-11-24,Iced Coffee,Beverages,2,107.80,215.60
+2025-05-06,Blueberry Muffin,Pastries,5,185.15,925.75
+2025-11-06,Iced Mocha,Pastries,4,144.00,576.00
+2025-10-20,Americano,Pastries,3,80.96,242.88
+2025-04-21,Baguette,Pastries,1,133.77,133.77
+2025-01-08,Chai Latte,Pastries,1,100.50,100.50
+2025-03-19,Americano,Pastries,5,80.96,404.80
+2025-05-21,Iced Mocha,Pastries,3,144.00,432.00
+2025-02-14,Glazed Donut,Pastries,4,148.75,595.00
+2025-05-02,Hot Chocolate,Pastries,3,131.53,394.59
+2025-01-02,Americano,Pastries,4,80.96,323.84
+2025-01-23,Espresso,Pastries,3,195.76,587.28
+2025-06-02,Mocha,Pastries,3,61.74,185.22
+2025-10-14,Chocolate Chip Muffin,Pastries,3,103.79,311.37
+2025-08-20,Chocolate Chip Muffin,Pastries,2,103.79,207.58
+2025-06-15,Tea,Beverages,5,106.18,530.90
+2025-11-17,Iced Mocha,Pastries,5,144.00,720.00
+2025-04-07,Espresso,Pastries,1,195.76,195.76
+2025-08-17,Latte,Pastries,3,108.74,326.22
+2025-05-16,Blueberry Muffin,Pastries,2,185.15,370.30
+2025-03-22,Macchiato,Pastries,1,93.97,93.97
+2024-12-20,Hot Chocolate,Pastries,2,131.53,263.06
+2025-07-29,Red Velvet Cake,Pastries,2,187.25,374.50
+2025-10-07,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-11-07,Red Velvet Cake,Pastries,3,187.25,561.75
+2024-12-09,Almonds,Pastries,2,5.59,11.18
+2025-07-06,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-04-27,Tea,Beverages,1,106.18,106.18
+2024-12-08,Almond Croissant,Pastries,4,8.42,33.68
+2025-11-16,Glazed Donut,Pastries,3,148.75,446.25
+2025-07-03,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-01-31,Iced Coffee,Beverages,2,107.80,215.60
+2025-07-28,Almonds,Pastries,5,5.59,27.95
+2025-08-25,Red Velvet Cake,Pastries,5,187.25,936.25
+2025-05-02,Tiramisu,Pastries,2,196.55,393.10
+2025-05-11,Hot Chocolate,Pastries,2,131.53,263.06
+2025-08-04,Espresso,Pastries,2,195.76,391.52
+2025-02-04,Americano,Pastries,2,80.96,161.92
+2025-10-15,Baguette,Pastries,1,133.77,133.77
+2025-08-19,Tea,Beverages,5,106.18,530.90
+2025-03-23,Espresso,Pastries,3,195.76,587.28
+2025-06-15,Tiramisu,Pastries,2,196.55,393.10
+2025-02-08,Flat White,Pastries,1,113.21,113.21
+2025-10-23,Tea,Beverages,4,106.18,424.72
+2025-03-08,Red Velvet Cake,Pastries,1,187.25,187.25
+2025-05-10,Blueberry Muffin,Pastries,4,185.15,740.60
+2025-10-22,Iced Coffee,Beverages,3,107.80,323.40
+2024-11-29,Chai Latte,Pastries,2,100.50,201.00
+2025-08-24,Apple Turnover,Pastries,5,154.54,772.70
+2024-11-29,Espresso,Pastries,5,195.76,978.80
+2024-12-01,Chai Latte,Pastries,4,100.50,402.00
+2025-01-27,Espresso,Pastries,5,195.76,978.80
+2025-03-25,Almonds,Pastries,2,5.59,11.18
+2025-05-19,Iced Mocha,Pastries,1,144.00,144.00
+2025-08-13,Americano,Pastries,3,80.96,242.88
+2025-03-06,Baguette,Pastries,3,133.77,401.31
+2025-03-15,Blueberry Muffin,Pastries,3,185.15,555.45
+2025-03-21,Chai Latte,Pastries,1,100.50,100.50
+2025-09-06,Americano,Pastries,1,80.96,80.96
+2025-03-14,Chai Latte,Pastries,5,100.50,502.50
+2025-05-02,Glazed Donut,Pastries,1,148.75,148.75
+2025-01-17,Iced Coffee,Beverages,1,107.80,107.80
