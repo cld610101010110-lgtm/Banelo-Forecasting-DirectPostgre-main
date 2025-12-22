@@ -108,13 +108,13 @@ def get_sales_data():
     sales = Sale.objects.filter(
         order_date__gte=start_date,
         order_date__lte=end_date
-    ).select_related('product')
+    ).order_by('order_date')
 
     # Convert to dataframe
     sales_data = []
     for sale in sales:
         sales_data.append({
-            'product_id': sale.product_id if sale.product else None,
+            'product_id': sale.product_firebase_id,
             'product_name': sale.product_name,
             'category': sale.category,
             'quantity': sale.quantity,
