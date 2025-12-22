@@ -2286,7 +2286,7 @@ _feature_columns = None
 
 
 def load_sales_forecast_model():
-    """Load the XGBoost sales forecasting model from .pkl file"""
+    """Load the Gradient Boosting sales forecasting model from .pkl file"""
     global _sales_forecast_model, _feature_columns
 
     if _sales_forecast_model is not None:
@@ -2296,7 +2296,7 @@ def load_sales_forecast_model():
         import joblib
         import numpy as np
 
-        model_path = os.path.join(settings.BASE_DIR, 'ml_models', 'banelo_xgboost_model.pkl')
+        model_path = os.path.join(settings.BASE_DIR, 'ml_models', 'forecasting_model.pkl')
         features_path = os.path.join(settings.BASE_DIR, 'ml_models', 'feature_columns.pkl')
 
         if not os.path.exists(model_path):
