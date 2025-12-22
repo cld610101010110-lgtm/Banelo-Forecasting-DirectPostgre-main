@@ -2394,23 +2394,34 @@ def sales_forecasting_view(request):
         print("\n🤖 SALES FORECASTING VIEW (ML)")
 
         # Check if model files exist
-        model_path = os.path.join(settings.BASE_DIR, 'ml_models', 'banelo_xgboost_model.pkl')
+        model_path = os.path.join(settings.BASE_DIR, 'ml_models', 'forecasting_model.pkl')
         features_path = os.path.join(settings.BASE_DIR, 'ml_models', 'feature_columns.pkl')
 
         model_exists = os.path.exists(model_path)
         features_exist = os.path.exists(features_path)
 
-        # Get recent sales for display
-        recent_sales = Sale.objects.order_by('-order_date')[:100]
+        # Get sales from API (same as sales_view)
+        api = get_api_service()
+        api_sales = api.get_sales(limit=1000)
 
-        # Calculate basic statistics
-        total_sales = Sale.objects.count()
+        # Count total sales and get date range
+        total_sales = len(api_sales) if api_sales else 0
 
-        # Get date range
-        if total_sales > 0:
-            earliest_sale = Sale.objects.order_by('order_date').first()
-            latest_sale = Sale.objects.order_by('-order_date').first()
-            date_range_days = (latest_sale.order_date - earliest_sale.order_date).days if earliest_sale and latest_sale else 0
+        if api_sales and len(api_sales) > 0:
+            # Get date range from API data
+            dates = []
+            for sale in api_sales:
+                order_date_raw = sale.get('order_date') or sale.get('orderDate')
+                if isinstance(order_date_raw, str):
+                    try:
+                        dates.append(datetime.strptime(order_date_raw[:10], '%Y-%m-%d'))
+                    except:
+                        pass
+
+            if dates:
+                date_range_days = (max(dates) - min(dates)).days
+            else:
+                date_range_days = 0
         else:
             date_range_days = 0
 
