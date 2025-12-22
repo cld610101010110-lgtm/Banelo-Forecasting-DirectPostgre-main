@@ -58,9 +58,7 @@ firebase-credentials.json
 Thumbs.db
 
 # Machine Learning
-ml_models/*.pkl
 ml_models/*.h5
 ml_models/*.joblib
 exported_data/
-*.pkl
 *.h5
