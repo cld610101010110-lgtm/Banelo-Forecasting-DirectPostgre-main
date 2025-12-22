@@ -45,7 +45,7 @@ def export_sales_data(days=90):
     sales = Sale.objects.filter(
         order_date__gte=start_date,
         order_date__lte=end_date
-    ).select_related('product').order_by('order_date')
+    ).order_by('order_date')
 
     # Export to CSV
     filepath = os.path.join(OUTPUT_DIR, 'sales_data.csv')
@@ -71,7 +71,7 @@ def export_sales_data(days=90):
         for sale in sales:
             writer.writerow([
                 sale.id,
-                sale.product_id if sale.product else '',
+                '',  # No product_id field in Sale model
                 sale.product_firebase_id or '',
                 sale.product_name,
                 sale.category,
