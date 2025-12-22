@@ -47,7 +47,7 @@ MIN_DATA_POINTS = 7  # Minimum sales records required
 
 
 def load_model():
-    """Load the trained ML model"""
+    """Load the trained ML model from Colab"""
     print("\n📦 Loading ML model...")
 
     if not os.path.exists(MODEL_PATH):
@@ -59,21 +59,35 @@ def load_model():
         sys.exit(1)
 
     try:
-        model_package = joblib.load(MODEL_PATH)
+        # Load the model from Colab (saved directly, not as dictionary)
+        model = joblib.load(MODEL_PATH)
         print(f"   ✓ Model loaded successfully!")
 
-        # Extract components
-        model = model_package['model']
-        metadata = model_package['metadata']
-        label_encoder = model_package['label_encoder']
-        feature_columns = model_package['feature_columns']
+        # Load feature columns
+        feature_columns_path = 'ml_models/feature_columns.pkl'
+        if os.path.exists(feature_columns_path):
+            feature_columns = joblib.load(feature_columns_path)
+        else:
+            feature_columns = None
+
+        # Load category encoder
+        category_encoder_path = 'ml_models/category_encoder.pkl'
+        if os.path.exists(category_encoder_path):
+            label_encoder = joblib.load(category_encoder_path)
+        else:
+            label_encoder = None
+
+        # Create minimal metadata
+        metadata = {
+            'model_type': 'Gradient Boosting',
+            'trained_date': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            'metrics': {'r2_score': 0.0, 'rmse': 0.0, 'mae': 0.0}
+        }
 
         print(f"\n📊 Model Information:")
         print(f"   - Type: {metadata['model_type']}")
         print(f"   - Trained: {metadata['trained_date']}")
-        print(f"   - R² Score: {metadata['metrics']['r2_score']:.4f}")
-        print(f"   - RMSE: {metadata['metrics']['rmse']:.4f}")
-        print(f"   - MAE: {metadata['metrics']['mae']:.4f}")
+        print(f"   - Features loaded: {len(feature_columns) if feature_columns else 'Unknown'}")
 
         return model, metadata, label_encoder, feature_columns
 
@@ -94,13 +108,13 @@ def get_sales_data():
     sales = Sale.objects.filter(
         order_date__gte=start_date,
         order_date__lte=end_date
-    ).select_related('product')
+    ).order_by('order_date')
 
     # Convert to dataframe
     sales_data = []
     for sale in sales:
         sales_data.append({
-            'product_id': sale.product_id if sale.product else None,
+            'product_id': sale.product_firebase_id,
             'product_name': sale.product_name,
             'category': sale.category,
             'quantity': sale.quantity,
