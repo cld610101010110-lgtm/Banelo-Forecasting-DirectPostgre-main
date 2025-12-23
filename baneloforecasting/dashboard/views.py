@@ -2512,6 +2512,22 @@ def get_sales_forecast_api(request):
                 'message': 'Model not loaded. Please upload model files to ml_models folder.'
             })
 
+        # Calculate average unit price from historical sales data
+        api = get_api_service()
+        api_sales = api.get_sales(limit=10000)
+
+        total_amount = 0
+        total_quantity = 0
+        for sale in api_sales:
+            amount = float(sale.get('total_amount') or sale.get('total') or 0)
+            qty = float(sale.get('quantity') or 0)
+            total_amount += amount
+            total_quantity += qty
+
+        # Calculate average price per unit
+        average_unit_price = (total_amount / total_quantity) if total_quantity > 0 else 100
+        print(f"📊 Average unit price: ₱{average_unit_price:.2f} (based on {total_quantity:.0f} total units)")
+
         # Generate predictions for next N days
         predictions = []
         start_date = datetime.now().date() + timedelta(days=1)
@@ -2529,9 +2545,12 @@ def get_sales_forecast_api(request):
 
             X = np.array(X).reshape(1, -1)
 
-            # Make prediction
-            predicted_revenue = float(model.predict(X)[0])
-            predicted_revenue = max(0, predicted_revenue)  # No negative predictions
+            # Make prediction (model predicts quantity)
+            predicted_quantity = float(model.predict(X)[0])
+            predicted_quantity = max(0, predicted_quantity)  # No negative predictions
+
+            # Convert predicted quantity to revenue using average unit price
+            predicted_revenue = predicted_quantity * average_unit_price
 
             # Calculate confidence interval (±15%)
             lower_bound = predicted_revenue * 0.85
