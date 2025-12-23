@@ -320,19 +320,6 @@
     <div class="status-cards">
         <div class="status-card">
             <div class="status-card-header">
-                <div class="status-icon ready" id="modelStatusIcon">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <div>
-                    <h3>Model Status</h3>
-                </div>
-            </div>
-            <div class="status-card-value" id="modelStatus">{{ model_ready|yesno:"Ready,Not Ready" }}</div>
-            <div class="status-card-label">Model Type: <strong id="modelType">Gradient Boosting</strong></div>
-        </div>
-
-        <div class="status-card">
-            <div class="status-card-header">
                 <div class="status-icon ready">
                     <i class="fas fa-list"></i>
                 </div>
@@ -355,19 +342,6 @@
             </div>
             <div class="status-card-value">{{ date_range_days }}</div>
             <div class="status-card-label">Days of Historical Data</div>
-        </div>
-
-        <div class="status-card">
-            <div class="status-card-header">
-                <div class="status-icon ready">
-                    <i class="fas fa-cogs"></i>
-                </div>
-                <div>
-                    <h3>Features</h3>
-                </div>
-            </div>
-            <div class="status-card-value" id="featuresCount">14</div>
-            <div class="status-card-label">Machine Learning Features</div>
         </div>
     </div>
 
