@@ -2335,41 +2335,25 @@ def create_forecast_features(date):
     is_weekend = 1 if day_of_week >= 5 else 0
     week_of_year = date.isocalendar()[1]
 
-    # Get recent sales history from API (PostgreSQL) for rolling features
+    # Get sales history from PostgreSQL (ALL historical data for accurate forecasting)
     try:
-        api = get_api_service()
-        # Get ALL historical sales (from 2020 onwards) by specifying a wide date range
-        api_sales = api.get_sales(limit=10000, date_from='2020-01-01', date_to=None)
+        # Query PostgreSQL directly for ALL sales records (bypass API date filters)
+        all_sales = Sale.objects.all().values('order_date', 'total').order_by('order_date')
 
-        # Convert API response to DataFrame
-        sales_data = []
-        for sale in api_sales:
-            order_date_raw = sale.get('order_date') or sale.get('orderDate')
-            if isinstance(order_date_raw, str):
-                order_date = datetime.strptime(order_date_raw[:10], '%Y-%m-%d').date()
-            elif order_date_raw:
-                order_date = order_date_raw.date() if hasattr(order_date_raw, 'date') else order_date_raw
-            else:
-                continue
-
-            total = float(sale.get('total_amount') or sale.get('total') or 0)
-            sales_data.append({
-                'order_date': order_date,
-                'total': total
-            })
-
-        # Calculate rolling statistics from API data
+        # Calculate rolling statistics from all available sales
         daily_totals = defaultdict(float)
-        for sale in sales_data:
-            sale_date = sale['order_date']
+        for sale in all_sales:
+            sale_date = sale['order_date'].date() if hasattr(sale['order_date'], 'date') else sale['order_date']
             daily_totals[sale_date] += sale['total'] or 0
 
         # Sort dates to ensure proper ordering
         sorted_dates = sorted(daily_totals.keys())
         daily_values = [daily_totals[d] for d in sorted_dates]
 
+        print(f"📊 Loaded {len(all_sales)} total sales from PostgreSQL for forecasting features")
+
     except Exception as e:
-        print(f"⚠️ Error fetching API data for features: {e}")
+        print(f"⚠️ Error fetching PostgreSQL data for features: {e}")
         daily_values = [0]
 
     rolling_mean_7d = np.mean(daily_values[-7:]) if len(daily_values) >= 7 else np.mean(daily_values)
@@ -2422,24 +2406,15 @@ def sales_forecasting_view(request):
         model_exists = os.path.exists(model_path)
         features_exist = os.path.exists(features_path)
 
-        # Get ALL historical sales from API (same as sales_view)
-        api = get_api_service()
-        # Request all sales from 2020 onwards to get complete historical data
-        api_sales = api.get_sales(limit=10000, date_from='2020-01-01', date_to=None)
+        # Get ALL historical sales from PostgreSQL (bypass API date filters)
+        all_sales = Sale.objects.all().values('order_date', 'total')
 
         # Count total sales and get date range
-        total_sales = len(api_sales) if api_sales else 0
+        total_sales = all_sales.count()
 
-        if api_sales and len(api_sales) > 0:
-            # Get date range from API data
-            dates = []
-            for sale in api_sales:
-                order_date_raw = sale.get('order_date') or sale.get('orderDate')
-                if isinstance(order_date_raw, str):
-                    try:
-                        dates.append(datetime.strptime(order_date_raw[:10], '%Y-%m-%d'))
-                    except:
-                        pass
+        if total_sales > 0:
+            # Get date range from all sales
+            dates = [sale['order_date'] for sale in all_sales if sale['order_date']]
 
             if dates:
                 date_range_days = (max(dates) - min(dates)).days

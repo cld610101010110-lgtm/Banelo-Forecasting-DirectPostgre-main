@@ -95,47 +95,33 @@ class Command(BaseCommand):
             return None
 
     def get_sales_data(self, days):
-        """Fetch sales data from API (PostgreSQL)"""
-        self.stdout.write('\n📊 Fetching sales data from API...')
+        """Fetch sales data from PostgreSQL (all historical records)"""
+        self.stdout.write('\n📊 Fetching sales data from PostgreSQL...')
 
         try:
-            from dashboard.api_service import get_api_service
+            # Query PostgreSQL directly for ALL sales (bypass API date filters)
+            all_sales = Sale.objects.all().values(
+                'order_date', 'product_name', 'category', 'quantity', 'price', 'total'
+            ).order_by('order_date')
 
-            api = get_api_service()
-            api_sales = api.get_sales(limit=1000)
-
-            if not api_sales:
+            if not all_sales.exists():
                 return None
 
-            # Convert API response to DataFrame
-            sales_data = []
-            for sale in api_sales:
-                price = float(sale.get('price', 0) or 0)
-                quantity = int(sale.get('quantity', 0) or 0)
-                total = float(sale.get('total_amount') or sale.get('total') or 0) or (price * quantity)
+            # Convert queryset to DataFrame
+            sales_list = list(all_sales)
+            df = pd.DataFrame(sales_list)
 
-                order_date_raw = sale.get('order_date') or sale.get('orderDate')
-                if isinstance(order_date_raw, str):
-                    order_date = order_date_raw
-                else:
-                    order_date = order_date_raw.isoformat() if order_date_raw else None
+            # Ensure total is numeric
+            df['total'] = pd.to_numeric(df['total'], errors='coerce').fillna(0)
 
-                sales_data.append({
-                    'order_date': order_date,
-                    'product_name': sale.get('product_name') or sale.get('productName') or 'Unknown',
-                    'category': sale.get('category') or 'Uncategorized',
-                    'quantity': quantity,
-                    'price': price,
-                    'total': total
-                })
-
-            df = pd.DataFrame(sales_data)
-            self.stdout.write(self.style.SUCCESS(f'   ✓ Loaded {len(df)} sales from API'))
+            self.stdout.write(self.style.SUCCESS(f'   ✓ Loaded {len(df)} sales from PostgreSQL'))
 
             return df
 
         except Exception as e:
-            self.stdout.write(self.style.ERROR(f'❌ Error fetching from API: {e}'))
+            self.stdout.write(self.style.ERROR(f'❌ Error fetching from PostgreSQL: {e}'))
+            import traceback
+            traceback.print_exc()
             return None
 
     def generate_forecasts(self, model, sales_df):
