@@ -2335,13 +2335,13 @@ def create_forecast_features(date):
     is_weekend = 1 if day_of_week >= 5 else 0
     week_of_year = date.isocalendar()[1]
 
-    # Get recent sales history from API (PostgreSQL) for rolling features
+    # Get sales history from API (ALL historical data for accurate forecasting)
     try:
         api = get_api_service()
-        # Get ALL historical sales (from 2020 onwards) by specifying a wide date range
-        api_sales = api.get_sales(limit=10000, date_from='2020-01-01', date_to=None)
+        # Request ALL historical sales (API will return all records if no date filter)
+        api_sales = api.get_sales(limit=10000)
 
-        # Convert API response to DataFrame
+        # Convert API response to rolling statistics
         sales_data = []
         for sale in api_sales:
             order_date_raw = sale.get('order_date') or sale.get('orderDate')
@@ -2353,20 +2353,17 @@ def create_forecast_features(date):
                 continue
 
             total = float(sale.get('total_amount') or sale.get('total') or 0)
-            sales_data.append({
-                'order_date': order_date,
-                'total': total
-            })
+            sales_data.append({'order_date': order_date, 'total': total})
 
         # Calculate rolling statistics from API data
         daily_totals = defaultdict(float)
         for sale in sales_data:
-            sale_date = sale['order_date']
-            daily_totals[sale_date] += sale['total'] or 0
+            daily_totals[sale['order_date']] += sale['total'] or 0
 
-        # Sort dates to ensure proper ordering
         sorted_dates = sorted(daily_totals.keys())
         daily_values = [daily_totals[d] for d in sorted_dates]
+
+        print(f"📊 Loaded {len(sales_data)} total sales from API for forecasting features")
 
     except Exception as e:
         print(f"⚠️ Error fetching API data for features: {e}")
@@ -2422,10 +2419,9 @@ def sales_forecasting_view(request):
         model_exists = os.path.exists(model_path)
         features_exist = os.path.exists(features_path)
 
-        # Get ALL historical sales from API (same as sales_view)
+        # Get ALL historical sales from API
         api = get_api_service()
-        # Request all sales from 2020 onwards to get complete historical data
-        api_sales = api.get_sales(limit=10000, date_from='2020-01-01', date_to=None)
+        api_sales = api.get_sales(limit=10000)
 
         # Count total sales and get date range
         total_sales = len(api_sales) if api_sales else 0

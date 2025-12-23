@@ -95,14 +95,15 @@ class Command(BaseCommand):
             return None
 
     def get_sales_data(self, days):
-        """Fetch sales data from API (PostgreSQL)"""
+        """Fetch sales data from API (all historical records)"""
         self.stdout.write('\n📊 Fetching sales data from API...')
 
         try:
             from dashboard.api_service import get_api_service
 
             api = get_api_service()
-            api_sales = api.get_sales(limit=1000)
+            # Request all available sales from the API (no date limit)
+            api_sales = api.get_sales(limit=10000)
 
             if not api_sales:
                 return None
@@ -136,6 +137,8 @@ class Command(BaseCommand):
 
         except Exception as e:
             self.stdout.write(self.style.ERROR(f'❌ Error fetching from API: {e}'))
+            import traceback
+            traceback.print_exc()
             return None
 
     def generate_forecasts(self, model, sales_df):
