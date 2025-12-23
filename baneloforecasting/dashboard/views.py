@@ -2325,23 +2325,23 @@ def load_sales_forecast_model():
 
 
 def create_forecast_features(date):
-    """Create features for a specific date for forecasting using PostgreSQL API data"""
+    """Create 14 features for a specific date that match the trained model"""
     import numpy as np
 
-    # Extract date features
+    # Extract date features matching training data
     day_of_week = date.weekday()
     day_of_month = date.day
     month = date.month
+    year = date.year
     is_weekend = 1 if day_of_week >= 5 else 0
     week_of_year = date.isocalendar()[1]
 
-    # Get sales history from API (ALL historical data for accurate forecasting)
+    # Get sales history from API (ALL historical data for feature calculation)
     try:
         api = get_api_service()
-        # Request ALL historical sales (API will return all records if no date filter)
         api_sales = api.get_sales(limit=10000)
 
-        # Convert API response to rolling statistics
+        # Convert API response to quantity-based features (matching training)
         sales_data = []
         for sale in api_sales:
             order_date_raw = sale.get('order_date') or sale.get('orderDate')
@@ -2352,16 +2352,16 @@ def create_forecast_features(date):
             else:
                 continue
 
-            total = float(sale.get('total_amount') or sale.get('total') or 0)
-            sales_data.append({'order_date': order_date, 'total': total})
+            quantity = float(sale.get('quantity') or 0)
+            sales_data.append({'order_date': order_date, 'quantity': quantity})
 
-        # Calculate rolling statistics from API data
-        daily_totals = defaultdict(float)
+        # Calculate daily quantities (matching training feature engineering)
+        daily_quantities = defaultdict(float)
         for sale in sales_data:
-            daily_totals[sale['order_date']] += sale['total'] or 0
+            daily_quantities[sale['order_date']] += sale['quantity'] or 0
 
-        sorted_dates = sorted(daily_totals.keys())
-        daily_values = [daily_totals[d] for d in sorted_dates]
+        sorted_dates = sorted(daily_quantities.keys())
+        daily_values = [daily_quantities[d] for d in sorted_dates]
 
         print(f"📊 Loaded {len(sales_data)} total sales from API for forecasting features")
 
@@ -2369,38 +2369,36 @@ def create_forecast_features(date):
         print(f"⚠️ Error fetching API data for features: {e}")
         daily_values = [0]
 
-    rolling_mean_7d = np.mean(daily_values[-7:]) if len(daily_values) >= 7 else np.mean(daily_values)
-    rolling_std_7d = np.std(daily_values[-7:]) if len(daily_values) >= 7 else 0
-    rolling_max_7d = np.max(daily_values[-7:]) if len(daily_values) >= 7 else 0
-    rolling_min_7d = np.min(daily_values[-7:]) if len(daily_values) >= 7 else 0
-    rolling_mean_30d = np.mean(daily_values[-30:]) if len(daily_values) >= 30 else np.mean(daily_values)
-    rolling_std_30d = np.std(daily_values[-30:]) if len(daily_values) >= 30 else 0
+    # Calculate lag features (quantity-based, matching training)
+    quantity_lag_1 = daily_values[-1] if len(daily_values) >= 1 else 0
+    quantity_lag_7 = daily_values[-7] if len(daily_values) >= 7 else 0
+    quantity_lag_14 = daily_values[-14] if len(daily_values) >= 14 else 0
 
-    # Lag features
-    lag_1d = daily_values[-1] if len(daily_values) >= 1 else 0
-    lag_7d = daily_values[-7] if len(daily_values) >= 7 else 0
-    lag_14d = daily_values[-14] if len(daily_values) >= 14 else 0
+    # Calculate moving averages (quantity-based, matching training)
+    quantity_ma_7 = np.mean(daily_values[-7:]) if len(daily_values) >= 7 else np.mean(daily_values)
+    quantity_ma_14 = np.mean(daily_values[-14:]) if len(daily_values) >= 14 else np.mean(daily_values)
+    quantity_ma_30 = np.mean(daily_values[-30:]) if len(daily_values) >= 30 else np.mean(daily_values)
 
-    # Days since start (arbitrary baseline)
-    days_since_start = (date - datetime(2024, 1, 1).date()).days
+    # Days since start (matching training baseline)
+    min_date = min(sorted_dates) if sorted_dates else date
+    days_since_start = (date - min_date).days
 
-    # Build feature dictionary
+    # Build 14-feature dictionary matching training pipeline
     features = {
         'day_of_week': day_of_week,
         'day_of_month': day_of_month,
         'month': month,
-        'is_weekend': is_weekend,
+        'year': year,
         'week_of_year': week_of_year,
-        'rolling_mean_7d': rolling_mean_7d,
-        'rolling_std_7d': rolling_std_7d,
-        'rolling_max_7d': rolling_max_7d,
-        'rolling_min_7d': rolling_min_7d,
-        'rolling_mean_30d': rolling_mean_30d,
-        'rolling_std_30d': rolling_std_30d,
-        'lag_1d': lag_1d,
-        'lag_7d': lag_7d,
-        'lag_14d': lag_14d,
+        'is_weekend': is_weekend,
         'days_since_start': days_since_start,
+        'quantity_lag_1': quantity_lag_1,
+        'quantity_lag_7': quantity_lag_7,
+        'quantity_lag_14': quantity_lag_14,
+        'quantity_ma_7': quantity_ma_7,
+        'quantity_ma_14': quantity_ma_14,
+        'quantity_ma_30': quantity_ma_30,
+        'category_encoded': 0,  # Default category (will be set by actual product if available)
     }
 
     return features
