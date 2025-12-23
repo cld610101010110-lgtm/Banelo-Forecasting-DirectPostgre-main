@@ -2338,7 +2338,8 @@ def create_forecast_features(date):
     # Get recent sales history from API (PostgreSQL) for rolling features
     try:
         api = get_api_service()
-        api_sales = api.get_sales(limit=1000)  # Get all available sales
+        # Get ALL historical sales (from 2020 onwards) by specifying a wide date range
+        api_sales = api.get_sales(limit=10000, date_from='2020-01-01', date_to=None)
 
         # Convert API response to DataFrame
         sales_data = []
@@ -2421,9 +2422,10 @@ def sales_forecasting_view(request):
         model_exists = os.path.exists(model_path)
         features_exist = os.path.exists(features_path)
 
-        # Get sales from API (same as sales_view)
+        # Get ALL historical sales from API (same as sales_view)
         api = get_api_service()
-        api_sales = api.get_sales(limit=1000)
+        # Request all sales from 2020 onwards to get complete historical data
+        api_sales = api.get_sales(limit=10000, date_from='2020-01-01', date_to=None)
 
         # Count total sales and get date range
         total_sales = len(api_sales) if api_sales else 0
