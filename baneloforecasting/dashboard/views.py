@@ -1354,14 +1354,19 @@ def update_recipe_api(request):
     try:
         data = json.loads(request.body)
         print("\n🔥 UPDATE RECIPE API CALLED (via Node API)")
-        print(f"Data received: {data}")
+        print(f"📦 Full request data: {data}")
 
-        recipe_id = data.get('recipeId')
-        product_firebase_id = data.get('productFirebaseId')
-        product_name = data.get('productName')
+        # Try multiple possible field names
+        recipe_id = data.get('recipeId') or data.get('recipe_id') or data.get('id')
+        product_firebase_id = data.get('productFirebaseId') or data.get('product_firebase_id')
+        product_name = data.get('productName') or data.get('product_name')
         ingredients = data.get('ingredients', [])
 
+        print(f"📦 Extracted recipe_id: {recipe_id}")
+        print(f"📦 Ingredients count: {len(ingredients)}")
+
         if not recipe_id:
+            print("❌ No recipe ID found in request!")
             return JsonResponse({'success': False, 'message': 'Recipe ID required'})
 
         # Get API service
@@ -1414,11 +1419,15 @@ def delete_recipe_api(request):
     try:
         data = json.loads(request.body)
         print("\n🔥 DELETE RECIPE API CALLED (via Node API)")
-        print(f"Data received: {data}")
+        print(f"📦 Full request data: {data}")
 
-        recipe_id = data.get('recipeId')
+        # Try multiple possible field names
+        recipe_id = data.get('recipeId') or data.get('recipe_id') or data.get('id')
+
+        print(f"📦 Extracted recipe_id: {recipe_id}")
 
         if not recipe_id:
+            print("❌ No recipe ID found in request!")
             return JsonResponse({'success': False, 'message': 'Recipe ID required'})
 
         # Get API service
@@ -2259,10 +2268,15 @@ def delete_product_view(request):
     try:
         data = json.loads(request.body)
         print("\n🔥 DELETE PRODUCT API CALLED (via Node API)")
+        print(f"📦 Full request data: {data}")
 
-        product_id = data.get('productId')
+        # Try multiple possible field names
+        product_id = data.get('productId') or data.get('product_id') or data.get('id')
+
+        print(f"📦 Extracted product_id: {product_id}")
 
         if not product_id:
+            print("❌ No product ID found in request!")
             return JsonResponse({'success': False, 'message': 'Product ID is required'})
 
         # Get API service
