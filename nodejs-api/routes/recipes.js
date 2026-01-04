@@ -65,9 +65,9 @@ router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Get recipe
+    // Get recipe by firebase_id
     const recipeResult = await query(
-      'SELECT * FROM recipes WHERE id = $1',
+      'SELECT * FROM recipes WHERE firebase_id = $1',
       [id]
     );
 
@@ -80,10 +80,10 @@ router.get('/:id', async (req, res) => {
 
     const recipe = recipeResult.rows[0];
 
-    // Get ingredients
+    // Get ingredients using the recipe's firebase_id
     const ingredientsResult = await query(
       'SELECT * FROM recipe_ingredients WHERE recipe_firebase_id = $1',
-      [id]
+      [recipe.firebase_id]
     );
 
     res.json({
