@@ -217,7 +217,7 @@ router.put('/:id', async (req, res) => {
 
     // Check if recipe exists
     const checkResult = await client.query(
-      'SELECT * FROM recipes WHERE id = $1',
+      'SELECT * FROM recipes WHERE firebase_id = $1',
       [id]
     );
 
@@ -234,7 +234,7 @@ router.put('/:id', async (req, res) => {
     await client.query(
       `UPDATE recipes
        SET product_firebase_id = $1, product_name = $2, product_number = $3, updated_at = NOW()
-       WHERE id = $4`,
+       WHERE firebase_id = $4`,
       [productFirebaseId, productName, productNumber || 0, id]
     );
 
@@ -295,7 +295,7 @@ router.delete('/:id', async (req, res) => {
 
     // Check if recipe exists
     const checkResult = await client.query(
-      'SELECT * FROM recipes WHERE id = $1',
+      'SELECT * FROM recipes WHERE firebase_id = $1',
       [id]
     );
 
@@ -318,7 +318,7 @@ router.delete('/:id', async (req, res) => {
 
     // Delete recipe
     await client.query(
-      'DELETE FROM recipes WHERE id = $1',
+      'DELETE FROM recipes WHERE firebase_id = $1',
       [id]
     );
 

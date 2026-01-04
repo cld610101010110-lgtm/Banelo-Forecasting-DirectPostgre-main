@@ -1486,7 +1486,7 @@ def transfer_inventory_api(request):
         products = api.get_products()
         product = None
         for p in products:
-            if p.get('id') == product_id or p.get('firebaseId') == product_id:
+            if p.get('id') == product_id or p.get('firebase_id') == product_id:
                 product = p
                 break
 
@@ -2160,8 +2160,13 @@ def add_product_view(request):
         # Get API service
         api = get_api_service()
 
+        # Generate unique firebase_id for the product
+        import uuid
+        firebase_id = data.get('firebaseId', f"product_{uuid.uuid4().hex[:16]}")
+
         # Prepare product data for Node API
         product_data = {
+            'firebase_id': firebase_id,
             'name': data.get('name'),
             'category': data.get('category'),
             'price': float(data.get('price', 0)),
@@ -2169,6 +2174,7 @@ def add_product_view(request):
             'inventory_a': float(data.get('inventoryA', data.get('quantity', 0))),
             'inventory_b': 0,
             'cost_per_unit': float(data.get('costPerUnit', 0)),
+            'unit': data.get('unit', 'pcs'),
             'image_uri': data.get('imageUri', ''),
             'description': data.get('description', ''),
             'sku': data.get('sku', '')
