@@ -76,16 +76,48 @@ router.post('/', async (req, res) => {
       inventory_b,
       cost_per_unit,
       unit,
-      image_uri
+      image_uri,
+      description,
+      sku,
+      is_perishable,
+      shelf_life_days,
+      expiration_date
     } = req.body;
+
+    console.log('📦 POST /api/products received:', { firebase_id, name, is_perishable, shelf_life_days });
+
+    // ✅ FIX: Beverages and Pastries are recipe-based, they should NEVER have stock
+    const isRecipeBased = ['Beverages', 'Pastries'].includes(category);
+    const finalQuantity = isRecipeBased ? 0 : (quantity || 0);
+    const finalInventoryA = isRecipeBased ? 0 : (inventory_a || 0);
+    const finalInventoryB = isRecipeBased ? 0 : (inventory_b || 0);
 
     const result = await query(
       `INSERT INTO products
-       (firebase_id, name, category, price, quantity, inventory_a, inventory_b, cost_per_unit, unit, image_uri, created_at, updated_at)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, NOW(), NOW())
+       (firebase_id, name, category, price, quantity, inventory_a, inventory_b, cost_per_unit, unit, image_uri,
+        description, sku, is_perishable, shelf_life_days, expiration_date, is_active, created_at, updated_at)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, true, NOW(), NOW())
        RETURNING *`,
-      [firebase_id, name, category, price || 0, quantity || 0, inventory_a || 0, inventory_b || 0, cost_per_unit || 0, unit || 'pcs', image_uri || '']
+      [
+        firebase_id,
+        name,
+        category,
+        price || 0,
+        finalQuantity,
+        finalInventoryA,
+        finalInventoryB,
+        cost_per_unit || 0,
+        unit || 'pcs',
+        image_uri || '',
+        description || '',
+        sku || '',
+        is_perishable || false,
+        shelf_life_days || 0,
+        expiration_date || null
+      ]
     );
+
+    console.log('✅ Product created with ID:', result.rows[0].firebase_id);
 
     res.status(201).json({
       success: true,
@@ -117,7 +149,12 @@ router.put('/:id', async (req, res) => {
       inventory_b,
       cost_per_unit,
       unit,
-      image_uri
+      image_uri,
+      description,
+      sku,
+      is_perishable,
+      shelf_life_days,
+      expiration_date
     } = req.body;
 
     // Build dynamic update query
@@ -160,6 +197,26 @@ router.put('/:id', async (req, res) => {
     if (image_uri !== undefined) {
       updates.push(`image_uri = $${paramCount++}`);
       values.push(image_uri);
+    }
+    if (description !== undefined) {
+      updates.push(`description = $${paramCount++}`);
+      values.push(description);
+    }
+    if (sku !== undefined) {
+      updates.push(`sku = $${paramCount++}`);
+      values.push(sku);
+    }
+    if (is_perishable !== undefined) {
+      updates.push(`is_perishable = $${paramCount++}`);
+      values.push(is_perishable);
+    }
+    if (shelf_life_days !== undefined) {
+      updates.push(`shelf_life_days = $${paramCount++}`);
+      values.push(shelf_life_days);
+    }
+    if (expiration_date !== undefined) {
+      updates.push(`expiration_date = $${paramCount++}`);
+      values.push(expiration_date);
     }
 
     updates.push(`updated_at = NOW()`);
