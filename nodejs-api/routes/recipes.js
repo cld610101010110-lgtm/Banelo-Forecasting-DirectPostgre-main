@@ -215,6 +215,8 @@ router.put('/:id', async (req, res) => {
       ingredients
     } = req.body;
 
+    console.log('🔄 PUT /api/recipes/:id received:', { id, productName, ingredientsCount: ingredients?.length });
+
     // Check if recipe exists
     const checkResult = await client.query(
       'SELECT * FROM recipes WHERE firebase_id = $1',
@@ -222,11 +224,14 @@ router.put('/:id', async (req, res) => {
     );
 
     if (checkResult.rowCount === 0) {
+      console.log('❌ Recipe not found:', id);
       return res.status(404).json({
         success: false,
         message: 'Recipe not found'
       });
     }
+
+    console.log('✅ Recipe found, updating...');
 
     await client.query('BEGIN');
 
@@ -267,13 +272,16 @@ router.put('/:id', async (req, res) => {
 
     await client.query('COMMIT');
 
+    console.log('✅ Recipe updated successfully:', id);
+
     res.json({
       success: true,
       message: `Recipe for ${productName} updated successfully`
     });
   } catch (error) {
     await client.query('ROLLBACK');
-    console.error('Error updating recipe:', error);
+    console.error('❌ Error updating recipe:', error);
+    console.error('Stack trace:', error.stack);
     res.status(500).json({
       success: false,
       message: 'Failed to update recipe',
@@ -293,6 +301,8 @@ router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
 
+    console.log('🗑️  DELETE /api/recipes/:id received:', id);
+
     // Check if recipe exists
     const checkResult = await client.query(
       'SELECT * FROM recipes WHERE firebase_id = $1',
@@ -300,6 +310,7 @@ router.delete('/:id', async (req, res) => {
     );
 
     if (checkResult.rowCount === 0) {
+      console.log('❌ Recipe not found:', id);
       return res.status(404).json({
         success: false,
         message: 'Recipe not found'
@@ -307,6 +318,8 @@ router.delete('/:id', async (req, res) => {
     }
 
     const productName = checkResult.rows[0].product_name;
+
+    console.log('✅ Recipe found, deleting:', productName);
 
     await client.query('BEGIN');
 
@@ -324,13 +337,16 @@ router.delete('/:id', async (req, res) => {
 
     await client.query('COMMIT');
 
+    console.log('✅ Recipe deleted successfully:', id);
+
     res.json({
       success: true,
       message: `Recipe for ${productName} deleted successfully`
     });
   } catch (error) {
     await client.query('ROLLBACK');
-    console.error('Error deleting recipe:', error);
+    console.error('❌ Error deleting recipe:', error);
+    console.error('Stack trace:', error.stack);
     res.status(500).json({
       success: false,
       message: 'Failed to delete recipe',
