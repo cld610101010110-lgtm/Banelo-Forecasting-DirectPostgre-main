@@ -2255,27 +2255,41 @@ def update_product_view(request):
 @login_required
 @require_http_methods(["POST"])
 def delete_product_view(request):
-    """Delete a product"""
+    """Delete a product via Node.js API"""
     try:
         data = json.loads(request.body)
-        print("\n🔥 DELETE PRODUCT API CALLED (PostgreSQL)")
+        print("\n🔥 DELETE PRODUCT API CALLED (via Node API)")
 
         product_id = data.get('productId')
 
-        try:
-            product = Product.objects.get(Q(firebase_id=product_id) | Q(id=product_id))
-        except Product.DoesNotExist:
+        if not product_id:
+            return JsonResponse({'success': False, 'message': 'Product ID is required'})
+
+        # Get API service
+        api = get_api_service()
+
+        # Get product name first for logging
+        product = api.get_product(product_id)
+        if not product:
             return JsonResponse({'success': False, 'message': 'Product not found'})
 
-        product_name = product.name
-        product.delete()
+        product_name = product.get('name', 'Unknown Product')
 
-        log_audit('Product Deleted', request.user, f'Deleted product: {product_name}')
+        # Delete via API
+        result = api.delete_product(product_id)
 
-        return JsonResponse({
-            'success': True,
-            'message': f'Product {product_name} deleted successfully!'
-        })
+        if result.get('success'):
+            log_audit('Product Deleted', request.user, f'Deleted product: {product_name}')
+
+            return JsonResponse({
+                'success': True,
+                'message': f'Product {product_name} deleted successfully!'
+            })
+        else:
+            return JsonResponse({
+                'success': False,
+                'message': result.get('message', 'Failed to delete product')
+            })
 
     except Exception as e:
         print(f"❌ Error deleting product: {e}")
@@ -2593,3 +2607,221 @@ def get_sales_forecast_api(request):
             'success': False,
             'message': str(e)
         })
+
+
+@login_required
+@require_http_methods(["GET"])
+def export_sales_forecast_csv(request):
+    """Export sales forecast as CSV"""
+    try:
+        import csv
+        from io import StringIO
+        import numpy as np
+
+        # Get number of days to forecast (default 7)
+        days = int(request.GET.get('days', 7))
+        days = min(days, 30)  # Maximum 30 days
+
+        # Load model
+        model, feature_columns = load_sales_forecast_model()
+
+        if model is None or feature_columns is None:
+            return HttpResponse('Model not loaded. Please upload model files to ml_models folder.', status=500)
+
+        # Calculate average unit price from historical sales data
+        api = get_api_service()
+        api_sales = api.get_sales(limit=10000)
+
+        total_amount = 0
+        total_quantity = 0
+        for sale in api_sales:
+            amount = float(sale.get('total_amount') or sale.get('total') or 0)
+            qty = float(sale.get('quantity') or 0)
+            total_amount += amount
+            total_quantity += qty
+
+        average_unit_price = (total_amount / total_quantity) if total_quantity > 0 else 100
+
+        # Generate predictions
+        predictions = []
+        start_date = datetime.now().date() + timedelta(days=1)
+
+        for i in range(days):
+            forecast_date = start_date + timedelta(days=i)
+            features_dict = create_forecast_features(forecast_date)
+
+            X = []
+            for col in feature_columns:
+                X.append(features_dict.get(col, 0))
+
+            X = np.array(X).reshape(1, -1)
+            predicted_quantity = float(model.predict(X)[0])
+            predicted_quantity = max(0, predicted_quantity)
+            predicted_revenue = predicted_quantity * average_unit_price
+
+            lower_bound = predicted_revenue * 0.85
+            upper_bound = predicted_revenue * 1.15
+
+            predictions.append({
+                'date': forecast_date.strftime('%Y-%m-%d'),
+                'day_name': forecast_date.strftime('%A'),
+                'predicted_revenue': round(predicted_revenue, 2),
+                'lower_bound': round(lower_bound, 2),
+                'upper_bound': round(upper_bound, 2),
+                'is_weekend': 'Yes' if forecast_date.weekday() >= 5 else 'No',
+            })
+
+        # Create CSV
+        output = StringIO()
+        writer = csv.DictWriter(output, fieldnames=['date', 'day_name', 'predicted_revenue', 'lower_bound', 'upper_bound', 'is_weekend'])
+        writer.writeheader()
+        writer.writerows(predictions)
+
+        response = HttpResponse(output.getvalue(), content_type='text/csv')
+        response['Content-Disposition'] = f'attachment; filename=sales-forecast-{datetime.now().strftime("%Y-%m-%d")}.csv'
+        return response
+
+    except Exception as e:
+        print(f"❌ Error exporting forecast CSV: {e}")
+        return HttpResponse(f'Error: {str(e)}', status=500)
+
+
+@login_required
+@require_http_methods(["GET"])
+def export_sales_forecast_pdf(request):
+    """Export sales forecast as PDF"""
+    try:
+        from reportlab.lib import colors
+        from reportlab.lib.pagesizes import letter
+        from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
+        from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+        from reportlab.lib.units import inch
+        from io import BytesIO
+        import numpy as np
+
+        # Get number of days to forecast (default 7)
+        days = int(request.GET.get('days', 7))
+        days = min(days, 30)
+
+        # Load model
+        model, feature_columns = load_sales_forecast_model()
+
+        if model is None or feature_columns is None:
+            return HttpResponse('Model not loaded. Please upload model files to ml_models folder.', status=500)
+
+        # Calculate average unit price
+        api = get_api_service()
+        api_sales = api.get_sales(limit=10000)
+
+        total_amount = 0
+        total_quantity = 0
+        for sale in api_sales:
+            amount = float(sale.get('total_amount') or sale.get('total') or 0)
+            qty = float(sale.get('quantity') or 0)
+            total_amount += amount
+            total_quantity += qty
+
+        average_unit_price = (total_amount / total_quantity) if total_quantity > 0 else 100
+
+        # Generate predictions
+        predictions = []
+        start_date = datetime.now().date() + timedelta(days=1)
+
+        for i in range(days):
+            forecast_date = start_date + timedelta(days=i)
+            features_dict = create_forecast_features(forecast_date)
+
+            X = []
+            for col in feature_columns:
+                X.append(features_dict.get(col, 0))
+
+            X = np.array(X).reshape(1, -1)
+            predicted_quantity = float(model.predict(X)[0])
+            predicted_quantity = max(0, predicted_quantity)
+            predicted_revenue = predicted_quantity * average_unit_price
+
+            lower_bound = predicted_revenue * 0.85
+            upper_bound = predicted_revenue * 1.15
+
+            predictions.append({
+                'date': forecast_date.strftime('%Y-%m-%d'),
+                'day_name': forecast_date.strftime('%A'),
+                'predicted_revenue': round(predicted_revenue, 2),
+                'lower_bound': round(lower_bound, 2),
+                'upper_bound': round(upper_bound, 2),
+                'is_weekend': forecast_date.weekday() >= 5,
+            })
+
+        # Create PDF
+        buffer = BytesIO()
+        doc = SimpleDocTemplate(buffer, pagesize=letter)
+        elements = []
+
+        styles = getSampleStyleSheet()
+        title_style = ParagraphStyle(
+            'CustomTitle',
+            parent=styles['Heading1'],
+            fontSize=24,
+            textColor=colors.HexColor('#2c3e50'),
+            spaceAfter=30,
+            alignment=1  # Center
+        )
+
+        # Title
+        elements.append(Paragraph('Sales Forecast Report', title_style))
+        elements.append(Spacer(1, 0.2 * inch))
+
+        # Summary
+        total_forecast = sum(p['predicted_revenue'] for p in predictions)
+        average_daily = total_forecast / len(predictions) if predictions else 0
+
+        summary_text = f"""
+        <b>Report Generated:</b> {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}<br/>
+        <b>Forecast Period:</b> {days} days<br/>
+        <b>Total Forecast Revenue:</b> ₱{total_forecast:,.2f}<br/>
+        <b>Average Daily Revenue:</b> ₱{average_daily:,.2f}
+        """
+        elements.append(Paragraph(summary_text, styles['Normal']))
+        elements.append(Spacer(1, 0.3 * inch))
+
+        # Table data
+        data = [['Date', 'Day', 'Predicted Revenue', 'Lower Bound', 'Upper Bound', 'Weekend']]
+        for p in predictions:
+            data.append([
+                p['date'],
+                p['day_name'],
+                f"₱{p['predicted_revenue']:,.2f}",
+                f"₱{p['lower_bound']:,.2f}",
+                f"₱{p['upper_bound']:,.2f}",
+                'Yes' if p['is_weekend'] else 'No'
+            ])
+
+        # Create table
+        table = Table(data, colWidths=[1.2*inch, 1*inch, 1.3*inch, 1.2*inch, 1.2*inch, 0.8*inch])
+        table.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#3498db')),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+            ('FONTSIZE', (0, 0), (-1, 0), 10),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+            ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+            ('GRID', (0, 0), (-1, -1), 1, colors.black),
+            ('FONTSIZE', (0, 1), (-1, -1), 9),
+        ]))
+
+        elements.append(table)
+        doc.build(elements)
+
+        buffer.seek(0)
+        response = HttpResponse(buffer.getvalue(), content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename=sales-forecast-{datetime.now().strftime("%Y-%m-%d")}.pdf'
+        return response
+
+    except ImportError:
+        return HttpResponse('reportlab library is not installed. Please install it with: pip install reportlab', status=500)
+    except Exception as e:
+        print(f"❌ Error exporting forecast PDF: {e}")
+        import traceback
+        traceback.print_exc()
+        return HttpResponse(f'Error: {str(e)}', status=500)
