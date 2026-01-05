@@ -2444,11 +2444,22 @@ def sales_forecasting_view(request):
     try:
         print("\n🤖 SALES FORECASTING VIEW (ML)")
 
-        # Check if model files exist
-        model_path = os.path.join(settings.BASE_DIR, 'ml_models', 'forecasting_model.pkl')
+        # Check if model files exist (try multiple model file names)
+        possible_model_paths = [
+            os.path.join(settings.BASE_DIR, 'ml_models', 'linear_regression_model.pkl'),
+            os.path.join(settings.BASE_DIR, 'ml_models', 'gradient_boosting_model.pkl'),
+            os.path.join(settings.BASE_DIR, 'ml_models', 'forecasting_model.pkl'),
+        ]
+
+        model_path = None
+        for path in possible_model_paths:
+            if os.path.exists(path):
+                model_path = path
+                break
+
         features_path = os.path.join(settings.BASE_DIR, 'ml_models', 'feature_columns.pkl')
 
-        model_exists = os.path.exists(model_path)
+        model_exists = model_path is not None
         features_exist = os.path.exists(features_path)
 
         # Get ALL historical sales from API
@@ -2476,12 +2487,64 @@ def sales_forecasting_view(request):
         else:
             date_range_days = 0
 
+        # Load top selling products from CSV
+        top_products = {'beverages': [], 'pastries': []}
+        try:
+            import csv
+            top_products_path = os.path.join(settings.BASE_DIR, 'ml_models', 'top_selling_products_by_category.csv')
+            if os.path.exists(top_products_path):
+                with open(top_products_path, 'r') as f:
+                    reader = csv.DictReader(f)
+                    for row in reader:
+                        category_key = row['category'].lower()
+                        if category_key == 'beverages':
+                            if len(top_products['beverages']) < 3:
+                                top_products['beverages'].append({
+                                    'name': row['product_name'],
+                                    'quantity': int(float(row['quantity'])),
+                                    'total': float(row['total'])
+                                })
+                        elif category_key == 'pastries':
+                            if len(top_products['pastries']) < 3:
+                                top_products['pastries'].append({
+                                    'name': row['product_name'],
+                                    'quantity': int(float(row['quantity'])),
+                                    'total': float(row['total'])
+                                })
+        except Exception as e:
+            print(f"⚠ Error loading top products: {e}")
+
+        # Load model comparison metrics
+        model_comparison = []
+        try:
+            import csv
+            comparison_path = os.path.join(settings.BASE_DIR, 'ml_models', 'model_comparison_metrics.csv')
+            if os.path.exists(comparison_path):
+                with open(comparison_path, 'r') as f:
+                    reader = csv.DictReader(f)
+                    for row in reader:
+                        model_comparison.append({
+                            'name': row[''],
+                            'mae': float(row['MAE']),
+                            'rmse': float(row['RMSE']),
+                            'mape': float(row['MAPE']) * 100,  # Convert to percentage
+                            'r2': float(row['R²'])
+                        })
+                # Sort by MAE (best first)
+                model_comparison.sort(key=lambda x: x['mae'])
+        except Exception as e:
+            print(f"⚠ Error loading model comparison: {e}")
+
         context = {
             'model_exists': model_exists,
             'features_exist': features_exist,
             'total_sales': total_sales,
             'date_range_days': date_range_days,
             'model_ready': model_exists and features_exist,
+            'top_beverages': top_products['beverages'],
+            'top_pastries': top_products['pastries'],
+            'model_comparison': model_comparison,
+            'best_model': model_comparison[0]['name'] if model_comparison else None
         }
 
         return render(request, 'dashboard/sales_forecasting.html', context)
