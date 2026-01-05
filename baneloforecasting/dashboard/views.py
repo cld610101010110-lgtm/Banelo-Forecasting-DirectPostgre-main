@@ -1118,7 +1118,28 @@ def export_audit_trail_pdf(request):
         from reportlab.lib.enums import TA_CENTER
         from io import BytesIO
 
-        audit_logs = AuditTrail.objects.all().order_by('-timestamp')[:5000]
+        # Get filter parameters
+        filter_user = request.GET.get('user', '')
+        filter_action = request.GET.get('action', '')
+        filter_date_from = request.GET.get('date_from', '')
+        filter_date_to = request.GET.get('date_to', '')
+
+        # Query with filters
+        audit_logs = AuditTrail.objects.all().order_by('-timestamp')
+
+        # Apply filters
+        if filter_user:
+            audit_logs = audit_logs.filter(user_name__icontains=filter_user)
+        if filter_action:
+            audit_logs = audit_logs.filter(action__icontains=filter_action)
+        if filter_date_from:
+            from_date = datetime.strptime(filter_date_from, '%Y-%m-%d')
+            audit_logs = audit_logs.filter(timestamp__gte=from_date)
+        if filter_date_to:
+            to_date = datetime.strptime(filter_date_to, '%Y-%m-%d') + timedelta(days=1)
+            audit_logs = audit_logs.filter(timestamp__lt=to_date)
+
+        audit_logs = audit_logs[:5000]
 
         # Create PDF with cafe aesthetics
         buffer = BytesIO()
@@ -1159,6 +1180,16 @@ def export_audit_trail_pdf(request):
             f'<font name="Helvetica-Bold" size="10" color="#6D4C41">Report Generated:</font> <font name="Helvetica" size="10" color="#5D4037">{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}</font>',
             f'<font name="Helvetica-Bold" size="10" color="#6D4C41">Total Entries:</font> <font name="Helvetica" size="10" color="#5D4037">{audit_logs.count()}</font>',
         ]
+
+        # Add filter information
+        if filter_user:
+            summary_lines.append(f'<font name="Helvetica-Bold" size="10" color="#6D4C41">User Filter:</font> <font name="Helvetica" size="10" color="#5D4037">{filter_user}</font>')
+        if filter_action:
+            summary_lines.append(f'<font name="Helvetica-Bold" size="10" color="#6D4C41">Action Filter:</font> <font name="Helvetica" size="10" color="#5D4037">{filter_action}</font>')
+        if filter_date_from or filter_date_to:
+            date_range = f'{filter_date_from or "Start"} to {filter_date_to or "End"}'
+            summary_lines.append(f'<font name="Helvetica-Bold" size="10" color="#6D4C41">Date Range:</font> <font name="Helvetica" size="10" color="#5D4037">{date_range}</font>')
+
         for line in summary_lines:
             elements.append(Paragraph(line, summary_style))
         elements.append(Spacer(1, 0.2 * inch))
