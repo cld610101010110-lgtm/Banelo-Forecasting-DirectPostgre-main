@@ -505,6 +505,9 @@
         {% if top_beverages %}
         <div class="top-products-card">
             <h3 class="beverages"><i class="fas fa-coffee"></i> Top 3 Beverages</h3>
+            <div style="max-width: 300px; margin: 0 auto 20px;">
+                <canvas id="beveragesChart"></canvas>
+            </div>
             {% for product in top_beverages %}
             <div class="product-item">
                 <div class="product-rank">{{ forloop.counter }}</div>
@@ -524,6 +527,9 @@
         {% if top_pastries %}
         <div class="top-products-card">
             <h3 class="pastries"><i class="fas fa-bread-slice"></i> Top 3 Pastries</h3>
+            <div style="max-width: 300px; margin: 0 auto 20px;">
+                <canvas id="pastriesChart"></canvas>
+            </div>
             {% for product in top_pastries %}
             <div class="product-item">
                 <div class="product-rank">{{ forloop.counter }}</div>
@@ -617,10 +623,119 @@ let forecastChart = null;
 
 // Automatically load 7-day forecast on page load
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize pie charts for top products
+    initializeTopProductsCharts();
+
     // Automatically generate forecast for latest 7 days
     document.getElementById('forecastDays').value = '7';
     generateForecast();
 });
+
+function initializeTopProductsCharts() {
+    // Cafe-themed colors palette
+    const cafeColors = [
+        '#6D4C41', // Dark brown
+        '#8D6E63', // Medium brown
+        '#A1887F', // Light brown
+        '#BCAAA4', // Very light brown
+        '#D7CCC8', // Cream
+    ];
+
+    // Beverages data
+    const beveragesData = {
+        labels: [
+            {% for product in top_beverages %}
+            '{{ product.name }}'{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ],
+        datasets: [{
+            data: [
+                {% for product in top_beverages %}
+                {{ product.quantity }}{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ],
+            backgroundColor: cafeColors.slice(0, {{ top_beverages|length }}),
+            borderColor: '#FFFFFF',
+            borderWidth: 2
+        }]
+    };
+
+    // Pastries data
+    const pastriesData = {
+        labels: [
+            {% for product in top_pastries %}
+            '{{ product.name }}'{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ],
+        datasets: [{
+            data: [
+                {% for product in top_pastries %}
+                {{ product.quantity }}{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ],
+            backgroundColor: cafeColors.slice(0, {{ top_pastries|length }}),
+            borderColor: '#FFFFFF',
+            borderWidth: 2
+        }]
+    };
+
+    // Common chart options
+    const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    font: {
+                        size: 11,
+                        family: "'Segoe UI', system-ui, -apple-system, sans-serif"
+                    },
+                    color: '#5D4037',
+                    padding: 10,
+                    boxWidth: 12
+                }
+            },
+            tooltip: {
+                backgroundColor: 'rgba(109, 76, 65, 0.95)',
+                titleColor: '#FFFFFF',
+                bodyColor: '#FFFFFF',
+                padding: 12,
+                borderColor: '#8D6E63',
+                borderWidth: 1,
+                callbacks: {
+                    label: function(context) {
+                        const label = context.label || '';
+                        const value = context.parsed || 0;
+                        const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                        const percentage = ((value / total) * 100).toFixed(1);
+                        return ` ${label}: ${value} units (${percentage}%)`;
+                    }
+                }
+            }
+        }
+    };
+
+    // Create beverages chart
+    const beveragesCanvas = document.getElementById('beveragesChart');
+    if (beveragesCanvas && beveragesData.labels.length > 0) {
+        new Chart(beveragesCanvas, {
+            type: 'pie',
+            data: beveragesData,
+            options: chartOptions
+        });
+    }
+
+    // Create pastries chart
+    const pastriesCanvas = document.getElementById('pastriesChart');
+    if (pastriesCanvas && pastriesData.labels.length > 0) {
+        new Chart(pastriesCanvas, {
+            type: 'pie',
+            data: pastriesData,
+            options: chartOptions
+        });
+    }
+}
 
 async function checkModelStatus() {
     try {
@@ -832,7 +947,7 @@ function exportCSV() {
     }
 
     const days = document.getElementById('forecastDays').value;
-    window.location.href = `/dashboard/api/sales-forecast/export-csv/?days=${days}`;
+    window.location.href = `/dashboard/sales-forecast/export/csv/?days=${days}`;
 }
 
 function exportPDF() {
@@ -842,7 +957,7 @@ function exportPDF() {
     }
 
     const days = document.getElementById('forecastDays').value;
-    window.location.href = `/dashboard/api/sales-forecast/export-pdf/?days=${days}`;
+    window.location.href = `/dashboard/sales-forecast/export/pdf/?days=${days}`;
 }
 </script>
 {% endblock %}
