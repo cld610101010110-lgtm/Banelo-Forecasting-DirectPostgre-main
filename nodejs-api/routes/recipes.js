@@ -149,6 +149,10 @@ router.post('/', async (req, res) => {
     // Generate unique firebase_id for recipe
     const recipeFirebaseId = `recipe_${productFirebaseId}_${Date.now()}`;
 
+    console.log('📝 Creating recipe with firebase_id:', recipeFirebaseId);
+    console.log('📝 Product firebase_id:', productFirebaseId);
+    console.log('📝 Product name:', productName);
+
     // Insert recipe
     const recipeResult = await client.query(
       `INSERT INTO recipes
@@ -158,14 +162,22 @@ router.post('/', async (req, res) => {
       [recipeFirebaseId, productFirebaseId, productName, productNumber || 0]
     );
 
+    console.log('✅ Recipe created in database:');
+    console.log('   - ID:', recipeResult.rows[0].id);
+    console.log('   - firebase_id:', recipeResult.rows[0].firebase_id);
+    console.log('   - product_firebase_id:', recipeResult.rows[0].product_firebase_id);
+
     // Insert ingredients
     for (const ingredient of ingredients) {
       const ingredientFirebaseId = `ingredient_${recipeFirebaseId}_${ingredient.ingredientFirebaseId}_${Date.now()}`;
 
-      await client.query(
+      console.log(`📝 Creating ingredient with firebase_id: ${ingredientFirebaseId}`);
+
+      const ingredientResult = await client.query(
         `INSERT INTO recipe_ingredients
          (firebase_id, recipe_firebase_id, ingredient_firebase_id, ingredient_name, quantity_needed, unit, created_at)
-         VALUES ($1, $2, $3, $4, $5, $6, NOW())`,
+         VALUES ($1, $2, $3, $4, $5, $6, NOW())
+         RETURNING *`,
         [
           ingredientFirebaseId,
           recipeFirebaseId,
@@ -175,6 +187,8 @@ router.post('/', async (req, res) => {
           ingredient.unit || 'g'
         ]
       );
+
+      console.log(`   ✅ Ingredient saved with firebase_id: ${ingredientResult.rows[0].firebase_id}`);
     }
 
     await client.query('COMMIT');
