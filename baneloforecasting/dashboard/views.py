@@ -2320,7 +2320,7 @@ _feature_columns = None
 
 
 def load_sales_forecast_model():
-    """Load the Gradient Boosting sales forecasting model from .pkl file"""
+    """Load the sales forecasting model from .pkl file (supports multiple model types)"""
     global _sales_forecast_model, _feature_columns
 
     if _sales_forecast_model is not None:
@@ -2330,12 +2330,27 @@ def load_sales_forecast_model():
         import joblib
         import numpy as np
 
-        model_path = os.path.join(settings.BASE_DIR, 'ml_models', 'forecasting_model.pkl')
-        features_path = os.path.join(settings.BASE_DIR, 'ml_models', 'feature_columns.pkl')
+        # Try multiple possible model file names in order of preference
+        possible_model_paths = [
+            os.path.join(settings.BASE_DIR, 'ml_models', 'linear_regression_model.pkl'),
+            os.path.join(settings.BASE_DIR, 'ml_models', 'gradient_boosting_model.pkl'),
+            os.path.join(settings.BASE_DIR, 'ml_models', 'forecasting_model.pkl'),
+        ]
 
-        if not os.path.exists(model_path):
-            print(f"❌ Model file not found at {model_path}")
+        model_path = None
+        for path in possible_model_paths:
+            if os.path.exists(path):
+                model_path = path
+                print(f"✅ Found model at: {path}")
+                break
+
+        if model_path is None:
+            print(f"❌ No model file found. Tried:")
+            for path in possible_model_paths:
+                print(f"   - {path}")
             return None, None
+
+        features_path = os.path.join(settings.BASE_DIR, 'ml_models', 'feature_columns.pkl')
 
         if not os.path.exists(features_path):
             print(f"❌ Feature columns file not found at {features_path}")
@@ -2346,6 +2361,7 @@ def load_sales_forecast_model():
         _feature_columns = joblib.load(features_path)
 
         print(f"✅ Sales forecasting model loaded successfully!")
+        print(f"   Model file: {os.path.basename(model_path)}")
         print(f"   Model type: {type(_sales_forecast_model).__name__}")
         print(f"   Features: {len(_feature_columns)}")
 
