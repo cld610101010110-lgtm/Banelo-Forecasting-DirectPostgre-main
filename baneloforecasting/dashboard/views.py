@@ -1103,23 +1103,63 @@ def audit_trail_view(request):
 
 @login_required
 def get_audit_logs_api(request):
-    """API endpoint to get audit logs"""
+    """API endpoint to get audit logs from Node.js API"""
     try:
-        audit_logs = AuditTrail.objects.all().order_by('-timestamp')[:1000]
+        # Get API service
+        api = get_api_service()
 
+        # Get filter parameters
+        filter_action = request.GET.get('action', '')
+        limit = int(request.GET.get('limit', 1000))
+
+        # Get audit logs from Node.js API
+        audit_logs_from_api = api.get_audit_logs(
+            limit=limit,
+            action=filter_action if filter_action else None
+        )
+
+        # Format the logs
         logs_list = []
-        for log in audit_logs:
+        for log in audit_logs_from_api:
+            # Try multiple timestamp field names
+            timestamp_str = ''
+            timestamp_raw = log.get('timestamp') or log.get('created_at') or log.get('createdAt')
+
+            if timestamp_raw:
+                try:
+                    if isinstance(timestamp_raw, str):
+                        dt = datetime.fromisoformat(timestamp_raw.replace('Z', '+00:00'))
+                        timestamp_str = dt.strftime('%Y-%m-%d %H:%M:%S')
+                    else:
+                        timestamp_str = timestamp_raw.strftime('%Y-%m-%d %H:%M:%S')
+                except:
+                    timestamp_str = str(timestamp_raw)
+
+            # Get user from various field names
+            user = log.get('user_name') or log.get('userName') or log.get('user') or 'Unknown'
+
+            # Get description
+            description = log.get('details') or log.get('description') or log.get('message') or ''
+
             logs_list.append({
-                'id': log.id,
-                'user': log.user_name or 'Unknown',
-                'action': log.action or 'N/A',
-                'details': log.details or '',
-                'timestamp': log.timestamp.strftime('%Y-%m-%d %H:%M:%S') if log.timestamp else '',
+                'id': log.get('id', ''),
+                'user': user,
+                'user_name': user,
+                'userName': user,
+                'action': log.get('action') or 'N/A',
+                'details': description,
+                'description': description,
+                'timestamp': timestamp_str,
+                'created_at': timestamp_str,
+                'createdAt': timestamp_str,
             })
 
-        return JsonResponse({'success': True, 'logs': logs_list})
+        return JsonResponse({'success': True, 'data': logs_list, 'logs': logs_list})
 
     except Exception as e:
+        print(f"❌ Error in get_audit_logs_api: {e}")
+        import traceback
+        traceback.print_exc()
         return JsonResponse({'success': False, 'error': str(e)})
 
 
