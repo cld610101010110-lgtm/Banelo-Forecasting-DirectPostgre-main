@@ -1,0 +1,14 @@
+category,product_name,quantity,total,rank_in_category
+Beverages,Iced Coffee,499,53792.2,1
+Beverages,Tea,465,49373.700000000004,2
+Beverages,Americano,2,161.92,3
+Pastries,Blueberry Muffin,544,100721.6,1
+Pastries,Iced Mocha,483,69552.0,2
+Pastries,Apple Turnover,482,74488.28,3
+Pastries,Tiramisu,477,93754.35,4
+Pastries,Almond Croissant,473,3982.66,5
+Pastries,Cappuccino,470,35837.5,6
+Pastries,Latte,470,51107.8,7
+Pastries,Flat White,462,52303.02,8
+Pastries,Macchiato,460,43226.200000000004,9
+Pastries,Hot Chocolate,458,60240.74,10
