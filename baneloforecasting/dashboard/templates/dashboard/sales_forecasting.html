@@ -61,7 +61,7 @@
     }
 
     .status-icon.ready {
-        background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
+        background: linear-gradient(135deg, #6D4C41 0%, #8D6E63 100%);
         color: white;
     }
 
@@ -234,7 +234,7 @@
 
     .revenue-value {
         font-weight: 600;
-        color: #4CAF50;
+        color: #8D6E63;
     }
 
     /* Loading Spinner */
@@ -336,7 +336,7 @@
         margin-bottom: 10px;
         background: var(--bg-primary);
         border-radius: 8px;
-        border-left: 4px solid #4CAF50;
+        border-left: 4px solid #8D6E63;
     }
 
     .product-rank {
@@ -384,7 +384,7 @@
 
     /* Model Comparison Badge */
     .model-badge {
-        background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
+        background: linear-gradient(135deg, #6D4C41 0%, #8D6E63 100%);
         color: white;
         padding: 8px 15px;
         border-radius: 20px;
@@ -397,6 +397,38 @@
     }
 
     .model-badge i {
+        font-size: 14px;
+    }
+
+    /* Export Buttons */
+    .export-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .btn-export {
+        padding: 10px 20px;
+        border: 2px solid #8D6E63;
+        background: white;
+        color: #5D4037;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .btn-export:hover {
+        background: linear-gradient(135deg, #6D4C41 0%, #8D6E63 100%);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(93, 64, 55, 0.3);
+    }
+
+    .btn-export i {
         font-size: 14px;
     }
 
@@ -536,7 +568,17 @@
 
     <!-- Forecast Chart -->
     <div class="chart-container" id="chartContainer" style="display: none;">
-        <h3><i class="fas fa-chart-area"></i> Revenue Forecast</h3>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3><i class="fas fa-chart-bar"></i> Revenue Forecast</h3>
+            <div class="export-buttons">
+                <button class="btn-export" onclick="exportCSV()">
+                    <i class="fas fa-file-csv"></i> Export CSV
+                </button>
+                <button class="btn-export" onclick="exportPDF()">
+                    <i class="fas fa-file-pdf"></i> Export PDF
+                </button>
+            </div>
+        </div>
         <canvas id="forecastChart"></canvas>
     </div>
 
@@ -599,49 +641,6 @@ async function checkModelStatus() {
     }
 }
 
-async function generateForecast() {
-    const days = document.getElementById('forecastDays').value;
-    const loadingSpinner = document.getElementById('loadingSpinner');
-    const chartContainer = document.getElementById('chartContainer');
-    const tableContainer = document.getElementById('tableContainer');
-
-    // Show loading
-    loadingSpinner.style.display = 'block';
-    chartContainer.style.display = 'none';
-    tableContainer.style.display = 'none';
-
-    try {
-        const response = await fetch(`/dashboard/api/sales-forecast/predict/?days=${days}`);
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        if (!data.success) {
-            console.error('Forecast error:', data.message);
-            loadingSpinner.innerHTML = '<div style="padding: 40px; text-align: center;"><i class="fas fa-exclamation-circle" style="font-size: 48px; color: #f44336; margin-bottom: 20px;"></i><p style="color: #f44336; font-size: 16px;">Error: ' + data.message + '</p></div>';
-            return;
-        }
-
-        // Hide loading, show results
-        loadingSpinner.style.display = 'none';
-        chartContainer.style.display = 'block';
-        tableContainer.style.display = 'block';
-
-        // Render chart
-        renderChart(data.predictions);
-
-        // Render table
-        renderTable(data.predictions, data.summary);
-
-    } catch (error) {
-        console.error('Error generating forecast:', error);
-        loadingSpinner.innerHTML = '<div style="padding: 40px; text-align: center;"><i class="fas fa-exclamation-circle" style="font-size: 48px; color: #f44336; margin-bottom: 20px;"></i><p style="color: #f44336; font-size: 16px;">Failed to generate forecast. Please try again or contact support.</p></div>';
-    }
-}
-
 function renderChart(predictions) {
     const ctx = document.getElementById('forecastChart').getContext('2d');
 
@@ -650,42 +649,42 @@ function renderChart(predictions) {
         forecastChart.destroy();
     }
 
-    const labels = predictions.map(p => p.date);
+    const labels = predictions.map(p => {
+        const date = new Date(p.date);
+        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    });
     const predictedData = predictions.map(p => p.predicted_revenue);
     const lowerBound = predictions.map(p => p.lower_bound);
     const upperBound = predictions.map(p => p.upper_bound);
 
     forecastChart = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: labels,
             datasets: [
                 {
                     label: 'Predicted Revenue',
                     data: predictedData,
-                    borderColor: '#3E2723',
-                    backgroundColor: 'rgba(62, 39, 35, 0.1)',
-                    borderWidth: 3,
-                    tension: 0.4,
-                    fill: true,
+                    backgroundColor: 'rgba(109, 76, 65, 0.8)',
+                    borderColor: '#6D4C41',
+                    borderWidth: 2,
+                    borderRadius: 6,
                 },
                 {
                     label: 'Upper Bound',
                     data: upperBound,
-                    borderColor: 'rgba(76, 175, 80, 0.5)',
+                    backgroundColor: 'rgba(141, 110, 99, 0.4)',
+                    borderColor: '#8D6E63',
                     borderWidth: 1,
-                    borderDash: [5, 5],
-                    tension: 0.4,
-                    fill: false,
+                    borderRadius: 6,
                 },
                 {
                     label: 'Lower Bound',
                     data: lowerBound,
-                    borderColor: 'rgba(244, 67, 54, 0.5)',
+                    backgroundColor: 'rgba(161, 136, 127, 0.4)',
+                    borderColor: '#A1887F',
                     borderWidth: 1,
-                    borderDash: [5, 5],
-                    tension: 0.4,
-                    fill: false,
+                    borderRadius: 6,
                 }
             ]
         },
@@ -696,21 +695,50 @@ function renderChart(predictions) {
                 legend: {
                     display: true,
                     position: 'top',
+                    labels: {
+                        font: {
+                            size: 12,
+                            weight: '600'
+                        },
+                        padding: 15,
+                        usePointStyle: true
+                    }
                 },
                 tooltip: {
+                    backgroundColor: 'rgba(62, 39, 35, 0.9)',
+                    titleColor: '#fff',
+                    bodyColor: '#fff',
+                    padding: 12,
+                    cornerRadius: 8,
                     callbacks: {
                         label: function(context) {
-                            return context.dataset.label + ': ₱' + context.parsed.y.toFixed(2);
+                            return context.dataset.label + ': ₱' + context.parsed.y.toLocaleString('en-PH', {minimumFractionDigits: 2, maximumFractionDigits: 2});
                         }
                     }
                 }
             },
             scales: {
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        font: {
+                            size: 11
+                        }
+                    }
+                },
                 y: {
                     beginAtZero: true,
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.05)'
+                    },
                     ticks: {
                         callback: function(value) {
-                            return '₱' + value.toFixed(0);
+                            return '₱' + value.toLocaleString('en-PH');
+                        },
+                        font: {
+                            size: 11
                         }
                     }
                 }
@@ -743,6 +771,78 @@ function renderTable(predictions, summary) {
     // Update summary
     document.getElementById('totalForecast').textContent = '₱' + summary.total_forecast.toFixed(2);
     document.getElementById('avgForecast').textContent = '₱' + summary.average_daily.toFixed(2);
+}
+
+// Store current forecast data for export
+let currentForecastData = null;
+
+async function generateForecast() {
+    const days = document.getElementById('forecastDays').value;
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const chartContainer = document.getElementById('chartContainer');
+    const tableContainer = document.getElementById('tableContainer');
+
+    // Show loading
+    loadingSpinner.style.display = 'block';
+    chartContainer.style.display = 'none';
+    tableContainer.style.display = 'none';
+
+    try {
+        const response = await fetch(`/dashboard/api/sales-forecast/predict/?days=${days}`);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (!data.success) {
+            console.error('Forecast error:', data.message);
+            loadingSpinner.innerHTML = '<div style="padding: 40px; text-align: center;"><i class="fas fa-exclamation-circle" style="font-size: 48px; color: #f44336; margin-bottom: 20px;"></i><p style="color: #f44336; font-size: 16px;">Error: ' + data.message + '</p></div>';
+            return;
+        }
+
+        // Store data for export
+        currentForecastData = {
+            predictions: data.predictions,
+            summary: data.summary
+        };
+
+        // Hide loading, show results
+        loadingSpinner.style.display = 'none';
+        chartContainer.style.display = 'block';
+        tableContainer.style.display = 'block';
+
+        // Render chart
+        renderChart(data.predictions);
+
+        // Render table
+        renderTable(data.predictions, data.summary);
+
+    } catch (error) {
+        console.error('Error generating forecast:', error);
+        loadingSpinner.innerHTML = '<div style="padding: 40px; text-align: center;"><i class="fas fa-exclamation-circle" style="font-size: 48px; color: #f44336; margin-bottom: 20px;"></i><p style="color: #f44336; font-size: 16px;">Failed to generate forecast. Please try again or contact support.</p></div>';
+    }
+}
+
+function exportCSV() {
+    if (!currentForecastData) {
+        alert('Please generate a forecast first');
+        return;
+    }
+
+    const days = document.getElementById('forecastDays').value;
+    window.location.href = `/dashboard/api/sales-forecast/export-csv/?days=${days}`;
+}
+
+function exportPDF() {
+    if (!currentForecastData) {
+        alert('Please generate a forecast first');
+        return;
+    }
+
+    const days = document.getElementById('forecastDays').value;
+    window.location.href = `/dashboard/api/sales-forecast/export-pdf/?days=${days}`;
 }
 </script>
 {% endblock %}
