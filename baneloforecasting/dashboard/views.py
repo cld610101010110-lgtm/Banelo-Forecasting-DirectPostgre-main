@@ -2913,12 +2913,13 @@ def delete_product_view(request):
             return JsonResponse({'success': False, 'message': 'Product not found'})
 
         product_name = product.get('name', 'Unknown Product')
+        product_category = product.get('category', 'Unknown')
 
         # Delete via API
         result = api.delete_product(product_id)
 
         if result.get('success'):
-            log_audit('Product Deleted', request.user, f'Deleted product: {product_name}')
+            log_audit('Product Deleted', request.user, f'Deleted product: {product_name} (Category: {product_category})')
 
             return JsonResponse({
                 'success': True,

@@ -2021,31 +2021,54 @@
 
                         // Parse deleted products from audit logs
                         archivedProductsData = deletionLogs.map(log => {
-                            // Extract product name from description
-                            // Example: "Deleted product: Cappuccino"
+                            // Extract product name and category from description
+                            // New format: "Deleted product: ProductName (Category: CategoryName)"
+                            // Old format: "Deleted product: ProductName"
                             const description = log.description || log.details || '';
                             let productName = 'Unknown Product';
                             let category = 'Unknown';
 
-                            // Try to extract product name
-                            const nameMatch = description.match(/Deleted product: (.+)/i) ||
-                                             description.match(/Product (.+) deleted/i);
-                            if (nameMatch && nameMatch[1]) {
-                                productName = nameMatch[1].trim();
-                            }
+                            // Try new format with category first
+                            const newFormatMatch = description.match(/Deleted product: (.+?) \(Category: (.+?)\)/i);
+                            if (newFormatMatch) {
+                                productName = newFormatMatch[1].trim();
+                                category = newFormatMatch[2].trim();
+                            } else {
+                                // Try old format without category
+                                const nameMatch = description.match(/Deleted product: (.+)/i) ||
+                                                 description.match(/Product (.+) deleted/i);
+                                if (nameMatch && nameMatch[1]) {
+                                    productName = nameMatch[1].trim();
+                                }
 
-                            // Try to infer category from product name or description
-                            const lowerDesc = description.toLowerCase();
-                            if (lowerDesc.includes('coffee') || lowerDesc.includes('latte') ||
-                                lowerDesc.includes('cappuccino') || lowerDesc.includes('espresso') ||
-                                lowerDesc.includes('beverage')) {
-                                category = 'Beverage';
-                            } else if (lowerDesc.includes('cake') || lowerDesc.includes('pastry') ||
-                                      lowerDesc.includes('bread') || lowerDesc.includes('cookie')) {
-                                category = 'Pastries';
-                            } else if (lowerDesc.includes('milk') || lowerDesc.includes('sugar') ||
-                                      lowerDesc.includes('ingredient') || lowerDesc.includes('flour')) {
-                                category = 'Ingredients';
+                                // Try to infer category from product name or description for old logs
+                                const lowerDesc = description.toLowerCase();
+                                const lowerName = productName.toLowerCase();
+
+                                if (lowerDesc.includes('coffee') || lowerName.includes('coffee') ||
+                                    lowerDesc.includes('latte') || lowerName.includes('latte') ||
+                                    lowerDesc.includes('cappuccino') || lowerName.includes('cappuccino') ||
+                                    lowerDesc.includes('espresso') || lowerName.includes('espresso') ||
+                                    lowerDesc.includes('beverage') || lowerName.includes('beverage') ||
+                                    lowerDesc.includes('tea') || lowerName.includes('tea') ||
+                                    lowerDesc.includes('juice') || lowerName.includes('juice')) {
+                                    category = 'Beverage';
+                                } else if (lowerDesc.includes('cake') || lowerName.includes('cake') ||
+                                          lowerDesc.includes('pastry') || lowerName.includes('pastry') ||
+                                          lowerDesc.includes('pastries') || lowerName.includes('pastries') ||
+                                          lowerDesc.includes('bread') || lowerName.includes('bread') ||
+                                          lowerDesc.includes('cookie') || lowerName.includes('cookie') ||
+                                          lowerDesc.includes('muffin') || lowerName.includes('muffin') ||
+                                          lowerDesc.includes('donut') || lowerName.includes('donut')) {
+                                    category = 'Pastries';
+                                } else if (lowerDesc.includes('milk') || lowerName.includes('milk') ||
+                                          lowerDesc.includes('sugar') || lowerName.includes('sugar') ||
+                                          lowerDesc.includes('ingredient') || lowerName.includes('ingredient') ||
+                                          lowerDesc.includes('flour') || lowerName.includes('flour') ||
+                                          lowerDesc.includes('egg') || lowerName.includes('egg') ||
+                                          lowerDesc.includes('butter') || lowerName.includes('butter')) {
+                                    category = 'Ingredients';
+                                }
                             }
 
                             // Get timestamp
