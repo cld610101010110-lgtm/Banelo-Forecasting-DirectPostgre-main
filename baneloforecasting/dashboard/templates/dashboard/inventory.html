@@ -2004,7 +2004,13 @@
                     const response = await fetch('/dashboard/audit-trail/api/?limit=1000');
                     const data = await response.json();
 
-                    console.log('📦 Audit logs response:', data);
+                    console.log('📦 Total logs received:', data.data ? data.data.length : 0);
+
+                    // Log first few entries to see the structure
+                    if (data.data && data.data.length > 0) {
+                        console.log('📦 Sample log entry:', data.data[0]);
+                        console.log('📦 All actions in first 10 logs:', data.data.slice(0, 10).map(log => log.action));
+                    }
 
                     if (data.success && data.data) {
                         // Filter for deletion-related actions
@@ -2017,7 +2023,13 @@
                                    (description.includes('product') || description.includes('deleted product'));
                         });
 
-                        console.log(`📦 Found ${deletionLogs.length} deletion logs out of ${data.data.length} total logs`);
+                        console.log(`📦 Found ${deletionLogs.length} deletion logs (filtered from ${data.data.length} total logs)`);
+
+                        if (deletionLogs.length > 0) {
+                            console.log('📦 First deletion log:', deletionLogs[0]);
+                        } else {
+                            console.log('⚠️ No deletion logs found. Check if actions match the filter criteria.');
+                        }
 
                         // Parse deleted products from audit logs
                         archivedProductsData = deletionLogs.map(log => {
