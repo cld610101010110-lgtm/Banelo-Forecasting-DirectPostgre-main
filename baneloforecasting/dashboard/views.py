@@ -989,7 +989,7 @@ def audit_trail_view(request):
         # Format audit logs for display
         audit_logs = []
         for log in audit_logs_from_api:
-            timestamp_str = ''
+            timestamp_str = 'N/A'
             if log.get('timestamp'):
                 try:
                     if isinstance(log['timestamp'], str):
@@ -998,14 +998,18 @@ def audit_trail_view(request):
                         timestamp_str = dt.strftime('%Y-%m-%d %H:%M:%S')
                     else:
                         timestamp_str = log['timestamp'].strftime('%Y-%m-%d %H:%M:%S')
-                except:
+                except Exception as e:
                     timestamp_str = str(log['timestamp'])
+                    print(f"⚠️ Timestamp parse error: {e}, raw value: {log['timestamp']}")
+
+            # Get description from various possible field names
+            description = log.get('details') or log.get('description') or log.get('message') or 'No description provided'
 
             audit_logs.append({
                 'id': f"audit-{log.get('id', '')}",
                 'user': log.get('user_name') or log.get('userName') or 'Unknown',
                 'action': log.get('action') or 'N/A',
-                'description': log.get('details') or '',
+                'description': description,
                 'timestamp': timestamp_str,
                 'source': 'Audit System',
                 'status': 'Success'
