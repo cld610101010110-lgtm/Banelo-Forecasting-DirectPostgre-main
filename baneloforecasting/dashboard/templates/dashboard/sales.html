@@ -820,10 +820,16 @@
         <div class="table-card">
             <div class="table-header">
                 <h3 class="table-title">Sales Transactions</h3>
-                <button class="btn-export" onclick="exportSales()">
-                    <i class="fas fa-download"></i>
-                    Export to CSV
-                </button>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn-export" onclick="exportSales()">
+                        <i class="fas fa-file-csv"></i>
+                        Export CSV
+                    </button>
+                    <button class="btn-export" onclick="exportSalesPDF()">
+                        <i class="fas fa-file-pdf"></i>
+                        Export PDF
+                    </button>
+                </div>
             </div>
 
             <table class="sales-table">
@@ -1002,6 +1008,27 @@
         }
 
         console.log('Exporting sales to:', exportUrl);
+
+        // Trigger download
+        window.location.href = exportUrl;
+    }
+
+    function exportSalesPDF() {
+        const startDate = document.getElementById('startDate').value;
+        const endDate = document.getElementById('endDate').value;
+
+        // Build export URL with filters
+        let exportUrl = "{% url 'export_sales_pdf' %}";
+
+        const params = new URLSearchParams();
+        if (startDate) params.append('date_from', startDate);
+        if (endDate) params.append('date_to', endDate);
+
+        if (params.toString()) {
+            exportUrl += '?' + params.toString();
+        }
+
+        console.log('Exporting sales PDF to:', exportUrl);
 
         // Trigger download
         window.location.href = exportUrl;

@@ -14,6 +14,7 @@ urlpatterns = [
     path('settings/', views.settings_view, name='settings'),
     path('sales/', views.sales_view, name='sales'),
     path('sales/export/', views.export_sales_csv, name='export_sales_csv'),
+    path('sales/export/pdf/', views.export_sales_pdf, name='export_sales_pdf'),
     path('sales/forecasting/', views.sales_forecasting_view, name='sales_forecasting'),
     path('sales-forecast/export/csv/', views.export_sales_forecast_csv, name='export_sales_forecast_csv'),
     path('sales-forecast/export/pdf/', views.export_sales_forecast_pdf, name='export_sales_forecast_pdf'),
@@ -21,6 +22,9 @@ urlpatterns = [
     path('audit-trail/', views.audit_trail_view, name='audit_trail'),
     path('audit-trail/api/', views.get_audit_logs_api, name='audit_logs_api'),
     path('audit-trail/export/', views.export_audit_trail_csv, name='export_audit_trail_csv'),
+    path('audit-trail/export/pdf/', views.export_audit_trail_pdf, name='export_audit_trail_pdf'),
+    path('waste-tracking/export/', views.export_waste_tracking_csv, name='export_waste_tracking_csv'),
+    path('waste-tracking/export/pdf/', views.export_waste_tracking_pdf, name='export_waste_tracking_pdf'),
 
     # ========================================
     # LEGACY API ENDPOINTS (Function-based views)

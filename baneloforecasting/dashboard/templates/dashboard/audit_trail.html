@@ -438,7 +438,11 @@
             </a>
             <a href="{% url 'export_audit_trail_csv' %}?user={{ filter_user }}&action={{ filter_action }}&date_from={{ filter_date_from }}&date_to={{ filter_date_to }}"
                class="btn btn-success">
-                <i class="fas fa-download"></i> Export CSV
+                <i class="fas fa-file-csv"></i> Export CSV
+            </a>
+            <a href="{% url 'export_audit_trail_pdf' %}?user={{ filter_user }}&action={{ filter_action }}&date_from={{ filter_date_from }}&date_to={{ filter_date_to }}"
+               class="btn btn-success">
+                <i class="fas fa-file-pdf"></i> Export PDF
             </a>
         </div>
     </form>
