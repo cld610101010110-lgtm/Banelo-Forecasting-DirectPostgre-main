@@ -9,6 +9,7 @@ ADD COLUMN IF NOT EXISTS sku VARCHAR(100) DEFAULT '',
 ADD COLUMN IF NOT EXISTS is_perishable BOOLEAN DEFAULT FALSE,
 ADD COLUMN IF NOT EXISTS shelf_life_days INTEGER DEFAULT 0,
 ADD COLUMN IF NOT EXISTS expiration_date TIMESTAMP,
+ADD COLUMN IF NOT EXISTS transferred_to_b BOOLEAN DEFAULT FALSE,
 ADD COLUMN IF NOT EXISTS is_active BOOLEAN DEFAULT TRUE;
 
 -- Create an index on expiration_date for faster queries
@@ -23,4 +24,5 @@ UPDATE products SET is_active = TRUE WHERE is_active IS NULL;
 COMMENT ON COLUMN products.is_perishable IS 'Indicates if the product has an expiration date';
 COMMENT ON COLUMN products.shelf_life_days IS 'Number of days the product is good for after receiving';
 COMMENT ON COLUMN products.expiration_date IS 'The date when the product expires';
+COMMENT ON COLUMN products.transferred_to_b IS 'Indicates if the product has been transferred from Inventory A to B';
 COMMENT ON COLUMN products.is_active IS 'Indicates if the product is active in the system';

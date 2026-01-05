@@ -17,6 +17,9 @@ const salesRoutes = require('./routes/sales');
 const wasteRoutes = require('./routes/waste');
 const auditRoutes = require('./routes/audit');
 
+// Import cron jobs
+require('./jobs/check-expiration');
+
 // Initialize Express app
 const app = express();
 const PORT = process.env.PORT || 3000;

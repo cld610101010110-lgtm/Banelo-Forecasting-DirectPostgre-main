@@ -341,19 +341,38 @@ router.post('/transfer', async (req, res) => {
     const newInventoryA = currentInventoryA - quantity;
     const newInventoryB = currentInventoryB + quantity;
 
-    // Update product
+    // Calculate expiration date if perishable
+    let expirationDate = product.expiration_date;
+    let expirationMessage = '';
+
+    if (product.is_perishable && product.shelf_life_days > 0) {
+      const now = new Date();
+      const expDate = new Date(now.getTime() + (product.shelf_life_days * 24 * 60 * 60 * 1000));
+      expirationDate = expDate.toISOString();
+      expirationMessage = ` | Expires: ${expDate.toLocaleDateString()}`;
+
+      console.log(`📅 Perishable item transferred - Expiration date set to: ${expirationDate}`);
+    }
+
+    // Update product with new inventory and expiration date
     await query(
       `UPDATE products
-       SET inventory_a = $1, inventory_b = $2, quantity = $2, updated_at = NOW()
-       WHERE firebase_id = $3`,
-      [newInventoryA, newInventoryB, firebaseId]
+       SET inventory_a = $1,
+           inventory_b = $2,
+           quantity = $2,
+           expiration_date = $3,
+           transferred_to_b = TRUE,
+           updated_at = NOW()
+       WHERE firebase_id = $4`,
+      [newInventoryA, newInventoryB, expirationDate, firebaseId]
     );
 
     res.json({
       success: true,
-      message: `Successfully transferred ${quantity} units to Inventory B`,
+      message: `Successfully transferred ${quantity} units to Inventory B${expirationMessage}`,
       newInventoryA: newInventoryA,
-      newInventoryB: newInventoryB
+      newInventoryB: newInventoryB,
+      expirationDate: expirationDate
     });
   } catch (error) {
     console.error('Error transferring inventory:', error);

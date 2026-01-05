@@ -1,6 +1,6 @@
 # Deployment Instructions
 
-## Recent Changes (2026-01-04)
+## Recent Changes (2026-01-05)
 
 ### Bug Fixes & New Features
 
@@ -8,9 +8,12 @@
 - ✅ **Inventory Delete**: Now uses API service instead of Django ORM
 - ✅ **Recipe Edit**: Fixed to use `firebase_id` consistently
 - ✅ **Recipe Delete**: Fixed to use `firebase_id` consistently
+- ✅ **Recipe Creation Debugging**: Added detailed logging to track firebase_id population
 
 #### 2. New Features:
 - ✅ **Expiration Tracking**: Added `is_perishable`, `shelf_life_days`, `expiration_date` fields to products
+- ✅ **Automatic Expiration**: Transfer A→B now calculates expiration date automatically
+- ✅ **Auto Waste Recording**: Cron job runs daily to auto-record expired items as waste
 - ✅ **Print Reports**: Added CSV/PDF export for waste, sales, and sales forecast
 - ✅ **Recipe-Based Products**: Beverages and Pastries now automatically have 0 stock (recipe-based)
 
@@ -33,6 +36,7 @@ Or manually execute the SQL in your PostgreSQL database.
 The following packages were added:
 - `pdfkit` - PDF generation
 - `csv-writer` - CSV export
+- `node-cron` - Scheduled jobs for expiration checking
 
 Install them:
 
@@ -75,11 +79,25 @@ python manage.py runserver
 1. Go to Recipe Management
 2. Edit a recipe and modify ingredients
 3. Save and verify changes persist after page refresh
+4. Check Railway logs for debugging output showing firebase_id values
 
 ### Test Recipe Delete:
 1. Go to Recipe Management
 2. Delete a recipe
 3. Should succeed without errors
+
+### Test Expiration Tracking:
+1. Add a new ingredient with `is_perishable = true` and `shelf_life_days = 7`
+2. Transfer some quantity from Inventory A to Inventory B
+3. Check that expiration_date is calculated and displayed
+4. Verify the message shows "Expires: [date]"
+
+### Test Cron Job (Manual):
+1. Set an ingredient's expiration_date to yesterday
+2. Restart the Node.js server to trigger cron job initialization
+3. Wait for midnight OR manually run the cron logic
+4. Verify waste log is created with reason "Expired - Auto-recorded by system"
+5. Verify inventory_b is cleared to 0
 
 ### Test Export Reports:
 
@@ -170,6 +188,13 @@ Check Node.js console logs for detailed error messages. The logs will show:
 - Which recipe ID is being used
 - Whether the recipe was found
 - Any SQL errors
+- firebase_id values being saved/retrieved
+
+If new recipes have NULL firebase_id:
+1. Check Railway logs when creating a recipe
+2. Look for the log: "Recipe created in database: firebase_id: ..."
+3. If firebase_id is NULL in the logs, the database column may not exist
+4. Run the migration to add the column if missing
 
 ### Export reports failing
 
@@ -183,6 +208,14 @@ For Django exports (sales forecast):
 ```bash
 pip install reportlab
 ```
+
+### Cron job not running
+
+The expiration check cron job runs daily at midnight (00:00). To verify it's loaded:
+1. Check server startup logs for: "Expiration check cron job initialized"
+2. For testing, you can modify the schedule in `nodejs-api/jobs/check-expiration.js`:
+   - Change `'0 0 * * *'` to `'*/5 * * * *'` (runs every 5 minutes)
+3. Restart the Node.js server after making changes
 
 ---
 
