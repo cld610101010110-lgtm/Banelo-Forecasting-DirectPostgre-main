@@ -772,35 +772,36 @@ def export_sales_pdf(request):
         filter_date_from = request.GET.get('date_from', '')
         filter_date_to = request.GET.get('date_to', '')
 
-        # Query PostgreSQL
-        sales = Sale.objects.all().order_by('-order_date')
+        # Get data from API (same source as the view)
+        api = get_api_service()
+        sales_from_api = api.get_sales(limit=10000)
 
-        # Apply date filters
-        if filter_date_from:
-            from_date = datetime.strptime(filter_date_from, '%Y-%m-%d')
-            sales = sales.filter(order_date__gte=from_date)
-        if filter_date_to:
-            to_date = datetime.strptime(filter_date_to, '%Y-%m-%d') + timedelta(days=1)
-            sales = sales.filter(order_date__lt=to_date)
-
-        sales = sales[:5000]
-
-        # Process sales data
+        # Process sales data with filters
         sales_data = []
         total_revenue = 0
 
-        for sale in sales:
-            price = float(sale.price or 0)
-            quantity = int(sale.quantity or 0)
-            sale_total = float(sale.total) if sale.total else price * quantity
+        for sale in sales_from_api:
+            price = float(sale.get('price', 0) or 0)
+            quantity = int(sale.get('quantity', 0) or 0)
+            sale_total = float(sale.get('total_amount') or sale.get('total') or 0) or (price * quantity)
 
-            order_date = sale.order_date
-            date_only = order_date.strftime('%Y-%m-%d') if order_date else 'N/A'
+            # Parse order_date
+            order_date_raw = sale.get('order_date') or sale.get('orderDate')
+            if isinstance(order_date_raw, str):
+                date_only = order_date_raw[:10] if order_date_raw else 'N/A'
+            else:
+                date_only = order_date_raw.strftime('%Y-%m-%d') if order_date_raw else 'N/A'
+
+            # Apply date filters
+            if filter_date_from and date_only < filter_date_from:
+                continue
+            if filter_date_to and date_only > filter_date_to:
+                continue
 
             sales_data.append({
                 'date': date_only,
-                'product': sale.product_name or 'Unknown',
-                'category': sale.category or 'Uncategorized',
+                'product': sale.get('product_name') or sale.get('productName') or 'Unknown',
+                'category': sale.get('category') or 'Uncategorized',
                 'quantity': quantity,
                 'unit_price': price,
                 'total': sale_total
