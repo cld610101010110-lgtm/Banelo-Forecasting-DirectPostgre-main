@@ -1105,6 +1105,10 @@ def audit_trail_view(request):
 def get_audit_logs_api(request):
     """API endpoint to get audit logs from Node.js API"""
     try:
+        print("\n" + "=" * 80)
+        print("🔥 AUDIT LOGS API ENDPOINT CALLED")
+        print("=" * 80)
+
         # Get API service
         api = get_api_service()
 
@@ -1112,11 +1116,18 @@ def get_audit_logs_api(request):
         filter_action = request.GET.get('action', '')
         limit = int(request.GET.get('limit', 1000))
 
+        print(f"📊 Parameters: filter_action={filter_action}, limit={limit}")
+
         # Get audit logs from Node.js API
         audit_logs_from_api = api.get_audit_logs(
             limit=limit,
             action=filter_action if filter_action else None
         )
+
+        print(f"📦 Received {len(audit_logs_from_api)} logs from Node.js API")
+
+        if len(audit_logs_from_api) > 0:
+            print(f"📦 Sample log entry: {audit_logs_from_api[0]}")
 
         # Format the logs
         logs_list = []
@@ -2938,13 +2949,19 @@ def delete_product_view(request):
 
         if result.get('success'):
             # Log to Node.js API (PostgreSQL) instead of Django database
-            api.add_audit_log({
+            audit_log_data = {
                 'action': 'Product Deleted',
                 'user_id': str(request.user.id),
                 'user_name': request.user.username,
                 'details': f'Deleted product: {product_name} (Category: {product_category})',
                 'timestamp': datetime.now().isoformat()
-            })
+            }
+
+            print(f"\n🔥 Writing audit log to PostgreSQL:")
+            print(f"📦 Audit log data: {audit_log_data}")
+
+            audit_result = api.add_audit_log(audit_log_data)
+            print(f"📦 Audit log write result: {audit_result}")
 
             return JsonResponse({
                 'success': True,
