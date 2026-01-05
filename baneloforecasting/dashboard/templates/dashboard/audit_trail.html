@@ -408,13 +408,10 @@
             <div class="filter-group">
                 <label for="filterAction">Action Type</label>
                 <select id="filterAction" name="action">
-                    <option value="LOGIN" {% if filter_action == "LOGIN" %}selected{% endif %}>Login</option>
-                    <option value="LOGOUT" {% if filter_action == "LOGOUT" %}selected{% endif %}>Logout</option>
-                    <option value="FAILED_LOGIN" {% if filter_action == "FAILED_LOGIN" %}selected{% endif %}>Failed Login</option>
-                    <option value="SALE_TRANSACTION" {% if filter_action == "SALE_TRANSACTION" %}selected{% endif %}>Sale Transaction</option>
-                    <option value="PRODUCT_ADD" {% if filter_action == "PRODUCT_ADD" %}selected{% endif %}>Product Add</option>
-                    <option value="PRODUCT_EDIT" {% if filter_action == "PRODUCT_EDIT" %}selected{% endif %}>Product Edit</option>
-                    <option value="PRODUCT_DELETE" {% if filter_action == "PRODUCT_DELETE" %}selected{% endif %}>Product Delete</option>
+                    <option value="">All Actions</option>
+                    {% for action in actions %}
+                    <option value="{{ action }}" {% if filter_action == action %}selected{% endif %}>{{ action }}</option>
+                    {% endfor %}
                 </select>
             </div>
 
