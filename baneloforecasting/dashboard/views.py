@@ -989,25 +989,43 @@ def audit_trail_view(request):
         # Format audit logs for display
         audit_logs = []
         for log in audit_logs_from_api:
+            # Try multiple timestamp field names
             timestamp_str = 'N/A'
-            if log.get('timestamp'):
+            timestamp_raw = log.get('timestamp') or log.get('created_at') or log.get('createdAt') or log.get('updated_at') or log.get('updatedAt')
+
+            if timestamp_raw:
                 try:
-                    if isinstance(log['timestamp'], str):
+                    if isinstance(timestamp_raw, str):
                         # Parse ISO format string
-                        dt = datetime.fromisoformat(log['timestamp'].replace('Z', '+00:00'))
+                        dt = datetime.fromisoformat(timestamp_raw.replace('Z', '+00:00'))
                         timestamp_str = dt.strftime('%Y-%m-%d %H:%M:%S')
                     else:
-                        timestamp_str = log['timestamp'].strftime('%Y-%m-%d %H:%M:%S')
+                        timestamp_str = timestamp_raw.strftime('%Y-%m-%d %H:%M:%S')
                 except Exception as e:
-                    timestamp_str = str(log['timestamp'])
-                    print(f"⚠️ Timestamp parse error: {e}, raw value: {log['timestamp']}")
+                    timestamp_str = str(timestamp_raw)
+                    print(f"⚠️ Timestamp parse error: {e}, raw value: {timestamp_raw}")
 
             # Get description from various possible field names
             description = log.get('details') or log.get('description') or log.get('message') or 'No description provided'
 
+            # Get user - try from field first, then extract from description
+            user = log.get('user_name') or log.get('userName') or log.get('user')
+            if not user and description and 'Admin User' in description:
+                user = 'Admin User'
+            elif not user and description:
+                # Try to extract user from description patterns like "X logged in"
+                import re
+                user_match = re.match(r'^([A-Za-z\s]+)\s+(logged|completed|created|updated|deleted)', description)
+                if user_match:
+                    user = user_match.group(1).strip()
+                else:
+                    user = 'Unknown'
+            else:
+                user = user or 'Unknown'
+
             audit_logs.append({
                 'id': f"audit-{log.get('id', '')}",
-                'user': log.get('user_name') or log.get('userName') or 'Unknown',
+                'user': user,
                 'action': log.get('action') or 'N/A',
                 'description': description,
                 'timestamp': timestamp_str,
@@ -1026,19 +1044,19 @@ def audit_trail_view(request):
         # Get statistics
         stats = calculate_statistics(audit_logs)
 
-        # Get unique users - try from API, fallback to local query
-        users = []
-        try:
-            # Get all audit logs without limit to extract unique users
-            all_logs = api.get_audit_logs(limit=50000)
-            users = list(set([log.get('user_name') or log.get('userName') for log in all_logs if log.get('user_name') or log.get('userName')]))
-        except:
-            users = []
+        # Get unique users and actions from processed audit logs
+        users = list(set([log['user'] for log in audit_logs if log['user'] and log['user'] != 'Unknown']))
+        actions = list(set([log['action'] for log in audit_logs if log['action'] and log['action'] != 'N/A']))
+
+        # Sort for better UX
+        users.sort()
+        actions.sort()
 
         context = {
             'audit_logs': audit_logs,
             'stats': stats,
             'users': users,
+            'actions': actions,  # Add actions to context
             'filter_user': filter_user,
             'filter_action': filter_action,
             'filter_date_from': filter_date_from,
