@@ -1023,15 +1023,37 @@ def audit_trail_view(request):
             else:
                 user = user or 'Unknown'
 
+            action = log.get('action') or 'N/A'
+
             audit_logs.append({
                 'id': f"audit-{log.get('id', '')}",
                 'user': user,
-                'action': log.get('action') or 'N/A',
+                'action': action,
                 'description': description,
                 'timestamp': timestamp_str,
+                'timestamp_raw': timestamp_raw,  # Keep raw timestamp for filtering
                 'source': 'Audit System',
                 'status': 'Success'
             })
+
+        # Apply client-side filtering as fallback (in case API doesn't filter properly)
+        if filter_action:
+            audit_logs = [log for log in audit_logs if log['action'] == filter_action]
+            print(f"🔍 Client-side action filter applied: {filter_action}, remaining logs: {len(audit_logs)}")
+
+        if filter_user:
+            audit_logs = [log for log in audit_logs if log['user'] == filter_user]
+            print(f"🔍 Client-side user filter applied: {filter_user}, remaining logs: {len(audit_logs)}")
+
+        if filter_date_from:
+            audit_logs = [log for log in audit_logs if log['timestamp'] >= filter_date_from]
+            print(f"🔍 Client-side date_from filter applied: {filter_date_from}, remaining logs: {len(audit_logs)}")
+
+        if filter_date_to:
+            # Add end of day to date_to
+            date_to_end = filter_date_to + ' 23:59:59'
+            audit_logs = [log for log in audit_logs if log['timestamp'] <= date_to_end]
+            print(f"🔍 Client-side date_to filter applied: {filter_date_to}, remaining logs: {len(audit_logs)}")
 
         # Sort by timestamp descending
         audit_logs.sort(key=lambda x: x['timestamp'], reverse=True)
