@@ -2819,7 +2819,16 @@ def add_product_view(request):
 
         if result.get('success'):
             product_name = data.get('name', 'Product')
-            log_audit('Product Added', request.user, f'Added product: {product_name}')
+            product_category = data.get('category', 'Unknown')
+
+            # Log to Node.js API (PostgreSQL) instead of Django database
+            api.add_audit_log({
+                'action': 'Product Added',
+                'user_id': str(request.user.id),
+                'user_name': request.user.username,
+                'details': f'Added product: {product_name} (Category: {product_category})',
+                'timestamp': datetime.now().isoformat()
+            })
 
             return JsonResponse({
                 'success': True,
@@ -2869,7 +2878,16 @@ def update_product_view(request):
 
         if result.get('success'):
             product_name = data.get('name', 'Product')
-            log_audit('Product Updated', request.user, f'Updated product: {product_name}')
+            product_category = data.get('category', 'Unknown')
+
+            # Log to Node.js API (PostgreSQL) instead of Django database
+            api.add_audit_log({
+                'action': 'Product Updated',
+                'user_id': str(request.user.id),
+                'user_name': request.user.username,
+                'details': f'Updated product: {product_name} (Category: {product_category})',
+                'timestamp': datetime.now().isoformat()
+            })
 
             return JsonResponse({
                 'success': True,
@@ -2919,7 +2937,14 @@ def delete_product_view(request):
         result = api.delete_product(product_id)
 
         if result.get('success'):
-            log_audit('Product Deleted', request.user, f'Deleted product: {product_name} (Category: {product_category})')
+            # Log to Node.js API (PostgreSQL) instead of Django database
+            api.add_audit_log({
+                'action': 'Product Deleted',
+                'user_id': str(request.user.id),
+                'user_name': request.user.username,
+                'details': f'Deleted product: {product_name} (Category: {product_category})',
+                'timestamp': datetime.now().isoformat()
+            })
 
             return JsonResponse({
                 'success': True,
