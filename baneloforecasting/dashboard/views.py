@@ -2782,13 +2782,14 @@ def export_sales_forecast_csv(request):
 @login_required
 @require_http_methods(["GET"])
 def export_sales_forecast_pdf(request):
-    """Export sales forecast as PDF"""
+    """Export sales forecast as PDF with cafe-themed aesthetic"""
     try:
         from reportlab.lib import colors
         from reportlab.lib.pagesizes import letter
         from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
         from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
         from reportlab.lib.units import inch
+        from reportlab.lib.enums import TA_CENTER, TA_LEFT
         from io import BytesIO
         import numpy as np
 
@@ -2845,65 +2846,152 @@ def export_sales_forecast_pdf(request):
                 'is_weekend': forecast_date.weekday() >= 5,
             })
 
-        # Create PDF
+        # Create PDF with cafe aesthetics
         buffer = BytesIO()
-        doc = SimpleDocTemplate(buffer, pagesize=letter)
+        doc = SimpleDocTemplate(
+            buffer,
+            pagesize=letter,
+            topMargin=0.75*inch,
+            bottomMargin=0.75*inch,
+            leftMargin=0.75*inch,
+            rightMargin=0.75*inch
+        )
         elements = []
 
+        # Define cafe-themed colors
+        cafe_dark_brown = colors.HexColor('#6D4C41')
+        cafe_medium_brown = colors.HexColor('#8D6E63')
+        cafe_light_brown = colors.HexColor('#A1887F')
+        cafe_cream = colors.HexColor('#F5F5DC')
+        cafe_beige = colors.HexColor('#D7CCC8')
+
+        # Custom styles with cafe theme
         styles = getSampleStyleSheet()
+
+        # Title style
         title_style = ParagraphStyle(
-            'CustomTitle',
+            'CafeTitle',
             parent=styles['Heading1'],
-            fontSize=24,
-            textColor=colors.HexColor('#2c3e50'),
-            spaceAfter=30,
-            alignment=1  # Center
+            fontName='Helvetica-Bold',
+            fontSize=28,
+            textColor=cafe_dark_brown,
+            spaceAfter=12,
+            alignment=TA_CENTER,
+            leading=34
+        )
+
+        # Subtitle style
+        subtitle_style = ParagraphStyle(
+            'CafeSubtitle',
+            parent=styles['Normal'],
+            fontName='Helvetica-Oblique',
+            fontSize=12,
+            textColor=cafe_medium_brown,
+            spaceAfter=20,
+            alignment=TA_CENTER
+        )
+
+        # Summary style
+        summary_style = ParagraphStyle(
+            'CafeSummary',
+            parent=styles['Normal'],
+            fontName='Helvetica',
+            fontSize=11,
+            textColor=colors.HexColor('#5D4037'),
+            leading=18,
+            spaceBefore=10,
+            spaceAfter=10
         )
 
         # Title
-        elements.append(Paragraph('Sales Forecast Report', title_style))
-        elements.append(Spacer(1, 0.2 * inch))
+        elements.append(Paragraph('☕ Sales Forecast Report', title_style))
+        elements.append(Paragraph('Your Cafe Sales Prediction', subtitle_style))
+        elements.append(Spacer(1, 0.3 * inch))
 
-        # Summary
+        # Summary with cafe styling
         total_forecast = sum(p['predicted_revenue'] for p in predictions)
         average_daily = total_forecast / len(predictions) if predictions else 0
 
         summary_text = f"""
-        <b>Report Generated:</b> {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}<br/>
-        <b>Forecast Period:</b> {days} days<br/>
-        <b>Total Forecast Revenue:</b> ₱{total_forecast:,.2f}<br/>
-        <b>Average Daily Revenue:</b> ₱{average_daily:,.2f}
+        <para alignment="left" leftIndent="20" spaceBefore="5" spaceAfter="5">
+        <font name="Helvetica-Bold" size="11" color="#6D4C41">Report Generated:</font>
+        <font name="Helvetica" size="11" color="#5D4037">{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</font>
+        </para>
+        <para alignment="left" leftIndent="20" spaceBefore="5" spaceAfter="5">
+        <font name="Helvetica-Bold" size="11" color="#6D4C41">Forecast Period:</font>
+        <font name="Helvetica" size="11" color="#5D4037">{days} days</font>
+        </para>
+        <para alignment="left" leftIndent="20" spaceBefore="5" spaceAfter="5">
+        <font name="Helvetica-Bold" size="11" color="#6D4C41">Total Forecast Revenue:</font>
+        <font name="Helvetica-Bold" size="12" color="#8D6E63">Php {total_forecast:,.2f}</font>
+        </para>
+        <para alignment="left" leftIndent="20" spaceBefore="5" spaceAfter="5">
+        <font name="Helvetica-Bold" size="11" color="#6D4C41">Average Daily Revenue:</font>
+        <font name="Helvetica-Bold" size="12" color="#8D6E63">Php {average_daily:,.2f}</font>
+        </para>
         """
-        elements.append(Paragraph(summary_text, styles['Normal']))
+        elements.append(Paragraph(summary_text, summary_style))
         elements.append(Spacer(1, 0.3 * inch))
 
-        # Table data
+        # Table data with Php instead of ₱
         data = [['Date', 'Day', 'Predicted Revenue', 'Lower Bound', 'Upper Bound', 'Weekend']]
         for p in predictions:
             data.append([
                 p['date'],
                 p['day_name'],
-                f"₱{p['predicted_revenue']:,.2f}",
-                f"₱{p['lower_bound']:,.2f}",
-                f"₱{p['upper_bound']:,.2f}",
+                f"Php {p['predicted_revenue']:,.2f}",
+                f"Php {p['lower_bound']:,.2f}",
+                f"Php {p['upper_bound']:,.2f}",
                 'Yes' if p['is_weekend'] else 'No'
             ])
 
-        # Create table
+        # Create table with cafe aesthetic
         table = Table(data, colWidths=[1.2*inch, 1*inch, 1.3*inch, 1.2*inch, 1.2*inch, 0.8*inch])
         table.setStyle(TableStyle([
-            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#3498db')),
+            # Header styling - cafe dark brown
+            ('BACKGROUND', (0, 0), (-1, 0), cafe_dark_brown),
             ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
             ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+            ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
             ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-            ('FONTSIZE', (0, 0), (-1, 0), 10),
-            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-            ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
-            ('GRID', (0, 0), (-1, -1), 1, colors.black),
-            ('FONTSIZE', (0, 1), (-1, -1), 9),
+            ('FONTSIZE', (0, 0), (-1, 0), 11),
+            ('TOPPADDING', (0, 0), (-1, 0), 14),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 14),
+
+            # Alternate row colors - cafe cream and beige
+            ('BACKGROUND', (0, 1), (-1, -1), cafe_cream),
+            ('ROWBACKGROUNDS', (0, 1), (-1, -1), [cafe_cream, cafe_beige]),
+
+            # Body text styling
+            ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
+            ('FONTSIZE', (0, 1), (-1, -1), 10),
+            ('TEXTCOLOR', (0, 1), (-1, -1), colors.HexColor('#5D4037')),
+            ('TOPPADDING', (0, 1), (-1, -1), 10),
+            ('BOTTOMPADDING', (0, 1), (-1, -1), 10),
+
+            # Grid lines - cafe medium brown
+            ('GRID', (0, 0), (-1, -1), 0.75, cafe_light_brown),
+            ('LINEBELOW', (0, 0), (-1, 0), 2, cafe_dark_brown),
+
+            # Highlight weekend rows
+            ('TEXTCOLOR', (5, 1), (5, -1), cafe_medium_brown),
+            ('FONTNAME', (5, 1), (5, -1), 'Helvetica-Bold'),
         ]))
 
         elements.append(table)
+
+        # Footer
+        elements.append(Spacer(1, 0.4 * inch))
+        footer_style = ParagraphStyle(
+            'CafeFooter',
+            parent=styles['Normal'],
+            fontName='Helvetica-Oblique',
+            fontSize=9,
+            textColor=cafe_medium_brown,
+            alignment=TA_CENTER
+        )
+        elements.append(Paragraph('Generated by Banelo Cafe Forecasting System', footer_style))
+
         doc.build(elements)
 
         buffer.seek(0)
