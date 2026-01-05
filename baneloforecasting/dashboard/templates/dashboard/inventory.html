@@ -1016,6 +1016,9 @@
                 <i class="fas fa-plus"></i>
                 Add Product
             </button>
+            <button class="btn-add" onclick="openArchivedModal()" style="background: linear-gradient(135deg, #757575 0%, #616161 100%); box-shadow: 0 4px 15px rgba(117, 117, 117, 0.3);" title="View Archived Products">
+                <i class="fas fa-trash"></i>
+            </button>
             <div class="user-profile" title="{{ user.username }}">
                 {{ user.username|first|upper }}
             </div>
@@ -1968,6 +1971,220 @@
                 }
             });
 
+            // ========================================
+            // ARCHIVED PRODUCTS MODAL FUNCTIONS
+            // ========================================
+
+            let archivedProductsData = [];
+
+            async function openArchivedModal() {
+                document.getElementById('archivedModal').classList.add('active');
+                await loadArchivedProducts();
+            }
+
+            function closeArchivedModal() {
+                document.getElementById('archivedModal').classList.remove('active');
+            }
+
+            async function loadArchivedProducts() {
+                try {
+                    console.log('📦 Loading archived products from audit logs...');
+
+                    // Show loading state
+                    const tableBody = document.getElementById('archivedProductsTable');
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="4" style="text-align: center; padding: 40px; color: #999;">
+                                <i class="fas fa-spinner fa-spin" style="font-size: 32px; margin-bottom: 10px;"></i>
+                                <p>Loading archived products...</p>
+                            </td>
+                        </tr>
+                    `;
+
+                    // Fetch audit logs for deleted products
+                    const response = await fetch('/dashboard/audit-trail/api/?action=Product Deleted&limit=500');
+                    const data = await response.json();
+
+                    console.log('📦 Audit logs response:', data);
+
+                    if (data.success && data.data) {
+                        // Parse deleted products from audit logs
+                        archivedProductsData = data.data.map(log => {
+                            // Extract product name from description
+                            // Example: "Deleted product: Cappuccino"
+                            const description = log.description || log.details || '';
+                            let productName = 'Unknown Product';
+                            let category = 'Unknown';
+
+                            // Try to extract product name
+                            const nameMatch = description.match(/Deleted product: (.+)/i) ||
+                                             description.match(/Product (.+) deleted/i);
+                            if (nameMatch && nameMatch[1]) {
+                                productName = nameMatch[1].trim();
+                            }
+
+                            // Try to infer category from product name or description
+                            const lowerDesc = description.toLowerCase();
+                            if (lowerDesc.includes('coffee') || lowerDesc.includes('latte') ||
+                                lowerDesc.includes('cappuccino') || lowerDesc.includes('espresso') ||
+                                lowerDesc.includes('beverage')) {
+                                category = 'Beverage';
+                            } else if (lowerDesc.includes('cake') || lowerDesc.includes('pastry') ||
+                                      lowerDesc.includes('bread') || lowerDesc.includes('cookie')) {
+                                category = 'Pastries';
+                            } else if (lowerDesc.includes('milk') || lowerDesc.includes('sugar') ||
+                                      lowerDesc.includes('ingredient') || lowerDesc.includes('flour')) {
+                                category = 'Ingredients';
+                            }
+
+                            // Get timestamp
+                            const timestamp = log.timestamp || log.created_at || log.createdAt || 'Unknown';
+                            const deletedBy = log.user_name || log.userName || log.user || 'Unknown';
+
+                            return {
+                                productName,
+                                category,
+                                deletedBy,
+                                timestamp,
+                                rawLog: log
+                            };
+                        });
+
+                        console.log('📦 Parsed archived products:', archivedProductsData);
+                        renderArchivedProducts(archivedProductsData);
+                    } else {
+                        showEmptyArchivedState();
+                    }
+                } catch (error) {
+                    console.error('❌ Error loading archived products:', error);
+                    const tableBody = document.getElementById('archivedProductsTable');
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="4" style="text-align: center; padding: 40px; color: #f44336;">
+                                <i class="fas fa-exclamation-triangle" style="font-size: 32px; margin-bottom: 10px;"></i>
+                                <p>Failed to load archived products. Please try again.</p>
+                            </td>
+                        </tr>
+                    `;
+                }
+            }
+
+            function renderArchivedProducts(products) {
+                const tableBody = document.getElementById('archivedProductsTable');
+                const emptyState = document.getElementById('archivedEmptyState');
+
+                if (!products || products.length === 0) {
+                    showEmptyArchivedState();
+                    return;
+                }
+
+                // Hide empty state
+                emptyState.style.display = 'none';
+
+                // Render products
+                tableBody.innerHTML = products.map(product => {
+                    // Format timestamp
+                    let formattedDate = 'Unknown';
+                    if (product.timestamp && product.timestamp !== 'Unknown') {
+                        try {
+                            const date = new Date(product.timestamp);
+                            formattedDate = date.toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit'
+                            });
+                        } catch (e) {
+                            formattedDate = product.timestamp;
+                        }
+                    }
+
+                    // Category badge color
+                    let categoryColor = '#999';
+                    if (product.category === 'Beverage') categoryColor = '#6D4C41';
+                    else if (product.category === 'Pastries') categoryColor = '#8D6E63';
+                    else if (product.category === 'Ingredients') categoryColor = '#A1887F';
+
+                    return `
+                        <tr style="border-bottom: 1px solid #f0f0f0;">
+                            <td style="padding: 15px;">
+                                <strong style="color: #3E2723;">${product.productName}</strong>
+                            </td>
+                            <td style="padding: 15px;">
+                                <span style="background: ${categoryColor}; color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;">
+                                    ${product.category}
+                                </span>
+                            </td>
+                            <td style="padding: 15px; color: #666;">
+                                ${product.deletedBy}
+                            </td>
+                            <td style="padding: 15px; color: #999; font-size: 13px;">
+                                ${formattedDate}
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+
+            function showEmptyArchivedState() {
+                const tableBody = document.getElementById('archivedProductsTable');
+                const emptyState = document.getElementById('archivedEmptyState');
+
+                tableBody.innerHTML = '';
+                emptyState.style.display = 'block';
+            }
+
+            function filterArchivedProducts() {
+                const dateFrom = document.getElementById('archivedDateFrom').value;
+                const dateTo = document.getElementById('archivedDateTo').value;
+                const category = document.getElementById('archivedCategory').value;
+
+                console.log('🔍 Filtering archived products:', { dateFrom, dateTo, category });
+
+                let filteredProducts = [...archivedProductsData];
+
+                // Filter by category
+                if (category) {
+                    filteredProducts = filteredProducts.filter(p => p.category === category);
+                }
+
+                // Filter by date range
+                if (dateFrom || dateTo) {
+                    filteredProducts = filteredProducts.filter(product => {
+                        if (!product.timestamp || product.timestamp === 'Unknown') return false;
+
+                        try {
+                            const productDate = new Date(product.timestamp);
+                            const fromDate = dateFrom ? new Date(dateFrom) : null;
+                            const toDate = dateTo ? new Date(dateTo + 'T23:59:59') : null;
+
+                            if (fromDate && productDate < fromDate) return false;
+                            if (toDate && productDate > toDate) return false;
+
+                            return true;
+                        } catch (e) {
+                            return false;
+                        }
+                    });
+                }
+
+                console.log(`✅ Filtered to ${filteredProducts.length} products`);
+                renderArchivedProducts(filteredProducts);
+            }
+
+            // Close archived modal when clicking outside
+            document.addEventListener('DOMContentLoaded', function() {
+                const archivedModal = document.getElementById('archivedModal');
+                if (archivedModal) {
+                    archivedModal.addEventListener('click', function(e) {
+                        if (e.target === this) {
+                            closeArchivedModal();
+                        }
+                    });
+                }
+            });
+
                 </script>
                 <!-- ========================================
         CUSTOM NOTIFICATION MODAL
@@ -2090,6 +2307,79 @@
                                 <i class="fas fa-trash-alt"></i> Record Waste
                             </button>
                         </form>
+                    </div>
+                </div>
+
+                <!-- ========================================
+        ARCHIVED PRODUCTS MODAL
+        ======================================== -->
+                <div class="modal" id="archivedModal">
+                    <div class="modal-content" style="max-width: 900px;">
+                        <div class="modal-header">
+                            <h2 class="modal-title">
+                                <i class="fas fa-archive"></i> Archived Products
+                            </h2>
+                            <button class="btn-close" onclick="closeArchivedModal()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+
+                        <!-- Filter Section -->
+                        <div style="background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <label class="form-label" style="font-size: 13px;">Date From</label>
+                                    <input type="date" class="form-control" id="archivedDateFrom" style="padding: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <label class="form-label" style="font-size: 13px;">Date To</label>
+                                    <input type="date" class="form-control" id="archivedDateTo" style="padding: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <label class="form-label" style="font-size: 13px;">Category</label>
+                                    <select class="form-control" id="archivedCategory" style="padding: 8px;">
+                                        <option value="">All Categories</option>
+                                        <option value="Beverage">Beverage</option>
+                                        <option value="Pastries">Pastries</option>
+                                        <option value="Ingredients">Ingredients</option>
+                                    </select>
+                                </div>
+                                <div style="display: flex; align-items: flex-end;">
+                                    <button onclick="filterArchivedProducts()" class="btn-submit" style="width: 100%; padding: 10px; font-size: 14px;">
+                                        <i class="fas fa-filter"></i> Apply Filters
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Archived Products Table -->
+                        <div style="overflow-x: auto; max-height: 500px;">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead style="position: sticky; top: 0; background: #f9f9f9; z-index: 1;">
+                                    <tr>
+                                        <th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; font-weight: 600; color: #3E2723;">Product Name</th>
+                                        <th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; font-weight: 600; color: #3E2723;">Category</th>
+                                        <th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; font-weight: 600; color: #3E2723;">Deleted By</th>
+                                        <th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; font-weight: 600; color: #3E2723;">Date Deleted</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="archivedProductsTable">
+                                    <tr>
+                                        <td colspan="4" style="text-align: center; padding: 40px; color: #999;">
+                                            <i class="fas fa-spinner fa-spin" style="font-size: 32px; margin-bottom: 10px;"></i>
+                                            <p>Loading archived products...</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Empty State -->
+                        <div id="archivedEmptyState" style="display: none; text-align: center; padding: 60px 20px;">
+                            <i class="fas fa-box-open" style="font-size: 64px; color: #ccc; margin-bottom: 20px;"></i>
+                            <h3 style="color: #666; margin-bottom: 10px;">No Archived Products</h3>
+                            <p style="color: #999;">No products have been deleted yet or match your filters.</p>
+                        </div>
                     </div>
                 </div>
 
