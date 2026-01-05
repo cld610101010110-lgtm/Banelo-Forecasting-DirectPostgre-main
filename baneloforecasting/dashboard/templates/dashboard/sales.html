@@ -257,24 +257,6 @@
         font-weight: 600;
     }
 
-    .user-profile {
-        width: 40px;
-        height: 40px;
-        background: #8D6E63;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-weight: 600;
-        cursor: pointer;
-        transition: transform 0.3s;
-    }
-
-        .user-profile:hover {
-            transform: scale(1.1);
-        }
-
     /* Sales Content */
     .sales-content {
         padding: 30px;
@@ -750,9 +732,6 @@
     <!-- Top Bar -->
     <div class="top-bar">
         <h1 class="page-title">Sales Records</h1>
-        <div class="user-profile" title="{{ user.username }}">
-            {{ user.username|first|upper }}
-        </div>
     </div>
 
     <!-- Sales Content -->
