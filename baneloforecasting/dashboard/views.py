@@ -756,6 +756,165 @@ def export_sales_csv(request):
 
 
 @login_required
+@require_http_methods(["GET"])
+def export_sales_pdf(request):
+    """Export sales report as PDF with cafe-themed aesthetic"""
+    try:
+        from reportlab.lib import colors
+        from reportlab.lib.pagesizes import letter, landscape
+        from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
+        from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+        from reportlab.lib.units import inch
+        from reportlab.lib.enums import TA_CENTER
+        from io import BytesIO
+
+        # Get filter parameters
+        filter_date_from = request.GET.get('date_from', '')
+        filter_date_to = request.GET.get('date_to', '')
+
+        # Query PostgreSQL
+        sales = Sale.objects.all().order_by('-order_date')
+
+        # Apply date filters
+        if filter_date_from:
+            from_date = datetime.strptime(filter_date_from, '%Y-%m-%d')
+            sales = sales.filter(order_date__gte=from_date)
+        if filter_date_to:
+            to_date = datetime.strptime(filter_date_to, '%Y-%m-%d') + timedelta(days=1)
+            sales = sales.filter(order_date__lt=to_date)
+
+        sales = sales[:5000]
+
+        # Process sales data
+        sales_data = []
+        total_revenue = 0
+
+        for sale in sales:
+            price = float(sale.price or 0)
+            quantity = int(sale.quantity or 0)
+            sale_total = float(sale.total) if sale.total else price * quantity
+
+            order_date = sale.order_date
+            date_only = order_date.strftime('%Y-%m-%d') if order_date else 'N/A'
+
+            sales_data.append({
+                'date': date_only,
+                'product': sale.product_name or 'Unknown',
+                'category': sale.category or 'Uncategorized',
+                'quantity': quantity,
+                'unit_price': price,
+                'total': sale_total
+            })
+            total_revenue += sale_total
+
+        # Create PDF with cafe aesthetics
+        buffer = BytesIO()
+        doc = SimpleDocTemplate(buffer, pagesize=landscape(letter),
+                              topMargin=0.5*inch, bottomMargin=0.5*inch,
+                              leftMargin=0.5*inch, rightMargin=0.5*inch)
+        elements = []
+
+        # Cafe colors
+        cafe_dark_brown = colors.HexColor('#6D4C41')
+        cafe_medium_brown = colors.HexColor('#8D6E63')
+        cafe_light_brown = colors.HexColor('#A1887F')
+        cafe_cream = colors.HexColor('#F5F5DC')
+        cafe_beige = colors.HexColor('#D7CCC8')
+
+        # Styles
+        styles = getSampleStyleSheet()
+        title_style = ParagraphStyle('CafeTitle', parent=styles['Heading1'],
+                                    fontName='Helvetica-Bold', fontSize=24,
+                                    textColor=cafe_dark_brown, spaceAfter=10,
+                                    alignment=TA_CENTER, leading=28)
+        subtitle_style = ParagraphStyle('CafeSubtitle', parent=styles['Normal'],
+                                       fontName='Helvetica-Oblique', fontSize=11,
+                                       textColor=cafe_medium_brown, spaceAfter=15,
+                                       alignment=TA_CENTER)
+        summary_style = ParagraphStyle('CafeSummary', parent=styles['Normal'],
+                                      fontName='Helvetica', fontSize=10,
+                                      textColor=colors.HexColor('#5D4037'),
+                                      leading=15, spaceBefore=5, spaceAfter=5)
+
+        # Title
+        elements.append(Paragraph('☕ Sales Report', title_style))
+        elements.append(Paragraph('Banelo Cafe Transaction History', subtitle_style))
+        elements.append(Spacer(1, 0.2 * inch))
+
+        # Summary
+        summary_lines = [
+            f'<font name="Helvetica-Bold" size="10" color="#6D4C41">Report Generated:</font> <font name="Helvetica" size="10" color="#5D4037">{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}</font>',
+            f'<font name="Helvetica-Bold" size="10" color="#6D4C41">Total Transactions:</font> <font name="Helvetica" size="10" color="#5D4037">{len(sales_data)}</font>',
+            f'<font name="Helvetica-Bold" size="10" color="#6D4C41">Total Revenue:</font> <font name="Helvetica-Bold" size="11" color="#8D6E63">Php {total_revenue:,.2f}</font>',
+        ]
+        if filter_date_from or filter_date_to:
+            date_range = f'{filter_date_from or "Start"} to {filter_date_to or "End"}'
+            summary_lines.insert(1, f'<font name="Helvetica-Bold" size="10" color="#6D4C41">Date Range:</font> <font name="Helvetica" size="10" color="#5D4037">{date_range}</font>')
+
+        for line in summary_lines:
+            elements.append(Paragraph(line, summary_style))
+        elements.append(Spacer(1, 0.2 * inch))
+
+        # Table
+        data = [['Date', 'Product', 'Category', 'Qty', 'Unit Price', 'Total']]
+        for sale in sales_data[:100]:  # Limit to 100 rows for PDF
+            data.append([
+                sale['date'],
+                sale['product'][:30],  # Truncate long names
+                sale['category'],
+                str(sale['quantity']),
+                f"Php {sale['unit_price']:.2f}",
+                f"Php {sale['total']:.2f}"
+            ])
+
+        table = Table(data, colWidths=[1.1*inch, 2.5*inch, 1.2*inch, 0.6*inch, 1.1*inch, 1.2*inch])
+        table.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), cafe_dark_brown),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+            ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+            ('FONTSIZE', (0, 0), (-1, 0), 10),
+            ('TOPPADDING', (0, 0), (-1, 0), 12),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+            ('BACKGROUND', (0, 1), (-1, -1), cafe_cream),
+            ('ROWBACKGROUNDS', (0, 1), (-1, -1), [cafe_cream, cafe_beige]),
+            ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
+            ('FONTSIZE', (0, 1), (-1, -1), 9),
+            ('TEXTCOLOR', (0, 1), (-1, -1), colors.HexColor('#5D4037')),
+            ('TOPPADDING', (0, 1), (-1, -1), 8),
+            ('BOTTOMPADDING', (0, 1), (-1, -1), 8),
+            ('GRID', (0, 0), (-1, -1), 0.75, cafe_light_brown),
+            ('LINEBELOW', (0, 0), (-1, 0), 2, cafe_dark_brown),
+        ]))
+        elements.append(table)
+
+        # Footer
+        elements.append(Spacer(1, 0.3 * inch))
+        footer_style = ParagraphStyle('CafeFooter', parent=styles['Normal'],
+                                     fontName='Helvetica-Oblique', fontSize=8,
+                                     textColor=cafe_medium_brown, alignment=TA_CENTER)
+        if len(sales_data) > 100:
+            elements.append(Paragraph(f'Showing first 100 of {len(sales_data)} transactions', footer_style))
+        elements.append(Paragraph('Generated by Banelo Cafe Management System', footer_style))
+
+        doc.build(elements)
+        buffer.seek(0)
+
+        response = HttpResponse(buffer.getvalue(), content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename=sales-report-{datetime.now().strftime("%Y-%m-%d")}.pdf'
+        return response
+
+    except ImportError:
+        return HttpResponse('reportlab library is not installed. Please install it with: pip install reportlab', status=500)
+    except Exception as e:
+        print(f"❌ Error exporting sales PDF: {e}")
+        import traceback
+        traceback.print_exc()
+        return HttpResponse(f'Error: {str(e)}', status=500)
+
+
+@login_required
 def accounts_view(request):
     """Display accounts management page from PostgreSQL users table"""
     from .models import User as PostgresUser
@@ -944,6 +1103,123 @@ def export_audit_trail_csv(request):
     except Exception as e:
         print(f"❌ Error exporting audit trail CSV: {e}")
         return HttpResponse(f"Error: {str(e)}", status=500)
+
+
+@login_required
+@require_http_methods(["GET"])
+def export_audit_trail_pdf(request):
+    """Export audit trail as PDF with cafe-themed aesthetic"""
+    try:
+        from reportlab.lib import colors
+        from reportlab.lib.pagesizes import letter, landscape
+        from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
+        from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+        from reportlab.lib.units import inch
+        from reportlab.lib.enums import TA_CENTER
+        from io import BytesIO
+
+        audit_logs = AuditTrail.objects.all().order_by('-timestamp')[:5000]
+
+        # Create PDF with cafe aesthetics
+        buffer = BytesIO()
+        doc = SimpleDocTemplate(buffer, pagesize=landscape(letter),
+                              topMargin=0.5*inch, bottomMargin=0.5*inch,
+                              leftMargin=0.5*inch, rightMargin=0.5*inch)
+        elements = []
+
+        # Cafe colors
+        cafe_dark_brown = colors.HexColor('#6D4C41')
+        cafe_medium_brown = colors.HexColor('#8D6E63')
+        cafe_light_brown = colors.HexColor('#A1887F')
+        cafe_cream = colors.HexColor('#F5F5DC')
+        cafe_beige = colors.HexColor('#D7CCC8')
+
+        # Styles
+        styles = getSampleStyleSheet()
+        title_style = ParagraphStyle('CafeTitle', parent=styles['Heading1'],
+                                    fontName='Helvetica-Bold', fontSize=24,
+                                    textColor=cafe_dark_brown, spaceAfter=10,
+                                    alignment=TA_CENTER, leading=28)
+        subtitle_style = ParagraphStyle('CafeSubtitle', parent=styles['Normal'],
+                                       fontName='Helvetica-Oblique', fontSize=11,
+                                       textColor=cafe_medium_brown, spaceAfter=15,
+                                       alignment=TA_CENTER)
+        summary_style = ParagraphStyle('CafeSummary', parent=styles['Normal'],
+                                      fontName='Helvetica', fontSize=10,
+                                      textColor=colors.HexColor('#5D4037'),
+                                      leading=15, spaceBefore=5, spaceAfter=5)
+
+        # Title
+        elements.append(Paragraph('☕ Audit Trail Report', title_style))
+        elements.append(Paragraph('Banelo Cafe System Activity Log', subtitle_style))
+        elements.append(Spacer(1, 0.2 * inch))
+
+        # Summary
+        summary_lines = [
+            f'<font name="Helvetica-Bold" size="10" color="#6D4C41">Report Generated:</font> <font name="Helvetica" size="10" color="#5D4037">{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}</font>',
+            f'<font name="Helvetica-Bold" size="10" color="#6D4C41">Total Entries:</font> <font name="Helvetica" size="10" color="#5D4037">{audit_logs.count()}</font>',
+        ]
+        for line in summary_lines:
+            elements.append(Paragraph(line, summary_style))
+        elements.append(Spacer(1, 0.2 * inch))
+
+        # Table
+        data = [['Timestamp', 'User', 'Action', 'Details']]
+        for log in audit_logs[:100]:  # Limit to 100 rows for PDF
+            timestamp_str = log.timestamp.strftime('%Y-%m-%d %H:%M:%S') if log.timestamp else ''
+            details = (log.details or '')[:50]  # Truncate long details
+            data.append([
+                timestamp_str,
+                log.user_name or '',
+                log.action or '',
+                details
+            ])
+
+        table = Table(data, colWidths=[1.5*inch, 1.5*inch, 2*inch, 3.5*inch])
+        table.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), cafe_dark_brown),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+            ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+            ('FONTSIZE', (0, 0), (-1, 0), 10),
+            ('TOPPADDING', (0, 0), (-1, 0), 12),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+            ('BACKGROUND', (0, 1), (-1, -1), cafe_cream),
+            ('ROWBACKGROUNDS', (0, 1), (-1, -1), [cafe_cream, cafe_beige]),
+            ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
+            ('FONTSIZE', (0, 1), (-1, -1), 8),
+            ('TEXTCOLOR', (0, 1), (-1, -1), colors.HexColor('#5D4037')),
+            ('TOPPADDING', (0, 1), (-1, -1), 8),
+            ('BOTTOMPADDING', (0, 1), (-1, -1), 8),
+            ('GRID', (0, 0), (-1, -1), 0.75, cafe_light_brown),
+            ('LINEBELOW', (0, 0), (-1, 0), 2, cafe_dark_brown),
+        ]))
+        elements.append(table)
+
+        # Footer
+        elements.append(Spacer(1, 0.3 * inch))
+        footer_style = ParagraphStyle('CafeFooter', parent=styles['Normal'],
+                                     fontName='Helvetica-Oblique', fontSize=8,
+                                     textColor=cafe_medium_brown, alignment=TA_CENTER)
+        if audit_logs.count() > 100:
+            elements.append(Paragraph(f'Showing first 100 of {audit_logs.count()} entries', footer_style))
+        elements.append(Paragraph('Generated by Banelo Cafe Management System', footer_style))
+
+        doc.build(elements)
+        buffer.seek(0)
+
+        response = HttpResponse(buffer.getvalue(), content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename=audit-trail-{datetime.now().strftime("%Y-%m-%d")}.pdf'
+        return response
+
+    except ImportError:
+        return HttpResponse('reportlab library is not installed. Please install it with: pip install reportlab', status=500)
+    except Exception as e:
+        print(f"❌ Error exporting audit trail PDF: {e}")
+        import traceback
+        traceback.print_exc()
+        return HttpResponse(f'Error: {str(e)}', status=500)
 
 
 # ========================================
@@ -1766,6 +2042,226 @@ def waste_tracking_view(request):
         }
         return render(request, 'dashboard/waste_tracking.html', context)
 
+
+
+@login_required
+@require_http_methods(["GET"])
+def export_waste_tracking_csv(request):
+    """Export waste tracking to CSV"""
+    try:
+        # Get API service
+        api = get_api_service()
+
+        # Get date filter parameters
+        from_date = request.GET.get('from_date', '')
+        to_date = request.GET.get('to_date', '')
+
+        # Get waste logs from API
+        waste_logs = api.get_waste_logs(date_from=from_date, date_to=to_date)
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = f'attachment; filename="waste_tracking_{datetime.now().strftime("%Y%m%d_%H%M%S")}.csv"'
+
+        writer = csv.writer(response)
+        writer.writerow(['Date', 'Product', 'Category', 'Quantity', 'Reason', 'Cost', 'Recorded By'])
+
+        for waste in waste_logs:
+            product_name = waste.get('product_name') or waste.get('productName') or 'Unknown'
+            category = waste.get('category') or 'Unknown'
+            quantity = float(waste.get('quantity') or 0)
+            reason = waste.get('reason') or 'Unknown'
+            recorded_by = waste.get('recorded_by') or waste.get('recordedBy') or 'Unknown'
+            waste_date_str = waste.get('waste_date') or waste.get('wasteDate')
+
+            # Parse date
+            date_display = 'Unknown'
+            if waste_date_str:
+                try:
+                    if isinstance(waste_date_str, str):
+                        waste_date = datetime.fromisoformat(waste_date_str.replace('Z', '+00:00'))
+                    else:
+                        waste_date = waste_date_str
+                    date_display = waste_date.strftime('%Y-%m-%d %H:%M:%S')
+                except:
+                    pass
+
+            # Get cost (simplified - would need product lookup for actual cost)
+            cost = quantity * 10  # Placeholder calculation
+
+            writer.writerow([
+                date_display,
+                product_name,
+                category,
+                quantity,
+                reason,
+                f"₱{cost:.2f}",
+                recorded_by
+            ])
+
+        return response
+
+    except Exception as e:
+        print(f"❌ Error exporting waste tracking CSV: {e}")
+        import traceback
+        traceback.print_exc()
+        return HttpResponse(f"Error: {str(e)}", status=500)
+
+
+@login_required
+@require_http_methods(["GET"])
+def export_waste_tracking_pdf(request):
+    """Export waste tracking as PDF with cafe-themed aesthetic"""
+    try:
+        from reportlab.lib import colors
+        from reportlab.lib.pagesizes import letter, landscape
+        from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
+        from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+        from reportlab.lib.units import inch
+        from reportlab.lib.enums import TA_CENTER
+        from io import BytesIO
+
+        # Get API service
+        api = get_api_service()
+
+        # Get date filter parameters
+        from_date = request.GET.get('from_date', '')
+        to_date = request.GET.get('to_date', '')
+
+        # Get waste logs from API
+        waste_logs = api.get_waste_logs(date_from=from_date, date_to=to_date)
+
+        # Create PDF with cafe aesthetics
+        buffer = BytesIO()
+        doc = SimpleDocTemplate(buffer, pagesize=landscape(letter),
+                              topMargin=0.5*inch, bottomMargin=0.5*inch,
+                              leftMargin=0.5*inch, rightMargin=0.5*inch)
+        elements = []
+
+        # Cafe colors
+        cafe_dark_brown = colors.HexColor('#6D4C41')
+        cafe_medium_brown = colors.HexColor('#8D6E63')
+        cafe_light_brown = colors.HexColor('#A1887F')
+        cafe_cream = colors.HexColor('#F5F5DC')
+        cafe_beige = colors.HexColor('#D7CCC8')
+
+        # Styles
+        styles = getSampleStyleSheet()
+        title_style = ParagraphStyle('CafeTitle', parent=styles['Heading1'],
+                                    fontName='Helvetica-Bold', fontSize=24,
+                                    textColor=cafe_dark_brown, spaceAfter=10,
+                                    alignment=TA_CENTER, leading=28)
+        subtitle_style = ParagraphStyle('CafeSubtitle', parent=styles['Normal'],
+                                       fontName='Helvetica-Oblique', fontSize=11,
+                                       textColor=cafe_medium_brown, spaceAfter=15,
+                                       alignment=TA_CENTER)
+        summary_style = ParagraphStyle('CafeSummary', parent=styles['Normal'],
+                                      fontName='Helvetica', fontSize=10,
+                                      textColor=colors.HexColor('#5D4037'),
+                                      leading=15, spaceBefore=5, spaceAfter=5)
+
+        # Title
+        elements.append(Paragraph('☕ Waste Tracking Report', title_style))
+        elements.append(Paragraph('Banelo Cafe Waste Management Log', subtitle_style))
+        elements.append(Spacer(1, 0.2 * inch))
+
+        # Summary
+        total_cost = 0
+        for waste in waste_logs:
+            quantity = float(waste.get('quantity') or 0)
+            total_cost += quantity * 10  # Placeholder calculation
+
+        summary_lines = [
+            f'<font name="Helvetica-Bold" size="10" color="#6D4C41">Report Generated:</font> <font name="Helvetica" size="10" color="#5D4037">{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}</font>',
+            f'<font name="Helvetica-Bold" size="10" color="#6D4C41">Total Entries:</font> <font name="Helvetica" size="10" color="#5D4037">{len(waste_logs)}</font>',
+            f'<font name="Helvetica-Bold" size="10" color="#6D4C41">Estimated Total Cost:</font> <font name="Helvetica-Bold" size="11" color="#8D6E63">Php {total_cost:,.2f}</font>',
+        ]
+        if from_date or to_date:
+            date_range = f'{from_date or "Start"} to {to_date or "End"}'
+            summary_lines.insert(1, f'<font name="Helvetica-Bold" size="10" color="#6D4C41">Date Range:</font> <font name="Helvetica" size="10" color="#5D4037">{date_range}</font>')
+
+        for line in summary_lines:
+            elements.append(Paragraph(line, summary_style))
+        elements.append(Spacer(1, 0.2 * inch))
+
+        # Table
+        data = [['Date', 'Product', 'Category', 'Qty', 'Reason', 'Cost', 'Recorded By']]
+        for waste in waste_logs[:100]:  # Limit to 100 rows for PDF
+            product_name = waste.get('product_name') or waste.get('productName') or 'Unknown'
+            category = waste.get('category') or 'Unknown'
+            quantity = float(waste.get('quantity') or 0)
+            reason = waste.get('reason') or 'Unknown'
+            recorded_by = waste.get('recorded_by') or waste.get('recordedBy') or 'Unknown'
+            waste_date_str = waste.get('waste_date') or waste.get('wasteDate')
+
+            # Parse date
+            date_display = 'Unknown'
+            if waste_date_str:
+                try:
+                    if isinstance(waste_date_str, str):
+                        waste_date = datetime.fromisoformat(waste_date_str.replace('Z', '+00:00'))
+                    else:
+                        waste_date = waste_date_str
+                    date_display = waste_date.strftime('%Y-%m-%d')
+                except:
+                    pass
+
+            cost = quantity * 10  # Placeholder
+
+            data.append([
+                date_display,
+                product_name[:20],  # Truncate long names
+                category,
+                str(int(quantity)),
+                reason[:15],  # Truncate long reasons
+                f"Php {cost:.2f}",
+                recorded_by[:15]  # Truncate long names
+            ])
+
+        table = Table(data, colWidths=[1.1*inch, 1.8*inch, 1*inch, 0.6*inch, 1.3*inch, 1*inch, 1.2*inch])
+        table.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), cafe_dark_brown),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+            ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+            ('FONTSIZE', (0, 0), (-1, 0), 10),
+            ('TOPPADDING', (0, 0), (-1, 0), 12),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+            ('BACKGROUND', (0, 1), (-1, -1), cafe_cream),
+            ('ROWBACKGROUNDS', (0, 1), (-1, -1), [cafe_cream, cafe_beige]),
+            ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
+            ('FONTSIZE', (0, 1), (-1, -1), 8),
+            ('TEXTCOLOR', (0, 1), (-1, -1), colors.HexColor('#5D4037')),
+            ('TOPPADDING', (0, 1), (-1, -1), 8),
+            ('BOTTOMPADDING', (0, 1), (-1, -1), 8),
+            ('GRID', (0, 0), (-1, -1), 0.75, cafe_light_brown),
+            ('LINEBELOW', (0, 0), (-1, 0), 2, cafe_dark_brown),
+        ]))
+        elements.append(table)
+
+        # Footer
+        elements.append(Spacer(1, 0.3 * inch))
+        footer_style = ParagraphStyle('CafeFooter', parent=styles['Normal'],
+                                     fontName='Helvetica-Oblique', fontSize=8,
+                                     textColor=cafe_medium_brown, alignment=TA_CENTER)
+        if len(waste_logs) > 100:
+            elements.append(Paragraph(f'Showing first 100 of {len(waste_logs)} entries', footer_style))
+        elements.append(Paragraph('Generated by Banelo Cafe Management System', footer_style))
+
+        doc.build(elements)
+        buffer.seek(0)
+
+        response = HttpResponse(buffer.getvalue(), content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename=waste-tracking-{datetime.now().strftime("%Y-%m-%d")}.pdf'
+        return response
+
+    except ImportError:
+        return HttpResponse('reportlab library is not installed. Please install it with: pip install reportlab', status=500)
+    except Exception as e:
+        print(f"❌ Error exporting waste tracking PDF: {e}")
+        import traceback
+        traceback.print_exc()
+        return HttpResponse(f'Error: {str(e)}', status=500)
 
 
 # ========================================
@@ -2912,25 +3408,16 @@ def export_sales_forecast_pdf(request):
         total_forecast = sum(p['predicted_revenue'] for p in predictions)
         average_daily = total_forecast / len(predictions) if predictions else 0
 
-        summary_text = f"""
-        <para alignment="left" leftIndent="20" spaceBefore="5" spaceAfter="5">
-        <font name="Helvetica-Bold" size="11" color="#6D4C41">Report Generated:</font>
-        <font name="Helvetica" size="11" color="#5D4037">{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</font>
-        </para>
-        <para alignment="left" leftIndent="20" spaceBefore="5" spaceAfter="5">
-        <font name="Helvetica-Bold" size="11" color="#6D4C41">Forecast Period:</font>
-        <font name="Helvetica" size="11" color="#5D4037">{days} days</font>
-        </para>
-        <para alignment="left" leftIndent="20" spaceBefore="5" spaceAfter="5">
-        <font name="Helvetica-Bold" size="11" color="#6D4C41">Total Forecast Revenue:</font>
-        <font name="Helvetica-Bold" size="12" color="#8D6E63">Php {total_forecast:,.2f}</font>
-        </para>
-        <para alignment="left" leftIndent="20" spaceBefore="5" spaceAfter="5">
-        <font name="Helvetica-Bold" size="11" color="#6D4C41">Average Daily Revenue:</font>
-        <font name="Helvetica-Bold" size="12" color="#8D6E63">Php {average_daily:,.2f}</font>
-        </para>
-        """
-        elements.append(Paragraph(summary_text, summary_style))
+        # Create individual summary lines with proper formatting
+        summary_lines = [
+            f'<font name="Helvetica-Bold" size="11" color="#6D4C41">Report Generated:</font> <font name="Helvetica" size="11" color="#5D4037">{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}</font>',
+            f'<font name="Helvetica-Bold" size="11" color="#6D4C41">Forecast Period:</font> <font name="Helvetica" size="11" color="#5D4037">{days} days</font>',
+            f'<font name="Helvetica-Bold" size="11" color="#6D4C41">Total Forecast Revenue:</font> <font name="Helvetica-Bold" size="12" color="#8D6E63">Php {total_forecast:,.2f}</font>',
+            f'<font name="Helvetica-Bold" size="11" color="#6D4C41">Average Daily Revenue:</font> <font name="Helvetica-Bold" size="12" color="#8D6E63">Php {average_daily:,.2f}</font>',
+        ]
+
+        for line in summary_lines:
+            elements.append(Paragraph(line, summary_style))
         elements.append(Spacer(1, 0.3 * inch))
 
         # Table data with Php instead of ₱

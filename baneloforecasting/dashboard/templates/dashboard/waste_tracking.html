@@ -780,6 +780,14 @@
                 <i class="fas fa-times"></i>
                 Clear Filter
             </a>
+            <a href="{% url 'export_waste_tracking_csv' %}?from_date={{ from_date }}&to_date={{ to_date }}" class="filter-btn" style="background: #8D6E63; text-decoration: none;">
+                <i class="fas fa-file-csv"></i>
+                Export CSV
+            </a>
+            <a href="{% url 'export_waste_tracking_pdf' %}?from_date={{ from_date }}&to_date={{ to_date }}" class="filter-btn" style="background: #6D4C41; text-decoration: none;">
+                <i class="fas fa-file-pdf"></i>
+                Export PDF
+            </a>
         </form>
     </div>
 
