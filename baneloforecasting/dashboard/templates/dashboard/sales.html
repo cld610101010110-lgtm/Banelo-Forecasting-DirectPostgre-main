@@ -12,8 +12,9 @@
 
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #F5F5F5;
+        background-color: var(--bg-primary);
         overflow-x: hidden;
+        transition: background 0.3s ease;
     }
 
     /* Sidebar Styles */
@@ -241,7 +242,7 @@
 
     /* Top Bar */
     .top-bar {
-        background: white;
+        background: var(--card-bg);
         padding: 20px 30px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         display: flex;
@@ -249,11 +250,12 @@
         align-items: center;
         flex-wrap: wrap;
         gap: 15px;
+        transition: background 0.3s ease;
     }
 
     .page-title {
         font-size: 28px;
-        color: #3E2723;
+        color: var(--text-primary);
         font-weight: 600;
     }
 
@@ -264,11 +266,12 @@
 
     /* Date Filter Section */
     .filter-section {
-        background: white;
+        background: var(--card-bg);
         border-radius: 15px;
         padding: 25px;
         margin-bottom: 25px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        transition: background 0.3s ease;
     }
 
     .filter-header {
@@ -293,7 +296,7 @@
     .filter-title {
         font-size: 18px;
         font-weight: 600;
-        color: #3E2723;
+        color: var(--text-primary);
     }
 
     .date-filters {
@@ -311,16 +314,18 @@
 
     .date-label {
         font-weight: 600;
-        color: #3E2723;
+        color: var(--text-primary);
         font-size: 14px;
     }
 
     .date-input {
         padding: 12px 15px;
-        border: 2px solid #E0E0E0;
+        border: 2px solid var(--border-color);
         border-radius: 10px;
         font-size: 15px;
         transition: all 0.3s;
+        background: var(--bg-primary);
+        color: var(--text-primary);
     }
 
         .date-input:focus {
@@ -346,9 +351,9 @@
         }
 
     .btn-reset {
-        background: #F5F5F5;
-        color: #3E2723;
-        border: 2px solid #E0E0E0;
+        background: var(--card-bg);
+        color: var(--text-primary);
+        border: 2px solid var(--border-color);
         padding: 10px 22px;
         border-radius: 10px;
         font-weight: 600;
@@ -357,7 +362,7 @@
     }
 
         .btn-reset:hover {
-            background: #E0E0E0;
+            background: var(--bg-primary);
         }
 
     /* Summary Cards */
@@ -369,11 +374,11 @@
     }
 
     .summary-card {
-        background: white;
+        background: var(--card-bg);
         border-radius: 15px;
         padding: 25px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        transition: transform 0.3s, box-shadow 0.3s;
+        transition: transform 0.3s, box-shadow 0.3s, background 0.3s ease;
     }
 
         .summary-card:hover {
@@ -390,7 +395,7 @@
 
     .card-title {
         font-size: 14px;
-        color: #666;
+        color: var(--text-secondary);
         font-weight: 500;
     }
 
@@ -410,22 +415,23 @@
     }
 
     .icon-blue {
-        background: #E3F2FD;
-        color: #1E88E5;
+        background: #BCAAA4;
+        color: #6D4C41;
     }
 
     .card-value {
         font-size: 32px;
         font-weight: 700;
-        color: #3E2723;
+        color: var(--text-primary);
     }
 
     /* Sales Table */
     .table-card {
-        background: white;
+        background: var(--card-bg);
         border-radius: 15px;
         padding: 25px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        transition: background 0.3s ease;
     }
 
     .table-header {
@@ -438,7 +444,7 @@
     .table-title {
         font-size: 18px;
         font-weight: 600;
-        color: #3E2723;
+        color: var(--text-primary);
     }
 
     .btn-export {
@@ -466,7 +472,7 @@
     }
 
         .sales-table thead {
-            background: #F5F5F5;
+            background: var(--bg-primary);
             display: table;
             width: 100%;
             table-layout: fixed;
@@ -489,18 +495,18 @@
             padding: 15px;
             text-align: left;
             font-weight: 600;
-            color: #3E2723;
+            color: var(--text-primary);
             font-size: 14px;
         }
 
         .sales-table td {
             padding: 15px;
-            border-bottom: 1px solid #F0F0F0;
-            color: #666;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
         }
 
         .sales-table tbody tr:hover {
-            background: #FAFAFA;
+            background: rgba(255, 255, 255, 0.02);
         }
 
         /* Fix scrollbar width compensation */
@@ -544,7 +550,7 @@
 
     .product-name {
         font-weight: 600;
-        color: #3E2723;
+        color: var(--text-primary);
     }
 
     .category-badge {
