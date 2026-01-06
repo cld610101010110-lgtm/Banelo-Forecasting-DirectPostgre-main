@@ -573,6 +573,25 @@ def inventory_view(request):
             inventory_b = float(product.get('inventory_b') or product.get('inventoryB') or 0)
             cost_per_unit = float(product.get('cost_per_unit') or product.get('costPerUnit') or 0)
 
+            # Get expiration-related fields
+            is_perishable = product.get('is_perishable', False)
+            shelf_life_days = product.get('shelf_life_days', 0) or 0
+            expiration_date = product.get('expiration_date')
+
+            # Format expiration date if it exists
+            expiration_display = None
+            if expiration_date:
+                try:
+                    if isinstance(expiration_date, str):
+                        # Parse ISO date string
+                        from dateutil import parser
+                        exp_dt = parser.parse(expiration_date)
+                        expiration_display = exp_dt.strftime('%Y-%m-%d')
+                    else:
+                        expiration_display = expiration_date.strftime('%Y-%m-%d')
+                except:
+                    expiration_display = str(expiration_date)[:10] if expiration_date else None
+
             products_data.append({
                 'id': firebase_id or str(product.get('id', '')),
                 'name': product_name,
@@ -585,7 +604,10 @@ def inventory_view(request):
                 'image': image,
                 'has_image': has_image,
                 'max_servings': max_servings,
-                'has_recipe': recipe_found
+                'has_recipe': recipe_found,
+                'is_perishable': is_perishable,
+                'shelf_life_days': shelf_life_days,
+                'expiration_date': expiration_display
             })
 
         # Sort by name
@@ -2186,7 +2208,9 @@ def add_product_view(request):
             'unit': data.get('unit', 'pcs'),
             'image_uri': data.get('imageUri', ''),
             'description': data.get('description', ''),
-            'sku': data.get('sku', '')
+            'sku': data.get('sku', ''),
+            'is_perishable': data.get('isPerishable', False),
+            'shelf_life_days': int(data.get('shelfLifeDays', 0))
         }
 
         # Call Node API to add product
@@ -2236,7 +2260,9 @@ def update_product_view(request):
             'inventory_b': float(data.get('inventoryB', 0)),
             'cost_per_unit': float(data.get('costPerUnit', 0)),
             'image_uri': data.get('imageUri', ''),
-            'description': data.get('description', '')
+            'description': data.get('description', ''),
+            'is_perishable': data.get('isPerishable', False),
+            'shelf_life_days': int(data.get('shelfLifeDays', 0))
         }
 
         # Call Node API to update product
