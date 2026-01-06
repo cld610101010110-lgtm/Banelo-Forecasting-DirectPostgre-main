@@ -12,8 +12,9 @@
 
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #F5F5F5;
+        background-color: var(--bg-primary);
         overflow-x: hidden;
+        transition: background 0.3s ease;
     }
 
     /* Sidebar Styles */
@@ -234,7 +235,7 @@
         margin-left: 250px;
         transition: margin-left 0.3s ease;
         min-height: 100vh;
-        background-color: #F5F5F5;
+        background-color: var(--bg-primary);
     }
 
         .main-content.expanded {
@@ -243,7 +244,7 @@
 
     /* Top Bar */
     .top-bar {
-        background: white;
+        background: var(--card-bg);
         padding: 20px 30px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         display: flex;
@@ -251,6 +252,7 @@
         align-items: center;
         flex-wrap: wrap;
         gap: 15px;
+        transition: background 0.3s ease;
     }
 
     .welcome-section {
@@ -259,13 +261,13 @@
 
     .welcome-title {
         font-size: 28px;
-        color: #3E2723;
+        color: var(--text-primary);
         font-weight: 600;
         margin-bottom: 5px;
     }
 
     .welcome-subtitle {
-        color: #999;
+        color: var(--text-secondary);
         font-size: 14px;
     }
 
@@ -302,11 +304,11 @@
     }
 
     .summary-card {
-        background: white;
+        background: var(--card-bg);
         border-radius: 15px;
         padding: 25px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        transition: transform 0.3s, box-shadow 0.3s;
+        transition: transform 0.3s, box-shadow 0.3s, background 0.3s ease;
     }
 
         .summary-card:hover {
@@ -323,7 +325,7 @@
 
     .card-title {
         font-size: 14px;
-        color: #666;
+        color: var(--text-secondary);
         font-weight: 500;
     }
 
@@ -343,8 +345,8 @@
     }
 
     .icon-blue {
-        background: #E3F2FD;
-        color: #1E88E5;
+        background: #BCAAA4;
+        color: #6D4C41;
     }
 
     .icon-orange {
@@ -360,13 +362,13 @@
     .card-value {
         font-size: 36px;
         font-weight: 700;
-        color: #3E2723;
+        color: var(--text-primary);
         margin-bottom: 5px;
     }
 
     .card-subtitle {
         font-size: 13px;
-        color: #999;
+        color: var(--text-secondary);
     }
 
     /* LOW STOCK LINK - IMPROVED STYLING */
@@ -447,19 +449,20 @@
     }
 
     .chart-card {
-        background: white;
+        background: var(--card-bg);
         border-radius: 15px;
         padding: 25px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        transition: background 0.3s ease;
     }
 
     .chart-title {
         font-size: 18px;
         font-weight: 600;
-        color: #3E2723;
+        color: var(--text-primary);
         margin-bottom: 20px;
         padding-bottom: 10px;
-        border-bottom: 2px solid #FFF3E0;
+        border-bottom: 2px solid var(--border-color);
     }
 
     .chart-container {
@@ -471,7 +474,7 @@
     .filter-buttons {
         display: flex;
         gap: 8px;
-        background: #F5F5F5;
+        background: var(--bg-primary);
         padding: 4px;
         border-radius: 8px;
     }
@@ -481,7 +484,7 @@
         background: transparent;
         border: none;
         border-radius: 6px;
-        color: #666;
+        color: var(--text-secondary);
         font-weight: 600;
         font-size: 14px;
         cursor: pointer;
@@ -501,10 +504,11 @@
 
     /* Recent Sales Table */
     .table-card {
-        background: white;
+        background: var(--card-bg);
         border-radius: 15px;
         padding: 25px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        transition: background 0.3s ease;
     }
 
     .table-header {
@@ -517,7 +521,7 @@
     .table-title {
         font-size: 18px;
         font-weight: 600;
-        color: #3E2723;
+        color: var(--text-primary);
     }
 
     .view-all-link {
@@ -538,30 +542,30 @@
     }
 
         .sales-table thead {
-            background: #F5F5F5;
+            background: var(--bg-primary);
         }
 
         .sales-table th {
             padding: 12px;
             text-align: left;
             font-weight: 600;
-            color: #3E2723;
+            color: var(--text-primary);
             font-size: 14px;
         }
 
         .sales-table td {
             padding: 12px;
-            border-bottom: 1px solid #F0F0F0;
-            color: #666;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
         }
 
         .sales-table tbody tr:hover {
-            background: #FAFAFA;
+            background: rgba(255, 255, 255, 0.02);
         }
 
     .product-name {
         font-weight: 600;
-        color: #3E2723;
+        color: var(--text-primary);
     }
 
     .total-amount {
