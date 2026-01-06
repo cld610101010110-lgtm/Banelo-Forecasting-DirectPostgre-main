@@ -1998,7 +1998,7 @@
                     const tableBody = document.getElementById('archivedProductsTable');
                     tableBody.innerHTML = `
                         <tr>
-                            <td colspan="4" style="text-align: center; padding: 40px; color: #999;">
+                            <td colspan="3" style="text-align: center; padding: 40px; color: #999;">
                                 <i class="fas fa-spinner fa-spin" style="font-size: 32px; margin-bottom: 10px;"></i>
                                 <p>Loading archived products...</p>
                             </td>
@@ -2112,7 +2112,7 @@
                     const tableBody = document.getElementById('archivedProductsTable');
                     tableBody.innerHTML = `
                         <tr>
-                            <td colspan="4" style="text-align: center; padding: 40px; color: #f44336;">
+                            <td colspan="3" style="text-align: center; padding: 40px; color: #f44336;">
                                 <i class="fas fa-exclamation-triangle" style="font-size: 32px; margin-bottom: 10px;"></i>
                                 <p>Failed to load archived products. Please try again.</p>
                             </td>
@@ -2152,21 +2152,10 @@
                         }
                     }
 
-                    // Category badge color
-                    let categoryColor = '#999';
-                    if (product.category === 'Beverage') categoryColor = '#6D4C41';
-                    else if (product.category === 'Pastries') categoryColor = '#8D6E63';
-                    else if (product.category === 'Ingredients') categoryColor = '#A1887F';
-
                     return `
                         <tr style="border-bottom: 1px solid #f0f0f0;">
                             <td style="padding: 15px;">
-                                <strong style="color: #3E2723;">${product.productName}</strong>
-                            </td>
-                            <td style="padding: 15px;">
-                                <span style="background: ${categoryColor}; color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;">
-                                    ${product.category}
-                                </span>
+                                <strong style="color: var(--text-primary, #3E2723);">${product.productName}</strong>
                             </td>
                             <td style="padding: 15px; color: #666;">
                                 ${product.deletedBy}
@@ -2410,14 +2399,13 @@
                                 <thead style="position: sticky; top: 0; background: #f9f9f9; z-index: 1;">
                                     <tr>
                                         <th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; font-weight: 600; color: #3E2723;">Product Name</th>
-                                        <th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; font-weight: 600; color: #3E2723;">Category</th>
                                         <th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; font-weight: 600; color: #3E2723;">Deleted By</th>
                                         <th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; font-weight: 600; color: #3E2723;">Date Deleted</th>
                                     </tr>
                                 </thead>
                                 <tbody id="archivedProductsTable">
                                     <tr>
-                                        <td colspan="4" style="text-align: center; padding: 40px; color: #999;">
+                                        <td colspan="3" style="text-align: center; padding: 40px; color: #999;">
                                             <i class="fas fa-spinner fa-spin" style="font-size: 32px; margin-bottom: 10px;"></i>
                                             <p>Loading archived products...</p>
                                         </td>
