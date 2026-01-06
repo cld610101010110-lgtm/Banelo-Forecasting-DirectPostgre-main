@@ -386,67 +386,77 @@
          border-color: var(--text-secondary);
      }
 
-     /* Summary Cards */
-     .summary-cards {
+     /* Modern Summary Cards (Mobile POS Style) */
+     .summary-cards-modern {
          display: grid;
-         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-         gap: 20px;
-         margin-bottom: 30px;
+         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+         gap: 16px;
+         margin-bottom: 24px;
      }
 
-     .summary-card {
+     .modern-card {
          background: var(--card-bg);
-         padding: 25px;
          border-radius: 12px;
-         box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+         padding: 20px;
+         box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+         transition: all 0.3s ease, background 0.3s ease;
          display: flex;
-         align-items: center;
-         gap: 20px;
-         transition: all 0.3s, background 0.3s ease;
+         align-items: flex-start;
+         gap: 16px;
+         border-left: 4px solid #8D6E63;
      }
 
-     .summary-card:hover {
-         transform: translateY(-3px);
-         box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+     .modern-card:hover {
+         transform: translateY(-2px);
+         box-shadow: 0 4px 12px rgba(0,0,0,0.12);
      }
 
-     .summary-icon {
-         width: 60px;
-         height: 60px;
-         border-radius: 12px;
+     .card-icon-wrapper {
+         width: 48px;
+         height: 48px;
+         border-radius: 10px;
+         background: linear-gradient(135deg, #8D6E63 0%, #6D4C41 100%);
          display: flex;
          align-items: center;
          justify-content: center;
-         font-size: 28px;
+         flex-shrink: 0;
+     }
+
+     .card-icon-wrapper i {
+         font-size: 22px;
          color: white;
      }
 
-     .summary-icon.red {
-         background: linear-gradient(135deg, #D32F2F 0%, #E57373 100%);
+     .card-icon-wrapper.green-icon {
+         background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
      }
 
-     .summary-icon.blue {
-         background: linear-gradient(135deg, #8D6E63 0%, #A1887F 100%);
-     }
-
-     .summary-icon.green {
-         background: linear-gradient(135deg, #388E3C 0%, #81C784 100%);
-     }
-
-     .summary-details {
+     .card-content {
          flex: 1;
+         min-width: 0;
      }
 
-     .summary-label {
-         font-size: 14px;
+     .card-label {
+         font-size: 12px;
+         font-weight: 600;
          color: var(--text-secondary);
-         margin-bottom: 5px;
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+         margin-bottom: 8px;
      }
 
-     .summary-value {
-         font-size: 28px;
+     .card-value {
+         font-size: 32px;
          font-weight: 700;
          color: var(--text-primary);
+         line-height: 1;
+         margin-bottom: 6px;
+     }
+
+     .card-subtitle {
+         font-size: 13px;
+         color: var(--text-secondary);
+         opacity: 0.8;
      }
 
      /* Waste Table */
@@ -546,50 +556,6 @@
          color: #5D4037;
      }
 
-     /* Daily Cost Section */
-     .daily-cost-section {
-         background: var(--card-bg);
-         padding: 25px;
-         border-radius: 12px;
-         box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-         margin-bottom: 30px;
-         transition: background 0.3s ease;
-     }
-
-     .daily-cost-header {
-         font-size: 18px;
-         font-weight: 600;
-         color: var(--text-primary);
-         margin-bottom: 20px;
-         display: flex;
-         align-items: center;
-         gap: 10px;
-     }
-
-     .daily-cost-grid {
-         display: grid;
-         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-         gap: 15px;
-     }
-
-     .daily-cost-card {
-         padding: 15px;
-         background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%);
-         border-radius: 8px;
-         border-left: 4px solid #D32F2F;
-     }
-
-     .daily-cost-date {
-         font-size: 14px;
-         color: var(--text-secondary);
-         margin-bottom: 5px;
-     }
-
-     .daily-cost-value {
-         font-size: 20px;
-         font-weight: 700;
-         color: #D32F2F;
-     }
 
      /* Empty State */
      .empty-state {
@@ -798,54 +764,29 @@
         </form>
     </div>
 
-    <!-- Summary Cards -->
-    <div class="summary-cards">
-        <div class="summary-card">
-            <div class="summary-icon red">
-                <i class="fas fa-coins"></i>
-            </div>
-            <div class="summary-details">
-                <div class="summary-label">Total Waste Cost</div>
-                <div class="summary-value">₱{{ total_waste_cost|floatformat:2 }}</div>
-            </div>
-        </div>
-        <div class="summary-card">
-            <div class="summary-icon blue">
+    <!-- Summary Cards (Mobile POS Style) -->
+    <div class="summary-cards-modern">
+        <div class="modern-card">
+            <div class="card-icon-wrapper">
                 <i class="fas fa-list"></i>
             </div>
-            <div class="summary-details">
-                <div class="summary-label">Total Entries</div>
-                <div class="summary-value">{{ entry_count }}</div>
+            <div class="card-content">
+                <div class="card-label">Total Entries</div>
+                <div class="card-value">{{ entry_count }}</div>
+                <div class="card-subtitle">Waste items logged</div>
             </div>
         </div>
-        <div class="summary-card">
-            <div class="summary-icon green">
+        <div class="modern-card">
+            <div class="card-icon-wrapper green-icon">
                 <i class="fas fa-calendar-day"></i>
             </div>
-            <div class="summary-details">
-                <div class="summary-label">Days Tracked</div>
-                <div class="summary-value">{{ daily_costs|length }}</div>
+            <div class="card-content">
+                <div class="card-label">Days Tracked</div>
+                <div class="card-value">{{ daily_costs|length }}</div>
+                <div class="card-subtitle">Days with waste records</div>
             </div>
         </div>
     </div>
-
-    <!-- Daily Cost Breakdown -->
-    {% if daily_costs %}
-    <div class="daily-cost-section">
-        <h2 class="daily-cost-header">
-            <i class="fas fa-calendar-alt"></i>
-            Daily Waste Cost Breakdown
-        </h2>
-        <div class="daily-cost-grid">
-            {% for daily in daily_costs %}
-            <div class="daily-cost-card">
-                <div class="daily-cost-date">{{ daily.date }}</div>
-                <div class="daily-cost-value">₱{{ daily.cost|floatformat:2 }}</div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-    {% endif %}
 
     <!-- Waste Table -->
     <div class="waste-table-container">
