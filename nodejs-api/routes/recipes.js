@@ -162,14 +162,16 @@ router.post('/', async (req, res) => {
       [recipeFirebaseId, productFirebaseId, productName, productNumber || 0]
     );
 
+    const recipeId = recipeResult.rows[0].id;  // ✅ Get UUID id
+
     console.log('✅ Recipe created in database:');
-    console.log('   - ID:', recipeResult.rows[0].id);
+    console.log('   - UUID ID:', recipeId);
     console.log('   - firebase_id:', recipeResult.rows[0].firebase_id);
     console.log('   - product_firebase_id:', recipeResult.rows[0].product_firebase_id);
 
-    // Insert ingredients
+    // ✅ Insert ingredients using UUID id
     for (const ingredient of ingredients) {
-      const ingredientFirebaseId = `ingredient_${recipeFirebaseId}_${ingredient.ingredientFirebaseId}_${Date.now()}`;
+      const ingredientFirebaseId = `ingredient_${recipeId}_${ingredient.ingredientFirebaseId}_${Date.now()}`;
 
       console.log(`📝 Creating ingredient with firebase_id: ${ingredientFirebaseId}`);
 
@@ -180,7 +182,7 @@ router.post('/', async (req, res) => {
          RETURNING *`,
         [
           ingredientFirebaseId,
-          recipeFirebaseId,
+          recipeId,  // ✅ Use UUID id, not firebase_id string!
           ingredient.ingredientFirebaseId,
           ingredient.ingredientName,
           ingredient.quantityNeeded,
@@ -188,7 +190,7 @@ router.post('/', async (req, res) => {
         ]
       );
 
-      console.log(`   ✅ Ingredient saved with firebase_id: ${ingredientResult.rows[0].firebase_id}`);
+      console.log(`   ✅ Ingredient saved using recipe UUID: ${recipeId}`);
     }
 
     await client.query('COMMIT');
@@ -231,9 +233,9 @@ router.put('/:id', async (req, res) => {
 
     console.log('🔄 PUT /api/recipes/:id received:', { id, productName, ingredientsCount: ingredients?.length });
 
-    // Check if recipe exists
+    // ✅ Check if recipe exists - search by UUID id OR firebase_id
     const checkResult = await client.query(
-      'SELECT * FROM recipes WHERE firebase_id = $1',
+      'SELECT * FROM recipes WHERE id::text = $1::text OR firebase_id::text = $1::text',
       [id]
     );
 
@@ -245,28 +247,31 @@ router.put('/:id', async (req, res) => {
       });
     }
 
-    console.log('✅ Recipe found, updating...');
+    const numericRecipeId = checkResult.rows[0].id;  // ✅ Get UUID id
+    console.log(`✅ Recipe found - UUID: ${numericRecipeId}, firebase_id: ${checkResult.rows[0].firebase_id}`);
 
     await client.query('BEGIN');
 
-    // Update recipe
+    // Update recipe using UUID id
     await client.query(
       `UPDATE recipes
        SET product_firebase_id = $1, product_name = $2, product_number = $3, updated_at = NOW()
-       WHERE firebase_id = $4`,
-      [productFirebaseId, productName, productNumber || 0, id]
+       WHERE id = $4`,
+      [productFirebaseId, productName, productNumber || 0, numericRecipeId]
     );
 
-    // Delete old ingredients
-    await client.query(
+    // ✅ Delete old ingredients using UUID id
+    const deleteResult = await client.query(
       'DELETE FROM recipe_ingredients WHERE recipe_firebase_id = $1',
-      [id]
+      [numericRecipeId]
     );
 
-    // Insert new ingredients
+    console.log(`✅ Deleted ${deleteResult.rowCount} old ingredients for recipe UUID: ${numericRecipeId}`);
+
+    // ✅ Insert new ingredients using UUID id
     if (ingredients && ingredients.length > 0) {
       for (const ingredient of ingredients) {
-        const ingredientFirebaseId = `ingredient_${id}_${ingredient.ingredientFirebaseId}_${Date.now()}`;
+        const ingredientFirebaseId = `ingredient_${numericRecipeId}_${ingredient.ingredientFirebaseId}_${Date.now()}`;
 
         await client.query(
           `INSERT INTO recipe_ingredients
@@ -274,7 +279,7 @@ router.put('/:id', async (req, res) => {
            VALUES ($1, $2, $3, $4, $5, $6, NOW())`,
           [
             ingredientFirebaseId,
-            id,
+            numericRecipeId,  // ✅ Use UUID id
             ingredient.ingredientFirebaseId,
             ingredient.ingredientName,
             ingredient.quantityNeeded,
@@ -283,6 +288,8 @@ router.put('/:id', async (req, res) => {
         );
       }
     }
+
+    console.log(`✅ Inserted ${ingredients?.length || 0} new ingredients`);
 
     await client.query('COMMIT');
 
