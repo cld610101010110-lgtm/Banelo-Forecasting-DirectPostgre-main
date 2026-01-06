@@ -2091,7 +2091,7 @@
 
                             // Get timestamp
                             const timestamp = log.timestamp || log.created_at || log.createdAt || 'Unknown';
-                            const deletedBy = log.user_name || log.userName || log.user || 'Unknown';
+                            const deletedBy = log.username || log.user_name || log.userName || log.user || 'Unknown';
 
                             return {
                                 productName,
