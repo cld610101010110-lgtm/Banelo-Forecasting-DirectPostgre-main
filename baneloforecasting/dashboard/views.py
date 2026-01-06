@@ -1146,8 +1146,8 @@ def get_audit_logs_api(request):
                 except:
                     timestamp_str = str(timestamp_raw)
 
-            # Get user from various field names
-            user = log.get('user_name') or log.get('userName') or log.get('user') or 'Unknown'
+            # Get user from various field names (PostgreSQL uses 'username')
+            user = log.get('username') or log.get('user_name') or log.get('userName') or log.get('user') or 'Unknown'
 
             # Get description
             description = log.get('details') or log.get('description') or log.get('message') or ''
@@ -1155,6 +1155,7 @@ def get_audit_logs_api(request):
             logs_list.append({
                 'id': log.get('id', ''),
                 'user': user,
+                'username': user,  # PostgreSQL field name
                 'user_name': user,
                 'userName': user,
                 'action': log.get('action') or 'N/A',
