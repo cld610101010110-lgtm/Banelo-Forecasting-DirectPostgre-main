@@ -2153,8 +2153,43 @@ def waste_tracking_view(request):
             for date, cost in sorted(daily_costs.items(), reverse=True)
         ]
 
+        # Calculate waste by reason (like mobile app)
+        waste_by_reason = {}
+        total_waste_count = len(waste_entries)
+
+        for waste in waste_entries:
+            reason = waste['reason']
+            if reason not in waste_by_reason:
+                waste_by_reason[reason] = {
+                    'count': 0,
+                    'percentage': 0
+                }
+            waste_by_reason[reason]['count'] += 1
+
+        # Calculate percentages
+        for reason in waste_by_reason:
+            if total_waste_count > 0:
+                waste_by_reason[reason]['percentage'] = round(
+                    (waste_by_reason[reason]['count'] / total_waste_count) * 100
+                )
+
+        # Convert to list for template
+        waste_by_reason_list = [
+            {
+                'reason': reason,
+                'count': data['count'],
+                'percentage': data['percentage']
+            }
+            for reason, data in sorted(
+                waste_by_reason.items(),
+                key=lambda x: x[1]['count'],
+                reverse=True
+            )
+        ]
+
         print(f"✅ Loaded {len(waste_entries)} waste entries from API")
         print(f"💰 Total waste cost: ₱{total_waste_cost:.2f}")
+        print(f"📊 Waste by reason: {waste_by_reason_list}")
 
         context = {
             'waste_entries': waste_entries,
@@ -2162,7 +2197,8 @@ def waste_tracking_view(request):
             'daily_costs': daily_costs_list,
             'from_date': from_date,
             'to_date': to_date,
-            'entry_count': len(waste_entries)
+            'entry_count': len(waste_entries),
+            'waste_by_reason': waste_by_reason_list
         }
 
         return render(request, 'dashboard/waste_tracking.html', context)
