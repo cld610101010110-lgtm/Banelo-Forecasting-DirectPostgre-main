@@ -690,8 +690,7 @@
                         <span class="ingredient-name" style="font-weight: 600; color: #3E2723;">{{ ingredient.name }}</span>
                         <span class="ingredient-quantity" style="color: #D84315; font-weight: 700;">{{ ingredient.quantity }} {{ ingredient.unit }}</span>
                     </div>
-                    <div style="display: flex; justify-content: space-between; width: 100%; font-size: 12px; color: #666;">
-                        <span><i class="fas fa-dollar-sign" style="color: #FF9800;"></i> Cost: ₱{{ ingredient.cost_per_unit }}/{{ ingredient.unit }}</span>
+                    <div style="display: flex; justify-content: flex-end; width: 100%; font-size: 12px; color: #666;">
                         <span><i class="fas fa-boxes" style="color: #4CAF50;"></i> Stock: {{ ingredient.stock }}{{ ingredient.unit }}</span>
                     </div>
                 </li>
@@ -854,7 +853,7 @@ function addIngredientRow(selectedIngredient = '', quantity = '') {
             <option value="">Select ingredient...</option>
             ${availableIngredients.map(ing =>
                 `<option value="${ing.id}" ${ing.id === selectedIngredient ? 'selected' : ''}>
-                    ${ing.name} - Stock: ${ing.stock}g - Cost: ₱${ing.cost_per_unit}/g
+                    ${ing.name} - Stock: ${ing.stock}g
                 </option>`
             ).join('')}
         </select>

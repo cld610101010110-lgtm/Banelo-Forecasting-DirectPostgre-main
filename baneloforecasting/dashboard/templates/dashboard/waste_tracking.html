@@ -895,7 +895,6 @@
                     <th>Quantity</th>
                     <th>Reason</th>
                     <th>Recorded By</th>
-                    <th>Waste Cost</th>
                 </tr>
             </thead>
             <tbody>
@@ -911,7 +910,6 @@
                         </span>
                     </td>
                     <td>{{ entry.recordedBy }}</td>
-                    <td class="cost-text">₱{{ entry.wasteCost|floatformat:2 }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
