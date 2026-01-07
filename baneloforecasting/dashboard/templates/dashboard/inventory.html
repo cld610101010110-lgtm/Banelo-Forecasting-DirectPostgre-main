@@ -1087,10 +1087,6 @@
                                     <span style="font-weight: 600; color: #A1887F;">{{ product.inventory_b }}</span>
                                 </div>
                                 {% if product.category == 'ingredients' %}
-                                <div style="display: flex; justify-content: space-between; margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--border-color);">
-                                    <span style="color: var(--text-secondary);"><i class="fas fa-dollar-sign"></i> Cost:</span>
-                                    <span style="font-weight: 600; color: #FF9800;">₱{{ product.cost_per_unit }}</span>
-                                </div>
                                 <!-- Expiration Date Display -->
                                 {% if product.expiration_date %}
                                 <div style="display: flex; justify-content: space-between; margin-top: 6px; padding-top: 6px; border-top: 1px solid #eee;">
