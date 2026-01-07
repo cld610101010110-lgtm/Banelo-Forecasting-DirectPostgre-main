@@ -1086,6 +1086,20 @@
                                     <span style="color: var(--text-secondary);"><i class="fas fa-box-open"></i> Inv B:</span>
                                     <span style="font-weight: 600; color: #A1887F;">{{ product.inventory_b }}</span>
                                 </div>
+                                {% if product.category == 'ingredients' %}
+                                <!-- Expiration Date Display -->
+                                {% if product.expiration_date %}
+                                <div style="display: flex; justify-content: space-between; margin-top: 6px; padding-top: 6px; border-top: 1px solid #eee;">
+                                    <span style="color: #666;"><i class="fas fa-calendar-times"></i> Expires:</span>
+                                    <span style="font-weight: 600; color: #F44336;">{{ product.expiration_date }}</span>
+                                </div>
+                                {% elif product.is_perishable %}
+                                <div style="display: flex; justify-content: space-between; margin-top: 6px; padding-top: 6px; border-top: 1px solid #eee;">
+                                    <span style="color: #666;"><i class="fas fa-clock"></i> Shelf Life:</span>
+                                    <span style="font-weight: 600; color: #FF9800;">{{ product.shelf_life_days }} days</span>
+                                </div>
+                                {% endif %}
+                                {% endif %}
                             </div>
                             <!-- Action buttons for Ingredients category -->
                             {% if product.category == 'ingredients' %}
@@ -1108,7 +1122,7 @@
                         <!-- Edit & Delete Buttons -->
                         <div style="position: absolute; top: 15px; right: 15px; display: flex; flex-direction: column; gap: 10px; z-index: 10;">
                             <!-- Edit Button -->
-                            <button onclick="editProduct('{{ product.id }}', '{{ product.name }}', {{ product.price }}, '{{ product.category }}', {{ product.stock }}, '{{ product.image }}')"
+                            <button onclick="editProduct('{{ product.id }}', '{{ product.name }}', {{ product.price }}, '{{ product.category }}', {{ product.stock }}, '{{ product.image }}', {{ product.is_perishable|yesno:'true,false' }}, {{ product.shelf_life_days }})"
                                     title="Edit Product"
                                     style="background: #4CAF50;
                            width: 40px;
@@ -1205,12 +1219,29 @@
                             <!-- Category -->
                             <div class="form-group">
                                 <label class="form-label">Category</label>
-                                <select class="form-control" id="productCategory" required>
+                                <select class="form-control" id="productCategory" required onchange="togglePerishableFields()">
                                     <option value="">Select category</option>
                                     <option value="Beverages">Beverage</option>
                                     <option value="Pastries">Pastries</option>
                                     <option value="Ingredients">Ingredients</option>
                                 </select>
+                            </div>
+
+                            <!-- Perishable Checkbox (only for Ingredients) -->
+                            <div class="form-group" id="perishableGroup" style="display: none;">
+                                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                    <input type="checkbox" id="productPerishable" onchange="toggleShelfLifeField()" style="width: 20px; height: 20px; cursor: pointer;">
+                                    <span class="form-label" style="margin: 0;">Perishable Item</span>
+                                </label>
+                            </div>
+
+                            <!-- Shelf Life Days (only when perishable is checked) -->
+                            <div class="form-group" id="shelfLifeGroup" style="display: none;">
+                                <label class="form-label">Shelf Life (days)</label>
+                                <input type="number" class="form-control" id="productShelfLife" placeholder="Enter number of days" min="1" step="1">
+                                <small style="display: block; margin-top: 5px; color: #666; font-size: 12px;">
+                                    How many days will this item last after being transferred to Inventory B?
+                                </small>
                             </div>
 
                             <!-- Price -->
@@ -1486,6 +1517,34 @@
 
             let currentEditId = null;
 
+            // Toggle perishable fields based on category selection
+            function togglePerishableFields() {
+                const category = document.getElementById('productCategory').value;
+                const perishableGroup = document.getElementById('perishableGroup');
+                const shelfLifeGroup = document.getElementById('shelfLifeGroup');
+
+                if (category === 'Ingredients') {
+                    perishableGroup.style.display = 'block';
+                } else {
+                    perishableGroup.style.display = 'none';
+                    shelfLifeGroup.style.display = 'none';
+                    document.getElementById('productPerishable').checked = false;
+                }
+            }
+
+            // Toggle shelf life field based on perishable checkbox
+            function toggleShelfLifeField() {
+                const isPerishable = document.getElementById('productPerishable').checked;
+                const shelfLifeGroup = document.getElementById('shelfLifeGroup');
+
+                if (isPerishable) {
+                    shelfLifeGroup.style.display = 'block';
+                } else {
+                    shelfLifeGroup.style.display = 'none';
+                    document.getElementById('productShelfLife').value = '';
+                }
+            }
+
             function openModal() {
                 currentEditId = null;
                 document.getElementById('productModal').classList.add('active');
@@ -1498,6 +1557,12 @@
                 document.getElementById('imageUrl').value = '';
                 document.getElementById('imagePreview').style.display = 'none';
                 document.getElementById('uploadPlaceholder').style.display = 'flex';
+
+                // Reset perishable fields
+                document.getElementById('perishableGroup').style.display = 'none';
+                document.getElementById('shelfLifeGroup').style.display = 'none';
+                document.getElementById('productPerishable').checked = false;
+                document.getElementById('productShelfLife').value = '';
             }
 
             function closeModal() {
@@ -1505,7 +1570,7 @@
                 currentEditId = null;
             }
 
-            function editProduct(id, name, price, category, stock, imageUrl = '') {
+            function editProduct(id, name, price, category, stock, imageUrl = '', isPerishable = false, shelfLifeDays = 0) {
                 currentEditId = id;
                 document.getElementById('productModal').classList.add('active');
                 document.getElementById('modalTitle').textContent = 'Edit Product';
@@ -1519,6 +1584,22 @@
 
                 document.getElementById('productCategory').value = firebaseCategory;
                 document.getElementById('productStock').value = stock;
+
+                // Handle perishable fields
+                if (firebaseCategory === 'Ingredients') {
+                    document.getElementById('perishableGroup').style.display = 'block';
+                    document.getElementById('productPerishable').checked = isPerishable;
+
+                    if (isPerishable) {
+                        document.getElementById('shelfLifeGroup').style.display = 'block';
+                        document.getElementById('productShelfLife').value = shelfLifeDays || '';
+                    } else {
+                        document.getElementById('shelfLifeGroup').style.display = 'none';
+                    }
+                } else {
+                    document.getElementById('perishableGroup').style.display = 'none';
+                    document.getElementById('shelfLifeGroup').style.display = 'none';
+                }
 
                 // Show existing image if available
                 if (imageUrl && (imageUrl.startsWith('http://') || imageUrl.startsWith('https://'))) {
@@ -1699,16 +1780,22 @@
                     }
 
                     // Prepare product data
+                    const category = document.getElementById('productCategory').value;
+                    const isPerishable = category === 'Ingredients' ? document.getElementById('productPerishable').checked : false;
+                    const shelfLifeDays = isPerishable ? parseInt(document.getElementById('productShelfLife').value) || 0 : 0;
+
                     const productData = {
                         name: document.getElementById('productName').value,
                         price: parseFloat(document.getElementById('productPrice').value),
-                        category: document.getElementById('productCategory').value,
+                        category: category,
                         quantity: parseInt(document.getElementById('productStock').value) || 0,
                         inventoryA: parseInt(document.getElementById('productStock').value) || 0,
                         inventoryB: 0,
                         costPerUnit: 0,
                         imageUri: imageUrl,
-                        description: ''
+                        description: '',
+                        isPerishable: isPerishable,
+                        shelfLifeDays: shelfLifeDays
                     };
 
                     if (!productData.name || !productData.category) {
