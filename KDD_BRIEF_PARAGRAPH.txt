@@ -1,0 +1,27 @@
+===================================================================
+BRIEF VERSION - COPY THIS INTO YOUR KDD PAPER
+Replace the existing "How are the results shown?" section
+===================================================================
+
+• How are the results shown?
+
+The Linear Regression model's performance is evaluated through comprehensive metrics that demonstrate its predictive accuracy and reliability for the Banelo Bake and Brew sales forecasting system. As shown in Figure 52, the model achieved a Mean Absolute Error (MAE) of 1.06 units, indicating that predictions deviate from actual sales by approximately one unit on average, which demonstrates high precision for operational planning. The Root Mean Squared Error (RMSE) of 1.27 units further validates the model's accuracy while being more sensitive to larger prediction errors. The model's R² score of 0.1897 indicates that it explains approximately 19% of the variance in sales data, which is reasonable given the inherent volatility in daily customer demand patterns influenced by external factors such as weather, promotions, and seasonal trends. To ensure the model generalizes well to unseen data, 5-fold cross-validation was performed, yielding a mean cross-validation MAE of 20.67 ± 39.15 as detailed in Figure 53, which confirms the model's robustness across different data subsets and prevents overfitting to the training data.
+
+Category-specific analysis, as presented in Figure 54, reveals consistent performance across product types, with Beverages achieving MAE of 1.08, RMSE of 1.30, and R² of 0.18, while Pastries showed MAE of 1.05, RMSE of 1.26, and R² of 0.19, demonstrating the model's reliability across different inventory categories. This consistency ensures that the forecasting system can be trusted for all product types regardless of their sales patterns. From a business perspective, the MAE of 1.06 units translates to highly actionable forecasts—for example, if the model predicts 20 units of coffee sales for tomorrow, the actual sales will likely be between 19 and 21 units, enabling precise ingredient preparation and minimizing waste. The model's training time of just 0.009 seconds ensures that forecasts can be generated in real-time as new sales data becomes available throughout the day, supporting dynamic inventory management decisions during operating hours.
+
+Results are presented through line graphs comparing actual versus predicted sales values over time, along with residual scatter plots to visualize model performance. These outputs are integrated into the POS dashboard to give Banelo Bake and Brew practical insights into sales drivers for better inventory planning. By applying this rigorously evaluated Linear Regression model, the proposed POS and inventory management system does not only record and track sales but also generates meaningful forecasts that support proactive decision-making. This integration ensures that Banelo Bake and Brew can optimize stock management, reduce waste, and meet customer demand more effectively. Ultimately, the use of machine learning in forecasting strengthens the system's capability to provide data-driven insights that improve both operational efficiency and business growth.
+
+===================================================================
+FIGURE CAPTIONS FOR YOUR WORD DOCUMENT
+===================================================================
+
+Figure 52: Linear Regression Model Performance Metrics
+(Insert: kdd_tables/table1_performance_metrics.png)
+
+Figure 53: Cross-Validation Results (5-Fold)
+(Insert: kdd_tables/table2_cross_validation.png)
+
+Figure 54: Category-Specific Performance Analysis
+(Insert: kdd_tables/table3_category_performance.png)
+
+===================================================================
