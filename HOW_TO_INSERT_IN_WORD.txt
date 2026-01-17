@@ -1,0 +1,127 @@
+===================================================================
+STEP-BY-STEP: HOW TO UPDATE YOUR KDD WORD DOCUMENT
+===================================================================
+
+## STEP 1: Download the New Figures
+
+From your GitHub repository, download these files from the `kdd_actual_results` folder:
+1. figure_actual_vs_predicted_scatter.png (this is the MAIN one!)
+2. Also keep the table images from `kdd_tables` folder
+
+## STEP 2: Open Your Word Document
+
+Open: "NEW_Knowledge Discovery in Databases (Banelo).docx"
+
+## STEP 3: Find the Section "How are the results shown?"
+
+Scroll to page 14 (or search for "How are the results shown?")
+
+## STEP 4: Replace the Paragraph
+
+DELETE the current long paragraph under "How are the results shown?"
+
+PASTE the new paragraph from KDD_UPDATED_RESULTS_SECTION.txt
+(The paragraph starts with "The Linear Regression model's actual performance...")
+
+## STEP 5: Insert Figures in This Order
+
+RIGHT AFTER the paragraph, insert your figures:
+
+### Figure 52: Actual vs Predicted Sales
+- Insert: kdd_actual_results/figure_actual_vs_predicted_scatter.png
+- Resize to full page width (6-7 inches)
+- Add caption from KDD_UPDATED_RESULTS_SECTION.txt
+- This is the KEY figure your professor wants to see!
+
+### Figure 53: Cross-Validation Results
+- Insert: kdd_tables/table2_cross_validation.png
+- Resize to 5-6 inches wide
+- Add caption from KDD_UPDATED_RESULTS_SECTION.txt
+
+### Figure 54: Category-Specific Performance
+- Insert: kdd_tables/table3_category_performance.png
+- Resize to 5-6 inches wide
+- Add caption from KDD_UPDATED_RESULTS_SECTION.txt
+
+## STEP 6: Format the Figures
+
+For each figure:
+1. Right-click → Format Picture
+2. Layout: "In Line with Text" or "Top and Bottom"
+3. Make sure caption is directly below the image
+4. Caption style: "Figure 52:", "Figure 53:", etc. in bold
+
+## STEP 7: Check References in Text
+
+Make sure your paragraph mentions:
+- ✓ "Figure 52 presents..." (actual vs predicted scatter plot)
+- ✓ "Figure 53" (cross-validation table)
+- ✓ "Figure 54 reveals..." (category performance table)
+
+## STEP 8: Optional - Add Visual Separator
+
+You can add a horizontal line or heading before Figure 52:
+
+**Results of Using the Linear Regression Model**
+[Then insert Figure 52]
+
+## STEP 9: Save Your Updated Document
+
+Save as: "NEW_Knowledge Discovery in Databases (Banelo)_UPDATED.docx"
+
+===================================================================
+WHAT YOUR PROFESSOR WILL SEE
+===================================================================
+
+When your professor reads your updated paper, they will see:
+
+1. Brief explanation of metrics (MAE, RMSE, R²)
+2. Reference to Figure 52
+3. **BIG CLEAR SCATTER PLOT** showing actual vs predicted (Figure 52)
+   → This proves the model WORKS when used!
+4. Tables showing cross-validation and category performance (Figures 53-54)
+5. Clear captions explaining these are "actual results of using the model"
+
+This directly answers their question:
+"ung result mismo na ginamit na ung ML model wala di naka indicate"
+(The actual results of USING the ML model are not shown)
+
+NOW THEY ARE CLEARLY SHOWN! ✓
+
+===================================================================
+BEFORE vs AFTER COMPARISON
+===================================================================
+
+BEFORE (What Professor Saw):
+- Long paragraph with many figure references (55, 56, 57...)
+- Tables buried on pages 15-16
+- Not clear that these show "actual usage"
+- Professor couldn't find the "actual vs predicted" proof
+
+AFTER (What Professor Will See):
+- Clear, focused paragraph
+- PROMINENT scatter plot (Figure 52) showing real predictions
+- Caption explicitly says "when actively used to predict sales"
+- Tables right after main figure
+- Obvious that this is the model IN ACTION
+
+===================================================================
+IF PROFESSOR ASKS "WHERE IS THE ACCURACY?"
+===================================================================
+
+Point to Figure 52 and say:
+
+"Here in Figure 52, you can see the actual sales on the x-axis and what our Linear Regression model predicted on the y-axis. Each purple dot is a real transaction where we compared what actually happened versus what the model forecast. The close alignment shows the model is accurate—with MAE of 1.06 units, meaning predictions are typically within 1 unit of actual sales. This is the model in actual use, not just training metrics."
+
+===================================================================
+ALTERNATIVE: If You Want Even MORE Visual Impact
+===================================================================
+
+You can ALSO insert the "professor style" figure:
+- Insert: kdd_actual_results/figure_professor_style.png
+- This has a cleaner, more minimal look
+- Similar to the screenshot your professor sent
+
+Use whichever style you prefer, or use both! The important thing is showing ACTUAL vs PREDICTED clearly.
+
+===================================================================
