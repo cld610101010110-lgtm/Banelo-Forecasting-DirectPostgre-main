@@ -111,11 +111,11 @@ for model_name, data in models_data.items():
                edgecolors='white', linewidth=1.5,
                marker='o')
 
-    # Add perfect prediction line (diagonal)
+    # Add reference line (diagonal) - shows ideal 1:1 relationship
     min_val = min(actual_sales.min(), data['predicted'].min())
     max_val = max(actual_sales.max(), data['predicted'].max())
     ax.plot([min_val, max_val], [min_val, max_val],
-            'k--', linewidth=2, alpha=0.4, label='Perfect Prediction')
+            'k--', linewidth=1.5, alpha=0.3)
 
     # Styling
     ax.set_xlabel('Actual Sales', fontsize=14, fontweight='bold')
@@ -131,10 +131,6 @@ for model_name, data in models_data.items():
     # Border
     for spine in ax.spines.values():
         spine.set_linewidth(1.5)
-
-    # Add legend
-    ax.legend(fontsize=11, loc='upper left', frameon=True,
-              edgecolor='black', fancybox=True)
 
     # Add annotation explaining the results
     explanation = (f"This shows the RESULT of using {model_display_name} in the system.\n"
