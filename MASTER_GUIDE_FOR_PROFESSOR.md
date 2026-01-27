@@ -30,6 +30,29 @@ While ensemble methods (Random Forest, XGBoost, Gradient Boosting, LightGBM) can
 
 ## Available Figures Inventory
 
+### ⭐ MODEL RESULTS - Actual vs Predicted for All 6 Models (WHAT PROFESSOR WANTS!)
+📁 Location: `kdd_model_results/`
+
+**These show the RESULTS of using each model in your system - NOT just training process**
+
+1. ✅ `Linear_Regression_Results.png` - **BEST MODEL** (MAE: 1.06)
+2. ✅ `Decision_Tree_Results.png` - Worst model (MAE: 1.28)
+3. ✅ `Random_Forest_Results.png` - Good ensemble (MAE: 1.11)
+4. ✅ `Gradient_Boosting_Results.png` - Sequential boosting (MAE: 1.12)
+5. ✅ `XGBoost_Results.png` - Second best (MAE: 1.12)
+6. ✅ `LightGBM_Results.png` - Fast boosting (MAE: 1.12)
+
+**Each figure includes:**
+- Actual vs Predicted scatter plot showing model performance
+- Model parameters (intercept/coefficients at top for Linear Regression)
+- Performance metrics (MAE, RMSE, R²)
+- Explanation of what the results mean
+- Visual proof of which model fits best
+
+**This directly addresses your professor's feedback**: Shows the margin of error results and proves which ML model is best to use in the system!
+
+---
+
 ### Training Process Figures (Individual Models)
 📁 Location: `kdd_training_results/`
 
@@ -63,6 +86,35 @@ While ensemble methods (Random Forest, XGBoost, Gradient Boosting, LightGBM) can
 ---
 
 ## How to Use These Figures in Your KDD Paper
+
+### ⭐ PRIORITY: Model Results Section (Add First!)
+**Insert In:** Results/Evaluation section of your paper
+
+#### Essential Model Result Figures (MUST ADD):
+
+**These show the RESULTS of using each model - what your professor asked for!**
+
+1. `Linear_Regression_Results.png` - Shows why LR is best (lowest error, best fit)
+2. `XGBoost_Results.png` - Shows second-best model performance
+3. `Decision_Tree_Results.png` - Shows worst model (for comparison)
+
+**Caption Template:**
+```
+Figure X: Actual vs Predicted Sales using [Model Name]
+This figure shows the results of using [Model Name] to predict sales in the Banelo
+system. The scatter plot compares actual sales (x-axis) with predicted sales (y-axis).
+Points closer to the diagonal line indicate better predictions. The model achieved
+MAE of [value], meaning predictions are accurate within ~[value] units on average.
+```
+
+**What to write in your paper:**
+"Figure [X] demonstrates the results of using [Model Name] in the forecasting system.
+The scatter plot shows actual sales versus predicted sales, with the model parameters
+displayed at the top. The margin of error (MAE: [value]) proves [interpretation].
+Linear Regression (Figure [Y]) achieved the lowest MAE of 1.06 units, demonstrating
+it is the best fit model for the Banelo sales forecasting system."
+
+---
 
 ### Section 1: Training Process Analysis
 **Insert After:** "Model Training Methodology" (Page 3)
@@ -114,6 +166,23 @@ improving. Final validation MAE: [value] units.
 ---
 
 ## What to Tell Your Professor
+
+### ⭐ Model Results (What He Asked For):
+
+"Professor, following your feedback about showing the margin of error results and proving which ML model is best to use in the system, I've added 6 figures showing the RESULTS of using each model:
+
+**Model Results Figures** - Actual vs Predicted scatter plots for all 6 models:
+- ✅ Each figure shows actual sales vs predicted sales (like your example screenshot)
+- ✅ Model parameters displayed at top (intercept/coefficients for Linear Regression)
+- ✅ Performance metrics (MAE, RMSE, R²) shown
+- ✅ Visual proof of which model fits best to the data
+- ✅ Demonstrates the margin of error for each model
+
+**Key Finding:** Linear Regression achieved MAE of 1.06 (lowest error), proving it is the best fit model to use in the Banelo system. The scatter plot shows points closest to the perfect prediction line compared to other models.
+
+These figures show THE RESULTS - not just training metrics - demonstrating which model performs best when actually deployed in the system."
+
+---
 
 ### Training Results (NOT based on MAPE/MAE):
 
@@ -167,15 +236,25 @@ This shows the **COMPARISON PROCESS during training**, not just final endpoint s
 
 If you only have time for essential additions:
 
-### MUST ADD (3 figures minimum):
-1. `figure_training_progression.png` - Answers "training results NOT based on MAPE/MAE"
-2. `Figure1_Actual_vs_Predicted_Sales.png` - Has intercept/coefficients
-3. `Figure9_Why_Linear_Regression_Best_Summary.png` - Complete explanation why LR is best
+### ⭐ MUST ADD (6 Model Results - Professor's Priority!):
+1. `Linear_Regression_Results.png` - **BEST model result with coefficients**
+2. `XGBoost_Results.png` - Second-best model result
+3. `Random_Forest_Results.png` - Ensemble model result
+4. `Gradient_Boosting_Results.png` - Boosting model result
+5. `LightGBM_Results.png` - Fast boosting model result
+6. `Decision_Tree_Results.png` - Worst model (for comparison)
 
-### RECOMMENDED (Add all):
-- All 6 individual training figures (10 total training process figures)
-- All 9 individual APA result figures (NO clustering)
+### Additional Supporting Figures (Recommended):
+7. `figure_training_progression.png` - Training process comparison
+8. `Figure9_Why_Linear_Regression_Best_Summary.png` - Text explanation why LR is best
+
+### RECOMMENDED (Complete package):
+- **PRIORITY:** All 6 model results figures (shows system performance)
+- All 10 training process figures (shows how models learned)
+- All 9 APA analysis figures (detailed breakdowns)
 - Text section from `KDD_TRAINING_RESULTS_SECTION.txt`
+
+**Total: 25 individual professional figures**
 
 ---
 
@@ -217,7 +296,10 @@ These training process metrics demonstrate HOW models learned, not just their fi
 ✅ Single consolidated guide (this file)
 ✅ Ready to update Word document
 
-**Total: 19 individual professional figures + documentation**
+**Total: 25 individual professional figures + documentation**
+- 6 Model Results (actual vs predicted for all 6 models) ⭐ PRIORITY
+- 10 Training Process figures
+- 9 APA Analysis figures
 
 ---
 
@@ -229,10 +311,22 @@ These training process metrics demonstrate HOW models learned, not just their fi
 
 ## Summary of Changes (Latest Update)
 
-**Problem Fixed:** Figure 3 and Figure 4 were clustered multi-panel figures
+**Update 1:** Split clustered figures into individual standalone figures
+- All multi-panel figures split into separate individual figures
+- Result: All figures are now standalone - NO CLUSTERING
 
-**Solution:** Split into 7 individual standalone figures:
-- Figure 3 (2 panels) → Figure3_Model_Predictions_In_Use.png + Figure4_Error_Distribution.png
-- Figure 4 (4 panels + text) → Figure5_Lowest_Error.png + Figure6_Fastest_Training.png + Figure7_Minimal_Overfitting.png + Figure8_Consistent_Performance.png + Figure9_Why_Linear_Regression_Best_Summary.png
+**Update 2: ⭐ Added Model Results Figures (Professor's Priority!)**
+- **Problem:** Professor wants to see the RESULTS of using each model in the system
+- **Solution:** Created 6 new figures showing Actual vs Predicted for all 6 models
+- **New folder:** `kdd_model_results/` with 6 individual result figures
+- **What they show:**
+  - Scatter plot of actual vs predicted sales for each model
+  - Model parameters (intercept/coefficients) at top
+  - Performance metrics (MAE, RMSE, R²)
+  - Visual proof of which model fits best
+  - This answers: "margin of error results prove what ML model to use"
 
-**Result:** All 19 figures are now individual and standalone - NO CLUSTERING ANYWHERE!
+**Result:** Now have 25 individual professional figures covering:
+✅ Model results (system performance) - **What professor asked for!**
+✅ Training process (how models learned)
+✅ Detailed analysis (why LR is best)
