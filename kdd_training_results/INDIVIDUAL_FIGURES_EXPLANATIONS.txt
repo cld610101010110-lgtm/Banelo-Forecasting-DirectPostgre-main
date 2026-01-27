@@ -81,3 +81,37 @@ learned during training, directly addressing your request for results
 Each figure is independent and publication-ready at 300 DPI.
 
 ===================================================================
+
+
+-------------------------------------------------------------------
+FIGURE: Linear Regression Training Process
+FILE: Linear_Regression_Training_Process.png
+-------------------------------------------------------------------
+
+EXPLANATION: Linear Regression achieves instant convergence in 1 iteration using analytical solution (normal equation: β = (X^T X)^-1 X^T y) instead of iterative training. The flat lines show the model reached optimal parameters immediately with final validation MAE of 1.06 units—the LOWEST error among all 6 models tested. The minimal gap between training (1.04) and validation (1.06) error proves excellent generalization with no overfitting. This combination of instant training (0.009 seconds), best accuracy, and no overfitting makes Linear Regression the optimal choice for the Banelo sales forecasting system.
+
+-------------------------------------------------------------------
+FIGURE: LightGBM Training Process
+FILE: LightGBM_Training_Process.png
+-------------------------------------------------------------------
+
+EXPLANATION: LightGBM demonstrates efficient learning using histogram-based gradient boosting, converging at iteration 28 with final validation MAE of 1.12 units. As a lightweight gradient boosting framework, it achieves fast training speed through histogram-based decision tree learning. The performance is comparable to XGBoost (MAE 1.13) but with faster training. However, Linear Regression still outperforms it with lower error (MAE 1.06) and instant convergence. The small training-validation gap shows good generalization without significant overfitting.
+
+===================================================================
+COMPLETE SET: ALL 6 MODELS NOW AVAILABLE
+===================================================================
+
+You now have individual training process figures for ALL 6 models:
+
+1. Linear_Regression_Training_Process.png ★ BEST MODEL
+2. Decision_Tree_Training_Process.png
+3. Random_Forest_Training_Process.png
+4. Gradient_Boosting_Training_Process.png
+5. XGBoost_Training_Process.png
+6. LightGBM_Training_Process.png
+
+RECOMMENDED ORDER FOR YOUR PAPER:
+- Start with best model: Linear Regression
+- Then show others in order of complexity or performance
+
+===================================================================
