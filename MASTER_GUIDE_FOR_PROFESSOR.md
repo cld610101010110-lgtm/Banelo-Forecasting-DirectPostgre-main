@@ -47,13 +47,18 @@ While ensemble methods (Random Forest, XGBoost, Gradient Boosting, LightGBM) can
 9. ✅ `figure_convergence_analysis.png` - Training efficiency comparison
 10. ✅ `figure_overfitting_analysis.png` - Generalization assessment
 
-### APA-Formatted Result Figures
+### APA-Formatted Result Figures (All Individual - No Clustering)
 📁 Location: `kdd_apa_figures/`
 
 1. ✅ `Figure1_Actual_vs_Predicted_Sales.png` - With intercept/coefficients at top
 2. ✅ `Figure2_Model_Performance_Comparison.png` - Explains error margins
-3. ✅ `Figure3_Model_Usage_Results.png` - Model in use making predictions
-4. ✅ `Figure4_Why_Linear_Regression_Best.png` - Comprehensive 4-panel explanation
+3. ✅ `Figure3_Model_Predictions_In_Use.png` - Model in use making predictions
+4. ✅ `Figure4_Error_Distribution.png` - Distribution of prediction errors
+5. ✅ `Figure5_Lowest_Error.png` - Why LR has lowest prediction error
+6. ✅ `Figure6_Fastest_Training.png` - Why LR trains fastest
+7. ✅ `Figure7_Minimal_Overfitting.png` - Why LR doesn't overfit
+8. ✅ `Figure8_Consistent_Performance.png` - Performance across all metrics
+9. ✅ `Figure9_Why_Linear_Regression_Best_Summary.png` - Complete explanation text
 
 ---
 
@@ -89,12 +94,22 @@ improving. Final validation MAE: [value] units.
 **Update:** Existing Results section
 
 #### Replace/Add These Figures:
+
+**Essential Figures (Minimum Required):**
 1. **Replace** old scatter plot with `Figure1_Actual_vs_Predicted_Sales.png`
    - Has intercept and coefficients displayed at top
-2. **Add** `Figure4_Why_Linear_Regression_Best.png`
-   - Comprehensive explanation of why LR is best
-3. **Add** `Figure3_Model_Usage_Results.png`
-   - Shows model in actual use
+2. **Add** `Figure2_Model_Performance_Comparison.png`
+   - Bar chart comparing all models with explanation
+3. **Add** `Figure9_Why_Linear_Regression_Best_Summary.png`
+   - Complete text explanation of why LR is best
+
+**Additional Individual Analysis Figures (Recommended):**
+4. `Figure3_Model_Predictions_In_Use.png` - Shows model making predictions
+5. `Figure4_Error_Distribution.png` - Histogram of prediction errors
+6. `Figure5_Lowest_Error.png` - Why LR has lowest error
+7. `Figure6_Fastest_Training.png` - Why LR trains fastest
+8. `Figure7_Minimal_Overfitting.png` - Why LR doesn't overfit
+9. `Figure8_Consistent_Performance.png` - Performance across metrics
 
 ---
 
@@ -155,11 +170,11 @@ If you only have time for essential additions:
 ### MUST ADD (3 figures minimum):
 1. `figure_training_progression.png` - Answers "training results NOT based on MAPE/MAE"
 2. `Figure1_Actual_vs_Predicted_Sales.png` - Has intercept/coefficients
-3. `Figure4_Why_Linear_Regression_Best.png` - Explains why LR is best
+3. `Figure9_Why_Linear_Regression_Best_Summary.png` - Complete explanation why LR is best
 
 ### RECOMMENDED (Add all):
-- All 6 individual training figures
-- All 4 APA result figures
+- All 6 individual training figures (10 total training process figures)
+- All 9 individual APA result figures (NO clustering)
 - Text section from `KDD_TRAINING_RESULTS_SECTION.txt`
 
 ---
@@ -192,17 +207,32 @@ These training process metrics demonstrate HOW models learned, not just their fi
 
 ## Status: Ready for Submission
 
-✅ Training process visualization complete (10 figures)
-✅ APA-formatted results with coefficients (4 figures)
+✅ Training process visualization complete (10 figures - all individual)
+✅ APA-formatted results complete (9 figures - all individual, NO clustering)
 ✅ Individual figures for all 6 models (no clustering)
 ✅ Comprehensive explanations embedded in figures
 ✅ Text section ready for insertion
 ✅ All duplicates removed from repository
+✅ All clustered figures removed and replaced with individual figures
 ✅ Single consolidated guide (this file)
 ✅ Ready to update Word document
+
+**Total: 19 individual professional figures + documentation**
 
 ---
 
 **Last Updated:** 2026-01-27
 **Branch:** `claude/gradient-boosting-sales-forecast-E0Cfl`
 **All files committed and ready to use**
+
+---
+
+## Summary of Changes (Latest Update)
+
+**Problem Fixed:** Figure 3 and Figure 4 were clustered multi-panel figures
+
+**Solution:** Split into 7 individual standalone figures:
+- Figure 3 (2 panels) → Figure3_Model_Predictions_In_Use.png + Figure4_Error_Distribution.png
+- Figure 4 (4 panels + text) → Figure5_Lowest_Error.png + Figure6_Fastest_Training.png + Figure7_Minimal_Overfitting.png + Figure8_Consistent_Performance.png + Figure9_Why_Linear_Regression_Best_Summary.png
+
+**Result:** All 19 figures are now individual and standalone - NO CLUSTERING ANYWHERE!
