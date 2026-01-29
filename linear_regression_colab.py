@@ -44,29 +44,21 @@ print(f"Dataset loaded: {len(df)} records")
 df = df[df['quantity'] > 0]
 print(f"Valid sales records: {len(df)}")
 
-# Convert order_date to datetime and extract date only (handle mixed formats)
+# Convert order_date to datetime and extract date features (handle mixed formats)
 df['order_date'] = pd.to_datetime(df['order_date'], format='mixed')
-df['date'] = df['order_date'].dt.date
+df['day'] = df['order_date'].dt.day
+df['month'] = df['order_date'].dt.month
+df['day_of_week'] = df['order_date'].dt.dayofweek
 
-# Aggregate by date to get daily total quantity sold
-daily_sales = df.groupby('date').agg({
-    'quantity': 'sum'
-}).reset_index()
-daily_sales['date'] = pd.to_datetime(daily_sales['date'])
+print(f"Feature engineering completed")
 
-print(f"Aggregated to daily sales: {len(daily_sales)} days")
-
-# Feature engineering on daily data
-daily_sales['day'] = daily_sales['date'].dt.day
-daily_sales['month'] = daily_sales['date'].dt.month
-daily_sales['day_of_week'] = daily_sales['date'].dt.dayofweek
-
-# Prepare features and target
-X = daily_sales[['day', 'month', 'day_of_week']]
-y = daily_sales['quantity']
+# Prepare features and target (per-transaction prediction)
+X = df[['day', 'month', 'day_of_week']]
+y = df['quantity']
 
 print(f"Features: {list(X.columns)}")
-print(f"Target variable: daily total quantity (units)")
+print(f"Target variable: quantity per transaction (units)")
+print(f"Total transactions: {len(df)}")
 
 # ============================================
 # 2. TRAIN-TEST SPLIT
